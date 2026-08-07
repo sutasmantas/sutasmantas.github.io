@@ -1,0 +1,172 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import { projects, routeLabel } from '../../data/portfolio.js';
+import { shotFor } from '../../data/shots.js';
+import { href } from '../../lib/paths.js';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project: p } = Astro.props;
+const img = shotFor(p.shot);
+const siblings = projects.filter((s) => s.route === p.route && s.slug !== p.slug);
+---
+<Base
+  title={`${p.name} — ${p.asks} — Mantas Šutas`}
+  description={p.blurb}
+>
+  <div class="wrap head">
+    <nav class="crumbs mono" aria-label="Breadcrumb">
+      <a href={href('/work/')}>Evidence</a><span aria-hidden="true">/</span><span>{p.name}</span>
+    </nav>
+    <p class="kick mono">{p.family}</p>
+    <h1>{p.name}</h1>
+    <p class="sub">{p.blurb}</p>
+    <div class="ctas">
+      <a class="btn" href={p.live}>Open the live system</a>
+      <a class="btn ghost" href={p.source}>Read the source</a>
+    </div>
+  </div>
+
+  <!-- The window frame is a child of .wrap, not the same element. Putting both on
+       one element meant the frame's own padding fought the page gutter and the
+       border ended up flush against the screen edge on a phone. -->
+  <div class="wrap">
+  <figure class="win">
+    <div class="win-bar">
+      <span class="dot live" aria-hidden="true"></span>
+      <span class="dot" aria-hidden="true"></span>
+      <span class="dot" aria-hidden="true"></span>
+      <span class="addr mono">{p.live.replace('https://', '')}</span>
+      <span class="badge">live · no login</span>
+    </div>
+    <div class="shot">
+      <Image src={img} alt={p.alt} widths={[760, 1150, 1440]} sizes="(max-width: 1250px) 94vw, 1150px" loading="eager" />
+    </div>
+  </figure>
+  </div>
+
+  <section class="wrap facts" aria-label="What this project is">
+    <dl>
+      <div><dt>Client asks for</dt><dd>{p.asks}</dd></div>
+      <div><dt>Route</dt><dd><a href={href(`/work/?route=${p.route}`)}>{routeLabel[p.route]}</a></dd></div>
+      <div><dt>Market family</dt><dd>{p.family}</dd></div>
+      {p.note && <div><dt>Result</dt><dd class={p.noteTone === 'amber' ? 'amber' : ''}>{p.note}</dd></div>}
+    </dl>
+  </section>
+
+  <section class="wrap block">
+    <h2>What it does not prove</h2>
+    <p class="limit">{p.limit}</p>
+    <p class="lede">
+      A demo that hides its boundary is not evidence, so the boundary is stated
+      here rather than left for you to discover. The repository holds the tests
+      that back the claim, and the failures they were written against.
+    </p>
+    <div class="ctas">
+      <a class="btn" href={p.live}>Open {p.name}</a>
+      <a class="btn ghost" href={p.source}>Source and tests</a>
+    </div>
+  </section>
+
+  {siblings.length > 0 && (
+    <section class="wrap block related">
+      <h2>Also for “{routeLabel[p.route].toLowerCase()}”</h2>
+      <ul>
+        {siblings.map((s) => (
+          <li>
+            <a href={href(`/work/${s.slug}/`)}>
+              <b>{s.name}</b>
+              <span>{s.asks}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+<style>
+  .head { padding-block: 52px 30px; max-width: 760px; }
+  .crumbs { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; }
+  .crumbs a { color: var(--text-2); text-decoration: none; }
+  .crumbs a:hover { color: var(--accent); }
+  .crumbs span[aria-hidden] { margin: 0 8px; color: var(--line-bright); }
+  .kick { font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
+  h1 { font-size: clamp(2rem, 4.4vw, 2.9rem); line-height: 1.05; letter-spacing: -.032em; margin: 0 0 16px; }
+  .sub { color: var(--text-2); margin: 0 0 28px; max-width: 58ch; font-size: 1.03rem; }
+  .ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    background: var(--accent); color: var(--accent-ink); padding: 12px 20px;
+    border-radius: var(--r-md); font-weight: 650; font-size: 14.5px;
+    text-decoration: none; white-space: nowrap;
+  }
+  .btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--line-ctl); font-weight: 600; }
+
+  .win {
+    border: 1px solid var(--line-ctl); border-radius: var(--r-lg); overflow: hidden;
+    background: var(--panel); box-shadow: var(--shadow);
+    max-width: 1150px; margin: 16px auto 0;
+  }
+  .win-bar {
+    display: flex; align-items: center; gap: 9px; padding: 9px 12px;
+    background: linear-gradient(180deg, var(--panel-2), var(--panel));
+    border-bottom: 1px solid var(--line);
+  }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--line-bright); flex: 0 0 auto; }
+  .dot.live { background: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent); }
+  .addr { font-size: 11px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .badge {
+    margin-left: auto; flex: 0 0 auto; font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid var(--accent-dim); border-radius: 3px; padding: 2px 7px;
+  }
+  .shot { background: var(--mat); padding: 12px 12px 0; overflow: hidden; }
+  .shot :global(img) { display: block; width: 100%; height: auto; border-radius: 4px 4px 0 0; }
+
+  .facts { padding-block: 40px 0; }
+  .facts dl {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1px; margin: 0; background: var(--line);
+    border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden;
+  }
+  .facts dl > div { background: var(--panel); padding: 16px 18px; display: grid; gap: 4px; }
+  .facts dt { font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .facts dd { margin: 0; font-size: 13.5px; }
+  .facts dd a { color: var(--accent); text-decoration: none; }
+  .facts dd.amber { color: var(--amber); }
+
+  .block { padding-block: 56px 0; }
+  h2 { font-size: 1.35rem; margin: 0 0 14px; letter-spacing: -.02em; }
+  .limit {
+    margin: 0 0 18px; font-size: 1.02rem; color: var(--text);
+    border-left: 2px solid var(--amber); padding-left: 14px; max-width: 60ch;
+  }
+  .lede { color: var(--text-2); max-width: var(--measure); margin: 0 0 26px; }
+
+  .related { padding-bottom: 78px; }
+  .related ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .related a {
+    display: grid; gap: 3px; text-decoration: none;
+    border: 1px solid var(--line); border-radius: var(--r-md);
+    background: var(--panel); padding: 15px 17px;
+  }
+  .related b { font-size: 14.5px; }
+  .related span { font-size: 12.5px; color: var(--muted); }
+  .related a:hover { border-color: var(--line-ctl); }
+
+  @media (max-width: 620px) {
+    .head { padding-block: 38px 24px; }
+    .ctas .btn { flex: 1 1 100%; text-align: center; }
+    .shot { height: 236px; padding: 8px 8px 0; }
+    .shot :global(img) { width: 190%; max-width: none; transform: translateY(-5%); }
+    .block { padding-block: 44px 0; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .related a, .btn { transition: border-color .15s ease, background-color .15s ease, color .15s ease; }
+  }
+</style>
+</Base>

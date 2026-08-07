@@ -1,0 +1,92 @@
+---
+import { Image } from 'astro:assets';
+import { shotFor } from '../data/shots.js';
+import { href } from '../lib/paths.js';
+
+// One card definition for both the featured strip and the full index, so the
+// two can never drift apart. `crop` is the mobile treatment: a 1440px interface
+// scaled into a 390px column is an unreadable smudge, so small screens get a
+// legible top-left crop instead of the whole frame.
+const { project, showLimit = false } = Astro.props;
+const p = project;
+const img = shotFor(p.shot);
+---
+<article class="card" data-family={p.family} data-route={p.route}>
+  <a class="thumb" href={href(`/work/${p.slug}/`)} tabindex="-1" aria-hidden="true">
+    <Image src={img} alt="" widths={[420, 720, 1100]} sizes="(max-width: 620px) 92vw, 380px" loading="lazy" />
+  </a>
+  <div class="body">
+    <span class="pill mono">{p.family}</span>
+    <h3><a href={href(`/work/${p.slug}/`)}>{p.name}</a></h3>
+    <p>{p.blurb}</p>
+    <dl class="kv">
+      <div><dt>Client asks for</dt><dd>{p.asks}</dd></div>
+      {p.note && (
+        <div><dt>Note</dt><dd class={p.noteTone === 'amber' ? 'amber' : ''}>{p.note}</dd></div>
+      )}
+    </dl>
+    {showLimit && <p class="limit">{p.limit}</p>}
+    <div class="acts">
+      <a class="act" href={p.live}>Open it<span class="sr"> — {p.name} live demo</span></a>
+      <a class="act plain" href={p.source}>Source<span class="sr"> of {p.name}</span></a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .card {
+    border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden;
+    background: var(--panel); display: flex; flex-direction: column;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .35);
+  }
+  /* The thumbnail is a duplicate of the title link, so it is hidden from the
+     keyboard and the accessibility tree rather than adding a second stop. */
+  .thumb {
+    display: block; border-bottom: 1px solid var(--line); background: var(--mat);
+    overflow: hidden; aspect-ratio: 16 / 10; padding: 9px 9px 0;
+  }
+  .thumb :global(img) { display: block; width: 100%; height: auto; border-radius: 3px 3px 0 0; }
+
+  .body { padding: 18px 18px 19px; display: flex; flex-direction: column; gap: 11px; flex: 1; }
+  .pill {
+    align-self: flex-start; font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--muted); border: 1px solid var(--line); border-radius: 3px; padding: 3px 8px;
+  }
+  h3 { margin: 0; font-size: 1.12rem; letter-spacing: -.01em; }
+  h3 a { text-decoration: none; }
+  h3 a:hover { color: var(--accent); }
+  .body > p { margin: 0; color: var(--text-2); font-size: 14px; flex: 1; }
+  .limit { flex: 0 0 auto; font-size: 12.5px; color: var(--muted); border-left: 2px solid var(--line-bright); padding-left: 10px; }
+
+  /* A fixed two-column grid, not flex-wrap. Under flex-wrap the two rows sat
+     side by side on short text and stacked on long text, so no two cards in the
+     grid agreed on where the metadata was. */
+  .kv {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px 18px;
+    margin: 0; padding-top: 10px; border-top: 1px solid var(--line);
+  }
+  .kv div { display: grid; gap: 2px; align-content: start; }
+  .kv div:only-child { grid-column: 1 / -1; }
+  .kv dt { font-size: 9.5px; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); }
+  .kv dd { margin: 0; font-size: 12.5px; color: var(--text); }
+  .kv dd.amber { color: var(--amber); }
+
+  .acts { display: flex; gap: 9px; flex-wrap: wrap; padding-top: 2px; }
+  .act {
+    font-size: 13px; color: var(--accent); text-decoration: none;
+    border: 1px solid var(--accent-dim); padding: 6px 12px; border-radius: var(--r-sm);
+  }
+  .act.plain { border-color: var(--line-ctl); color: var(--text-2); }
+
+  @media (max-width: 620px) {
+    .thumb { aspect-ratio: auto; height: 158px; padding: 8px 8px 0; }
+    .thumb :global(img) { width: 168%; max-width: none; transform: translateY(-6%); }
+    .body { padding: 20px 19px 21px; gap: 13px; }
+    .act { padding: 8px 14px; font-size: 13.5px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .card { transition: border-color .18s ease, transform .18s ease; }
+    .card:hover { border-color: var(--line-ctl); transform: translateY(-2px); }
+    .act { transition: background-color .15s ease, border-color .15s ease, color .15s ease; }
+  }
+</style>

@@ -1,0 +1,229 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { identity, proof, routes, featured, counts, projects } from '../data/portfolio.js';
+import { shotFor } from '../data/shots.js';
+import { href } from '../lib/paths.js';
+
+const hero = projects.find((p) => p.slug === 'relay'); // strongest reliability evidence
+const heroImg = shotFor(hero.shot);
+const routeCount = (id) => projects.filter((p) => p.route === id).length;
+---
+<Base
+  title="Mantas Šutas — AI systems that keep working after the demo"
+  description="Independent AI engineer. Agent workflows, voice intake, retrieval and document pipelines, plus the reliability work that keeps them running. Thirteen systems you can open in a browser."
+>
+  <!-- Hero: a real running interface in the fold. The whole argument of this
+       page is that the systems can be opened, so the fold has to show one. -->
+  <div class="wrap hero">
+    <div class="say">
+      <p class="kick mono">{identity.role} · {identity.locale}</p>
+      <h1>{identity.headline[0]} <em>{identity.headline[1]}</em>.</h1>
+      <p class="sub">{identity.sub}</p>
+      <div class="ctas">
+        <a class="btn" href={href('/work/')}>See the systems</a>
+        <a class="btn ghost" href="#help">Ways I can help</a>
+      </div>
+    </div>
+
+    <figure class="win">
+      <div class="win-bar">
+        <span class="dot live" aria-hidden="true"></span>
+        <span class="dot" aria-hidden="true"></span>
+        <span class="dot" aria-hidden="true"></span>
+        <span class="addr mono">{hero.slug} · {hero.family.toLowerCase()}</span>
+        <span class="badge">live · no login</span>
+      </div>
+      <div class="shot">
+        <Image src={heroImg} alt={hero.alt} widths={[700, 1100, 1440]} sizes="(max-width: 900px) 94vw, 620px" loading="eager" />
+      </div>
+      <figcaption>
+        <a href={hero.live}>Open {hero.name} →</a>
+        <span>{hero.note}</span>
+      </figcaption>
+    </figure>
+  </div>
+
+  <!-- Proof strip. Both closest references put client logos here. This has none,
+       so it uses owned figures that each trace to a receipt. -->
+  <section class="readout" aria-label="Portfolio at a glance">
+    <div class="wrap grid">
+      {proof.map((f) => (
+        <div class="cell">
+          <b class="mono">{f.value}{f.unit && <span class="u"> {f.unit}</span>}</b>
+          <span class="lbl">{f.label}</span>
+          <span class="sub2">{f.sub}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="wrap block" id="help">
+    <div class="sec-head">
+      <h2>Ways I can help</h2>
+      <span class="count mono">three routes</span>
+    </div>
+    <p class="lede">
+      Named the way clients describe the problem, not the way I would describe the
+      stack. Each route goes to the systems that already do it.
+    </p>
+    <div class="routes">
+      {routes.map((r) => (
+        <a class="route" href={href(`/work/?route=${r.id}`)}>
+          <h3>{r.title}</h3>
+          <p>{r.blurb}</p>
+          <div class="route-foot">
+            <span class="demand mono">{r.demand}</span>
+            <span class="n mono">{routeCount(r.id)} systems →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="wrap block" id="work">
+    <div class="sec-head">
+      <h2>Evidence</h2>
+      <span class="count mono">{featured.length} shown · {counts.open} open in a browser</span>
+    </div>
+    <p class="lede">
+      Every card opens a system running on a public URL. No login, no sales call
+      first, and each one states the limit of what it proves.
+    </p>
+    <div class="cards">
+      {featured.map((p) => <ProjectCard project={p} />)}
+    </div>
+    <p class="more">
+      <a class="btn ghost" href={href('/work/')}>All {counts.open} systems, filterable</a>
+    </p>
+  </section>
+
+<style>
+  /* ---------- hero ---------- */
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.1fr);
+    gap: 52px; align-items: center; padding-block: 80px 62px;
+  }
+  .kick {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 22px;
+  }
+  .kick::before { content: ""; width: 22px; height: 1px; background: var(--accent-dim); }
+  h1 {
+    font-size: clamp(2.15rem, 4.6vw, 3.5rem); line-height: 1.04;
+    letter-spacing: -.032em; margin: 0 0 20px; font-weight: 700; text-wrap: balance;
+  }
+  h1 em { font-style: normal; color: var(--accent); }
+  .sub { color: var(--text-2); margin: 0 0 32px; max-width: 47ch; font-size: 1.03rem; }
+  .ctas { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .btn {
+    background: var(--accent); color: var(--accent-ink); padding: 12px 20px;
+    border-radius: var(--r-md); font-weight: 650; font-size: 14.5px;
+    text-decoration: none; white-space: nowrap;
+  }
+  .btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--line-ctl); font-weight: 600; }
+
+  /* window chrome: reads as a running app, not a picture */
+  .win {
+    margin: 0; border: 1px solid var(--line-ctl); border-radius: var(--r-lg);
+    overflow: hidden; background: var(--panel); box-shadow: var(--shadow);
+  }
+  .win-bar {
+    display: flex; align-items: center; gap: 9px; padding: 9px 12px;
+    background: linear-gradient(180deg, var(--panel-2), var(--panel));
+    border-bottom: 1px solid var(--line);
+  }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--line-bright); flex: 0 0 auto; }
+  .dot.live { background: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent); }
+  .addr { font-size: 11px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .badge {
+    margin-left: auto; flex: 0 0 auto; font-size: 10px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--accent);
+    border: 1px solid var(--accent-dim); border-radius: 3px; padding: 2px 7px;
+  }
+  /* mat: the real UIs were designed on white and hit the ground at 19:1.
+     Stepping through the mat brings the edge to 13:1. */
+  .shot { background: var(--mat); padding: 10px 10px 0; overflow: hidden; }
+  .shot :global(img) { display: block; width: 100%; height: auto; border-radius: 4px 4px 0 0; }
+  .win figcaption {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 14px;
+    padding: 11px 13px; border-top: 1px solid var(--line); background: var(--panel-2);
+    font-size: 12.5px;
+  }
+  .win figcaption a {
+    display: inline-flex; align-items: center; min-height: 26px;
+    color: var(--accent); text-decoration: none; font-weight: 600;
+  }
+  .win figcaption span { color: var(--muted); font-size: 11.5px; text-align: right; }
+
+  /* ---------- readout ---------- */
+  .readout { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-lift); }
+  .readout .grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .cell { padding: 20px var(--gut); border-right: 1px solid var(--line); }
+  .cell:last-child { border-right: 0; }
+  .cell b { display: block; font-size: 1.6rem; letter-spacing: -.02em; line-height: 1.15; }
+  .cell b .u { font-size: .9rem; color: var(--muted); letter-spacing: 0; }
+  .cell .lbl {
+    display: block; margin-top: 4px; font-size: 11px; color: var(--text-2);
+    letter-spacing: .06em; text-transform: uppercase; line-height: 1.45;
+  }
+  .cell .sub2 { display: block; margin-top: 2px; font-size: 11.5px; color: var(--muted); }
+
+  /* ---------- sections ---------- */
+  .block { padding-block: 72px; }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 8px; flex-wrap: wrap; }
+  h2 { font-size: 1.5rem; margin: 0; letter-spacing: -.02em; }
+  .count { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .lede { color: var(--text-2); margin: 0 0 32px; max-width: var(--measure); }
+
+  .routes { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .route {
+    display: flex; flex-direction: column; gap: 10px; text-decoration: none;
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: var(--r-lg); padding: 22px;
+  }
+  .route h3 { margin: 0; font-size: 1.06rem; letter-spacing: -.01em; }
+  .route p { margin: 0; color: var(--text-2); font-size: 14.5px; flex: 1; }
+  .route-foot {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+    padding-top: 12px; border-top: 1px solid var(--line);
+  }
+  .demand { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+  .n { font-size: 11.5px; color: var(--muted); white-space: nowrap; }
+
+  .cards { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); }
+  .more { margin: 32px 0 0; }
+
+  /* ---------- mobile: designed, not left to wrap ---------- */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 38px; padding-block: 48px 44px; }
+    .readout .grid { grid-template-columns: 1fr 1fr; }
+    .cell { border-right: 0; border-top: 1px solid var(--line); }
+    .cell:nth-child(odd) { border-right: 1px solid var(--line); }
+    .cell:nth-child(-n+2) { border-top: 0; }
+    .cards, .routes { grid-template-columns: 1fr; gap: 24px; }
+    .block { padding-block: 58px; }
+  }
+  @media (max-width: 620px) {
+    h1 { font-size: clamp(1.9rem, 8.2vw, 2.4rem); letter-spacing: -.026em; margin-bottom: 22px; }
+    .sub { font-size: 1rem; margin-bottom: 30px; }
+    .ctas { gap: 12px; }
+    .ctas .btn { flex: 1 1 100%; text-align: center; }
+    /* A 1440px interface scaled to 390px is an unreadable smudge, which defeats
+       the point of putting it in the fold. Show a legible crop instead. */
+    .shot { height: 242px; padding: 8px 8px 0; }
+    .shot :global(img) { width: 215%; max-width: none; transform: translateY(-5%); }
+    .cell b { font-size: 1.5rem; }
+    .more .btn { display: block; text-align: center; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .route { transition: border-color .18s ease, transform .18s ease; }
+    .route:hover { border-color: var(--line-ctl); transform: translateY(-2px); }
+    .btn { transition: background-color .15s ease, border-color .15s ease, color .15s ease; }
+  }
+</style>
+</Base>

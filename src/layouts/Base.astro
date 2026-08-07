@@ -1,0 +1,164 @@
+---
+import '../styles/tokens.css';
+import { identity, contact } from '../data/portfolio.js';
+import { href, homeAnchor } from '../lib/paths.js';
+// Imported rather than written as a path, so the preload URL is the same hashed,
+// base-prefixed URL the stylesheet asks for. A hand-written /fonts/... preload
+// silently fetched nothing once the fonts moved into the asset pipeline.
+import sansLatin from '../assets/fonts/plex-sans-var-latin.woff2';
+import sansLatinExt from '../assets/fonts/plex-sans-var-latin-ext.woff2';
+
+const { title, description } = Astro.props;
+
+// Absolute so the header works identically on /, /work/ and /work/<slug>/. The
+// first version used bare fragments, which silently pointed at anchors that only
+// existed on the home page.
+const nav = [
+  { href: href('/work/'), label: 'The systems' },
+  { href: homeAnchor('help'), label: 'Ways I can help' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="color-scheme" content="dark" />
+  <!-- Preload only the two faces the first screen actually needs: the variable
+       sans for both Latin subsets. The mono is metadata-only and can arrive late
+       without the headline reflowing. -->
+  <link rel="preload" href={sansLatin} as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href={sansLatinExt} as="font" type="font/woff2" crossorigin />
+  <link rel="icon" href="data:," />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href={href('/')}>
+        <b>{identity.name}</b><span>{identity.role}</span>
+      </a>
+      <nav class="nav" aria-label="Sections">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      </nav>
+      <a class="cta-sm" href="#contact">Get in touch</a>
+      <button class="menu" type="button" aria-expanded="false" aria-controls="m-nav">
+        <span class="sr">Menu</span><i></i><i></i><i></i>
+      </button>
+    </div>
+    <nav class="m-nav" id="m-nav" hidden aria-label="Sections">
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      <a class="m-cta" href="#contact">Get in touch</a>
+    </nav>
+  </header>
+
+  <main id="main"><slot /></main>
+
+  <footer class="foot" id="contact">
+    <div class="wrap">
+      <h2>Tell me what’s breaking</h2>
+      <p>
+        No spec, no budget, no brief. Describe the problem in a sentence and I’ll
+        tell you honestly whether I’m the right person for it.
+      </p>
+      <a class="btn" href={`mailto:${contact.email}`}>{contact.email}</a>
+      <p class="alt">
+        Or read the code first — <a href={contact.github}>github.com/sutasmantas</a>
+      </p>
+    </div>
+  </footer>
+
+<style>
+  .top {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .top > .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; height: 58px;
+  }
+  /* min-height, not just the text box: as a flex item this link is not covered by
+     the inline exception in WCAG 2.5.8, so it has to earn its own 24px. */
+  .brand {
+    display: flex; align-items: baseline; gap: 9px; min-height: 40px;
+    text-decoration: none; white-space: nowrap;
+  }
+  .brand b { font-size: 14.5px; font-weight: 700; letter-spacing: .02em; }
+  .brand span { font-size: 11px; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; }
+
+  .nav { display: flex; gap: 26px; font-size: 14px; color: var(--text-2); }
+  .nav a { text-decoration: none; }
+  .nav a:hover { color: var(--text); }
+
+  .cta-sm {
+    background: var(--accent); color: var(--accent-ink);
+    padding: 8px 15px; border-radius: var(--r-sm);
+    font-weight: 650; font-size: 13.5px; text-decoration: none; white-space: nowrap;
+  }
+
+  /* Two header designs, not one that wraps. The wrapping version collapsed into
+     three rows with the button overlapping the brand. */
+  .menu {
+    display: none; background: transparent; border: 1px solid var(--line-ctl);
+    border-radius: var(--r-sm); width: 42px; height: 40px; cursor: pointer; position: relative;
+  }
+  .menu i { position: absolute; left: 11px; right: 11px; height: 1.5px; background: var(--text); border-radius: 2px; }
+  .menu i:nth-child(2) { top: 14px; }
+  .menu i:nth-child(3) { top: 19px; }
+  .menu i:nth-child(4) { top: 24px; }
+
+  .m-nav { display: none; }
+  .m-nav[hidden] { display: none; }
+
+  @media (max-width: 620px) {
+    .nav, .cta-sm { display: none; }
+    .menu { display: block; }
+    .m-nav:not([hidden]) {
+      display: flex; flex-direction: column;
+      border-top: 1px solid var(--line); background: var(--bg-lift);
+    }
+    .m-nav a {
+      padding: 15px var(--gut); text-decoration: none; color: var(--text-2);
+      border-bottom: 1px solid var(--line); font-size: 15px;
+    }
+    .m-nav .m-cta { color: var(--accent); font-weight: 650; border-bottom: 0; }
+  }
+
+  .foot {
+    border-top: 1px solid var(--line); background: var(--bg-lift);
+    padding: 68px 0 76px; text-align: center;
+  }
+  .foot h2 { margin: 0 0 12px; font-size: 1.5rem; letter-spacing: -.02em; }
+  .foot p { color: var(--text-2); max-width: 52ch; margin: 0 auto 28px; }
+  .btn {
+    display: inline-block; background: var(--accent); color: var(--accent-ink);
+    padding: 12px 22px; border-radius: var(--r-md);
+    font-weight: 650; font-size: 14.5px; text-decoration: none;
+  }
+  .foot .alt { margin: 22px auto 0; font-size: 13.5px; color: var(--muted); }
+  .foot .alt a { color: var(--text-2); }
+</style>
+
+<script>
+  const btn = document.querySelector('.menu');
+  const panel = document.getElementById('m-nav');
+  btn?.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open;
+  });
+  panel?.querySelectorAll('a').forEach((a) =>
+    a.addEventListener('click', () => {
+      btn.setAttribute('aria-expanded', 'false');
+      panel.hidden = true;
+    })
+  );
+</script>
+</body>
+</html>
