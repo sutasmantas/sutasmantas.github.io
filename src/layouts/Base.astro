@@ -14,7 +14,7 @@ const { title, description } = Astro.props;
 // first version used bare fragments, which silently pointed at anchors that only
 // existed on the home page.
 const nav = [
-  { href: href('/work/'), label: 'The systems' },
+  { href: homeAnchor('work'), label: 'The systems' },
   { href: homeAnchor('help'), label: 'Ways I can help' },
   { href: '#contact', label: 'Contact' },
 ];

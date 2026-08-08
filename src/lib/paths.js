@@ -18,8 +18,15 @@ export function href(path = '/') {
   return `${base}${clean}`;
 }
 
-// Fragment links that must survive being followed from another route: on /work/
-// a bare "#help" scrolls nowhere, because #help only exists on the home page.
+// Fragment links that must survive being followed from a project page: a bare
+// "#help" scrolls nowhere there, because #help only exists on the home page.
 export function homeAnchor(id) {
   return `${href('/')}#${id}`;
+}
+
+// The filtered view of the system list. Query first, fragment last — the other
+// way round the browser reads "?route=fix" as part of the fragment and the
+// filter silently never applies.
+export function homeFiltered(route) {
+  return `${href('/')}?route=${route}#work`;
 }

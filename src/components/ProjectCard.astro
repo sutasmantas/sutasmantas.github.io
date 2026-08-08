@@ -29,7 +29,7 @@ const img = shotFor(p.shot);
     <dl class="kv">
       <div><dt>What you get</dt><dd>{p.asks}</dd></div>
       {p.note && (
-        <div><dt>The hard part</dt><dd class={p.noteTone === 'amber' ? 'amber' : ''}>{p.note}</dd></div>
+        <div><dt>The hard part</dt><dd>{p.note}</dd></div>
       )}
     </dl>
     <div class="acts">
@@ -81,7 +81,6 @@ const img = shotFor(p.shot);
   .kv div:only-child { grid-column: 1 / -1; }
   .kv dt { font-size: 9.5px; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); }
   .kv dd { margin: 0; font-size: 12.5px; color: var(--text); }
-  .kv dd.amber { color: var(--amber); }
 
   .acts { display: flex; gap: 9px; flex-wrap: wrap; padding-top: 2px; }
   .act {

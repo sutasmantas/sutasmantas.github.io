@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { identity, proof, routes, ordered, counts, projects } from '../data/portfolio.js';
 import { shotFor } from '../data/shots.js';
-import { href } from '../lib/paths.js';
+import { href, homeFiltered } from '../lib/paths.js';
 
 const hero = projects.find((p) => p.slug === 'relay'); // strongest reliability evidence
 const heroImg = shotFor(hero.shot);
@@ -70,7 +70,7 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
     </p>
     <div class="routes">
       {routes.map((r) => (
-        <a class="route" href={href(`/work/?route=${r.id}`)}>
+        <a class="route" href={homeFiltered(r.id)}>
           <h3>{r.title}</h3>
           <p>{r.blurb}</p>
           <ul class="does">
@@ -92,11 +92,33 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
       worked. Open any of them and click around before you decide whether to
       email me.
     </p>
-    <div class="cards">
+
+    <div class="bar">
+      <fieldset class="filter">
+        <legend class="sr">Filter by what you need done</legend>
+        <button type="button" class="chip on" data-route="all" aria-pressed="true" data-label="Everything">
+          Everything <span class="n mono">{counts.open}</span>
+        </button>
+        {routes.map((r) => (
+          <button type="button" class="chip" data-route={r.id} aria-pressed="false" data-label={r.chip}>
+            {r.chip}
+            <span class="n mono">{routeCount(r.id)}</span>
+          </button>
+        ))}
+      </fieldset>
+      <p class="status mono" role="status" aria-live="polite" data-status>
+        Showing all {counts.open}
+      </p>
+    </div>
+
+    <div class="cards" data-list>
       {ordered.map((p) => <ProjectCard project={p} />)}
     </div>
-    <p class="more">
-      <a class="btn ghost" href={href('/work/')}>Filter by what you need done</a>
+
+    <p class="note">
+      A card here is a promise that you can open the thing, so a fourteenth
+      system — a realtime English and Lithuanian assistant — is not listed until
+      its repository is public.
     </p>
   </section>
 
@@ -162,7 +184,7 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
 
   /* ---------- readout ---------- */
   .readout { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-lift); }
-  .readout .grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .readout .grid { display: grid; grid-template-columns: repeat(3, 1fr); }
   .cell { padding: 20px var(--gut); border-right: 1px solid var(--line); }
   .cell:last-child { border-right: 0; }
   .cell b { display: block; font-size: 1.6rem; letter-spacing: -.02em; line-height: 1.15; }
@@ -205,7 +227,28 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
   .n { font-size: 11.5px; color: var(--accent); white-space: nowrap; padding-top: 4px; }
 
   .cards { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); }
-  .more { margin: 32px 0 0; }
+  .cards :global(.card[hidden]) { display: none; }
+
+  .bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 18px;
+    flex-wrap: wrap; margin-bottom: 26px;
+  }
+  .filter { display: flex; gap: 9px; flex-wrap: wrap; border: 0; margin: 0; padding: 0; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--text-2); cursor: pointer;
+    border: 1px solid var(--line-ctl); border-radius: 999px;
+    padding: 8px 15px; font: inherit; font-size: 13.5px;
+  }
+  .chip .n { font-size: 11px; color: var(--muted); }
+  .chip.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 650; }
+  .chip.on .n { color: var(--accent-ink); opacity: .72; }
+  .status { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0; }
+
+  .note {
+    margin: 34px 0 0; max-width: 62ch; color: var(--muted); font-size: 13.5px;
+    border-left: 2px solid var(--line-bright); padding-left: 14px;
+  }
 
   /* ---------- mobile: designed, not left to wrap ---------- */
   @media (max-width: 900px) {
@@ -231,9 +274,48 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
   }
 
   @media (prefers-reduced-motion: no-preference) {
+    .chip { transition: border-color .15s ease, background-color .15s ease, color .15s ease; }
     .route { transition: border-color .18s ease, transform .18s ease; }
     .route:hover { border-color: var(--line-ctl); transform: translateY(-2px); }
     .btn { transition: background-color .15s ease, border-color .15s ease, color .15s ease; }
   }
 </style>
+
+<script>
+  // Progressive enhancement: every card is already in the document and visible,
+  // so with JavaScript off the filter simply does nothing and all thirteen are
+  // still there. ?route= is read on load, so the "Ways I can help" cards land
+  // pre-filtered and a filtered view can be shared.
+  const chips = Array.from(document.querySelectorAll('.chip'));
+  const cards = Array.from(document.querySelectorAll('[data-list] .card'));
+  const status = document.querySelector('[data-status]');
+
+  function apply(route, push) {
+    let shown = 0;
+    for (const card of cards) {
+      const match = route === 'all' || card.dataset.route === route;
+      card.hidden = !match;
+      if (match) shown += 1;
+    }
+    for (const chip of chips) {
+      const on = chip.dataset.route === route;
+      chip.classList.toggle('on', on);
+      chip.setAttribute('aria-pressed', String(on));
+    }
+    const label = chips.find((c) => c.dataset.route === route)?.dataset.label ?? route;
+    status.textContent =
+      route === 'all' ? `Showing all ${shown}` : `Showing ${shown} of ${cards.length} — ${label}`;
+    if (push) {
+      const url = new URL(window.location.href);
+      if (route === 'all') url.searchParams.delete('route');
+      else url.searchParams.set('route', route);
+      history.replaceState(null, '', url);
+    }
+  }
+
+  for (const chip of chips) chip.addEventListener('click', () => apply(chip.dataset.route, true));
+
+  const initial = new URLSearchParams(window.location.search).get('route');
+  if (initial && chips.some((c) => c.dataset.route === initial)) apply(initial, false);
+</script>
 </Base>

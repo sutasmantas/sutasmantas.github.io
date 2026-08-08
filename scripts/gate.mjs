@@ -17,12 +17,14 @@
 //             because they are sized by the sentence they sit in.
 //   alt       Every content image needs alt text; decorative ones need alt="".
 //   contrast  Body and label text against its real background, at 4.5:1.
+//   route     The page answers 200 at all. Without this every other check
+//             silently passes on a 404.
 //
 // Exits non-zero listing every failure, not just the first.
 import { chromium } from 'playwright';
 
 const origin = process.argv[2] ?? 'http://127.0.0.1:8912';
-const ROUTES = (process.env.GATE_ROUTES ?? '/,/work/,/work/relay/,/work/gauge/').split(',');
+const ROUTES = (process.env.GATE_ROUTES ?? '/,/work/relay/,/work/gauge/,/work/signalroom/').split(',');
 const VIEWPORTS = [
   { name: 'phone', width: 375, height: 812 },
   { name: 'desktop', width: 1440, height: 1000 },
@@ -39,7 +41,14 @@ for (const vp of VIEWPORTS) {
   const page = await context.newPage();
 
   for (const route of ROUTES) {
-    await page.goto(origin + route, { waitUntil: 'load' });
+    // A route that 404s renders an almost empty page, which sails through every
+    // check below. The gate reported PASS on a page that had just been deleted,
+    // so status is now asserted before anything else runs.
+    const res = await page.goto(origin + route, { waitUntil: 'load' });
+    if (!res || !res.ok()) {
+      fail(route, vp.name, 'route', `HTTP ${res ? res.status() : 'no response'}`);
+      continue;
+    }
 
     const report = await page.evaluate((isPhone) => {
       const de = document.documentElement;
