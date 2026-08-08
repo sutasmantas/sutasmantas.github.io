@@ -116,10 +116,78 @@
 
   --gut: 24px;
   --measure: 64ch;
+
+  /* ---- Type scale -------------------------------------------------------
+   * The page previously carried 19 distinct font sizes, four of which
+   * (1.02rem, 1.03rem, 1.05rem, 1.06rem) differ by less than a pixel — a
+   * difference nobody can see and everybody senses. Reber, Schwarz &
+   * Winkielman (Personality and Social Psychology Review 8, 2004) argue that
+   * aesthetic pleasure tracks processing fluency, and that repetition and
+   * consistency are among the properties that raise it. Nine sizes on a fixed
+   * ratio are easier to process than nineteen arbitrary ones, and that is most
+   * of the distance between "fine" and "polished".
+   *
+   * Roughly a 1.15–1.25 ratio, rounded to whole pixels so nothing lands on a
+   * half-pixel and blurs. */
+  --t-100: 0.6875rem;  /* 11px — micro labels, uppercase */
+  --t-200: 0.75rem;    /* 12px — metadata */
+  --t-300: 0.8125rem;  /* 13px — dense UI */
+  --t-400: 0.875rem;   /* 14px — secondary text, controls */
+  --t-500: 1rem;       /* 16px — body */
+  --t-600: 1.125rem;   /* 18px — card titles, lead */
+  --t-700: 1.375rem;   /* 22px — section headings */
+  --t-800: 1.75rem;    /* 28px — page headings */
+  --t-900: clamp(2.25rem, 4.6vw, 3.5rem); /* display */
+
+  /* Optical letter-spacing. Large type needs negative tracking to stop looking
+   * loose; small uppercase needs positive tracking to stay readable. Tying the
+   * value to the size means it can never be forgotten at a call site. */
+  --ls-display: -0.032em;
+  --ls-head: -0.018em;
+  --ls-body: 0;
+  --ls-label: 0.09em;
+
+  --lh-display: 1.04;
+  --lh-head: 1.22;
+  --lh-body: 1.6;
+
+  /* ---- Spacing ----------------------------------------------------------
+   * A 4px base. There were 40 distinct spacing values, 23 of them off any
+   * grid — 17px next to 18px next to 19px. The 4/8 grid is the convention
+   * every shipped design system uses (Material, iOS, Carbon, Fluent) for the
+   * same reason: repeated intervals read as deliberate. */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+  --s-12: 48px;
+  --s-16: 64px;
+  --s-20: 80px;
+
+  /* ---- Radius -----------------------------------------------------------
+   * Nested radii follow inner = outer − padding, so a rounded thing inside a
+   * rounded thing stays concentric instead of drifting. */
   --r-sm: 4px;
-  --r-md: 6px;
-  --r-lg: 8px;
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 12px 32px -12px rgba(0, 0, 0, 0.7);
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-pill: 999px;
+
+  /* ---- Elevation --------------------------------------------------------
+   * Layered rather than single. One blurred rectangle reads as a sticker; a
+   * ramp of three — contact, ambient, cast — reads as a lit object. */
+  --sh-1: 0 1px 2px rgba(0, 0, 0, 0.32);
+  --sh-2: 0 1px 2px rgba(0, 0, 0, 0.28), 0 4px 10px -3px rgba(0, 0, 0, 0.34);
+  --sh-3:
+    0 1px 2px rgba(0, 0, 0, 0.26),
+    0 8px 18px -6px rgba(0, 0, 0, 0.38),
+    0 28px 48px -16px rgba(0, 0, 0, 0.5);
+
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --dur: 180ms;
 
   --sans: 'Plex Sans', ui-sans-serif, -apple-system, 'Segoe UI', Roboto, system-ui, sans-serif;
   --mono: 'Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
@@ -140,12 +208,35 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font: 16px/1.65 var(--sans);
+  font: var(--t-500) / var(--lh-body) var(--sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
+/* One heading treatment, defined once. Every h1–h3 on the site inherits the
+   optical tracking and line-height for its size instead of restating them. */
+h1, h2, h3 {
+  margin: 0;
+  line-height: var(--lh-head);
+  letter-spacing: var(--ls-head);
+  text-wrap: balance;
+}
+h1 { font-size: var(--t-800); }
+h2 { font-size: var(--t-700); }
+h3 { font-size: var(--t-600); }
+
+p { margin: 0; }
+
 .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* The uppercase micro-label used for eyebrows, metadata keys and counts. It
+   appeared eight times with eight slightly different sizes and trackings. */
+.label {
+  font-size: var(--t-100);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  line-height: 1.4;
+}
 
 .wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--gut); }
 

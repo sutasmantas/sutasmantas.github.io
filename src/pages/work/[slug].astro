@@ -21,10 +21,10 @@ const siblings = projects.filter((s) => s.route === p.route && s.slug !== p.slug
   description={p.blurb}
 >
   <div class="wrap head">
-    <nav class="crumbs mono" aria-label="Breadcrumb">
+    <nav class="crumbs mono label" aria-label="Breadcrumb">
       <a href={homeAnchor('work')}>The work</a><span aria-hidden="true">/</span><span>{p.name}</span>
     </nav>
-    <p class="kick mono">{p.name} · {p.family}</p>
+    <p class="kick mono label">{p.family}</p>
     <h1>{p.title}</h1>
     <p class="sub">{p.blurb}</p>
     <div class="ctas">
@@ -53,10 +53,10 @@ const siblings = projects.filter((s) => s.route === p.route && s.slug !== p.slug
 
   <section class="wrap facts" aria-label="What this project is">
     <dl>
-      <div><dt>What you get</dt><dd>{p.asks}</dd></div>
-      <div><dt>Route</dt><dd><a href={homeFiltered(p.route)}>{routeLabel[p.route]}</a></dd></div>
-      <div><dt>Area</dt><dd>{p.family}</dd></div>
-      {p.note && <div><dt>The hard part</dt><dd>{p.note}</dd></div>}
+      <div><dt class="label">What you get</dt><dd>{p.asks}</dd></div>
+      <div><dt class="label">Route</dt><dd><a href={homeFiltered(p.route)}>{routeLabel[p.route]}</a></dd></div>
+      <div><dt class="label">Area</dt><dd>{p.family}</dd></div>
+      {p.note && <div><dt class="label">The hard part</dt><dd>{p.note}</dd></div>}
     </dl>
   </section>
 
@@ -91,81 +91,94 @@ const siblings = projects.filter((s) => s.route === p.route && s.slug !== p.slug
   )}
 
 <style>
-  .head { padding-block: 52px 30px; max-width: 760px; }
-  .crumbs { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; }
+  .head { padding-block: var(--s-12) var(--s-8); max-width: 50rem; }
+  .crumbs { color: var(--muted); margin-bottom: var(--s-6); }
   .crumbs a { color: var(--text-2); text-decoration: none; }
   .crumbs a:hover { color: var(--accent); }
-  .crumbs span[aria-hidden] { margin: 0 8px; color: var(--line-bright); }
-  .kick { font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
-  h1 { font-size: clamp(1.7rem, 3.4vw, 2.35rem); line-height: 1.12; letter-spacing: -.028em; margin: 0 0 16px; text-wrap: balance; }
-  .sub { color: var(--text-2); margin: 0 0 28px; max-width: 58ch; font-size: 1.03rem; }
-  .ctas { display: flex; gap: 14px; flex-wrap: wrap; }
-  .btn {
-    background: var(--accent); color: var(--accent-ink); padding: 12px 20px;
-    border-radius: var(--r-md); font-weight: 650; font-size: 14.5px;
-    text-decoration: none; white-space: nowrap;
+  .crumbs span[aria-hidden] { margin: 0 var(--s-2); color: var(--line-bright); }
+  .kick { color: var(--accent); margin-bottom: var(--s-3); }
+  h1 {
+    font-size: clamp(1.75rem, 3.4vw, 2.375rem);
+    line-height: 1.15; letter-spacing: -0.026em; margin-bottom: var(--s-4);
   }
-  .btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--line-ctl); font-weight: 600; }
+  .sub { color: var(--text-2); margin-bottom: var(--s-8); max-width: 58ch; font-size: var(--t-500); }
+  .ctas { display: flex; gap: var(--s-3); flex-wrap: wrap; }
+  .btn {
+    background: var(--accent); color: var(--accent-ink);
+    padding: var(--s-3) var(--s-5); border-radius: var(--r-md);
+    font-weight: 650; font-size: var(--t-400);
+    text-decoration: none; white-space: nowrap; box-shadow: var(--sh-1);
+  }
+  .btn:hover { background: color-mix(in srgb, var(--accent) 88%, #fff); box-shadow: var(--sh-2); }
+  .btn.ghost {
+    background: transparent; color: var(--text);
+    border: 1px solid var(--line-ctl); font-weight: 600; box-shadow: none;
+  }
+  .btn.ghost:hover { background: color-mix(in srgb, var(--text) 7%, transparent); border-color: var(--text-2); }
 
   .win {
     border: 1px solid var(--line-ctl); border-radius: var(--r-lg); overflow: hidden;
-    background: var(--panel); box-shadow: var(--shadow);
-    max-width: 1150px; margin: 16px auto 0;
+    background: var(--panel); box-shadow: var(--sh-3);
+    max-width: 1150px; margin: var(--s-4) auto 0;
   }
   .win-bar {
-    display: flex; align-items: center; gap: 9px; padding: 9px 12px;
+    display: flex; align-items: center; gap: var(--s-2); padding: var(--s-2) var(--s-3);
     background: linear-gradient(180deg, var(--panel-2), var(--panel));
     border-bottom: 1px solid var(--line);
   }
-  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--line-bright); flex: 0 0 auto; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line-bright); flex: 0 0 auto; }
   .dot.live { background: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent); }
-  .addr { font-size: 11px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .addr { font-size: var(--t-100); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .badge {
-    margin-left: auto; flex: 0 0 auto; font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
-    color: var(--accent); border: 1px solid var(--accent-dim); border-radius: 3px; padding: 2px 7px;
+    margin-left: auto; flex: 0 0 auto; font-size: var(--t-100);
+    letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--accent);
+    border: 1px solid var(--accent-dim); border-radius: var(--r-sm); padding: 2px var(--s-2);
   }
-  .shot { background: var(--mat); padding: 12px 12px 0; overflow: hidden; }
-  .shot :global(img) { display: block; width: 100%; height: auto; border-radius: 4px 4px 0 0; }
+  .shot { background: var(--mat); padding: var(--s-3) var(--s-3) 0; overflow: hidden; }
+  .shot :global(img) { display: block; width: 100%; height: auto; border-radius: var(--s-1) var(--s-1) 0 0; }
 
-  .facts { padding-block: 40px 0; }
+  .facts { padding-block: var(--s-10) 0; }
   .facts dl {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1px; margin: 0; background: var(--line);
     border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden;
   }
-  .facts dl > div { background: var(--panel); padding: 16px 18px; display: grid; gap: 4px; }
-  .facts dt { font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-  .facts dd { margin: 0; font-size: 13.5px; }
+  .facts dl > div { background: var(--panel); padding: var(--s-4) var(--s-5); display: grid; gap: var(--s-1); }
+  .facts dt { color: var(--muted); }
+  .facts dd { margin: 0; font-size: var(--t-300); line-height: 1.45; }
   .facts dd a { color: var(--accent); text-decoration: none; }
 
-  .block { padding-block: 56px 0; }
-  h2 { font-size: 1.35rem; margin: 0 0 14px; letter-spacing: -.02em; }
+  .block { padding-block: var(--s-12) 0; }
   .scope {
-    margin: 0 0 18px; font-size: 1.02rem; color: var(--text);
-    border-left: 2px solid var(--accent-dim); padding-left: 14px; max-width: 60ch;
+    margin-bottom: var(--s-5); font-size: var(--t-500); color: var(--text);
+    border-left: 2px solid var(--accent-dim); padding-left: var(--s-4); max-width: 58ch;
   }
-  .lede { color: var(--text-2); max-width: var(--measure); margin: 0 0 26px; }
+  .lede { color: var(--text-2); max-width: var(--measure); margin-bottom: var(--s-6); }
+  h2 { margin-bottom: var(--s-4); }
 
-  .related { padding-bottom: 78px; }
-  .related ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-  .related a {
-    display: grid; gap: 3px; text-decoration: none;
-    border: 1px solid var(--line); border-radius: var(--r-md);
-    background: var(--panel); padding: 15px 17px;
+  .related { padding-bottom: var(--s-20); }
+  .related ul {
+    list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-3);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
-  .related b { font-size: 14.5px; }
-  .related span { font-size: 12.5px; color: var(--muted); }
-  .related a:hover { border-color: var(--line-ctl); }
+  .related a {
+    display: grid; gap: var(--s-1); text-decoration: none;
+    border: 1px solid var(--line); border-radius: var(--r-md);
+    background: var(--panel); padding: var(--s-4) var(--s-5);
+  }
+  .related b { font-size: var(--t-400); }
+  .related span { font-size: var(--t-200); color: var(--muted); }
+  .related a:hover { border-color: var(--line-bright); background: var(--panel-2); }
 
   @media (max-width: 620px) {
-    .head { padding-block: 38px 24px; }
+    .head { padding-block: var(--s-10) var(--s-6); }
     .ctas .btn { flex: 1 1 100%; text-align: center; }
-    .shot { height: 236px; padding: 8px 8px 0; }
+    .shot { height: 236px; padding: var(--s-2) var(--s-2) 0; }
     .shot :global(img) { width: 190%; max-width: none; transform: translateY(-5%); }
-    .block { padding-block: 44px 0; }
+    .block { padding-block: var(--s-10) 0; }
   }
   @media (prefers-reduced-motion: no-preference) {
-    .related a, .btn { transition: border-color .15s ease, background-color .15s ease, color .15s ease; }
+    .related a, .btn { transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease), color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
   }
 </style>
 </Base>

@@ -18,7 +18,7 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
        page is that the systems can be opened, so the fold has to show one. -->
   <div class="wrap hero">
     <div class="say">
-      <p class="kick mono">{identity.role} · {identity.locale}</p>
+      <p class="kick mono label">{identity.role} · {identity.locale}</p>
       <h1>{identity.headline[0]} <em>{identity.headline[1]}</em>.</h1>
       <p class="sub">{identity.sub}</p>
       <div class="ctas">
@@ -52,7 +52,7 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
       {proof.map((f) => (
         <div class="cell">
           <b class="mono">{f.value}{f.unit && <span class="u"> {f.unit}</span>}</b>
-          <span class="lbl">{f.label}</span>
+          <span class="lbl label">{f.label}</span>
           <span class="sub2">{f.sub}</span>
         </div>
       ))}
@@ -62,7 +62,7 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
   <section class="wrap block" id="help">
     <div class="sec-head">
       <h2>Ways I can help</h2>
-      <span class="count mono">three routes</span>
+      <span class="count mono label">three routes</span>
     </div>
     <p class="lede">
       Pick whichever sounds like your problem. Each one goes straight to systems
@@ -85,7 +85,7 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
   <section class="wrap block" id="work">
     <div class="sec-head">
       <h2>All {counts.open} systems</h2>
-      <span class="count mono">every one is live</span>
+      <span class="count mono label">every one is live</span>
     </div>
     <p class="lede">
       Working software on public URLs, not screenshots of things that once
@@ -106,7 +106,7 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
           </button>
         ))}
       </fieldset>
-      <p class="status mono" role="status" aria-live="polite" data-status>
+      <p class="status mono label" role="status" aria-live="polite" data-status>
         Showing all {counts.open}
       </p>
     </div>
@@ -114,170 +114,159 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
     <div class="cards" data-list>
       {ordered.map((p) => <ProjectCard project={p} />)}
     </div>
-
-    <p class="note">
-      A card here is a promise that you can open the thing, so a fourteenth
-      system — a realtime English and Lithuanian assistant — is not listed until
-      its repository is public.
-    </p>
   </section>
 
 <style>
   /* ---------- hero ---------- */
   .hero {
     display: grid;
-    grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.1fr);
-    gap: 52px; align-items: center; padding-block: 80px 62px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: var(--s-12); align-items: center; padding-block: var(--s-20) var(--s-16);
   }
   .kick {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase;
-    color: var(--accent); margin: 0 0 22px;
+    display: inline-flex; align-items: center; gap: var(--s-3);
+    color: var(--accent); margin-bottom: var(--s-6);
   }
-  .kick::before { content: ""; width: 22px; height: 1px; background: var(--accent-dim); }
+  .kick::before { content: ""; width: var(--s-6); height: 1px; background: var(--accent-dim); }
   h1 {
-    font-size: clamp(2.15rem, 4.6vw, 3.5rem); line-height: 1.04;
-    letter-spacing: -.032em; margin: 0 0 20px; font-weight: 700; text-wrap: balance;
+    font-size: var(--t-900); line-height: var(--lh-display);
+    letter-spacing: var(--ls-display); margin-bottom: var(--s-5); font-weight: 700;
   }
   h1 em { font-style: normal; color: var(--accent); }
-  .sub { color: var(--text-2); margin: 0 0 32px; max-width: 47ch; font-size: 1.03rem; }
-  .ctas { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
-  .btn {
-    background: var(--accent); color: var(--accent-ink); padding: 12px 20px;
-    border-radius: var(--r-md); font-weight: 650; font-size: 14.5px;
-    text-decoration: none; white-space: nowrap;
+  .sub {
+    color: var(--text-2); margin-bottom: var(--s-8);
+    max-width: 46ch; font-size: var(--t-500);
   }
-  .btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--line-ctl); font-weight: 600; }
+  .ctas { display: flex; gap: var(--s-3); align-items: center; flex-wrap: wrap; }
+  .btn {
+    background: var(--accent); color: var(--accent-ink);
+    padding: var(--s-3) var(--s-5); border-radius: var(--r-md);
+    font-weight: 650; font-size: var(--t-400);
+    text-decoration: none; white-space: nowrap; box-shadow: var(--sh-1);
+  }
+  .btn:hover { background: color-mix(in srgb, var(--accent) 88%, #fff); box-shadow: var(--sh-2); }
+  .btn.ghost {
+    background: transparent; color: var(--text);
+    border: 1px solid var(--line-ctl); font-weight: 600; box-shadow: none;
+  }
+  .btn.ghost:hover { background: color-mix(in srgb, var(--text) 7%, transparent); border-color: var(--text-2); }
 
   /* window chrome: reads as a running app, not a picture */
   .win {
     margin: 0; border: 1px solid var(--line-ctl); border-radius: var(--r-lg);
-    overflow: hidden; background: var(--panel); box-shadow: var(--shadow);
+    overflow: hidden; background: var(--panel); box-shadow: var(--sh-3);
   }
   .win-bar {
-    display: flex; align-items: center; gap: 9px; padding: 9px 12px;
+    display: flex; align-items: center; gap: var(--s-2); padding: var(--s-2) var(--s-3);
     background: linear-gradient(180deg, var(--panel-2), var(--panel));
     border-bottom: 1px solid var(--line);
   }
-  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--line-bright); flex: 0 0 auto; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line-bright); flex: 0 0 auto; }
   .dot.live { background: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent); }
-  .addr { font-size: 11px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .addr { font-size: var(--t-100); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .badge {
-    margin-left: auto; flex: 0 0 auto; font-size: 10px; letter-spacing: .1em;
-    text-transform: uppercase; color: var(--accent);
-    border: 1px solid var(--accent-dim); border-radius: 3px; padding: 2px 7px;
+    margin-left: auto; flex: 0 0 auto; font-size: var(--t-100);
+    letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--accent);
+    border: 1px solid var(--accent-dim); border-radius: var(--r-sm); padding: 2px var(--s-2);
   }
   /* mat: the real UIs were designed on white and hit the ground at 19:1.
      Stepping through the mat brings the edge to 13:1. */
-  .shot { background: var(--mat); padding: 10px 10px 0; overflow: hidden; }
-  .shot :global(img) { display: block; width: 100%; height: auto; border-radius: 4px 4px 0 0; }
+  .shot { background: var(--mat); padding: var(--s-2) var(--s-2) 0; overflow: hidden; }
+  .shot :global(img) { display: block; width: 100%; height: auto; border-radius: var(--s-1) var(--s-1) 0 0; }
   .win figcaption {
-    display: flex; align-items: baseline; justify-content: space-between; gap: 14px;
-    padding: 11px 13px; border-top: 1px solid var(--line); background: var(--panel-2);
-    font-size: 12.5px;
+    display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+    padding: var(--s-3); border-top: 1px solid var(--line); background: var(--panel-2);
+    font-size: var(--t-300);
   }
   .win figcaption a {
     display: inline-flex; align-items: center; min-height: 26px;
     color: var(--accent); text-decoration: none; font-weight: 600;
   }
-  .win figcaption span { color: var(--muted); font-size: 11.5px; text-align: right; }
+  .win figcaption span { color: var(--muted); font-size: var(--t-200); text-align: right; }
 
   /* ---------- readout ---------- */
   .readout { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-lift); }
   .readout .grid { display: grid; grid-template-columns: repeat(3, 1fr); }
-  .cell { padding: 20px var(--gut); border-right: 1px solid var(--line); }
+  .cell { padding: var(--s-6) var(--gut); border-right: 1px solid var(--line); }
   .cell:last-child { border-right: 0; }
-  .cell b { display: block; font-size: 1.6rem; letter-spacing: -.02em; line-height: 1.15; }
-  .cell b .u { font-size: .9rem; color: var(--muted); letter-spacing: 0; }
-  .cell .lbl {
-    display: block; margin-top: 4px; font-size: 11px; color: var(--text-2);
-    letter-spacing: .06em; text-transform: uppercase; line-height: 1.45;
+  .cell b {
+    display: block; font-size: var(--t-800); line-height: 1.1;
+    letter-spacing: var(--ls-head); font-weight: 600;
   }
-  .cell .sub2 { display: block; margin-top: 2px; font-size: 11.5px; color: var(--muted); }
+  .cell b .u { font-size: var(--t-400); color: var(--muted); letter-spacing: 0; }
+  .cell .lbl { display: block; margin-top: var(--s-2); color: var(--text-2); }
+  .cell .sub2 { display: block; margin-top: var(--s-1); font-size: var(--t-200); color: var(--muted); }
 
   /* ---------- sections ---------- */
-  .block { padding-block: 72px; }
-  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 8px; flex-wrap: wrap; }
-  h2 { font-size: 1.5rem; margin: 0; letter-spacing: -.02em; }
-  .count { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-  .lede { color: var(--text-2); margin: 0 0 32px; max-width: var(--measure); }
+  .block { padding-block: var(--s-20); }
+  .sec-head { display: flex; align-items: baseline; gap: var(--s-3); margin-bottom: var(--s-3); flex-wrap: wrap; }
+  .count { color: var(--muted); }
+  .lede { color: var(--text-2); margin-bottom: var(--s-8); max-width: var(--measure); }
 
-  .routes { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .routes { display: grid; gap: var(--s-5); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
   .route {
-    display: flex; flex-direction: column; gap: 10px; text-decoration: none;
+    display: flex; flex-direction: column; gap: var(--s-3); text-decoration: none;
     background: var(--panel); border: 1px solid var(--line);
-    border-radius: var(--r-lg); padding: 22px;
+    border-radius: var(--r-lg); padding: var(--s-6); box-shadow: var(--sh-1);
   }
-  .route h3 { margin: 0; font-size: 1.06rem; letter-spacing: -.01em; }
-  .route p { margin: 0; color: var(--text-2); font-size: 14.5px; }
+  .route p { color: var(--text-2); font-size: var(--t-400); }
   /* Concrete deliverables under each pillar, so a visitor recognises their own
      job rather than reading a capability list. */
   .does {
-    list-style: none; margin: 4px 0 0; padding: 14px 0 0; flex: 1;
-    border-top: 1px solid var(--line); display: grid; gap: 7px;
+    list-style: none; margin: 0; padding: var(--s-4) 0 0; flex: 1;
+    border-top: 1px solid var(--line); display: grid; gap: var(--s-2);
   }
-  .does li {
-    position: relative; padding-left: 17px; font-size: 13.5px; color: var(--text);
-  }
+  .does li { position: relative; padding-left: var(--s-5); font-size: var(--t-300); color: var(--text); }
   .does li::before {
-    content: ""; position: absolute; left: 0; top: .58em;
-    width: 6px; height: 6px; border-radius: 1px;
-    background: var(--accent-dim);
+    content: ""; position: absolute; left: 0; top: 0.55em;
+    width: 5px; height: 5px; border-radius: 1px; background: var(--accent-dim);
   }
-  .n { font-size: 11.5px; color: var(--accent); white-space: nowrap; padding-top: 4px; }
+  .n { font-size: var(--t-200); color: var(--accent); white-space: nowrap; }
 
-  .cards { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); }
+  .cards { display: grid; gap: var(--s-5); grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); }
   .cards :global(.card[hidden]) { display: none; }
 
   .bar {
-    display: flex; align-items: center; justify-content: space-between; gap: 18px;
-    flex-wrap: wrap; margin-bottom: 26px;
+    display: flex; align-items: center; justify-content: space-between; gap: var(--s-4);
+    flex-wrap: wrap; margin-bottom: var(--s-6);
   }
-  .filter { display: flex; gap: 9px; flex-wrap: wrap; border: 0; margin: 0; padding: 0; }
+  .filter { display: flex; gap: var(--s-2); flex-wrap: wrap; border: 0; margin: 0; padding: 0; }
   .chip {
-    display: inline-flex; align-items: center; gap: 8px;
+    display: inline-flex; align-items: center; gap: var(--s-2);
     background: transparent; color: var(--text-2); cursor: pointer;
-    border: 1px solid var(--line-ctl); border-radius: 999px;
-    padding: 8px 15px; font: inherit; font-size: 13.5px;
+    border: 1px solid var(--line-ctl); border-radius: var(--r-pill);
+    padding: var(--s-2) var(--s-4); font: inherit; font-size: var(--t-300);
   }
-  .chip .n { font-size: 11px; color: var(--muted); }
+  .chip:hover { border-color: var(--text-2); color: var(--text); }
+  .chip .n { font-size: var(--t-100); color: var(--muted); }
   .chip.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 650; }
-  .chip.on .n { color: var(--accent-ink); opacity: .72; }
-  .status { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0; }
-
-  .note {
-    margin: 34px 0 0; max-width: 62ch; color: var(--muted); font-size: 13.5px;
-    border-left: 2px solid var(--line-bright); padding-left: 14px;
-  }
+  .chip.on:hover { background: color-mix(in srgb, var(--accent) 88%, #fff); }
+  .chip.on .n { color: var(--accent-ink); opacity: 0.72; }
+  .status { color: var(--muted); }
 
   /* ---------- mobile: designed, not left to wrap ---------- */
   @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; gap: 38px; padding-block: 48px 44px; }
-    .readout .grid { grid-template-columns: 1fr 1fr; }
+    .hero { grid-template-columns: 1fr; gap: var(--s-10); padding-block: var(--s-12) var(--s-10); }
+    .readout .grid { grid-template-columns: 1fr; }
     .cell { border-right: 0; border-top: 1px solid var(--line); }
-    .cell:nth-child(odd) { border-right: 1px solid var(--line); }
-    .cell:nth-child(-n+2) { border-top: 0; }
-    .cards, .routes { grid-template-columns: 1fr; gap: 24px; }
-    .block { padding-block: 58px; }
+    .cell:first-child { border-top: 0; }
+    .cards, .routes { grid-template-columns: 1fr; gap: var(--s-6); }
+    .block { padding-block: var(--s-16); }
   }
   @media (max-width: 620px) {
-    h1 { font-size: clamp(1.9rem, 8.2vw, 2.4rem); letter-spacing: -.026em; margin-bottom: 22px; }
-    .sub { font-size: 1rem; margin-bottom: 30px; }
-    .ctas { gap: 12px; }
+    h1 { font-size: clamp(2rem, 8.4vw, 2.5rem); letter-spacing: -0.028em; }
     .ctas .btn { flex: 1 1 100%; text-align: center; }
     /* A 1440px interface scaled to 390px is an unreadable smudge, which defeats
        the point of putting it in the fold. Show a legible crop instead. */
-    .shot { height: 242px; padding: 8px 8px 0; }
+    .shot { height: 240px; }
     .shot :global(img) { width: 215%; max-width: none; transform: translateY(-5%); }
-    .cell b { font-size: 1.5rem; }
-    .more .btn { display: block; text-align: center; }
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .chip { transition: border-color .15s ease, background-color .15s ease, color .15s ease; }
-    .route { transition: border-color .18s ease, transform .18s ease; }
-    .route:hover { border-color: var(--line-ctl); transform: translateY(-2px); }
-    .btn { transition: background-color .15s ease, border-color .15s ease, color .15s ease; }
+    .chip { transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease), color var(--dur) var(--ease); }
+    .route { transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+    .route:hover { border-color: var(--line-bright); transform: translateY(-2px); box-shadow: var(--sh-2); }
+    .btn { transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
   }
 </style>
 
