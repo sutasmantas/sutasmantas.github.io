@@ -1,0 +1,205 @@
+---
+import { Image } from 'astro:assets';
+import { ordered } from '../data/portfolio.js';
+import { shotFor } from '../data/shots.js';
+
+// The fold runs the software.
+//
+// Every version of this page so far described thirteen systems and showed
+// pictures of them, and the last round put the real thing behind a button —
+// which is a control, not a change. The claim on this page is "thirteen AI
+// systems you can open right now". So the first thing below the headline is one
+// of them, running, with the other twelve a click away.
+//
+// This is the pattern the two highest-scoring references in
+// central_portfolio_research/REFERENCE_MATRIX.csv both use and this site never
+// did: linear.app embeds a real interface with real data rather than a mockup,
+// raycast.com demonstrates the mechanic instead of describing it. Both scored
+// 15/15 on working-evidence visibility.
+//
+// Load order is deliberate. The still frame paints first and is the LCP
+// candidate — 22 kB, already optimised — and the live frame replaces it once the
+// browser is idle, so the running application costs nothing on the critical
+// path. Choosing a different system loads it immediately, because that is a
+// direct request rather than a background upgrade.
+//
+// Rendered at 1280px and scaled to fit rather than handed a narrow viewport:
+// these are dense operator consoles and a 600px viewport would reflow them into
+// something unrepresentative of the product.
+const first = ordered[0];
+---
+<figure class="stage">
+  <figcaption class="chrome">
+    <span class="dot" aria-hidden="true"></span>
+    <span class="addr mono" data-addr>{first.live.replace('https://', '')}</span>
+    <span class="state mono label" data-state>still</span>
+    <a class="pop mono" data-full href={first.live}>Open full size ↗</a>
+  </figcaption>
+
+  <div class="screen" data-screen>
+    {ordered.map((p) => (
+      <Image
+        class="still"
+        data-still={p.slug}
+        src={shotFor(p.shot)}
+        alt={p.order === 1 ? p.alt : ''}
+        widths={[900, 1280, 1600]}
+        sizes="(max-width: 1000px) 96vw, 62vw"
+        loading={p.order === 1 ? 'eager' : 'lazy'}
+        hidden={p.order !== 1}
+      />
+    ))}
+  </div>
+
+  <div class="switch" data-switch>
+    <span class="sr" id="switch-label">Choose which system runs here</span>
+    {ordered.map((p) => (
+      <button
+        type="button"
+        class="tab mono"
+        data-tab={p.slug}
+        data-live={p.live}
+        data-name={p.name}
+        aria-pressed={p.order === 1 ? 'true' : 'false'}
+      >
+        <span class="n">{String(p.order).padStart(2, '0')}</span> {p.name}
+      </button>
+    ))}
+  </div>
+</figure>
+
+<style>
+  /* min-width: 0 is load-bearing. Grid and flex children default to
+     min-width: auto, so the thirteen nowrap tabs and the nowrap chrome text
+     forced the whole stage to 551px inside a 375px viewport and the page
+     scrolled sideways. */
+  .stage { margin: 0; display: grid; gap: var(--s-3); }
+  .stage > * { min-width: 0; }
+
+  .chrome {
+    display: flex; align-items: center; gap: var(--s-3);
+    padding: var(--s-3) var(--s-4);
+    background: var(--panel-2); border: 1px solid var(--line-ctl);
+    border-bottom: 0; border-radius: var(--r-lg) var(--r-lg) 0 0;
+  }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent);
+    flex: 0 0 auto;
+  }
+  .addr { font-size: var(--t-200); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+  .state { margin-left: auto; color: var(--accent); flex: 0 0 auto; }
+  .pop {
+    display: inline-flex; align-items: center; min-height: 24px;
+    font-size: var(--t-200); color: var(--text-2); text-decoration: none; flex: 0 0 auto;
+  }
+  .pop:hover { color: var(--accent); }
+
+  .screen {
+    position: relative; overflow: hidden;
+    aspect-ratio: 1280 / 800; background: var(--mat);
+    border: 1px solid var(--line-ctl); border-radius: 0 0 var(--r-lg) var(--r-lg);
+    box-shadow: var(--sh-3);
+  }
+  .screen :global(img.still) { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+  .screen :global(img[hidden]) { display: none; }
+  .screen :global(iframe) {
+    position: absolute; top: 0; left: 0;
+    width: 1280px; height: 800px; border: 0;
+    transform: scale(var(--k, 0.5)); transform-origin: 0 0;
+  }
+
+  /* Thirteen names in a scrolling rail. A visitor can see the breadth without
+     scrolling the page, and switch what is running without leaving the fold. */
+  .switch {
+    display: flex; gap: var(--s-2); overflow-x: auto; padding-bottom: var(--s-2);
+    scrollbar-width: thin;
+  }
+  .tab {
+    flex: 0 0 auto; cursor: pointer; font: inherit; font-size: var(--t-200);
+    background: transparent; color: var(--text-2);
+    border: 1px solid var(--line); border-radius: var(--r-sm);
+    padding: var(--s-2) var(--s-3); white-space: nowrap;
+  }
+  .tab .n { color: var(--muted); }
+  .tab:hover { border-color: var(--line-ctl); color: var(--text); }
+  .tab[aria-pressed='true'] {
+    background: var(--accent); border-color: var(--accent);
+    color: var(--accent-ink); font-weight: 600;
+  }
+  .tab[aria-pressed='true'] .n { color: var(--accent-ink); opacity: 0.7; }
+
+  /* The frame is focusable because it contains an application, so it needs a
+     focus indicator like any other stop. */
+  /* Chromium reports a focused frame as document.activeElement but does NOT
+     match :focus on it — focus is considered to belong to the inner document —
+     so neither :focus nor :focus-within can style this and a keyboard user got
+     no signal that they had stepped into the application. The class is applied
+     from a focus listener instead. Verified by probe, not assumed. */
+  .screen.framed { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  /* Below this width the running frame is not offered. Scaled to fit a 375px
+     column a 1280px operator console renders at 0.26 and demonstrates nothing;
+     the still frame and a direct link are the honest options. */
+  @media (max-width: 760px) {
+    .state { display: none; }
+    .chrome { flex-wrap: wrap; }
+    .pop { margin-left: auto; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .tab { transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease), background-color var(--dur) var(--ease); }
+  }
+</style>
+
+<script>
+  const stage = document.querySelector('.stage');
+  if (stage) {
+    const screen = stage.querySelector('[data-screen]');
+    const addr = stage.querySelector('[data-addr]');
+    const state = stage.querySelector('[data-state]');
+    const full = stage.querySelector('[data-full]');
+    const tabs = Array.from(stage.querySelectorAll('[data-tab]'));
+    const stills = Array.from(stage.querySelectorAll('.still'));
+    let current = tabs[0];
+
+    const fit = () => screen.style.setProperty('--k', String(screen.clientWidth / 1280));
+    new ResizeObserver(fit).observe(screen);
+
+    // A 1280px console scaled into a phone column is not a demonstration.
+    const framesWorthShowing = () => window.matchMedia('(min-width: 761px)').matches;
+
+    function run(tab) {
+      const src = tab.dataset.live;
+      addr.textContent = src.replace('https://', '');
+      full.href = src;
+      for (const t of tabs) t.setAttribute('aria-pressed', String(t === tab));
+      for (const s of stills) s.hidden = s.dataset.still !== tab.dataset.tab;
+
+      // The still stays underneath while the frame loads, so the screen is
+      // never empty and never flashes.
+      screen.querySelector('iframe')?.remove();
+      if (!framesWorthShowing()) { current = tab; return; }
+      state.textContent = 'loading';
+      const f = document.createElement('iframe');
+      f.src = src;
+      f.title = `${tab.dataset.name}, running`;
+      f.addEventListener('load', () => { state.textContent = 'live'; });
+      f.addEventListener('focus', () => screen.classList.add('framed'));
+      f.addEventListener('blur', () => screen.classList.remove('framed'));
+      screen.append(f);
+      fit();
+      current = tab;
+    }
+
+    for (const tab of tabs) tab.addEventListener('click', () => run(tab));
+
+    // The first system goes live once the browser is idle: the still frame is
+    // the LCP candidate and must not queue behind an application.
+    const boot = () => run(current);
+    if (framesWorthShowing()) {
+      if ('requestIdleCallback' in window) requestIdleCallback(boot, { timeout: 2500 });
+      else window.addEventListener('load', () => setTimeout(boot, 900));
+    }
+  }
+</script>

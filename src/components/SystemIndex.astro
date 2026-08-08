@@ -1,7 +1,5 @@
 ---
-import { Image } from 'astro:assets';
 import { ordered } from '../data/portfolio.js';
-import { shotFor } from '../data/shots.js';
 import { href } from '../lib/paths.js';
 
 // An index, not a card grid.
@@ -70,45 +68,13 @@ const rows = ordered;
     ))}
   </ol>
 
-  <!-- The preview does not show a picture of the software. It runs it.
-       -->
-  <div class="preview">
-    <div class="frame">
-      {rows.map((p) => (
-        <figure class="pane" data-pane={p.slug} hidden={p.order !== 1} aria-hidden="true">
-          <Image
-            src={shotFor(p.shot)}
-            alt=""
-            widths={[640, 900, 1280]}
-            sizes="46vw"
-            loading={p.order === 1 ? 'eager' : 'lazy'}
-          />
-          <figcaption>
-            <span class="head mono">
-              <b>{p.name}</b>
-              <span class="url">{p.live.replace('https://', '')}</span>
-            </span>
-            <p class="say">{p.blurb}</p>
-          </figcaption>
-        </figure>
-      ))}
-      <div class="stage" data-stage hidden></div>
-    </div>
-
-    <div class="pbar">
-      <button class="run" type="button" data-run><span data-run-label>Run Atlas here ▸</span></button>
-      <a class="full mono" data-full href={rows[0].live}>Open full size ↗</a>
-    </div>
-  </div>
 </div>
 
 <style>
-  .index {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
-    gap: var(--s-12);
-    align-items: start;
-  }
+  /* Full width. The preview column moved to the fold, where the system runs
+     rather than being pictured, so the catalogue gets the whole measure and the
+     titles can carry real size. */
+  .index { display: block; }
 
   .rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-bright); }
   .row { border-bottom: 1px solid var(--line); }
@@ -116,8 +82,8 @@ const rows = ordered;
 
   .row {
     display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
-    align-items: baseline; gap: var(--s-4);
-    padding: var(--s-4) var(--s-2);
+    align-items: baseline; gap: var(--s-6);
+    padding: var(--s-5) var(--s-2);
   }
   .ttl { display: block; text-decoration: none; color: inherit; }
   .ttl:hover { color: var(--accent); }
@@ -139,10 +105,11 @@ const rows = ordered;
   }
   .body { display: grid; gap: var(--s-2); min-width: 0; }
   /* Shown only where there is no preview pane to carry it. */
-  .blurb { display: none; color: var(--text-2); font-size: var(--t-300); max-width: 56ch; }
+  .blurb { display: block; color: var(--text-2); font-size: var(--t-300); max-width: 68ch; }
   .ttl {
-    font-size: var(--t-600); line-height: 1.22; letter-spacing: var(--ls-head);
-    font-weight: 600; text-wrap: balance;
+    font-family: var(--display);
+    font-size: clamp(1.125rem, 1.9vw, 1.5rem); line-height: 1.2;
+    letter-spacing: -0.022em; font-weight: 700; text-wrap: balance;
   }
   .meta {
     font-size: var(--t-200); color: var(--muted);
@@ -164,60 +131,13 @@ const rows = ordered;
   .row.on .num { color: var(--accent); }
   .row.on { background: var(--panel); }
 
-  .preview { position: sticky; top: calc(60px + var(--s-6)); display: grid; gap: var(--s-3); }
-  .frame {
-    position: relative;
-    border: 1px solid var(--line-ctl); border-radius: var(--r-lg);
-    overflow: hidden; background: var(--mat); box-shadow: var(--sh-3);
-  }
-
   /* The live stage. Rendered at desktop width and scaled to fit, so the app
      lays out as it was designed instead of collapsing to a phone breakpoint. */
-  .stage { position: relative; width: 100%; aspect-ratio: 1280 / 860; background: var(--panel); }
-  .stage[hidden] { display: none; }
-  .stage :global(iframe) {
-    position: absolute; top: 0; left: 0;
-    width: 1280px; height: 860px; border: 0;
-    transform: scale(var(--k, 0.5)); transform-origin: 0 0;
-  }
-
-  .pbar { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); }
-  .run {
-    display: inline-flex; align-items: center; gap: var(--s-2);
-    background: var(--accent); color: var(--accent-ink); border: 0;
-    border-radius: var(--r-md); padding: var(--s-3) var(--s-5);
-    font: inherit; font-size: var(--t-300); font-weight: 650; cursor: pointer;
-    box-shadow: var(--sh-1);
-  }
-  .run:hover { background: color-mix(in srgb, var(--accent) 88%, #000); }
-  .run[data-on] { background: transparent; color: var(--text-2); border: 1px solid var(--line-ctl); box-shadow: none; }
-  .run[data-on]:hover { color: var(--text); border-color: var(--text-2); }
-  .full { font-size: var(--t-200); color: var(--muted); text-decoration: none; }
-  .full:hover { color: var(--accent); }
-  .pane { margin: 0; display: block; }
-  .pane[hidden] { display: none; }
-  .pane :global(img) { display: block; width: 100%; height: auto; }
-  .pane figcaption {
-    display: grid; gap: var(--s-3);
-    padding: var(--s-4); background: var(--panel);
-    border-top: 1px solid var(--line);
-  }
-  .pane .head {
-    display: flex; align-items: baseline; justify-content: space-between;
-    gap: var(--s-3); font-size: var(--t-200);
-  }
-  .pane .head b { color: var(--text); }
-  .pane .url { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .pane .say { color: var(--text-2); font-size: var(--t-300); line-height: 1.55; }
-
   /* Below the two-column threshold the preview is dropped rather than stacked.
      A phone cannot show a row and its preview at once, so the preview would be
      an image the reader has to scroll past thirteen times to reach the list. */
   @media (max-width: 1000px) {
-    .index { grid-template-columns: 1fr; gap: 0; }
-    .preview { display: none; }
-    .row { padding: var(--s-4) 0; }
-    .blurb { display: block; }
+    .row { padding: var(--s-4) 0; gap: var(--s-4); }
   }
   @media (max-width: 620px) {
     .row { grid-template-columns: auto minmax(0, 1fr); row-gap: var(--s-3); }
@@ -233,89 +153,20 @@ const rows = ordered;
 </style>
 
 <script>
-  // Preview follows hover and keyboard focus. It is an enhancement: with
-  // JavaScript off every row is still a working link to the project page, and
-  // the first frame stays shown.
+  // The rows carry their own links, so nothing here is required for the page to
+  // work — this only syncs the hero stage with the row a visitor is reading, so
+  // hovering row 09 puts DeliveryGuard on the screen above.
   const index = document.querySelector('[data-index]');
-  if (index) {
-    const rows = Array.from(index.querySelectorAll('.row'));
-    const panes = Array.from(index.querySelectorAll('[data-pane]'));
-
-    const stage = index.querySelector('[data-stage]');
-    const runBtn = index.querySelector('[data-run]');
-    const runLabel = index.querySelector('[data-run-label]');
-    const fullLink = index.querySelector('[data-full]');
-    const meta = new Map(rows.map((r) => [r.dataset.slug, {
-      name: r.querySelector('.mark').textContent.trim(),
-      live: r.querySelector('a.open').href,
-    }]));
-    let current = rows[0]?.dataset.slug;
-    let running = false;
-
-    function stop() {
-      running = false;
-      stage.hidden = true;
-      stage.replaceChildren();
-      runBtn.removeAttribute('data-on');
-      paint();
+  const tabs = Array.from(document.querySelectorAll('[data-tab]'));
+  if (index && tabs.length) {
+    for (const row of index.querySelectorAll('.row')) {
+      const tab = tabs.find((t) => t.dataset.tab === row.dataset.slug);
+      if (!tab) continue;
+      const mark = () => {
+        for (const r of index.querySelectorAll('.row')) r.classList.toggle('on', r === row);
+      };
+      row.addEventListener('mouseenter', mark);
+      for (const link of row.querySelectorAll('a')) link.addEventListener('focus', mark);
     }
-
-    function paint() {
-      const m = meta.get(current);
-      runLabel.textContent = running ? `Close ${m.name} ✕` : `Run ${m.name} here ▸`;
-      fullLink.href = m.live;
-      for (const pane of panes) pane.hidden = running || pane.dataset.pane !== current;
-      for (const row of rows) row.classList.toggle('on', row.dataset.slug === current);
-    }
-
-    function show(slug) {
-      // A running frame pins the preview — swapping it out from under someone
-      // mid-interaction because their pointer crossed another row would be
-      // hostile.
-      if (running) return;
-      current = slug;
-      paint();
-    }
-
-    function fit() {
-      const frame = stage.parentElement;
-      stage.style.setProperty('--k', String(frame.clientWidth / 1280));
-    }
-
-    runBtn.addEventListener('click', () => {
-      if (running) return stop();
-      const m = meta.get(current);
-      const f = document.createElement('iframe');
-      f.src = m.live;
-      f.title = `${m.name}, running`;
-      f.loading = 'eager';
-      stage.replaceChildren(f);
-      stage.hidden = false;
-      running = true;
-      runBtn.setAttribute('data-on', '');
-      fit();
-      paint();
-    });
-    new ResizeObserver(fit).observe(index);
-
-    for (const row of rows) {
-      row.addEventListener('mouseenter', () => show(row.dataset.slug));
-      for (const link of row.querySelectorAll('a')) {
-        link.addEventListener('focus', () => show(row.dataset.slug));
-      }
-    }
-    rows[0]?.classList.add('on');
-
-    // Twelve of the thirteen previews are hidden on arrival, and shipping them
-    // all eagerly meant thirteen image requests before first paint. They are
-    // lazy now and warmed once the page is idle, so first paint carries one
-    // image and hovering still never lands on a blank frame.
-    const warm = () => {
-      for (const img of index.querySelectorAll('.pane img[loading="lazy"]')) {
-        img.loading = 'eager';
-      }
-    };
-    if ('requestIdleCallback' in window) requestIdleCallback(warm, { timeout: 3000 });
-    else window.addEventListener('load', () => setTimeout(warm, 1200));
   }
 </script>

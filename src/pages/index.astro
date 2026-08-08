@@ -1,6 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
+import { Image } from 'astro:assets';
 import SystemIndex from '../components/SystemIndex.astro';
+import LiveStage from '../components/LiveStage.astro';
+import portrait from '../assets/photo/mantas.png';
 import { identity, proof, routes, counts, projects } from '../data/portfolio.js';
 import { homeFiltered } from '../lib/paths.js';
 
@@ -16,7 +19,13 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
        is the fix — an airy hero at display size against a dense ruled index. -->
   <header class="hero" data-scheme="dark">
     <div class="wrap">
-      <p class="eyebrow mono label">{identity.role} · {identity.locale}</p>
+      <div class="who">
+        <Image class="face" src={portrait} alt="" widths={[96, 192]} sizes="72px" loading="eager" />
+        <p class="mono label">
+          <b>{identity.name}</b><span>{identity.role} · {identity.locale}</span>
+        </p>
+      </div>
+
       <h1>Thirteen AI systems<br /><em>you can open right now.</em></h1>
 
       <div class="under">
@@ -30,11 +39,11 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
           ))}
         </dl>
       </div>
+    </div>
 
-      <div class="ctas">
-        <a class="btn" href="#work">See the work</a>
-        <a class="btn ghost" href="#help">What I could build for you</a>
-      </div>
+    <!-- Not a screenshot of the claim. The claim, running. -->
+    <div class="wrap stagewrap">
+      <LiveStage />
     </div>
   </header>
 
@@ -93,7 +102,7 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
     /* Tightened so the fold holds the headline AND the top of the work index,
      which is where the real interface now lives. The choice between "type-only
      hero" and "proof in the fold" was a false one — it was a spacing problem. */
-  .hero { padding-block: var(--s-12) var(--s-10); background: var(--bg); }
+  .hero { padding-block: var(--s-12) var(--s-16); background: var(--bg); }
   .eyebrow {
     display: inline-flex; align-items: center; gap: var(--s-3);
     color: var(--accent); margin-bottom: var(--s-8);
@@ -103,7 +112,7 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
   /* Display scale. The previous headline topped out at 3.5rem, which is a
      heading, not a display size; this is the page's one dominant element. */
   .hero h1 {
-    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    font-size: clamp(2.25rem, 6vw, 4.75rem);
     line-height: 0.96; letter-spacing: -0.038em; font-weight: 700;
     font-stretch: 112%;
     margin-bottom: var(--s-8); max-width: 17ch;
@@ -124,7 +133,7 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
   .figs dt { font-family: var(--display); font-size: var(--t-800); line-height: 1; letter-spacing: -0.02em; font-weight: 700; font-stretch: 108%; }
   .figs dd { margin: 0; color: var(--muted); max-width: 15ch; }
 
-  .ctas { display: flex; gap: var(--s-3); flex-wrap: wrap; margin-top: var(--s-8); }
+
   .btn {
     background: var(--accent); color: var(--accent-ink);
     padding: var(--s-3) var(--s-5); border-radius: var(--r-md);
@@ -137,6 +146,20 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
     border: 1px solid var(--line-ctl); font-weight: 600; box-shadow: none;
   }
   .btn.ghost:hover { background: color-mix(in srgb, var(--text) 7%, transparent); border-color: var(--text-2); }
+
+
+  /* The person. A freelance engagement is partly a decision about a person, and
+     there was no person anywhere on this site. */
+  .who { display: flex; align-items: center; gap: var(--s-3); margin-bottom: var(--s-8); }
+  .face {
+    width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
+    border: 1px solid var(--line-ctl); flex: 0 0 auto;
+  }
+  .who p { display: grid; gap: 2px; }
+  .who b { color: var(--text); font-size: var(--t-300); letter-spacing: .04em; }
+  .who span { color: var(--muted); }
+
+  .stagewrap { padding-top: var(--s-10); }
 
   /* ---------- sections ---------- */
   .block { padding-block: var(--s-16); }
@@ -208,14 +231,15 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
     .rdoes .d { padding: var(--s-3) 0; }
   }
   @media (max-width: 900px) {
-    .hero { padding-block: var(--s-12) var(--s-10); }
+    .hero { padding-block: var(--s-10) var(--s-12); }
+    .face { width: 56px; height: 56px; }
+    .stagewrap { padding-top: var(--s-8); }
     .hero h1 { margin-bottom: var(--s-8); }
     .under { grid-template-columns: 1fr; gap: var(--s-8); }
     .figs { gap: var(--s-8); }
     .block { padding-block: var(--s-12); }
   }
   @media (max-width: 620px) {
-    .ctas .btn { flex: 1 1 100%; text-align: center; }
     .figs { gap: var(--s-6); }
     .figs dt { font-size: var(--t-700); }
   }

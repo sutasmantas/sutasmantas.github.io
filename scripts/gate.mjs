@@ -211,10 +211,14 @@ for (const vp of VIEWPORTS) {
           const el = document.activeElement;
           if (!el || el === document.body) return null;
           const cs = getComputedStyle(el);
-          const hasRing =
-            (cs.outlineStyle !== 'none' && parseFloat(cs.outlineWidth) > 0) ||
-            cs.boxShadow !== 'none' ||
-            cs.textDecorationLine !== 'none';
+          // A focused <iframe> cannot be styled by :focus in Chromium, so its
+          // indicator legitimately lives on the wrapping element.
+          const wrap = el.tagName === 'IFRAME' ? getComputedStyle(el.parentElement) : null;
+          const ring = (s) =>
+            (s.outlineStyle !== 'none' && parseFloat(s.outlineWidth) > 0) ||
+            s.boxShadow !== 'none' ||
+            s.textDecorationLine !== 'none';
+          const hasRing = ring(cs) || (wrap ? ring(wrap) : false);
           return {
             tag: el.tagName.toLowerCase(),
             text: (el.textContent || '').trim().slice(0, 24),
