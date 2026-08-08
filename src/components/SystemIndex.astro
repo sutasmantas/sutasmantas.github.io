@@ -29,6 +29,23 @@ import { href } from '../lib/paths.js';
 // working", and that action used to be two hops away — reachable only after
 // opening the project page. "Open ↗" now sits in the row beside the title, so
 // the highest-value action carries the highest-scent label.
+//
+// And the preview runs the software rather than picturing it. In this project's
+// own reference scoring (central_portfolio_research/REFERENCE_MATRIX.csv) the
+// only two sites that scored 15/15 on working-evidence visibility both did the
+// same thing: linear.app embeds a real interface with real data rather than a
+// mockup, and raycast.com uses interactive elements to demonstrate the mechanic
+// instead of describing it. That pattern was recorded as transferable and then
+// never applied — this page claimed thirteen systems you can open and showed
+// photographs of them.
+//
+// All thirteen are static builds on the same origin as this page and send no
+// framing restrictions, so they can be embedded directly. Nothing is framed
+// until asked for: the button creates exactly one iframe, and switching or
+// closing tears it down again, so the cost is zero for anyone who never presses
+// it. The frame is rendered at desktop width and scaled down, because these are
+// dense operator interfaces that would reflow into something unrepresentative
+// if handed a 600px viewport.
 const rows = ordered;
 ---
 <div class="index" data-index>
@@ -53,13 +70,12 @@ const rows = ordered;
     ))}
   </ol>
 
-  <!-- One large preview instead of thirteen thumbnails competing at card size.
-       Every frame is rendered and the active one is revealed, so switching costs
-       no network and cannot flash. -->
-  <div class="preview" aria-hidden="true">
+  <!-- The preview does not show a picture of the software. It runs it.
+       -->
+  <div class="preview">
     <div class="frame">
       {rows.map((p) => (
-        <figure class="pane" data-pane={p.slug} hidden={p.order !== 1}>
+        <figure class="pane" data-pane={p.slug} hidden={p.order !== 1} aria-hidden="true">
           <Image
             src={shotFor(p.shot)}
             alt=""
@@ -76,6 +92,12 @@ const rows = ordered;
           </figcaption>
         </figure>
       ))}
+      <div class="stage" data-stage hidden></div>
+    </div>
+
+    <div class="pbar">
+      <button class="run" type="button" data-run><span data-run-label>Run Atlas here ▸</span></button>
+      <a class="full mono" data-full href={rows[0].live}>Open full size ↗</a>
     </div>
   </div>
 </div>
@@ -142,11 +164,36 @@ const rows = ordered;
   .row.on .num { color: var(--accent); }
   .row.on { background: var(--panel); }
 
-  .preview { position: sticky; top: calc(60px + var(--s-6)); }
+  .preview { position: sticky; top: calc(60px + var(--s-6)); display: grid; gap: var(--s-3); }
   .frame {
+    position: relative;
     border: 1px solid var(--line-ctl); border-radius: var(--r-lg);
     overflow: hidden; background: var(--mat); box-shadow: var(--sh-3);
   }
+
+  /* The live stage. Rendered at desktop width and scaled to fit, so the app
+     lays out as it was designed instead of collapsing to a phone breakpoint. */
+  .stage { position: relative; width: 100%; aspect-ratio: 1280 / 860; background: var(--panel); }
+  .stage[hidden] { display: none; }
+  .stage :global(iframe) {
+    position: absolute; top: 0; left: 0;
+    width: 1280px; height: 860px; border: 0;
+    transform: scale(var(--k, 0.5)); transform-origin: 0 0;
+  }
+
+  .pbar { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); }
+  .run {
+    display: inline-flex; align-items: center; gap: var(--s-2);
+    background: var(--accent); color: var(--accent-ink); border: 0;
+    border-radius: var(--r-md); padding: var(--s-3) var(--s-5);
+    font: inherit; font-size: var(--t-300); font-weight: 650; cursor: pointer;
+    box-shadow: var(--sh-1);
+  }
+  .run:hover { background: color-mix(in srgb, var(--accent) 88%, #000); }
+  .run[data-on] { background: transparent; color: var(--text-2); border: 1px solid var(--line-ctl); box-shadow: none; }
+  .run[data-on]:hover { color: var(--text); border-color: var(--text-2); }
+  .full { font-size: var(--t-200); color: var(--muted); text-decoration: none; }
+  .full:hover { color: var(--accent); }
   .pane { margin: 0; display: block; }
   .pane[hidden] { display: none; }
   .pane :global(img) { display: block; width: 100%; height: auto; }
@@ -194,10 +241,62 @@ const rows = ordered;
     const rows = Array.from(index.querySelectorAll('.row'));
     const panes = Array.from(index.querySelectorAll('[data-pane]'));
 
-    function show(slug) {
-      for (const pane of panes) pane.hidden = pane.dataset.pane !== slug;
-      for (const row of rows) row.classList.toggle('on', row.dataset.slug === slug);
+    const stage = index.querySelector('[data-stage]');
+    const runBtn = index.querySelector('[data-run]');
+    const runLabel = index.querySelector('[data-run-label]');
+    const fullLink = index.querySelector('[data-full]');
+    const meta = new Map(rows.map((r) => [r.dataset.slug, {
+      name: r.querySelector('.mark').textContent.trim(),
+      live: r.querySelector('a.open').href,
+    }]));
+    let current = rows[0]?.dataset.slug;
+    let running = false;
+
+    function stop() {
+      running = false;
+      stage.hidden = true;
+      stage.replaceChildren();
+      runBtn.removeAttribute('data-on');
+      paint();
     }
+
+    function paint() {
+      const m = meta.get(current);
+      runLabel.textContent = running ? `Close ${m.name} ✕` : `Run ${m.name} here ▸`;
+      fullLink.href = m.live;
+      for (const pane of panes) pane.hidden = running || pane.dataset.pane !== current;
+      for (const row of rows) row.classList.toggle('on', row.dataset.slug === current);
+    }
+
+    function show(slug) {
+      // A running frame pins the preview — swapping it out from under someone
+      // mid-interaction because their pointer crossed another row would be
+      // hostile.
+      if (running) return;
+      current = slug;
+      paint();
+    }
+
+    function fit() {
+      const frame = stage.parentElement;
+      stage.style.setProperty('--k', String(frame.clientWidth / 1280));
+    }
+
+    runBtn.addEventListener('click', () => {
+      if (running) return stop();
+      const m = meta.get(current);
+      const f = document.createElement('iframe');
+      f.src = m.live;
+      f.title = `${m.name}, running`;
+      f.loading = 'eager';
+      stage.replaceChildren(f);
+      stage.hidden = false;
+      running = true;
+      runBtn.setAttribute('data-on', '');
+      fit();
+      paint();
+    });
+    new ResizeObserver(fit).observe(index);
 
     for (const row of rows) {
       row.addEventListener('mouseenter', () => show(row.dataset.slug));
