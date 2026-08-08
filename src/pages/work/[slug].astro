@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
-import { projects, routeLabel, contact } from '../../data/portfolio.js';
+import { projects, ordered, routeLabel, contact } from '../../data/portfolio.js';
 import { shotFor } from '../../data/shots.js';
 import { href, homeAnchor, homeFiltered } from '../../lib/paths.js';
 
@@ -14,49 +14,64 @@ export function getStaticPaths() {
 
 const { project: p } = Astro.props;
 const img = shotFor(p.shot);
-const siblings = projects.filter((s) => s.route === p.route && s.slug !== p.slug);
+const siblings = ordered.filter((s) => s.route === p.route && s.slug !== p.slug);
+const num = String(p.order).padStart(2, '0');
 ---
-<Base
-  title={`${p.name} — ${p.asks} — Mantas Šutas`}
-  description={p.blurb}
->
-  <div class="wrap head">
-    <nav class="crumbs mono label" aria-label="Breadcrumb">
-      <a href={homeAnchor('work')}>The work</a><span aria-hidden="true">/</span><span>{p.name}</span>
-    </nav>
-    <p class="kick mono label">{p.family}</p>
-    <h1>{p.title}</h1>
-    <p class="sub">{p.blurb}</p>
-    <div class="ctas">
-      <a class="btn" href={p.live}>Open the live system</a>
-      <a class="btn ghost" href={p.source}>Read the source</a>
-    </div>
-  </div>
+<Base title={`${p.name} — ${p.asks} — Mantas Šutas`} description={p.blurb}>
+  <!-- These thirteen pages are most of the site, and they were still built in
+       the card-era language while the home page moved to an index. Same system
+       now: a numeral, a display-scale title, ruled facts, no boxes. -->
+  <header class="head">
+    <div class="wrap">
+      <nav class="crumbs mono label" aria-label="Breadcrumb">
+        <a href={homeAnchor('work')}>The work</a>
+        <span aria-hidden="true">/</span>
+        <span>{p.name}</span>
+      </nav>
 
-  <!-- The window frame is a child of .wrap, not the same element. Putting both on
-       one element meant the frame's own padding fought the page gutter and the
-       border ended up flush against the screen edge on a phone. -->
-  <div class="wrap">
-  <figure class="win">
-    <div class="win-bar">
-      <span class="dot live" aria-hidden="true"></span>
-      <span class="dot" aria-hidden="true"></span>
-      <span class="dot" aria-hidden="true"></span>
-      <span class="addr mono">{p.live.replace('https://', '')}</span>
-      <span class="badge">live · no login</span>
+      <div class="title">
+        <span class="num mono">{num}</span>
+        <h1>{p.title}</h1>
+      </div>
+
+      <div class="under">
+        <p class="sub">{p.blurb}</p>
+        <div class="acts">
+          <a class="btn" href={p.live}>Open it</a>
+          <a class="btn ghost" href={p.source}>Read the source</a>
+        </div>
+      </div>
     </div>
-    <div class="shot">
+  </header>
+
+  <div class="wrap shotwrap">
+    <figure class="frame">
       <Image src={img} alt={p.alt} widths={[760, 1150, 1440]} sizes="(max-width: 1250px) 94vw, 1150px" loading="eager" />
-    </div>
-  </figure>
+      <figcaption class="mono label">
+        <span class="live"><span class="dot" aria-hidden="true"></span>live · no login</span>
+        <span class="url">{p.live.replace('https://', '')}</span>
+      </figcaption>
+    </figure>
   </div>
 
-  <section class="wrap facts" aria-label="What this project is">
+  <section class="wrap facts" aria-label="What this is">
     <dl>
-      <div><dt class="label">What you get</dt><dd>{p.asks}</dd></div>
-      <div><dt class="label">Route</dt><dd><a href={homeFiltered(p.route)}>{routeLabel[p.route]}</a></dd></div>
-      <div><dt class="label">Area</dt><dd>{p.family}</dd></div>
-      {p.note && <div><dt class="label">The hard part</dt><dd>{p.note}</dd></div>}
+      <div>
+        <dt class="mono label">What you get</dt>
+        <dd>{p.asks}</dd>
+      </div>
+      <div>
+        <dt class="mono label">The hard part</dt>
+        <dd>{p.note}</dd>
+      </div>
+      <div>
+        <dt class="mono label">Area</dt>
+        <dd>{p.family}</dd>
+      </div>
+      <div>
+        <dt class="mono label">Route</dt>
+        <dd><a href={homeFiltered(p.route)}>{routeLabel[p.route]}</a></dd>
+      </div>
     </dl>
   </section>
 
@@ -68,7 +83,7 @@ const siblings = projects.filter((s) => s.route === p.route && s.slug !== p.slug
       written against. If you want it pointed at your own systems and your own
       data, that is the conversation — tell me what you are trying to fix.
     </p>
-    <div class="ctas">
+    <div class="acts">
       <a class="btn" href={`mailto:${contact.email}?subject=${encodeURIComponent(p.name)}`}>Talk about {p.name}</a>
       <a class="btn ghost" href={p.source}>Source and tests</a>
     </div>
@@ -77,32 +92,44 @@ const siblings = projects.filter((s) => s.route === p.route && s.slug !== p.slug
   {siblings.length > 0 && (
     <section class="wrap block related">
       <h2>Others that do this</h2>
-      <ul>
+      <ol class="rows">
         {siblings.map((s) => (
           <li>
             <a href={href(`/work/${s.slug}/`)}>
-              <b>{s.name}</b>
-              <span>{s.asks}</span>
+              <span class="rnum mono">{String(s.order).padStart(2, '0')}</span>
+              <span class="rttl">{s.title}</span>
+              <span class="rmark mono">{s.name}</span>
             </a>
           </li>
         ))}
-      </ul>
+      </ol>
     </section>
   )}
 
 <style>
-  .head { padding-block: var(--s-12) var(--s-8); max-width: 50rem; }
-  .crumbs { color: var(--muted); margin-bottom: var(--s-6); }
+  .head { padding-block: var(--s-12) var(--s-8); }
+  .crumbs { color: var(--muted); margin-bottom: var(--s-8); }
   .crumbs a { color: var(--text-2); text-decoration: none; }
   .crumbs a:hover { color: var(--accent); }
-  .crumbs span[aria-hidden] { margin: 0 var(--s-2); color: var(--line-bright); }
-  .kick { color: var(--accent); margin-bottom: var(--s-3); }
-  h1 {
-    font-size: clamp(1.75rem, 3.4vw, 2.375rem);
-    line-height: 1.15; letter-spacing: -0.026em; margin-bottom: var(--s-4);
+  .crumbs span[aria-hidden] { margin: 0 var(--s-2); color: var(--line-ctl); }
+
+  /* The numeral is the same device the index uses, so a reader arriving from
+     row 09 lands on something that says 09. */
+  .title { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s-5); align-items: start; }
+  .num { font-size: var(--t-700); color: var(--muted); font-weight: 500; line-height: 1.1; }
+  .title h1 {
+    font-size: clamp(1.9rem, 4.4vw, 3.25rem); line-height: 1.04;
+    letter-spacing: -0.034em; max-width: 20ch;
   }
-  .sub { color: var(--text-2); margin-bottom: var(--s-8); max-width: 58ch; font-size: var(--t-500); }
-  .ctas { display: flex; gap: var(--s-3); flex-wrap: wrap; }
+
+  .under {
+    display: grid; grid-template-columns: minmax(0, 46ch) minmax(0, 1fr);
+    gap: var(--s-8); align-items: end;
+    margin-top: var(--s-8); padding-top: var(--s-6); border-top: 1px solid var(--line);
+  }
+  .sub { color: var(--text-2); font-size: var(--t-500); }
+
+  .acts { display: flex; gap: var(--s-3); flex-wrap: wrap; }
   .btn {
     background: var(--accent); color: var(--accent-ink);
     padding: var(--s-3) var(--s-5); border-radius: var(--r-md);
@@ -116,69 +143,72 @@ const siblings = projects.filter((s) => s.route === p.route && s.slug !== p.slug
   }
   .btn.ghost:hover { background: color-mix(in srgb, var(--text) 7%, transparent); border-color: var(--text-2); }
 
-  .win {
-    border: 1px solid var(--line-ctl); border-radius: var(--r-lg); overflow: hidden;
-    background: var(--panel); box-shadow: var(--sh-3);
-    max-width: 1150px; margin: var(--s-4) auto 0;
+  .shotwrap { padding-top: var(--s-4); }
+  .frame {
+    margin: 0; border: 1px solid var(--line-ctl); border-radius: var(--r-lg);
+    overflow: hidden; background: var(--mat); box-shadow: var(--sh-3);
   }
-  .win-bar {
-    display: flex; align-items: center; gap: var(--s-2); padding: var(--s-2) var(--s-3);
-    background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  .frame :global(img) { display: block; width: 100%; height: auto; }
+  .frame figcaption {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+    padding: var(--s-3) var(--s-4); background: var(--panel); border-top: 1px solid var(--line);
+    color: var(--muted);
+  }
+  .live { display: inline-flex; align-items: center; gap: var(--s-2); color: var(--accent); }
+  .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent);
+  }
+  .url { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* Ruled, not boxed — the panel-inside-a-panel treatment was card language. */
+  .facts { padding-top: var(--s-12); }
+  .facts dl {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    margin: 0; border-top: 1px solid var(--line-bright);
+  }
+  .facts dl > div {
+    padding: var(--s-4) var(--s-5) var(--s-4) 0; display: grid; gap: var(--s-2);
     border-bottom: 1px solid var(--line);
   }
-  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line-bright); flex: 0 0 auto; }
-  .dot.live { background: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent); }
-  .addr { font-size: var(--t-100); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .badge {
-    margin-left: auto; flex: 0 0 auto; font-size: var(--t-100);
-    letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--accent);
-    border: 1px solid var(--accent-dim); border-radius: var(--r-sm); padding: 2px var(--s-2);
-  }
-  .shot { background: var(--mat); padding: var(--s-3) var(--s-3) 0; overflow: hidden; }
-  .shot :global(img) { display: block; width: 100%; height: auto; border-radius: var(--s-1) var(--s-1) 0 0; }
-
-  .facts { padding-block: var(--s-10) 0; }
-  .facts dl {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1px; margin: 0; background: var(--line);
-    border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden;
-  }
-  .facts dl > div { background: var(--panel); padding: var(--s-4) var(--s-5); display: grid; gap: var(--s-1); }
   .facts dt { color: var(--muted); }
-  .facts dd { margin: 0; font-size: var(--t-300); line-height: 1.45; }
+  .facts dd { margin: 0; font-size: var(--t-400); line-height: 1.4; }
   .facts dd a { color: var(--accent); text-decoration: none; }
 
   .block { padding-block: var(--s-12) 0; }
+  h2 { font-size: var(--t-700); margin-bottom: var(--s-4); letter-spacing: -0.024em; }
   .scope {
     margin-bottom: var(--s-5); font-size: var(--t-500); color: var(--text);
     border-left: 2px solid var(--accent-dim); padding-left: var(--s-4); max-width: 58ch;
   }
   .lede { color: var(--text-2); max-width: var(--measure); margin-bottom: var(--s-6); }
-  h2 { margin-bottom: var(--s-4); }
 
   .related { padding-bottom: var(--s-20); }
-  .related ul {
-    list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-3);
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  .rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-bright); }
+  .rows li { border-bottom: 1px solid var(--line); }
+  .rows a {
+    display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: var(--s-4); align-items: baseline;
+    padding: var(--s-4) var(--s-2); text-decoration: none; color: inherit;
   }
-  .related a {
-    display: grid; gap: var(--s-1); text-decoration: none;
-    border: 1px solid var(--line); border-radius: var(--r-md);
-    background: var(--panel); padding: var(--s-4) var(--s-5);
-  }
-  .related b { font-size: var(--t-400); }
-  .related span { font-size: var(--t-200); color: var(--muted); }
-  .related a:hover { border-color: var(--line-bright); background: var(--panel-2); }
+  .rnum { color: var(--muted); font-size: var(--t-400); }
+  .rttl { font-size: var(--t-500); font-weight: 600; letter-spacing: -0.012em; }
+  .rmark { color: var(--accent); font-size: var(--t-200); }
+  .rows a:hover { background: var(--panel); }
 
+  @media (max-width: 900px) {
+    .under { grid-template-columns: 1fr; gap: var(--s-6); align-items: start; }
+  }
   @media (max-width: 620px) {
     .head { padding-block: var(--s-10) var(--s-6); }
-    .ctas .btn { flex: 1 1 100%; text-align: center; }
-    .shot { height: 236px; padding: var(--s-2) var(--s-2) 0; }
-    .shot :global(img) { width: 190%; max-width: none; transform: translateY(-5%); }
-    .block { padding-block: var(--s-10) 0; }
+    .title { grid-template-columns: 1fr; gap: var(--s-3); }
+    .num { font-size: var(--t-500); }
+    .acts .btn { flex: 1 1 100%; text-align: center; }
+    .rows a { grid-template-columns: auto minmax(0, 1fr); }
+    .rmark { display: none; }
   }
   @media (prefers-reduced-motion: no-preference) {
-    .related a, .btn { transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease), color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+    .btn, .rows a { transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
   }
 </style>
 </Base>

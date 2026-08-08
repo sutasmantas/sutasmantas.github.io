@@ -68,16 +68,23 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
         <h2>What I could build for you</h2>
         <span class="count mono label">three routes</span>
       </div>
-      <div class="routes">
-        {routes.map((r) => (
-          <a class="route" href={homeFiltered(r.id)}>
-            <h3>{r.title}</h3>
-            <p>{r.blurb}</p>
-            <ul class="does">{r.does.map((d) => <li>{d}</li>)}</ul>
-            <span class="n mono label">{routeCount(r.id)} systems →</span>
-          </a>
+      <ol class="routes">
+        {routes.map((r, i) => (
+          <li class="route">
+            <a class="rhit" href={homeFiltered(r.id)}>
+              <span class="rnum mono">{String(i + 1).padStart(2, '0')}</span>
+              <span class="rsay">
+                <span class="rttl">{r.title}</span>
+                <span class="rsub">{r.blurb}</span>
+                <span class="rgo mono label">{routeCount(r.id)} systems →</span>
+              </span>
+              <span class="rdoes">
+                {r.does.map((d) => <span class="d">{d}</span>)}
+              </span>
+            </a>
+          </li>
         ))}
-      </div>
+      </ol>
     </div>
   </section>
 
@@ -153,30 +160,53 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
   .chip.on .n { color: var(--accent-ink); opacity: 0.72; }
   .status { color: var(--muted); }
 
-  .routes { display: grid; gap: var(--s-5); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-  .route {
-    display: flex; flex-direction: column; gap: var(--s-3); text-decoration: none;
-    background: var(--panel); border: 1px solid var(--line);
-    border-radius: var(--r-lg); padding: var(--s-6); box-shadow: var(--sh-1);
+  /* Three equal cards with bullet lists is the same pattern the project grid
+     used, and it read as flat for the same reason: no scale contrast and no
+     dominant element. These are full-width rows in the index's own language —
+     numeral, rule, dense right-hand column — so the page has one visual system
+     rather than two. */
+  .routes { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-bright); }
+  .route { border-bottom: 1px solid var(--line); }
+  .rhit {
+    display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(0, 0.85fr);
+    gap: var(--s-8); align-items: start;
+    padding: var(--s-8) var(--s-2); text-decoration: none; color: inherit;
   }
-  .route p { color: var(--text-2); font-size: var(--t-400); }
-  .does {
-    list-style: none; margin: 0; padding: var(--s-4) 0 0; flex: 1;
-    border-top: 1px solid var(--line); display: grid; gap: var(--s-2);
+  .rnum { font-size: var(--t-600); color: var(--muted); font-weight: 500; }
+  .rsay { display: grid; gap: var(--s-3); align-content: start; }
+  .rttl {
+    font-size: clamp(1.375rem, 2.4vw, 1.875rem); line-height: 1.15;
+    letter-spacing: -0.024em; font-weight: 600; text-wrap: balance;
   }
-  .does li { position: relative; padding-left: var(--s-5); font-size: var(--t-300); color: var(--text); }
-  .does li::before {
-    content: ""; position: absolute; left: 0; top: 0.55em;
-    width: 5px; height: 5px; border-radius: 1px; background: var(--accent-dim);
-  }
-  .route .n { color: var(--accent); }
+  .rsub { color: var(--text-2); font-size: var(--t-400); max-width: 44ch; }
+  .rgo { color: var(--accent); }
 
+  /* The deliverables are the part a visitor scans for their own job, so they get
+     their own column rather than sitting below the prose. */
+  .rdoes {
+    display: grid; gap: 0; align-content: start;
+    border-left: 1px solid var(--line);
+  }
+  .rdoes .d {
+    padding: var(--s-3) var(--s-4);
+    font-size: var(--t-300); color: var(--text);
+    border-bottom: 1px solid var(--line);
+  }
+  .rdoes .d:last-child { border-bottom: 0; }
+
+  .route:hover .rnum, .route:hover .rgo { color: var(--accent); }
+  .route:hover { background: var(--panel); }
+
+  @media (max-width: 1000px) {
+    .rhit { grid-template-columns: auto minmax(0, 1fr); gap: var(--s-4); padding: var(--s-6) 0; }
+    .rdoes { border-left: 0; border-top: 1px solid var(--line); grid-column: 2; margin-top: var(--s-2); }
+    .rdoes .d { padding: var(--s-3) 0; }
+  }
   @media (max-width: 900px) {
     .hero { padding-block: var(--s-12) var(--s-10); }
     .hero h1 { margin-bottom: var(--s-8); }
     .under { grid-template-columns: 1fr; gap: var(--s-8); }
     .figs { gap: var(--s-8); }
-    .routes { grid-template-columns: 1fr; }
     .block { padding-block: var(--s-12); }
   }
   @media (max-width: 620px) {
@@ -187,8 +217,7 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
 
   @media (prefers-reduced-motion: no-preference) {
     .chip, .btn { transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
-    .route { transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
-    .route:hover { border-color: var(--line-bright); transform: translateY(-2px); box-shadow: var(--sh-2); }
+    .route, .rnum, .rgo { transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease); }
   }
 </style>
 

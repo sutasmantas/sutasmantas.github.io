@@ -31,6 +31,7 @@ const rows = ordered;
           <span class="num mono">{String(p.order).padStart(2, '0')}</span>
           <span class="body">
             <span class="ttl">{p.title}</span>
+            <span class="blurb">{p.blurb}</span>
             <span class="meta mono">
               <span class="mark">{p.name}</span>
               <span class="sep" aria-hidden="true">/</span>
@@ -53,9 +54,12 @@ const rows = ordered;
       {rows.map((p) => (
         <figure class="pane" data-pane={p.slug} hidden={p.order !== 1}>
           <Image src={shotFor(p.shot)} alt="" widths={[640, 900, 1280]} sizes="46vw" loading="eager" />
-          <figcaption class="mono">
-            <b>{p.name}</b>
-            <span>{p.live.replace('https://', '')}</span>
+          <figcaption>
+            <span class="head mono">
+              <b>{p.name}</b>
+              <span class="url">{p.live.replace('https://', '')}</span>
+            </span>
+            <p class="say">{p.blurb}</p>
           </figcaption>
         </figure>
       ))}
@@ -91,6 +95,8 @@ const rows = ordered;
     font-weight: 500; font-variant-numeric: tabular-nums;
   }
   .body { display: grid; gap: var(--s-2); min-width: 0; }
+  /* Shown only where there is no preview pane to carry it. */
+  .blurb { display: none; color: var(--text-2); font-size: var(--t-300); max-width: 56ch; }
   .ttl {
     font-size: var(--t-600); line-height: 1.22; letter-spacing: var(--ls-head);
     font-weight: 600; text-wrap: balance;
@@ -120,12 +126,17 @@ const rows = ordered;
   .pane[hidden] { display: none; }
   .pane :global(img) { display: block; width: 100%; height: auto; }
   .pane figcaption {
-    display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-3);
-    padding: var(--s-3) var(--s-4); background: var(--panel);
-    border-top: 1px solid var(--line); font-size: var(--t-200);
+    display: grid; gap: var(--s-3);
+    padding: var(--s-4); background: var(--panel);
+    border-top: 1px solid var(--line);
   }
-  .pane figcaption b { color: var(--text); }
-  .pane figcaption span { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pane .head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: var(--s-3); font-size: var(--t-200);
+  }
+  .pane .head b { color: var(--text); }
+  .pane .url { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pane .say { color: var(--text-2); font-size: var(--t-300); line-height: 1.55; }
 
   /* Below the two-column threshold the preview is dropped rather than stacked.
      A phone cannot show a row and its preview at once, so the preview would be
@@ -134,6 +145,7 @@ const rows = ordered;
     .index { grid-template-columns: 1fr; gap: 0; }
     .preview { display: none; }
     .hit { padding: var(--s-4) 0; }
+    .blurb { display: block; }
   }
   @media (max-width: 620px) {
     .hit { grid-template-columns: auto minmax(0, 1fr); }

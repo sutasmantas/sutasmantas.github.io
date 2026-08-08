@@ -58,18 +58,32 @@ const nav = [
 
   <main id="main"><slot /></main>
 
+  <!-- Left-aligned and asymmetric like the rest of the page. A centred block
+       with a button under it is the one shape every template footer has, and it
+       was the last place this page still looked like one. -->
   <footer class="foot" id="contact">
     <div class="wrap">
-      <h2>Tell me what’s breaking</h2>
-      <p>
-        You don’t need a spec or a budget to start. Describe the problem in a
-        sentence and I’ll tell you straight whether I’m the right person for it —
-        and if I’m not, I’ll say so.
-      </p>
-      <a class="btn" href={`mailto:${contact.email}`}>{contact.email}</a>
-      <p class="alt">
-        Or read the code first — <a href={contact.github}>github.com/sutasmantas</a>
-      </p>
+      <p class="eyebrow mono label">Contact</p>
+      <div class="grid">
+        <div>
+          <h2>Tell me what’s breaking.</h2>
+          <p class="say">
+            You don’t need a spec or a budget to start. Describe the problem in a
+            sentence and I’ll tell you straight whether I’m the right person for
+            it — and if I’m not, I’ll say so.
+          </p>
+        </div>
+        <dl class="ways">
+          <div>
+            <dt class="mono label">Email</dt>
+            <dd><a class="big" href={`mailto:${contact.email}`}>{contact.email}</a></dd>
+          </div>
+          <div>
+            <dt class="mono label">Read the code first</dt>
+            <dd><a href={contact.github}>github.com/sutasmantas</a></dd>
+          </div>
+        </dl>
+      </div>
     </div>
   </footer>
 
@@ -134,19 +148,35 @@ const nav = [
 
   .foot {
     border-top: 1px solid var(--line); background: var(--bg-lift);
-    padding-block: var(--s-20); text-align: center;
+    padding-block: var(--s-20);
   }
-  .foot h2 { margin-bottom: var(--s-3); }
-  .foot p { color: var(--text-2); max-width: 52ch; margin: 0 auto var(--s-8); }
-  .btn {
-    display: inline-block; background: var(--accent); color: var(--accent-ink);
-    padding: var(--s-3) var(--s-6); border-radius: var(--r-md);
-    font-weight: 650; font-size: var(--t-400); text-decoration: none;
-    box-shadow: var(--sh-1);
+  .foot .eyebrow {
+    display: inline-flex; align-items: center; gap: var(--s-3);
+    color: var(--accent); margin-bottom: var(--s-8);
   }
-  .btn:hover { background: color-mix(in srgb, var(--accent) 88%, #fff); box-shadow: var(--sh-2); }
-  .foot .alt { margin: var(--s-6) auto 0; font-size: var(--t-300); color: var(--muted); }
-  .foot .alt a { color: var(--text-2); }
+  .foot .eyebrow::before { content: ""; width: var(--s-8); height: 1px; background: var(--accent-dim); }
+  .foot .grid {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+    gap: var(--s-12); align-items: start;
+    padding-top: var(--s-8); border-top: 1px solid var(--line);
+  }
+  .foot h2 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem); line-height: 1.05;
+    letter-spacing: -0.032em; margin-bottom: var(--s-4);
+  }
+  .foot .say { color: var(--text-2); max-width: 46ch; }
+
+  .ways { display: grid; gap: var(--s-6); margin: 0; }
+  .ways div { display: grid; gap: var(--s-2); padding-bottom: var(--s-4); border-bottom: 1px solid var(--line); }
+  .ways dt { color: var(--muted); }
+  .ways dd { margin: 0; }
+  .ways a { color: var(--text-2); text-decoration: none; font-size: var(--t-400); }
+  .ways a:hover { color: var(--accent); }
+  .ways a.big { color: var(--accent); font-size: var(--t-600); font-weight: 600; letter-spacing: -0.012em; }
+
+  @media (max-width: 900px) {
+    .foot .grid { grid-template-columns: 1fr; gap: var(--s-8); }
+  }
 
   @media (prefers-reduced-motion: no-preference) {
     .btn, .cta-sm, .nav a { transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
