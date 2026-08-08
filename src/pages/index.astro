@@ -62,7 +62,7 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
     </div>
   </section>
 
-  <section class="block help" id="help">
+  <section class="block help" id="help" data-scheme="light">
     <div class="wrap">
       <div class="sec-head">
         <h2>What I could build for you</h2>
@@ -90,7 +90,10 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
 
 <style>
   /* ---------- hero: the airy half of the page ---------- */
-  .hero { padding-block: var(--s-20) var(--s-16); border-bottom: 1px solid var(--line); }
+    /* Tightened so the fold holds the headline AND the top of the work index,
+     which is where the real interface now lives. The choice between "type-only
+     hero" and "proof in the fold" was a false one — it was a spacing problem. */
+  .hero { padding-block: var(--s-12) var(--s-10); border-bottom: 1px solid var(--line); }
   .eyebrow {
     display: inline-flex; align-items: center; gap: var(--s-3);
     color: var(--accent); margin-bottom: var(--s-8);
@@ -100,9 +103,10 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
   /* Display scale. The previous headline topped out at 3.5rem, which is a
      heading, not a display size; this is the page's one dominant element. */
   .hero h1 {
-    font-size: clamp(2.6rem, 8.2vw, 6.5rem);
-    line-height: 0.98; letter-spacing: -0.04em; font-weight: 700;
-    margin-bottom: var(--s-12); max-width: 16ch;
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    line-height: 0.96; letter-spacing: -0.038em; font-weight: 700;
+    font-stretch: 112%;
+    margin-bottom: var(--s-8); max-width: 17ch;
   }
   .hero h1 em { font-style: normal; color: var(--accent); }
 
@@ -110,17 +114,17 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
      than the two equal columns everything else on the web uses. */
   .under {
     display: grid; grid-template-columns: minmax(0, 34ch) minmax(0, 1fr);
-    gap: var(--s-12); align-items: start;
-    padding-top: var(--s-8); border-top: 1px solid var(--line);
+    gap: var(--s-10); align-items: start;
+    padding-top: var(--s-6); border-top: 1px solid var(--line);
   }
   .sub { color: var(--text-2); font-size: var(--t-500); }
 
   .figs { display: flex; gap: var(--s-12); margin: 0; flex-wrap: wrap; }
   .figs div { display: grid; gap: var(--s-1); }
-  .figs dt { font-size: var(--t-800); line-height: 1; letter-spacing: -0.02em; font-weight: 600; }
+  .figs dt { font-family: var(--display); font-size: var(--t-800); line-height: 1; letter-spacing: -0.02em; font-weight: 700; font-stretch: 108%; }
   .figs dd { margin: 0; color: var(--muted); max-width: 15ch; }
 
-  .ctas { display: flex; gap: var(--s-3); flex-wrap: wrap; margin-top: var(--s-10); }
+  .ctas { display: flex; gap: var(--s-3); flex-wrap: wrap; margin-top: var(--s-8); }
   .btn {
     background: var(--accent); color: var(--accent-ink);
     padding: var(--s-3) var(--s-5); border-radius: var(--r-md);
@@ -136,7 +140,7 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
 
   /* ---------- sections ---------- */
   .block { padding-block: var(--s-16); }
-  .work { padding-bottom: var(--s-20); }
+  .work { padding-block: var(--s-12) var(--s-20); }
   .help { border-top: 1px solid var(--line); background: var(--bg-lift); }
 
   .sec-head {
@@ -151,7 +155,7 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
   .chip {
     display: inline-flex; align-items: center; gap: var(--s-2);
     background: transparent; color: var(--text-2); cursor: pointer;
-    border: 1px solid var(--line-ctl); border-radius: var(--r-pill);
+    border: 1px solid var(--line-ctl); border-radius: var(--r-sm);
     padding: var(--s-2) var(--s-4); font: inherit; font-size: var(--t-300);
   }
   .chip:hover { border-color: var(--text-2); color: var(--text); }
@@ -175,8 +179,9 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
   .rnum { font-size: var(--t-600); color: var(--muted); font-weight: 500; }
   .rsay { display: grid; gap: var(--s-3); align-content: start; }
   .rttl {
-    font-size: clamp(1.375rem, 2.4vw, 1.875rem); line-height: 1.15;
-    letter-spacing: -0.024em; font-weight: 600; text-wrap: balance;
+    font-family: var(--display);
+    font-size: clamp(1.375rem, 2.4vw, 1.875rem); line-height: 1.14;
+    letter-spacing: -0.026em; font-weight: 700; font-stretch: 106%; text-wrap: balance;
   }
   .rsub { color: var(--text-2); font-size: var(--t-400); max-width: 44ch; }
   .rgo { color: var(--accent); }

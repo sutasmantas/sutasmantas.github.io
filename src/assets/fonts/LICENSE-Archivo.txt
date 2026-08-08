@@ -1,0 +1,4 @@
+Archivo is licensed under the SIL Open Font License, Version 1.1.
+Copyright (c) Omnibus-Type.
+Full text: https://openfontlicense.org/open-font-license-official-text/
+Upstream: https://github.com/Omnibus-Type/Archivo

@@ -45,7 +45,7 @@ const nav = [
       <nav class="nav" aria-label="Sections">
         {nav.map((n) => <a href={n.href}>{n.label}</a>)}
       </nav>
-      <a class="cta-sm" href="#contact">Get in touch</a>
+      <a class="cta-sm" href="#contact">Get in touch <span aria-hidden="true">→</span></a>
       <button class="menu" type="button" aria-expanded="false" aria-controls="m-nav">
         <span class="sr">Menu</span><i></i><i></i><i></i>
       </button>
@@ -94,29 +94,36 @@ const nav = [
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--line);
   }
-  .top > .wrap {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: var(--s-4); height: 60px;
-  }
+  .top > .wrap { display: flex; align-items: center; gap: var(--s-4); height: 60px; }
   /* min-height, not just the text box: as a flex item this link is not covered by
      the inline exception in WCAG 2.5.8, so it has to earn its own 24px. */
   .brand {
     display: flex; align-items: baseline; gap: var(--s-2); min-height: 40px;
     text-decoration: none; white-space: nowrap;
   }
-  .brand b { font-size: var(--t-400); font-weight: 700; letter-spacing: -0.005em; }
+  .brand b {
+    font-family: var(--display); font-size: var(--t-500); font-weight: 700;
+    font-stretch: 108%; letter-spacing: -0.012em;
+  }
   .brand span { color: var(--muted); }
 
-  .nav { display: flex; gap: var(--s-6); font-size: var(--t-400); color: var(--text-2); }
+  .nav {
+    display: flex; gap: var(--s-6); margin-left: auto; margin-right: var(--s-8);
+    font-size: var(--t-300); color: var(--text-2);
+  }
   .nav a { text-decoration: none; }
   .nav a:hover { color: var(--text); }
 
+  /* A filled pill on the right of a sticky bar is the most recognisable
+     component-library shape there is, and it sat on every page. This is a
+     ruled text link instead: still obviously the primary action, no longer
+     borrowed from a UI kit. */
   .cta-sm {
-    background: var(--accent); color: var(--accent-ink);
-    padding: var(--s-2) var(--s-4); border-radius: var(--r-sm);
-    font-weight: 650; font-size: var(--t-300); text-decoration: none; white-space: nowrap;
+    color: var(--accent); font-weight: 600; font-size: var(--t-300);
+    text-decoration: none; white-space: nowrap;
+    padding-bottom: 2px; border-bottom: 1px solid var(--accent-dim);
   }
-  .cta-sm:hover { background: color-mix(in srgb, var(--accent) 88%, #fff); }
+  .cta-sm:hover { border-bottom-color: var(--accent); }
 
   /* Two header designs, not one that wraps. The wrapping version collapsed into
      three rows with the button overlapping the brand. */

@@ -97,18 +97,59 @@
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 400 800;
+  font-stretch: 75% 125%;
+  font-display: swap;
+  src: url('../assets/fonts/archivo-var-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 400 800;
+  font-stretch: 75% 125%;
+  font-display: swap;
+  src: url('../assets/fonts/archivo-var-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 :root {
-  --bg: #0e0f12;
-  --bg-lift: #13151a;
-  --panel: #171a20;
-  --panel-2: #1c1f27;
-  --line: #252932;
-  --line-bright: #333845;
-  --line-ctl: #626b7e;
-  --mat: #2b3040;
-  --text: #eceef2;
-  --text-2: #b6bcc7;
-  --muted: #868d9a;
+  /* Palette, decided against the evidence rather than by preference.
+   *
+   * The plan here was to raise colourfulness, on Reinecke et al. (CHI 2013)
+   * finding that perceived colourfulness and complexity explain about half the
+   * variance in 500 ms appeal ratings. Searching for the counter-case killed it:
+   * Skulmowski & Augustin (Computers in Human Behavior, 2016) presented 50 sites
+   * across 10 domains in saturated and desaturated versions at 50 ms, 500 ms and
+   * 10 s, and DESATURATED versions scored higher on trustworthiness, visual
+   * appeal and perceived usability at every duration. For a page whose whole job
+   * is credibility, that outranks a general appeal finding. Saturation stays low.
+   *
+   * What the evidence does support: colour-as-trust work finds blue the most
+   * trustworthy hue and black the least, with a small effect. So the neutrals are
+   * shifted a few degrees further toward blue rather than sitting on pure grey,
+   * which costs nothing and points the right way.
+   *
+   * The variety the page was missing is delivered as VALUE structure instead of
+   * saturation — see the light scheme below. */
+  --bg: #0d0f14;
+  --bg-lift: #12151c;
+  --panel: #171b24;
+  --panel-2: #1c212b;
+  --line: #262c38;
+  --line-bright: #343c4c;
+  --line-ctl: #667187;
+  --mat: #2b3142;
+  --text: #eceef3;
+  --text-2: #b7bdc9;
+  --muted: #878e9c;
   --accent: #6fcfa6;
   --accent-dim: #478a6f;
   --accent-ink: #0b1a14;
@@ -189,12 +230,51 @@
   --ease: cubic-bezier(0.2, 0, 0, 1);
   --dur: 180ms;
 
+  /* A display face, used on headings only. Brumberger (2003) and Shaikh et al.
+   * establish that typefaces reliably carry perceived personality and that the
+   * traits attach by design family — serif and sans read as stable, mature and
+   * trustworthy, script and novelty faces do not. So the character comes from a
+   * grotesque with a real width axis rather than from a decorative face: Archivo
+   * expands to 125%, which gives a headline actual presence instead of relying
+   * on size alone. Body text stays Plex.
+   *
+   * Honest limit: the same literature finds personality perception well
+   * established but the link from typeface to *credibility* under-evidenced. So
+   * this is a character decision, not a credibility claim. */
+  --display: 'Archivo', 'Plex Sans', ui-sans-serif, system-ui, sans-serif;
   --sans: 'Plex Sans', ui-sans-serif, -apple-system, 'Segoe UI', Roboto, system-ui, sans-serif;
   --mono: 'Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 }
 
 @media (min-width: 621px) {
   :root { --gut: 28px; }
+}
+
+/* A light band, applied by scoping the same token names to a section.
+ *
+ * This is the answer to "the page has no variety" that does not raise
+ * saturation: value contrast between sections. Every band on this site was dark
+ * and the same weight, so nothing could dominate or recede. One light section
+ * gives the page a real structural break, and it echoes the products' own
+ * interfaces, which were all designed on white. */
+[data-scheme='light'] {
+  --bg: #eef1f5;
+  --bg-lift: #e6eaf0;
+  --panel: #ffffff;
+  --panel-2: #f6f8fa;
+  --line: #d3d9e2;
+  --line-bright: #b9c1cd;
+  --line-ctl: #6b7484;
+  --mat: #dfe4ec;
+  --text: #131720;
+  --text-2: #414958;
+  --muted: #5c6474;
+  --accent: #10714d;
+  --accent-dim: #10714d;
+  --accent-ink: #ffffff;
+
+  background: var(--bg);
+  color: var(--text);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -217,6 +297,7 @@ body {
    optical tracking and line-height for its size instead of restating them. */
 h1, h2, h3 {
   margin: 0;
+  font-family: var(--display);
   line-height: var(--lh-head);
   letter-spacing: var(--ls-head);
   text-wrap: balance;
