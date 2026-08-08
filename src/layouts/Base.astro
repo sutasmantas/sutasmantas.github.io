@@ -13,10 +13,11 @@ const { title, description } = Astro.props;
 // Absolute so the header works identically on /, /work/ and /work/<slug>/. The
 // first version used bare fragments, which silently pointed at anchors that only
 // existed on the home page.
+// "Contact" and "Get in touch" were two labels on one destination, which is a
+// duplicated stop for anyone tabbing and a wasted slot in a four-item nav.
 const nav = [
   { href: homeAnchor('work'), label: 'The systems' },
-  { href: homeAnchor('help'), label: 'Ways I can help' },
-  { href: '#contact', label: 'Contact' },
+  { href: homeAnchor('help'), label: 'What I build' },
 ];
 ---
 <!doctype html>

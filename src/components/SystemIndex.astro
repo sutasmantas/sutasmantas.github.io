@@ -21,26 +21,33 @@ import { href } from '../lib/paths.js';
 // judgement, and a ruled numeric index is far lower complexity than thirteen
 // cards each carrying an image, two metadata columns and two buttons. So this
 // should read better at a glance as well as at a minute.
+//
+// Each row offers two destinations rather than one. Under information foraging
+// theory (Pirolli & Card; the SNIF-ACT model) people follow the link whose label
+// carries the strongest scent for their task, and abandon a page when scent
+// falls below a threshold. The task most visitors have here is "show me it
+// working", and that action used to be two hops away — reachable only after
+// opening the project page. "Open ↗" now sits in the row beside the title, so
+// the highest-value action carries the highest-scent label.
 const rows = ordered;
 ---
 <div class="index" data-index>
   <ol class="rows" data-rows>
     {rows.map((p) => (
       <li class="row" data-route={p.route} data-slug={p.slug}>
-        <a class="hit" href={href(`/work/${p.slug}/`)} data-row>
-          <span class="num mono">{String(p.order).padStart(2, '0')}</span>
-          <span class="body">
-            <span class="ttl">{p.title}</span>
-            <span class="blurb">{p.blurb}</span>
-            <span class="meta mono">
-              <span class="mark">{p.name}</span>
-              <span class="sep" aria-hidden="true">/</span>
-              <span>{p.family}</span>
-              <span class="sep" aria-hidden="true">/</span>
-              <span class="hard">{p.note}</span>
-            </span>
+        <span class="num mono">{String(p.order).padStart(2, '0')}</span>
+        <span class="body">
+          <a class="ttl" href={href(`/work/${p.slug}/`)} data-row>{p.title}</a>
+          <span class="blurb">{p.blurb}</span>
+          <span class="meta mono">
+            <span class="mark">{p.name}</span>
+            <span class="sep" aria-hidden="true">/</span>
+            <span>{p.family}</span>
           </span>
-          <span class="go mono" aria-hidden="true">→</span>
+          <span class="hard mono">{p.note}</span>
+        </span>
+        <a class="open mono" href={p.live}>
+          Open<span class="sr"> {p.name}, live</span> <span aria-hidden="true">↗</span>
         </a>
       </li>
     ))}
@@ -53,7 +60,13 @@ const rows = ordered;
     <div class="frame">
       {rows.map((p) => (
         <figure class="pane" data-pane={p.slug} hidden={p.order !== 1}>
-          <Image src={shotFor(p.shot)} alt="" widths={[640, 900, 1280]} sizes="46vw" loading="eager" />
+          <Image
+            src={shotFor(p.shot)}
+            alt=""
+            widths={[640, 900, 1280]}
+            sizes="46vw"
+            loading={p.order === 1 ? 'eager' : 'lazy'}
+          />
           <figcaption>
             <span class="head mono">
               <b>{p.name}</b>
@@ -79,12 +92,20 @@ const rows = ordered;
   .row { border-bottom: 1px solid var(--line); }
   .row[hidden] { display: none; }
 
-  .hit {
+  .row {
     display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: baseline; gap: var(--s-4);
     padding: var(--s-4) var(--s-2);
-    text-decoration: none; color: inherit;
   }
+  .ttl { display: block; text-decoration: none; color: inherit; }
+  .ttl:hover { color: var(--accent); }
+  .open {
+    align-self: center; white-space: nowrap; text-decoration: none;
+    font-size: var(--t-200); color: var(--muted);
+    border: 1px solid var(--line-bright); border-radius: var(--r-sm);
+    padding: var(--s-2) var(--s-3);
+  }
+  .open:hover { color: var(--accent-ink); background: var(--accent); border-color: var(--accent); }
   /* Scale contrast between the number and the title is doing the compositional
      work — without it every row competes equally and the field reads as flat. */
   /* --line-bright is a hairline colour and was used here for a decorative
@@ -106,16 +127,20 @@ const rows = ordered;
     display: flex; flex-wrap: wrap; gap: var(--s-2); align-items: baseline;
   }
   .meta .mark { color: var(--accent); }
-  .meta .hard { color: var(--text-2); }
   .sep { color: var(--line-ctl); }
-  .go { color: var(--muted); font-size: var(--t-400); }
+  /* Its own line at every width. Inline after the family it wrapped, which left
+     the separator dangling at the end of a line whenever the column narrowed. */
+  .hard {
+    font-size: var(--t-200); color: var(--text-2);
+    position: relative; padding-left: var(--s-4);
+  }
+  .hard::before {
+    content: ""; position: absolute; left: 0; top: 0.52em;
+    width: 7px; height: 1px; background: var(--accent-dim);
+  }
 
-  .row.on .num,
-  .hit:hover .num { color: var(--accent); }
-  .row.on .go,
-  .hit:hover .go { color: var(--accent); }
+  .row.on .num { color: var(--accent); }
   .row.on { background: var(--panel); }
-  .row.on .ttl { color: var(--text); }
 
   .preview { position: sticky; top: calc(60px + var(--s-6)); }
   .frame {
@@ -144,20 +169,19 @@ const rows = ordered;
   @media (max-width: 1000px) {
     .index { grid-template-columns: 1fr; gap: 0; }
     .preview { display: none; }
-    .hit { padding: var(--s-4) 0; }
+    .row { padding: var(--s-4) 0; }
     .blurb { display: block; }
   }
   @media (max-width: 620px) {
-    .hit { grid-template-columns: auto minmax(0, 1fr); }
-    .go { display: none; }
+    .row { grid-template-columns: auto minmax(0, 1fr); row-gap: var(--s-3); }
+    .open { grid-column: 2; justify-self: start; }
     /* The meta wraps at this width and left the separator dangling at the end
        of the line. Give the result its own row and drop the divider. */
-    .meta .hard { flex-basis: 100%; }
-    .sep.drop { display: none; }
+
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .num, .go, .row { transition: color var(--dur) var(--ease), background-color var(--dur) var(--ease); }
+    .num, .open, .ttl, .row { transition: color var(--dur) var(--ease), background-color var(--dur) var(--ease), border-color var(--dur) var(--ease); }
   }
 </style>
 
@@ -176,10 +200,23 @@ const rows = ordered;
     }
 
     for (const row of rows) {
-      const link = row.querySelector('[data-row]');
       row.addEventListener('mouseenter', () => show(row.dataset.slug));
-      link.addEventListener('focus', () => show(row.dataset.slug));
+      for (const link of row.querySelectorAll('a')) {
+        link.addEventListener('focus', () => show(row.dataset.slug));
+      }
     }
     rows[0]?.classList.add('on');
+
+    // Twelve of the thirteen previews are hidden on arrival, and shipping them
+    // all eagerly meant thirteen image requests before first paint. They are
+    // lazy now and warmed once the page is idle, so first paint carries one
+    // image and hovering still never lands on a blank frame.
+    const warm = () => {
+      for (const img of index.querySelectorAll('.pane img[loading="lazy"]')) {
+        img.loading = 'eager';
+      }
+    };
+    if ('requestIdleCallback' in window) requestIdleCallback(warm, { timeout: 3000 });
+    else window.addEventListener('load', () => setTimeout(warm, 1200));
   }
 </script>
