@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
-import { projects, routeLabel } from '../../data/portfolio.js';
+import { projects, routeLabel, contact } from '../../data/portfolio.js';
 import { shotFor } from '../../data/shots.js';
 import { href } from '../../lib/paths.js';
 
@@ -22,7 +22,7 @@ const siblings = projects.filter((s) => s.route === p.route && s.slug !== p.slug
 >
   <div class="wrap head">
     <nav class="crumbs mono" aria-label="Breadcrumb">
-      <a href={href('/work/')}>Evidence</a><span aria-hidden="true">/</span><span>{p.name}</span>
+      <a href={href('/work/')}>The work</a><span aria-hidden="true">/</span><span>{p.name}</span>
     </nav>
     <p class="kick mono">{p.family}</p>
     <h1>{p.name}</h1>
@@ -53,30 +53,30 @@ const siblings = projects.filter((s) => s.route === p.route && s.slug !== p.slug
 
   <section class="wrap facts" aria-label="What this project is">
     <dl>
-      <div><dt>Client asks for</dt><dd>{p.asks}</dd></div>
+      <div><dt>What you get</dt><dd>{p.asks}</dd></div>
       <div><dt>Route</dt><dd><a href={href(`/work/?route=${p.route}`)}>{routeLabel[p.route]}</a></dd></div>
-      <div><dt>Market family</dt><dd>{p.family}</dd></div>
+      <div><dt>Area</dt><dd>{p.family}</dd></div>
       {p.note && <div><dt>Result</dt><dd class={p.noteTone === 'amber' ? 'amber' : ''}>{p.note}</dd></div>}
     </dl>
   </section>
 
   <section class="wrap block">
-    <h2>What it does not prove</h2>
-    <p class="limit">{p.limit}</p>
+    <h2>What the demo covers</h2>
+    <p class="scope">{p.scope}</p>
     <p class="lede">
-      A demo that hides its boundary is not evidence, so the boundary is stated
-      here rather than left for you to discover. The repository holds the tests
-      that back the claim, and the failures they were written against.
+      The repository holds the tests behind this, and the failures they were
+      written against. If you want it pointed at your own systems and your own
+      data, that is the conversation — tell me what you are trying to fix.
     </p>
     <div class="ctas">
-      <a class="btn" href={p.live}>Open {p.name}</a>
+      <a class="btn" href={`mailto:${contact.email}?subject=${encodeURIComponent(p.name)}`}>Talk about {p.name}</a>
       <a class="btn ghost" href={p.source}>Source and tests</a>
     </div>
   </section>
 
   {siblings.length > 0 && (
     <section class="wrap block related">
-      <h2>Also for “{routeLabel[p.route].toLowerCase()}”</h2>
+      <h2>Others that do this</h2>
       <ul>
         {siblings.map((s) => (
           <li>
@@ -141,9 +141,9 @@ const siblings = projects.filter((s) => s.route === p.route && s.slug !== p.slug
 
   .block { padding-block: 56px 0; }
   h2 { font-size: 1.35rem; margin: 0 0 14px; letter-spacing: -.02em; }
-  .limit {
+  .scope {
     margin: 0 0 18px; font-size: 1.02rem; color: var(--text);
-    border-left: 2px solid var(--amber); padding-left: 14px; max-width: 60ch;
+    border-left: 2px solid var(--accent-dim); padding-left: 14px; max-width: 60ch;
   }
   .lede { color: var(--text-2); max-width: var(--measure); margin: 0 0 26px; }
 

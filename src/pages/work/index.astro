@@ -11,15 +11,15 @@ const ordered = [...projects].sort(
 ---
 <Base
   title={`${counts.open} systems you can open — Mantas Šutas`}
-  description="Every AI system in this portfolio, filterable by the way a client would describe the problem. Each one runs on a public URL and states the limit of what it proves."
+  description="Every AI system in this portfolio, running right now on a public URL. Filter by what you need done and open whichever is closest to your problem — no login, no form, no call first."
 >
   <div class="wrap head">
-    <p class="kick mono">Evidence</p>
-    <h1>All {counts.open} systems, open in a browser.</h1>
+    <p class="kick mono">The work</p>
+    <h1>Every system, open in a browser.</h1>
     <p class="sub">
-      No login and no sales call first. Filter by the way you would describe the
-      problem. Every card names the limit of what it proves, because a demo that
-      hides its boundary is not evidence.
+      All {counts.open} of them are running right now on public URLs. Filter by
+      what you need done, open whichever is closest to your problem, and click
+      around. No login, no form, no call first.
     </p>
   </div>
 
@@ -42,14 +42,14 @@ const ordered = [...projects].sort(
   </div>
 
   <div class="wrap grid" data-list>
-    {ordered.map((p) => <ProjectCard project={p} showLimit={true} />)}
+    {ordered.map((p) => <ProjectCard project={p} />)}
   </div>
 
   <div class="wrap note">
     <p>
-      One more system — a realtime English and Lithuanian context assistant — is
-      built but has no reconciled public repository yet. It gets no card here,
-      because a card on this page is a promise that you can open the thing.
+      A card on this page is a promise that you can open the thing, so a
+      fourteenth system — a realtime English and Lithuanian assistant — is not
+      listed until its repository is public.
     </p>
   </div>
 
