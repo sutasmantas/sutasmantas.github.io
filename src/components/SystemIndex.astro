@@ -1,0 +1,173 @@
+---
+import { Image } from 'astro:assets';
+import { ordered } from '../data/portfolio.js';
+import { shotFor } from '../data/shots.js';
+import { href } from '../lib/paths.js';
+
+// An index, not a card grid.
+//
+// Thirteen identical cards in a three-column grid is the single most common
+// layout on the web for showing work, and it was the largest template signal on
+// this page. This is a catalogue instead: numbered rows, one large preview.
+//
+// The split follows the evidence rather than taste. Jakob's Law costs are all
+// documented in the *interaction* layer — navigation placement, unfamiliar
+// paradigms, non-standard controls — so interaction stays conventional here:
+// every row is an ordinary link, tab order is source order, and the preview is
+// an enhancement that nothing depends on. The distinctiveness is spent in the
+// *visual* layer, where no such cost is documented.
+//
+// Tuch et al. (IJHCS 2012) find low visual complexity wins the sub-second
+// judgement, and a ruled numeric index is far lower complexity than thirteen
+// cards each carrying an image, two metadata columns and two buttons. So this
+// should read better at a glance as well as at a minute.
+const rows = ordered;
+---
+<div class="index" data-index>
+  <ol class="rows" data-rows>
+    {rows.map((p) => (
+      <li class="row" data-route={p.route} data-slug={p.slug}>
+        <a class="hit" href={href(`/work/${p.slug}/`)} data-row>
+          <span class="num mono">{String(p.order).padStart(2, '0')}</span>
+          <span class="body">
+            <span class="ttl">{p.title}</span>
+            <span class="meta mono">
+              <span class="mark">{p.name}</span>
+              <span class="sep" aria-hidden="true">/</span>
+              <span>{p.family}</span>
+              <span class="sep" aria-hidden="true">/</span>
+              <span class="hard">{p.note}</span>
+            </span>
+          </span>
+          <span class="go mono" aria-hidden="true">→</span>
+        </a>
+      </li>
+    ))}
+  </ol>
+
+  <!-- One large preview instead of thirteen thumbnails competing at card size.
+       Every frame is rendered and the active one is revealed, so switching costs
+       no network and cannot flash. -->
+  <div class="preview" aria-hidden="true">
+    <div class="frame">
+      {rows.map((p) => (
+        <figure class="pane" data-pane={p.slug} hidden={p.order !== 1}>
+          <Image src={shotFor(p.shot)} alt="" widths={[640, 900, 1280]} sizes="46vw" loading="eager" />
+          <figcaption class="mono">
+            <b>{p.name}</b>
+            <span>{p.live.replace('https://', '')}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .index {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+    gap: var(--s-12);
+    align-items: start;
+  }
+
+  .rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-bright); }
+  .row { border-bottom: 1px solid var(--line); }
+  .row[hidden] { display: none; }
+
+  .hit {
+    display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: baseline; gap: var(--s-4);
+    padding: var(--s-4) var(--s-2);
+    text-decoration: none; color: inherit;
+  }
+  /* Scale contrast between the number and the title is doing the compositional
+     work — without it every row competes equally and the field reads as flat. */
+  /* --line-bright is a hairline colour and was used here for a decorative
+     effect, which put real text at 1.64:1. The index number is content: it is
+     how a reader refers to a row. --muted clears 4.5:1. */
+  .num {
+    font-size: var(--t-600); color: var(--muted);
+    font-weight: 500; font-variant-numeric: tabular-nums;
+  }
+  .body { display: grid; gap: var(--s-2); min-width: 0; }
+  .ttl {
+    font-size: var(--t-600); line-height: 1.22; letter-spacing: var(--ls-head);
+    font-weight: 600; text-wrap: balance;
+  }
+  .meta {
+    font-size: var(--t-200); color: var(--muted);
+    display: flex; flex-wrap: wrap; gap: var(--s-2); align-items: baseline;
+  }
+  .meta .mark { color: var(--accent); }
+  .meta .hard { color: var(--text-2); }
+  .sep { color: var(--line-ctl); }
+  .go { color: var(--muted); font-size: var(--t-400); }
+
+  .row.on .num,
+  .hit:hover .num { color: var(--accent); }
+  .row.on .go,
+  .hit:hover .go { color: var(--accent); }
+  .row.on { background: var(--panel); }
+  .row.on .ttl { color: var(--text); }
+
+  .preview { position: sticky; top: calc(60px + var(--s-6)); }
+  .frame {
+    border: 1px solid var(--line-ctl); border-radius: var(--r-lg);
+    overflow: hidden; background: var(--mat); box-shadow: var(--sh-3);
+  }
+  .pane { margin: 0; display: block; }
+  .pane[hidden] { display: none; }
+  .pane :global(img) { display: block; width: 100%; height: auto; }
+  .pane figcaption {
+    display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-3);
+    padding: var(--s-3) var(--s-4); background: var(--panel);
+    border-top: 1px solid var(--line); font-size: var(--t-200);
+  }
+  .pane figcaption b { color: var(--text); }
+  .pane figcaption span { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* Below the two-column threshold the preview is dropped rather than stacked.
+     A phone cannot show a row and its preview at once, so the preview would be
+     an image the reader has to scroll past thirteen times to reach the list. */
+  @media (max-width: 1000px) {
+    .index { grid-template-columns: 1fr; gap: 0; }
+    .preview { display: none; }
+    .hit { padding: var(--s-4) 0; }
+  }
+  @media (max-width: 620px) {
+    .hit { grid-template-columns: auto minmax(0, 1fr); }
+    .go { display: none; }
+    /* The meta wraps at this width and left the separator dangling at the end
+       of the line. Give the result its own row and drop the divider. */
+    .meta .hard { flex-basis: 100%; }
+    .sep.drop { display: none; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .num, .go, .row { transition: color var(--dur) var(--ease), background-color var(--dur) var(--ease); }
+  }
+</style>
+
+<script>
+  // Preview follows hover and keyboard focus. It is an enhancement: with
+  // JavaScript off every row is still a working link to the project page, and
+  // the first frame stays shown.
+  const index = document.querySelector('[data-index]');
+  if (index) {
+    const rows = Array.from(index.querySelectorAll('.row'));
+    const panes = Array.from(index.querySelectorAll('[data-pane]'));
+
+    function show(slug) {
+      for (const pane of panes) pane.hidden = pane.dataset.pane !== slug;
+      for (const row of rows) row.classList.toggle('on', row.dataset.slug === slug);
+    }
+
+    for (const row of rows) {
+      const link = row.querySelector('[data-row]');
+      row.addEventListener('mouseenter', () => show(row.dataset.slug));
+      link.addEventListener('focus', () => show(row.dataset.slug));
+    }
+    rows[0]?.classList.add('on');
+  }
+</script>
