@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import ExactlyOnce from '../components/ExactlyOnce.astro';
 import { identity, proof, routes, ordered, counts, projects } from '../data/portfolio.js';
 import { shotFor } from '../data/shots.js';
 import { href, homeFiltered } from '../lib/paths.js';
@@ -27,22 +28,7 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
       </div>
     </div>
 
-    <figure class="win">
-      <div class="win-bar">
-        <span class="dot live" aria-hidden="true"></span>
-        <span class="dot" aria-hidden="true"></span>
-        <span class="dot" aria-hidden="true"></span>
-        <span class="addr mono">{hero.slug} · {hero.family.toLowerCase()}</span>
-        <span class="badge">live · no login</span>
-      </div>
-      <div class="shot">
-        <Image src={heroImg} alt={hero.alt} widths={[700, 1100, 1440]} sizes="(max-width: 900px) 94vw, 620px" loading="eager" />
-      </div>
-      <figcaption>
-        <a href={hero.live}>Open {hero.name} →</a>
-        <span>{hero.note}</span>
-      </figcaption>
-    </figure>
+    <ExactlyOnce />
   </div>
 
   <!-- Proof strip. Both closest references put client logos here. This has none,

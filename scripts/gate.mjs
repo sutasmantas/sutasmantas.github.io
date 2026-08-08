@@ -113,12 +113,26 @@ for (const vp of VIEWPORTS) {
         });
         return 0.2126 * r + 0.7152 * g + 0.0722 * b;
       };
-      const parse = (s) => (s.match(/[\d.]+/g) || []).slice(0, 3).map(Number);
+      // Chromium serialises color-mix() as `color(srgb 0.04 0.1 0.08 / 0.16)` —
+      // components in 0..1, alpha after a slash. Read as rgb() those floats
+      // become near-black and the alpha is missed entirely, so a translucent
+      // chip was scored as an opaque background and reported a false failure.
+      const parse = (str) => {
+        const srgb = str.match(/color\(srgb\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)/i);
+        if (srgb) return srgb.slice(1, 4).map((v) => Number(v) * 255);
+        return (str.match(/[\d.]+/g) || []).slice(0, 3).map(Number);
+      };
+      const alphaOf = (str) => {
+        if (str === 'transparent') return 0;
+        const slash = str.match(/\/\s*([\d.]+%?)\s*\)/);
+        if (slash) return slash[1].endsWith('%') ? parseFloat(slash[1]) / 100 : Number(slash[1]);
+        if (str.startsWith('rgba')) return Number((str.match(/[\d.]+/g) || [])[3] ?? 1);
+        return 1;
+      };
       const bgOf = (el) => {
         for (let p = el; p; p = p.parentElement) {
           const c = getComputedStyle(p).backgroundColor;
-          const a = c.startsWith('rgba') ? Number(c.match(/[\d.]+/g)[3]) : 1;
-          if (a > 0.85) return parse(c);
+          if (alphaOf(c) > 0.85) return parse(c);
         }
         return [0, 0, 0];
       };

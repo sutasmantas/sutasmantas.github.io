@@ -1,0 +1,252 @@
+---
+import { href } from '../lib/paths.js';
+
+// The novel element, and the reason it is here rather than a second screenshot.
+//
+// Silvennoinen, Kotkajuuri & Kujala (International Journal of Human–Computer
+// Interaction, 2025, N=108, linear mixed-effects over 12 sites) find that
+// novelty and typicality both predict a website's aesthetic appeal, that the
+// novelty relationship is the stronger of the two, and that novelty matters most
+// on *service* sites — which this is. Three prior rounds of work here maximised
+// typicality (a type scale, a spacing grid, an elevation ramp) and left novelty
+// at zero, which is the definition of looking like a template.
+//
+// Hekkert, Snelders & van Wieringen (British Journal of Psychology 94, 2003) add
+// the constraint: novelty and typicality suppress each other, so novelty is only
+// worth having while it does not cost typicality. That rules out a decorative
+// flourish and rules in this: the novelty is *the subject itself*. Every system
+// on this page shares one claim — an effect happens exactly once no matter how
+// many times it is asked for — and that claim can be handed to the visitor to
+// test instead of asserted at them.
+//
+// Motion policy, from the same pass: auto-triggered motion harms usability,
+// raises cognitive load and creates accessibility barriers, while user-triggered
+// motion has support. So nothing here moves on load or on scroll. Every
+// transition is the consequence of a press, and all of it is disabled under
+// prefers-reduced-motion, which the release gate enforces.
+---
+<figure class="rig">
+  <figcaption class="rig-bar">
+    <span class="dot live" aria-hidden="true"></span>
+    <span class="mono label ttl">Press it as often as you like</span>
+    <span class="mono badge">exactly once</span>
+  </figcaption>
+
+  <div class="rig-body">
+    <div class="controls">
+      <button class="fire" type="button" data-fire>
+        Charge the customer <span class="key mono" aria-hidden="true">€40</span>
+      </button>
+      <label class="flip">
+        <input type="checkbox" data-flaky />
+        <span>Make the network fail</span>
+      </label>
+      <button class="reset" type="button" data-reset>Reset</button>
+    </div>
+
+    <div class="readout">
+      <div class="meter">
+        <span class="mono label">Times charged</span>
+        <b class="mono" data-charged aria-live="polite">0</b>
+      </div>
+      <div class="meter">
+        <span class="mono label">Requests sent</span>
+        <b class="mono" data-sent>0</b>
+      </div>
+    </div>
+
+    <ol class="log" data-log aria-label="Delivery attempts">
+      <li class="empty mono">No attempts yet.</li>
+    </ol>
+  </div>
+
+  <div class="rig-foot">
+    <p>
+      Same idempotency key every press — the charge is committed once and every
+      later attempt is recognised and dropped.
+    </p>
+    <a href={href('/work/deliveryguard/')}>The system that does this →</a>
+  </div>
+</figure>
+
+<style>
+  .rig {
+    margin: 0; border: 1px solid var(--line-ctl); border-radius: var(--r-lg);
+    overflow: hidden; background: var(--panel); box-shadow: var(--sh-3);
+  }
+  .rig-bar {
+    display: flex; align-items: center; gap: var(--s-2);
+    padding: var(--s-2) var(--s-3);
+    background: linear-gradient(180deg, var(--panel-2), var(--panel));
+    border-bottom: 1px solid var(--line);
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex: 0 0 auto; }
+  .dot.live { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent); }
+  .ttl { color: var(--text-2); }
+  .badge {
+    margin-left: auto; font-size: var(--t-100); letter-spacing: var(--ls-label);
+    text-transform: uppercase; color: var(--accent);
+    border: 1px solid var(--accent-dim); border-radius: var(--r-sm); padding: 2px var(--s-2);
+  }
+
+  .rig-body { padding: var(--s-5); display: grid; gap: var(--s-4); }
+
+  .controls { display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; }
+  .fire {
+    display: inline-flex; align-items: center; gap: var(--s-2);
+    background: var(--accent); color: var(--accent-ink); border: 0;
+    border-radius: var(--r-md); padding: var(--s-3) var(--s-5);
+    font: inherit; font-size: var(--t-400); font-weight: 650; cursor: pointer;
+    box-shadow: var(--sh-1);
+  }
+  .fire:hover { background: color-mix(in srgb, var(--accent) 88%, #fff); }
+  .fire:active { transform: translateY(1px); }
+  .fire .key {
+    background: color-mix(in srgb, var(--accent-ink) 16%, transparent);
+    border-radius: var(--r-sm); padding: 1px var(--s-2); font-size: var(--t-200);
+  }
+
+  .flip { display: inline-flex; align-items: center; gap: var(--s-2); cursor: pointer; min-height: 24px; }
+  .flip span { font-size: var(--t-300); color: var(--text-2); }
+  .flip input { width: 16px; height: 16px; accent-color: var(--amber); cursor: pointer; }
+
+  .reset {
+    background: transparent; color: var(--text-2);
+    border: 1px solid var(--line-ctl); border-radius: var(--r-sm);
+    padding: var(--s-2) var(--s-3); font: inherit; font-size: var(--t-300); cursor: pointer;
+    margin-left: auto;
+  }
+  .reset:hover { color: var(--text); border-color: var(--text-2); }
+
+  .readout {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--line); border: 1px solid var(--line);
+    border-radius: var(--r-md); overflow: hidden;
+  }
+  .meter { background: var(--bg-lift); padding: var(--s-3) var(--s-4); display: grid; gap: var(--s-1); }
+  .meter span { color: var(--muted); }
+  .meter b { font-size: var(--t-700); line-height: 1.1; font-weight: 600; }
+  /* The whole point of the instrument: this number does not move past one. */
+  .meter:first-child b { color: var(--accent); }
+
+  .log {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; gap: 1px; background: var(--line);
+    border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden;
+    min-height: 132px; align-content: start;
+  }
+  /* :global is load-bearing. Astro scopes styles by stamping an attribute onto
+     elements present in the template; rows built at runtime never receive it, so
+     scoped rules silently do not apply and the log renders as one run-on line. */
+  .log :global(li) {
+    background: var(--bg-lift); padding: var(--s-3) var(--s-4);
+    display: flex; align-items: center; gap: var(--s-3);
+    font-size: var(--t-300);
+  }
+  .log :global(.empty) {
+    color: var(--muted); justify-content: center; min-height: 132px;
+  }
+  .log :global(.n) { color: var(--muted); font-size: var(--t-200); min-width: 3.5ch; }
+  .log :global(.what) { flex: 1; color: var(--text-2); }
+  .log :global(.tag) {
+    flex: 0 0 auto;
+    font-size: var(--t-100); letter-spacing: var(--ls-label); text-transform: uppercase;
+    border-radius: var(--r-sm); padding: 2px var(--s-2); border: 1px solid;
+  }
+  .log :global(.tag.ok) { color: var(--accent); border-color: var(--accent-dim); }
+  .log :global(.tag.dup) { color: var(--text-2); border-color: var(--line-ctl); }
+  .log :global(.tag.fail) { color: var(--amber); border-color: color-mix(in srgb, var(--amber) 55%, transparent); }
+
+  .rig-foot {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--s-4);
+    padding: var(--s-3) var(--s-5); border-top: 1px solid var(--line);
+    background: var(--panel-2);
+  }
+  .rig-foot p { color: var(--muted); max-width: 48ch; font-size: var(--t-200); }
+  .rig-foot a {
+    color: var(--accent); text-decoration: none; font-size: var(--t-300);
+    font-weight: 600; white-space: nowrap; min-height: 26px;
+    display: inline-flex; align-items: center;
+  }
+
+  @media (max-width: 620px) {
+    .rig-body { padding: var(--s-4); }
+    /* The title and the badge both wrapped to two lines and fought each other.
+       The meter below already reports the same fact. */
+    .badge { display: none; }
+    .fire { flex: 1 1 100%; justify-content: center; }
+    .reset { margin-left: 0; }
+    .rig-foot { flex-direction: column; align-items: flex-start; gap: var(--s-2); }
+  }
+
+  /* Every transition below is the consequence of a press. Nothing animates on
+     load or on scroll, and all of it is off under prefers-reduced-motion. */
+  @media (prefers-reduced-motion: no-preference) {
+    .fire, .reset, .rig-foot a { transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease), transform 90ms var(--ease); }
+    .log :global(li) { animation: row 220ms var(--ease) both; }
+    @keyframes row {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: none; }
+    }
+  }
+</style>
+
+<script>
+  // Astro bundles this as a deferred module, so document.currentScript is null
+  // by the time it runs and cannot be used to find the component root.
+  const rig = document.querySelector('.rig');
+  const fire = rig?.querySelector('[data-fire]');
+  const reset = rig?.querySelector('[data-reset]');
+  const flaky = rig?.querySelector('[data-flaky]');
+  const log = rig?.querySelector('[data-log]');
+  const charged = rig?.querySelector('[data-charged]');
+  const sent = rig?.querySelector('[data-sent]');
+
+  let attempts = 0;
+  let committed = false;
+
+  function render() {
+    sent.textContent = String(attempts);
+    charged.textContent = committed ? '1' : '0';
+  }
+
+  function row(n, what, tag, cls) {
+    const li = document.createElement('li');
+    li.innerHTML =
+      `<span class="n mono">${String(n).padStart(2, '0')}</span>` +
+      `<span class="what">${what}</span>` +
+      `<span class="tag ${cls} mono">${tag}</span>`;
+    const empty = log.querySelector('.empty');
+    if (empty) empty.remove();
+    log.prepend(li);
+    while (log.children.length > 5) log.lastElementChild.remove();
+  }
+
+  fire?.addEventListener('click', () => {
+    attempts += 1;
+    if (flaky.checked) {
+      // A failed transport is not a failed effect. The attempt is recorded and
+      // retried; whether the charge already committed decides what happens next.
+      row(attempts, 'Network timed out — retrying', 'retry', 'fail');
+      if (!committed) {
+        committed = true;
+        row(attempts, 'Charge committed on retry', 'charged', 'ok');
+      } else {
+        row(attempts, 'Same key — already charged, dropped', 'duplicate', 'dup');
+      }
+    } else if (!committed) {
+      committed = true;
+      row(attempts, 'Charge committed', 'charged', 'ok');
+    } else {
+      row(attempts, 'Same key — already charged, dropped', 'duplicate', 'dup');
+    }
+    render();
+  });
+
+  reset?.addEventListener('click', () => {
+    attempts = 0;
+    committed = false;
+    log.innerHTML = '<li class="empty mono">No attempts yet.</li>';
+    render();
+  });
+</script>
