@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import { identity, proof, routes, featured, counts, projects } from '../data/portfolio.js';
+import { identity, proof, routes, ordered, counts, projects } from '../data/portfolio.js';
 import { shotFor } from '../data/shots.js';
 import { href } from '../lib/paths.js';
 
@@ -11,8 +11,8 @@ const heroImg = shotFor(hero.shot);
 const routeCount = (id) => projects.filter((p) => p.route === id).length;
 ---
 <Base
-  title="Mantas Šutas — AI systems that keep working after the demo"
-  description="Independent AI engineer. Agent workflows, voice intake, retrieval and document pipelines, plus the reliability work that keeps them running. Thirteen systems you can open in a browser."
+  title="Mantas Šutas — Independent AI engineer · 13 systems you can open"
+  description="Independent AI engineer. Thirteen AI systems — agent workflows, voice intake, retrieval, document pipelines and computer vision — all live, all open source, all shipped with their tests."
 >
   <!-- Hero: a real running interface in the fold. The whole argument of this
        page is that the systems can be opened, so the fold has to show one. -->
@@ -22,7 +22,7 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
       <h1>{identity.headline[0]} <em>{identity.headline[1]}</em>.</h1>
       <p class="sub">{identity.sub}</p>
       <div class="ctas">
-        <a class="btn" href={href('/work/')}>See the systems</a>
+        <a class="btn" href="#work">See all 13 systems</a>
         <a class="btn ghost" href="#help">Ways I can help</a>
       </div>
     </div>
@@ -84,19 +84,19 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
 
   <section class="wrap block" id="work">
     <div class="sec-head">
-      <h2>See it running</h2>
-      <span class="count mono">{featured.length} of {counts.open}</span>
+      <h2>All {counts.open} systems</h2>
+      <span class="count mono">every one is live</span>
     </div>
     <p class="lede">
-      These are working systems on public URLs, not screenshots of things that
-      once worked. Open one and click around before you decide whether to email
-      me.
+      Working software on public URLs, not screenshots of things that once
+      worked. Open any of them and click around before you decide whether to
+      email me.
     </p>
     <div class="cards">
-      {featured.map((p) => <ProjectCard project={p} />)}
+      {ordered.map((p) => <ProjectCard project={p} />)}
     </div>
     <p class="more">
-      <a class="btn ghost" href={href('/work/')}>See all {counts.open} systems</a>
+      <a class="btn ghost" href={href('/work/')}>Filter by what you need done</a>
     </p>
   </section>
 

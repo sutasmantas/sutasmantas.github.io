@@ -1,13 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
-import { projects, routes, counts } from '../../data/portfolio.js';
-
-// Ordered by the taxonomy route, then by featured rank, so the list opens on the
-// work with the strongest evidence rather than in alphabetical accident.
-const ordered = [...projects].sort(
-  (a, b) => (a.featured ?? 99) - (b.featured ?? 99),
-);
+import { projects, routes, counts, ordered } from '../../data/portfolio.js';
 ---
 <Base
   title={`${counts.open} systems you can open — Mantas Šutas`}

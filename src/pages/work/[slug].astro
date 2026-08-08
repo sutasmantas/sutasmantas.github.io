@@ -24,8 +24,8 @@ const siblings = projects.filter((s) => s.route === p.route && s.slug !== p.slug
     <nav class="crumbs mono" aria-label="Breadcrumb">
       <a href={href('/work/')}>The work</a><span aria-hidden="true">/</span><span>{p.name}</span>
     </nav>
-    <p class="kick mono">{p.family}</p>
-    <h1>{p.name}</h1>
+    <p class="kick mono">{p.name} · {p.family}</p>
+    <h1>{p.title}</h1>
     <p class="sub">{p.blurb}</p>
     <div class="ctas">
       <a class="btn" href={p.live}>Open the live system</a>
@@ -61,7 +61,7 @@ const siblings = projects.filter((s) => s.route === p.route && s.slug !== p.slug
   </section>
 
   <section class="wrap block">
-    <h2>What the demo covers</h2>
+    <h2>What you can check today</h2>
     <p class="scope">{p.scope}</p>
     <p class="lede">
       The repository holds the tests behind this, and the failures they were
@@ -97,7 +97,7 @@ const siblings = projects.filter((s) => s.route === p.route && s.slug !== p.slug
   .crumbs a:hover { color: var(--accent); }
   .crumbs span[aria-hidden] { margin: 0 8px; color: var(--line-bright); }
   .kick { font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
-  h1 { font-size: clamp(2rem, 4.4vw, 2.9rem); line-height: 1.05; letter-spacing: -.032em; margin: 0 0 16px; }
+  h1 { font-size: clamp(1.7rem, 3.4vw, 2.35rem); line-height: 1.12; letter-spacing: -.028em; margin: 0 0 16px; text-wrap: balance; }
   .sub { color: var(--text-2); margin: 0 0 28px; max-width: 58ch; font-size: 1.03rem; }
   .ctas { display: flex; gap: 14px; flex-wrap: wrap; }
   .btn {
