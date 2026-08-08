@@ -17,6 +17,7 @@
 //             because they are sized by the sentence they sit in.
 //   alt       Every content image needs alt text; decorative ones need alt="".
 //   contrast  Body and label text against its real background, at 4.5:1.
+//             Screen-reader-only text is exempt — it is never shown.
 //   route     The page answers 200 at all. Without this every other check
 //             silently passes on a 404.
 //
@@ -141,11 +142,22 @@ for (const vp of VIEWPORTS) {
         return (hi + 0.05) / (lo + 0.05);
       };
 
+      // Text clipped to a 1px box is screen-reader-only: it is never presented
+      // visually, so the contrast criterion does not apply to it. Without this
+      // the gate reports on .sr labels, which is noise that trains you to skim
+      // its output.
+      const srOnly = (el) => {
+        const r = el.getBoundingClientRect();
+        if (r.width <= 1 || r.height <= 1) return true;
+        const cs = getComputedStyle(el);
+        return cs.clipPath === 'inset(50%)' || cs.clip === 'rect(0px, 0px, 0px, 0px)';
+      };
+
       const contrast = [];
       const seen = new Set();
       for (const el of document.querySelectorAll('p, span, dd, dt, li, h1, h2, h3, b, a, button, figcaption, legend')) {
         const r = el.getBoundingClientRect();
-        if (offscreen(r)) continue;
+        if (offscreen(r) || srOnly(el)) continue;
         const cs = getComputedStyle(el);
         const own = Array.from(el.childNodes).filter((n) => n.nodeType === 3).map((n) => n.textContent.trim()).join('');
         if (own.length < 2) continue;

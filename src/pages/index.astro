@@ -14,7 +14,7 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
        template: every band had the same height, density and weight, so nothing
        could dominate and nothing could recede. Scale variation between sections
        is the fix — an airy hero at display size against a dense ruled index. -->
-  <header class="hero">
+  <header class="hero" data-scheme="dark">
     <div class="wrap">
       <p class="eyebrow mono label">{identity.role} · {identity.locale}</p>
       <h1>Thirteen AI systems<br /><em>you can open right now.</em></h1>
@@ -62,7 +62,7 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
     </div>
   </section>
 
-  <section class="block help" id="help" data-scheme="light">
+  <section class="block help" id="help">
     <div class="wrap">
       <div class="sec-head">
         <h2>What I could build for you</h2>
@@ -93,7 +93,7 @@ const routeCount = (id) => projects.filter((p) => p.route === id).length;
     /* Tightened so the fold holds the headline AND the top of the work index,
      which is where the real interface now lives. The choice between "type-only
      hero" and "proof in the fold" was a false one — it was a spacing problem. */
-  .hero { padding-block: var(--s-12) var(--s-10); border-bottom: 1px solid var(--line); }
+  .hero { padding-block: var(--s-12) var(--s-10); background: var(--bg); }
   .eyebrow {
     display: inline-flex; align-items: center; gap: var(--s-3);
     color: var(--accent); margin-bottom: var(--s-8);

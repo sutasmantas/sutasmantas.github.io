@@ -121,39 +121,48 @@
 }
 
 :root {
-  /* Palette, decided against the evidence rather than by preference.
+  /* PALETTE — positive polarity, which is the biggest single reversal on this
+   * site and the best-evidenced.
    *
-   * The plan here was to raise colourfulness, on Reinecke et al. (CHI 2013)
-   * finding that perceived colourfulness and complexity explain about half the
-   * variance in 500 ms appeal ratings. Searching for the counter-case killed it:
-   * Skulmowski & Augustin (Computers in Human Behavior, 2016) presented 50 sites
-   * across 10 domains in saturated and desaturated versions at 50 ms, 500 ms and
-   * 10 s, and DESATURATED versions scored higher on trustworthiness, visual
-   * appeal and perceived usability at every duration. For a page whose whole job
-   * is credibility, that outranks a general appeal finding. Saturation stays low.
+   * Everything here was dark until now, and I never questioned it. The reading
+   * literature is old, replicated and one-directional: the "positive polarity
+   * advantage" — dark text on a light ground is read faster and more accurately
+   * than light on dark. Buchner & Baumgartner (2007) find it holds irrespective
+   * of ambient illumination and colour contrast; Piepenbrock et al. (Ergonomics,
+   * 2013) find it across font sizes and for younger and older adults alike;
+   * Piepenbrock et al. (2014) add smaller pupil size and better proofreading.
+   * The counter-case is real but narrow: some reduction in visual fatigue under
+   * low ambient light. This page is read in offices, in daylight, by someone
+   * deciding whether to hire.
    *
-   * What the evidence does support: colour-as-trust work finds blue the most
-   * trustworthy hue and black the least, with a small effect. So the neutrals are
-   * shifted a few degrees further toward blue rather than sitting on pure grey,
-   * which costs nothing and points the right way.
+   * Three other things point the same way. Colour-as-trust work finds black the
+   * least trustworthy ground. A dark portfolio is the convention in this
+   * category, so light is the less typical choice — and Silvennoinen et al.
+   * (2025) put novelty above typicality for service sites. And all thirteen
+   * screenshots were designed on white: --mat existed only to bridge a 19:1 jump
+   * from a dark ground to a bright screenshot, and that problem now disappears.
    *
-   * The variety the page was missing is delivered as VALUE structure instead of
-   * saturation — see the light scheme below. */
-  --bg: #0d0f14;
-  --bg-lift: #12151c;
-  --panel: #171b24;
-  --panel-2: #1c212b;
-  --line: #262c38;
-  --line-bright: #343c4c;
-  --line-ctl: #667187;
-  --mat: #2b3142;
-  --text: #eceef3;
-  --text-2: #b7bdc9;
-  --muted: #878e9c;
-  --accent: #6fcfa6;
-  --accent-dim: #478a6f;
-  --accent-ink: #0b1a14;
-  --amber: #d8a866;
+   * Saturation still stays low (Skulmowski & Augustin 2016). This is a value
+   * inversion, not a colour injection.
+   *
+   * The dark palette is not deleted — it moves to [data-scheme='dark'] and
+   * bookends the page, so the hero and the footer keep their impact while the
+   * long reading in between gets the polarity advantage. */
+  --bg: #f6f7f9;
+  --bg-lift: #eceff4;
+  --panel: #ffffff;
+  --panel-2: #f9fafc;
+  --line: #dfe3ea;
+  --line-bright: #c2c9d4;
+  --line-ctl: #69727f;
+  --mat: #e6eaf1;
+  --text: #0f1420;
+  --text-2: #3e4655;
+  --muted: #5b6473;
+  --accent: #0d6b48;
+  --accent-dim: #0d6b48;
+  --accent-ink: #ffffff;
+  --amber: #8a5a10;
 
   --gut: 24px;
   --measure: 64ch;
@@ -220,12 +229,12 @@
   /* ---- Elevation --------------------------------------------------------
    * Layered rather than single. One blurred rectangle reads as a sticker; a
    * ramp of three — contact, ambient, cast — reads as a lit object. */
-  --sh-1: 0 1px 2px rgba(0, 0, 0, 0.32);
-  --sh-2: 0 1px 2px rgba(0, 0, 0, 0.28), 0 4px 10px -3px rgba(0, 0, 0, 0.34);
+  --sh-1: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --sh-2: 0 1px 2px rgba(16, 24, 40, 0.06), 0 4px 10px -3px rgba(16, 24, 40, 0.10);
   --sh-3:
-    0 1px 2px rgba(0, 0, 0, 0.26),
-    0 8px 18px -6px rgba(0, 0, 0, 0.38),
-    0 28px 48px -16px rgba(0, 0, 0, 0.5);
+    0 1px 2px rgba(16, 24, 40, 0.05),
+    0 8px 18px -6px rgba(16, 24, 40, 0.10),
+    0 28px 48px -16px rgba(16, 24, 40, 0.16);
 
   --ease: cubic-bezier(0.2, 0, 0, 1);
   --dur: 180ms;
@@ -250,28 +259,35 @@
   :root { --gut: 28px; }
 }
 
-/* A light band, applied by scoping the same token names to a section.
+/* The dark bookends. Same token names, scoped to a section.
  *
- * This is the answer to "the page has no variety" that does not raise
- * saturation: value contrast between sections. Every band on this site was dark
- * and the same weight, so nothing could dominate or recede. One light section
- * gives the page a real structural break, and it echoes the products' own
- * interfaces, which were all designed on white. */
-[data-scheme='light'] {
-  --bg: #eef1f5;
-  --bg-lift: #e6eaf0;
-  --panel: #ffffff;
-  --panel-2: #f6f8fa;
-  --line: #d3d9e2;
-  --line-bright: #b9c1cd;
-  --line-ctl: #6b7484;
-  --mat: #dfe4ec;
-  --text: #131720;
-  --text-2: #414958;
-  --muted: #5c6474;
-  --accent: #10714d;
-  --accent-dim: #10714d;
-  --accent-ink: #ffffff;
+ * The hero and the footer are eight words and a sentence each — the polarity
+ * advantage is a reading-performance effect and there is nothing to read there,
+ * so they can carry the impact. The index in between is the densest text on the
+ * site and gets light. */
+[data-scheme='dark'] {
+  --bg: #0d0f14;
+  --bg-lift: #12151c;
+  --panel: #171b24;
+  --panel-2: #1c212b;
+  --line: #262c38;
+  --line-bright: #343c4c;
+  --line-ctl: #667187;
+  --mat: #2b3142;
+  --text: #eceef3;
+  --text-2: #b7bdc9;
+  --muted: #878e9c;
+  --accent: #6fcfa6;
+  --accent-dim: #478a6f;
+  --accent-ink: #0b1a14;
+  --amber: #d8a866;
+
+  --sh-1: 0 1px 2px rgba(0, 0, 0, 0.32);
+  --sh-2: 0 1px 2px rgba(0, 0, 0, 0.28), 0 4px 10px -3px rgba(0, 0, 0, 0.34);
+  --sh-3:
+    0 1px 2px rgba(0, 0, 0, 0.26),
+    0 8px 18px -6px rgba(0, 0, 0, 0.38),
+    0 28px 48px -16px rgba(0, 0, 0, 0.5);
 
   background: var(--bg);
   color: var(--text);

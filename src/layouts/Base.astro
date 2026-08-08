@@ -27,7 +27,7 @@ const nav = [
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  <meta name="color-scheme" content="dark" />
+  <meta name="color-scheme" content="light" />
   <!-- Preload only the two faces the first screen actually needs: the variable
        sans for both Latin subsets. The mono is metadata-only and can arrive late
        without the headline reflowing. -->
@@ -38,7 +38,7 @@ const nav = [
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
-  <header class="top">
+  <header class="top" data-scheme="dark">
     <div class="wrap">
       <a class="brand" href={href('/')}>
         <b>{identity.name}</b><span class="label">{identity.role}</span>
@@ -62,7 +62,7 @@ const nav = [
   <!-- Left-aligned and asymmetric like the rest of the page. A centred block
        with a button under it is the one shape every template footer has, and it
        was the last place this page still looked like one. -->
-  <footer class="foot" id="contact">
+  <footer class="foot" id="contact" data-scheme="dark">
     <div class="wrap">
       <p class="eyebrow mono label">Contact</p>
       <div class="grid">
@@ -91,9 +91,9 @@ const nav = [
 <style>
   .top {
     position: sticky; top: 0; z-index: 20;
-    background: color-mix(in srgb, var(--bg) 86%, transparent);
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid var(--line-bright);
   }
   .top > .wrap { display: flex; align-items: center; gap: var(--s-4); height: 60px; }
   /* min-height, not just the text box: as a flex item this link is not covered by
@@ -128,8 +128,11 @@ const nav = [
 
   /* Two header designs, not one that wraps. The wrapping version collapsed into
      three rows with the button overlapping the brand. */
+  /* color: inherit because a button does not inherit it from the UA stylesheet
+     — the screen-reader label inside was rendering as literal black. */
   .menu {
-    display: none; background: transparent; border: 1px solid var(--line-ctl);
+    display: none; background: transparent; color: inherit;
+    border: 1px solid var(--line-ctl);
     border-radius: var(--r-sm); width: 40px; height: 40px; cursor: pointer; position: relative;
   }
   .menu i { position: absolute; left: 11px; right: 11px; height: 1.5px; background: var(--text); border-radius: 2px; }
@@ -154,10 +157,7 @@ const nav = [
     .m-nav .m-cta { color: var(--accent); font-weight: 650; border-bottom: 0; }
   }
 
-  .foot {
-    border-top: 1px solid var(--line); background: var(--bg-lift);
-    padding-block: var(--s-20);
-  }
+  .foot { background: var(--bg); padding-block: var(--s-20); }
   .foot .eyebrow {
     display: inline-flex; align-items: center; gap: var(--s-3);
     color: var(--accent); margin-bottom: var(--s-8);
