@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview --port 8912",
+    "preview": "astro preview --host 127.0.0.1 --port 8912",
     "gate:links": "node scripts/check-links.mjs dist",
     "gate:ui": "node scripts/gate.mjs http://127.0.0.1:8912"
   },
