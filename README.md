@@ -13,6 +13,8 @@ gutter does not reach the live site.
 | --- | --- |
 | `/` | Everything: a running interface in the fold, three owned proof figures, the three problems clients arrive with, and all thirteen systems with a filter. Deep-linkable via `?route=`. |
 | `/work/<slug>/` | One system: what it does, what you get, and what you can check today. |
+| `/evidence/` | Public claim-to-artifact ledger: immutable evidence and test links, rerun commands, hosted gates and explicit limits for all thirteen systems. |
+| `/evidence/receipt.json` | Machine-readable form of the same thirteen-project receipt. |
 
 There is deliberately no separate index page. It existed, listed the same
 thirteen cards in the same order as the home page, and split one job across two

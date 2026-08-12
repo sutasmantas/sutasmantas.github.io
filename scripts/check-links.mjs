@@ -104,20 +104,34 @@ for (const [key, from] of fragments) {
   failures.push(`${key} fragment has no matching id on ${[...new Set(from)].join(', ')}`);
 }
 
-const results = await Promise.all(
-  [...external.keys()].map(async (url) => {
-    for (const method of ['HEAD', 'GET']) {
-      try {
-        const res = await fetch(url, { method, redirect: 'follow', signal: AbortSignal.timeout(25000) });
-        if (res.ok) return null;
-        if (method === 'GET') return `${url} → HTTP ${res.status}`;
-      } catch (err) {
-        if (method === 'GET') return `${url} → ${err.name}`;
-      }
+// Do not open one connection per URL. The evidence route raises the external
+// set from a few dozen to nearly eighty immutable GitHub links; launching all
+// of them at once made GitHub reset healthy requests and turned the gate into a
+// network-concurrency test. Eight workers keep the check fail-closed without
+// manufacturing failures from its own load.
+const urls = [...external.keys()];
+const results = new Array(urls.length);
+let nextUrl = 0;
+const checkExternal = async (url) => {
+  for (const method of ['HEAD', 'GET']) {
+    try {
+      const res = await fetch(url, { method, redirect: 'follow', signal: AbortSignal.timeout(25000) });
+      if (res.ok) return null;
+      if (method === 'GET') return `${url} → HTTP ${res.status}`;
+    } catch (err) {
+      if (method === 'GET') return `${url} → ${err.name}`;
     }
-    return null;
-  }),
-);
+  }
+  return null;
+};
+const worker = async () => {
+  while (nextUrl < urls.length) {
+    const index = nextUrl;
+    nextUrl += 1;
+    results[index] = await checkExternal(urls[index]);
+  }
+};
+await Promise.all(Array.from({ length: Math.min(8, urls.length) }, worker));
 failures.push(...results.filter(Boolean).map((r) => `${r}, linked from ${[...new Set(external.get(r.split(' → ')[0]))].join(', ')}`));
 
 console.log(`pages ${pages.length} · anchors ${anchors} · external ${external.size} · internal ${internal.size}`);

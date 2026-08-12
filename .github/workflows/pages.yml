@@ -24,6 +24,8 @@ jobs:
           node-version: "22"
           cache: npm
       - run: npm ci
+      - run: npm run gate:evidence
+      - run: npm run test:evidence
       - run: npm run build
 
       # The gates run before the artifact is uploaded, so a build that ships a

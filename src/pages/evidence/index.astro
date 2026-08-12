@@ -1,0 +1,151 @@
+---
+import Base from '../../layouts/Base.astro';
+import { evidence } from '../../data/evidence.js';
+import { href } from '../../lib/paths.js';
+---
+<Base
+  title="Evidence and rerun commands — Mantas Šutas"
+  description="The artifacts, tests, rerun commands and limits behind thirteen public AI systems."
+>
+  <header class="head" data-scheme="dark">
+    <div class="wrap">
+      <p class="eyebrow mono label">Public verification receipt · 13 systems</p>
+      <h1>Claims should have<br /><em>somewhere to fail.</em></h1>
+      <div class="under">
+        <p>
+          Each entry points to an immutable artifact and the executable check
+          behind it. The limit is part of the receipt: fixture evidence is not
+          production evidence, and a rejected result stays rejected.
+        </p>
+        <a class="raw mono label" href={href('/evidence/receipt.json')}>Open machine-readable receipt →</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="wrap ledger" aria-labelledby="ledger-title">
+    <div class="ledger-head">
+      <h2 id="ledger-title">The evidence ledger</h2>
+      <span class="mono label">artifact · test · rerun · boundary</span>
+    </div>
+
+    <ol>
+      {evidence.map((item, index) => (
+        <li>
+          <article id={item.slug}>
+            <div class="identity">
+              <span class="num mono">{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <p class="name mono label">{item.name}</p>
+                <h3>{item.claim}</h3>
+              </div>
+            </div>
+
+            <dl class="proof">
+              <div>
+                <dt class="mono label">Artifact</dt>
+                <dd><a href={item.artifact.url}>{item.artifact.label} <span aria-hidden="true">↗</span></a></dd>
+              </div>
+              <div>
+                <dt class="mono label">Executable check</dt>
+                <dd><a href={item.test.url}>{item.test.label} <span aria-hidden="true">↗</span></a></dd>
+              </div>
+              <div>
+                <dt class="mono label">Hosted gate</dt>
+                <dd><a href={item.hosted.url}>{item.hosted.label} · run {item.hosted.run} <span aria-hidden="true">↗</span></a></dd>
+              </div>
+              <div>
+                <dt class="mono label">Frozen public head</dt>
+                <dd><a href={`${item.repository}/commit/${item.publicHead}`} class="mono">{item.publicHead.slice(0, 12)} <span aria-hidden="true">↗</span></a></dd>
+              </div>
+            </dl>
+
+            <div class="run">
+              <p class="mono label">Rerun</p>
+              <code>{item.rerun}</code>
+            </div>
+
+            <p class="boundary"><strong>Boundary.</strong> {item.boundary}</p>
+            <p class="basis mono label">Receipt basis · {item.receiptBasis.join(' · ')}</p>
+          </article>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+<style>
+  .head { padding-block: var(--s-16); background: var(--bg); }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: var(--s-3);
+    color: var(--accent); margin-bottom: var(--s-8);
+  }
+  .eyebrow::before { content: ""; width: var(--s-8); height: 1px; background: var(--accent-dim); }
+  .head h1 {
+    font-size: clamp(2.25rem, 6vw, 4.75rem); line-height: .96;
+    letter-spacing: -.038em; max-width: 16ch;
+  }
+  .head h1 em { color: var(--accent); font-style: normal; }
+  .under {
+    display: grid; grid-template-columns: minmax(0, 46ch) minmax(0, 1fr);
+    gap: var(--s-10); align-items: end;
+    margin-top: var(--s-8); padding-top: var(--s-6); border-top: 1px solid var(--line);
+  }
+  .under p { color: var(--text-2); font-size: var(--t-500); }
+  .raw {
+    display: inline-flex; align-items: center; min-height: 24px;
+    color: var(--accent); justify-self: end; text-underline-offset: 4px;
+  }
+
+  .ledger { padding-block: var(--s-16) var(--s-20); }
+  .ledger-head {
+    display: flex; justify-content: space-between; align-items: end;
+    gap: var(--s-6); margin-bottom: var(--s-8);
+  }
+  .ledger-head h2 { font-size: var(--t-800); }
+  .ledger-head span { color: var(--muted); }
+  ol { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-bright); }
+  li { border-bottom: 1px solid var(--line); }
+  article { padding-block: var(--s-10); scroll-margin-top: 80px; }
+  .identity {
+    display: grid; grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--s-5); align-items: start; margin-bottom: var(--s-8);
+  }
+  .num { color: var(--muted); font-size: var(--t-600); }
+  .name { color: var(--accent); margin-bottom: var(--s-2); }
+  h3 { font-size: clamp(1.35rem, 2.5vw, 1.875rem); max-width: 34ch; }
+
+  .proof {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 0 0 var(--s-6); border-top: 1px solid var(--line);
+  }
+  .proof > div { padding: var(--s-4) var(--s-5) var(--s-4) 0; border-bottom: 1px solid var(--line); }
+  .proof dt { color: var(--muted); margin-bottom: var(--s-2); }
+  .proof dd { margin: 0; overflow-wrap: anywhere; }
+  .proof a { color: var(--text); text-underline-offset: 3px; }
+  .proof a:hover { color: var(--accent); }
+
+  .run {
+    display: grid; grid-template-columns: 8ch minmax(0, 1fr); gap: var(--s-4);
+    align-items: start; padding: var(--s-4); background: var(--panel);
+    border-left: 2px solid var(--accent-dim); margin-bottom: var(--s-5);
+  }
+  .run p { color: var(--muted); padding-top: 2px; }
+  code { font-family: var(--mono); font-size: var(--t-300); overflow-wrap: anywhere; }
+  .boundary { max-width: 80ch; color: var(--text-2); }
+  .boundary strong { color: var(--text); }
+  .basis { color: var(--muted); margin-top: var(--s-3); }
+
+  @media (max-width: 900px) {
+    .proof { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .under { grid-template-columns: 1fr; gap: var(--s-6); }
+    .raw { justify-self: start; }
+  }
+  @media (max-width: 620px) {
+    .head { padding-block: var(--s-12); }
+    .ledger { padding-block: var(--s-12) var(--s-16); }
+    .ledger-head { display: grid; gap: var(--s-2); }
+    .proof { grid-template-columns: 1fr; }
+    .proof > div { padding-right: 0; }
+    .run { grid-template-columns: 1fr; gap: var(--s-2); }
+  }
+</style>
+</Base>
