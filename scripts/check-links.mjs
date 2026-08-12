@@ -104,20 +104,86 @@ for (const [key, from] of fragments) {
   failures.push(`${key} fragment has no matching id on ${[...new Set(from)].join(', ')}`);
 }
 
-const results = await Promise.all(
-  [...external.keys()].map(async (url) => {
-    for (const method of ['HEAD', 'GET']) {
+// GitHub's HTML edge intermittently resets or returns 503 to a runner making a
+// link-checking burst. Resolve supported GitHub links through the authenticated
+// API instead: the API resource is the same repository, commit, workflow run,
+// or immutable blob that the public URL names. Other external links still get
+// a real web request.
+const githubApiTarget = (rawUrl) => {
+  const url = new URL(rawUrl);
+  if (url.hostname !== 'github.com') return null;
+
+  const parts = url.pathname.split('/').filter(Boolean).map(decodeURIComponent);
+  if (parts.length === 1) return `https://api.github.com/users/${encodeURIComponent(parts[0])}`;
+  if (parts.length < 2) return null;
+
+  const [owner, repo, kind, value, ...rest] = parts;
+  const root = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`;
+  if (!kind) return root;
+  if (kind === 'commit' && value) return `${root}/commits/${encodeURIComponent(value)}`;
+  if (kind === 'actions' && value === 'runs' && rest[0]) {
+    return `${root}/actions/runs/${encodeURIComponent(rest[0])}`;
+  }
+  if (kind === 'blob' && value && rest.length) {
+    const path = rest.map(encodeURIComponent).join('/');
+    return `${root}/contents/${path}?ref=${encodeURIComponent(value)}`;
+  }
+  return null;
+};
+
+const sleep = (milliseconds) => new Promise((resolveSleep) => setTimeout(resolveSleep, milliseconds));
+
+// Do not open one connection per URL. Eight workers keep the check useful
+// without turning it into a network-concurrency test.
+const urls = [...external.keys()];
+const results = new Array(urls.length);
+let nextUrl = 0;
+const checkExternal = async (url) => {
+  const apiTarget = githubApiTarget(url);
+  if (apiTarget) {
+    const headers = {
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      'User-Agent': 'portfolio-link-gate',
+    };
+    if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+
+    for (let attempt = 0; attempt < 3; attempt += 1) {
       try {
-        const res = await fetch(url, { method, redirect: 'follow', signal: AbortSignal.timeout(25000) });
+        const res = await fetch(apiTarget, {
+          headers,
+          redirect: 'follow',
+          signal: AbortSignal.timeout(25000),
+        });
         if (res.ok) return null;
-        if (method === 'GET') return `${url} → HTTP ${res.status}`;
+        if (res.status < 500 && res.status !== 429) return `${url} → GitHub API HTTP ${res.status}`;
+        if (attempt === 2) return `${url} → GitHub API HTTP ${res.status}`;
       } catch (err) {
-        if (method === 'GET') return `${url} → ${err.name}`;
+        if (attempt === 2) return `${url} → GitHub API ${err.name}`;
       }
+      await sleep(500 * (attempt + 1));
     }
-    return null;
-  }),
-);
+  }
+
+  for (const method of ['HEAD', 'GET']) {
+    try {
+      const res = await fetch(url, { method, redirect: 'follow', signal: AbortSignal.timeout(25000) });
+      if (res.ok) return null;
+      if (method === 'GET') return `${url} → HTTP ${res.status}`;
+    } catch (err) {
+      if (method === 'GET') return `${url} → ${err.name}`;
+    }
+  }
+  return null;
+};
+const worker = async () => {
+  while (nextUrl < urls.length) {
+    const index = nextUrl;
+    nextUrl += 1;
+    results[index] = await checkExternal(urls[index]);
+  }
+};
+await Promise.all(Array.from({ length: Math.min(8, urls.length) }, worker));
 failures.push(...results.filter(Boolean).map((r) => `${r}, linked from ${[...new Set(external.get(r.split(' → ')[0]))].join(', ')}`));
 
 console.log(`pages ${pages.length} · anchors ${anchors} · external ${external.size} · internal ${internal.size}`);

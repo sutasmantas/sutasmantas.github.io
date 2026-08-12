@@ -85,6 +85,7 @@ const num = String(p.order).padStart(2, '0');
     </p>
     <div class="acts">
       <a class="btn" href={`mailto:${contact.email}?subject=${encodeURIComponent(p.name)}`}>Talk about {p.name}</a>
+      <a class="btn ghost" href={href(`/evidence/#${p.slug}`)}>Evidence and rerun</a>
       <a class="btn ghost" href={p.source}>Source and tests</a>
     </div>
   </section>

@@ -25,7 +25,7 @@
 import { chromium } from 'playwright';
 
 const origin = process.argv[2] ?? 'http://127.0.0.1:8912';
-const ROUTES = (process.env.GATE_ROUTES ?? '/,/work/relay/,/work/gauge/,/work/signalroom/').split(',');
+const ROUTES = (process.env.GATE_ROUTES ?? '/,/evidence/,/work/relay/,/work/gauge/,/work/signalroom/').split(',');
 const VIEWPORTS = [
   { name: 'phone', width: 375, height: 812 },
   { name: 'desktop', width: 1440, height: 1000 },
