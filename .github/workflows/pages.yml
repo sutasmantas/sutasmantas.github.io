@@ -31,6 +31,8 @@ jobs:
       # The gates run before the artifact is uploaded, so a build that ships a
       # dead link or loses the page gutter never reaches the live site.
       - name: Gate — every link and action resolves
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/check-links.mjs dist
 
       - name: Gate — layout, keyboard, contrast, reduced motion
