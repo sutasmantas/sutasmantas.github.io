@@ -1,8 +1,8 @@
 ---
-import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
+import ProjectStage from '../../components/ProjectStage.astro';
 import { projects, ordered, routeLabel, contact } from '../../data/portfolio.js';
-import { shotFor } from '../../data/shots.js';
+import { evidenceBySlug } from '../../data/evidence.js';
 import { href, homeAnchor, homeFiltered } from '../../lib/paths.js';
 
 export function getStaticPaths() {
@@ -13,7 +13,8 @@ export function getStaticPaths() {
 }
 
 const { project: p } = Astro.props;
-const img = shotFor(p.shot);
+const evidence = evidenceBySlug[p.slug];
+if (!evidence) throw new Error(`Missing evidence for ${p.slug}`);
 const siblings = ordered.filter((s) => s.route === p.route && s.slug !== p.slug);
 const num = String(p.order).padStart(2, '0');
 ---
@@ -45,13 +46,7 @@ const num = String(p.order).padStart(2, '0');
   </header>
 
   <div class="wrap shotwrap">
-    <figure class="frame">
-      <Image src={img} alt={p.alt} widths={[760, 1150, 1440]} sizes="(max-width: 1250px) 94vw, 1150px" loading="eager" />
-      <figcaption class="mono label">
-        <span class="live"><span class="dot" aria-hidden="true"></span>live · no login</span>
-        <span class="url">{p.live.replace('https://', '')}</span>
-      </figcaption>
-    </figure>
+    <ProjectStage project={p} />
   </div>
 
   <section class="wrap facts" aria-label="What this is">
@@ -78,11 +73,29 @@ const num = String(p.order).padStart(2, '0');
   <section class="wrap block">
     <h2>What you can check today</h2>
     <p class="scope">{p.scope}</p>
-    <p class="lede">
-      The repository holds the tests behind this, and the failures they were
-      written against. If you want it pointed at your own systems and your own
-      data, that is the conversation — tell me what you are trying to fix.
-    </p>
+    <div class="evidence" data-evidence-panel>
+      <p class="claim">{evidence.claim}</p>
+      <dl>
+        <div>
+          <dt class="mono label">Artifact</dt>
+          <dd><a href={evidence.artifact.url}>{evidence.artifact.label} ↗</a></dd>
+        </div>
+        <div>
+          <dt class="mono label">Test</dt>
+          <dd><a href={evidence.test.url}>{evidence.test.label} ↗</a></dd>
+        </div>
+        <div>
+          <dt class="mono label">Hosted gate</dt>
+          <dd><a href={evidence.hosted.url}>{evidence.hosted.label} ↗</a></dd>
+        </div>
+      </dl>
+      <div class="rerun">
+        <span class="mono label">Rerun it</span>
+        <code>{evidence.rerun}</code>
+      </div>
+      <p class="boundary"><span class="mono label">Limit</span> {evidence.boundary}</p>
+    </div>
+    <p class="lede">If you want this pointed at your own systems and data, tell me what you are trying to fix.</p>
     <div class="acts">
       <a class="btn" href={`mailto:${contact.email}?subject=${encodeURIComponent(p.name)}`}>Talk about {p.name}</a>
       <a class="btn ghost" href={href(`/evidence/#${p.slug}`)}>Evidence and rerun</a>
@@ -145,23 +158,6 @@ const num = String(p.order).padStart(2, '0');
   .btn.ghost:hover { background: color-mix(in srgb, var(--text) 7%, transparent); border-color: var(--text-2); }
 
   .shotwrap { padding-top: var(--s-4); }
-  .frame {
-    margin: 0; border: 1px solid var(--line-ctl); border-radius: var(--r-lg);
-    overflow: hidden; background: var(--mat); box-shadow: var(--sh-3);
-  }
-  .frame :global(img) { display: block; width: 100%; height: auto; }
-  .frame figcaption {
-    display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
-    padding: var(--s-3) var(--s-4); background: var(--panel); border-top: 1px solid var(--line);
-    color: var(--muted);
-  }
-  .live { display: inline-flex; align-items: center; gap: var(--s-2); color: var(--accent); }
-  .dot {
-    width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent);
-  }
-  .url { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-
   /* Ruled, not boxed — the panel-inside-a-panel treatment was card language. */
   .facts { padding-top: var(--s-12); }
   .facts dl {
@@ -182,6 +178,28 @@ const num = String(p.order).padStart(2, '0');
     margin-bottom: var(--s-5); font-size: var(--t-500); color: var(--text);
     border-left: 2px solid var(--accent-dim); padding-left: var(--s-4); max-width: 58ch;
   }
+  .evidence { border-top: 1px solid var(--line-bright); margin-bottom: var(--s-6); }
+  .claim { max-width: 62ch; padding-block: var(--s-5); font-size: var(--t-500); }
+  .evidence dl {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0;
+    border-top: 1px solid var(--line);
+  }
+  .evidence dl > div { padding: var(--s-4) var(--s-5) var(--s-4) 0; }
+  .evidence dt, .rerun > span, .boundary > span { color: var(--muted); }
+  .evidence dd { margin: var(--s-2) 0 0; }
+  .evidence a { color: var(--accent); text-decoration: none; }
+  .evidence a:hover { text-decoration: underline; }
+  .rerun {
+    display: grid; gap: var(--s-2); padding-block: var(--s-4);
+    border-top: 1px solid var(--line);
+  }
+  .rerun code {
+    display: block; overflow-x: auto; padding: var(--s-3) var(--s-4);
+    background: var(--panel-2); border: 1px solid var(--line); border-radius: var(--r-sm);
+    color: var(--text-2); font-size: var(--t-300); white-space: nowrap;
+  }
+  .boundary { max-width: 68ch; padding-top: var(--s-4); border-top: 1px solid var(--line); color: var(--text-2); }
+  .boundary > span { margin-right: var(--s-2); }
   .lede { color: var(--text-2); max-width: var(--measure); margin-bottom: var(--s-6); }
 
   .related { padding-bottom: var(--s-20); }
@@ -207,6 +225,8 @@ const num = String(p.order).padStart(2, '0');
     .acts .btn { flex: 1 1 100%; text-align: center; }
     .rows a { grid-template-columns: auto minmax(0, 1fr); }
     .rmark { display: none; }
+    .evidence dl { grid-template-columns: 1fr; }
+    .evidence dl > div { border-top: 1px solid var(--line); }
   }
   @media (prefers-reduced-motion: no-preference) {
     .btn, .rows a { transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }

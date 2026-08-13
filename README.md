@@ -12,7 +12,7 @@ gutter does not reach the live site.
 | Route | What it is |
 | --- | --- |
 | `/` | Everything: a running interface in the fold, three owned proof figures, the three problems clients arrive with, and all thirteen systems with a filter. Deep-linkable via `?route=`. |
-| `/work/<slug>/` | One system: what it does, what you get, and what you can check today. |
+| `/work/<slug>/` | One system running in place on desktop, plus its immutable artifact, test, hosted gate, rerun command and explicit limit. |
 | `/evidence/` | Public claim-to-artifact ledger: immutable evidence and test links, rerun commands, hosted gates and explicit limits for all thirteen systems. |
 | `/evidence/receipt.json` | Machine-readable form of the same thirteen-project receipt. |
 

@@ -1,0 +1,104 @@
+---
+import { Image } from 'astro:assets';
+
+import { shotFor } from '../data/shots.js';
+
+const { project } = Astro.props;
+const img = shotFor(project.shot);
+---
+<figure class="stage" data-project-stage data-live={project.live} data-name={project.name}>
+  <figcaption class="chrome">
+    <span class="dot" aria-hidden="true"></span>
+    <span class="addr mono">{project.live.replace('https://', '')}</span>
+    <span class="state mono label" data-state>still</span>
+    <a class="pop mono" href={project.live}>Open full size ↗</a>
+  </figcaption>
+
+  <div class="screen" data-screen>
+    <Image
+      class="still"
+      src={img}
+      alt={project.alt}
+      widths={[760, 1150, 1440]}
+      sizes="(max-width: 1250px) 94vw, 1150px"
+      loading="eager"
+    />
+  </div>
+</figure>
+
+<style>
+  .stage { margin: 0; display: grid; min-width: 0; width: 100%; max-width: 100%; }
+  .stage > * { min-width: 0; max-width: 100%; }
+  .chrome {
+    display: flex; align-items: center; gap: var(--s-3);
+    padding: var(--s-3) var(--s-4);
+    background: var(--panel-2); border: 1px solid var(--line-ctl);
+    border-bottom: 0; border-radius: var(--r-lg) var(--r-lg) 0 0;
+  }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent);
+    flex: 0 0 auto;
+  }
+  .addr {
+    flex: 1 1 0; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    color: var(--muted); font-size: var(--t-200);
+  }
+  .state { margin-left: auto; color: var(--accent); flex: 0 0 auto; }
+  .pop {
+    display: inline-flex; align-items: center; min-height: 24px;
+    color: var(--text-2); font-size: var(--t-200); text-decoration: none;
+    flex: 0 0 auto;
+  }
+  .pop:hover { color: var(--accent); }
+  .screen {
+    position: relative; overflow: hidden; aspect-ratio: 1280 / 800;
+    background: var(--mat); border: 1px solid var(--line-ctl);
+    border-radius: 0 0 var(--r-lg) var(--r-lg); box-shadow: var(--sh-3);
+  }
+  .screen :global(img) {
+    display: block; width: 100%; height: 100%; object-fit: cover;
+    object-position: top left;
+  }
+  .screen :global(iframe) {
+    position: absolute; inset: 0 auto auto 0; width: 1280px; height: 800px;
+    border: 0; transform: scale(var(--k, 0.5)); transform-origin: 0 0;
+  }
+  .screen.framed { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  @media (max-width: 760px) {
+    .state { display: none; }
+    .pop { margin-left: auto; }
+  }
+</style>
+
+<script>
+  for (const stage of document.querySelectorAll('[data-project-stage]')) {
+    const screen = stage.querySelector('[data-screen]');
+    const state = stage.querySelector('[data-state]');
+    const src = stage.dataset.live;
+    const name = stage.dataset.name;
+    if (!(screen instanceof HTMLElement) || !(state instanceof HTMLElement) || !src) continue;
+
+    const fit = () => screen.style.setProperty('--k', String(screen.clientWidth / 1280));
+    new ResizeObserver(fit).observe(screen);
+
+    const boot = () => {
+      if (!window.matchMedia('(min-width: 761px)').matches || screen.querySelector('iframe')) return;
+      state.textContent = 'loading';
+      const frame = document.createElement('iframe');
+      frame.src = src;
+      frame.title = `${name}, running`;
+      frame.addEventListener('load', () => { state.textContent = 'live'; });
+      frame.addEventListener('focus', () => screen.classList.add('framed'));
+      frame.addEventListener('blur', () => screen.classList.remove('framed'));
+      screen.append(frame);
+      fit();
+    };
+
+    if (window.matchMedia('(min-width: 761px)').matches) {
+      if ('requestIdleCallback' in window) requestIdleCallback(boot, { timeout: 2500 });
+      else window.addEventListener('load', () => setTimeout(boot, 900));
+    }
+  }
+</script>

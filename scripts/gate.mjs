@@ -261,6 +261,28 @@ for (const route of ROUTES) {
   for (const m of moving) fail(route, 'reduce', 'motion', `still animates under prefers-reduced-motion: ${m}`);
 }
 await rm.close();
+
+// A detail page must prove the system with the running application and expose
+// its immutable evidence in place. This prevents the detail templates from
+// drifting back to screenshot-only marketing.
+const detail = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
+const detailPage = await detail.newPage();
+await detailPage.goto(origin + '/work/relay/', { waitUntil: 'load' });
+const frame = detailPage.locator('[data-project-stage] iframe');
+try {
+  await frame.waitFor({ state: 'attached', timeout: 5000 });
+  const src = await frame.getAttribute('src');
+  if (src !== 'https://sutasmantas.github.io/human-gated-support-automation/') {
+    fail('/work/relay/', 'desktop', 'live', `unexpected embedded application ${src}`);
+  }
+} catch {
+  fail('/work/relay/', 'desktop', 'live', 'running application was not embedded');
+}
+const evidenceLinks = await detailPage.locator('[data-evidence-panel] a[href]').count();
+if (evidenceLinks !== 3) {
+  fail('/work/relay/', 'desktop', 'evidence', `expected 3 artifact/test/gate links, found ${evidenceLinks}`);
+}
+await detail.close();
 await browser.close();
 
 if (failures.length) {
