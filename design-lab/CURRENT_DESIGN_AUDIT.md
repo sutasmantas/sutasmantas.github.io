@@ -1,6 +1,6 @@
 # Current design audit
 
-Baseline: `origin/main` at `4f0f32d`  
+Baseline: `origin/main` at `4f0f32d`
 Inspected: live 1440×900 and 390×844 full-page renders on 2026-08-16
 
 ## Decision
@@ -106,4 +106,3 @@ It is selective differentiation: make products, evidence and the person visibly
 distinct while preserving the existing message and access path. Batch 1 isolates
 ten ways to do that so the owner can select mechanisms rather than accept or
 reject an inseparable redesign.
-

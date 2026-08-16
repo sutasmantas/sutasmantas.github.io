@@ -1,11 +1,12 @@
 # Central portfolio visual lab — Batch 3 handoff
 
 Date: 2026-08-16
-Status: **PASS_READY_FOR_OWNER_SELECTION**
+Status: **PASS_MERGED_TO_MAIN_READY_FOR_OWNER_SELECTION**
 Implementation checkpoint: `6972343eba0c9814202e83e800c4cd4d71756482`
+Merge checkpoint: `5fa6b225c2724ab4d4418db3468dc3d7b7daf873`
 Combined control: `/design-lab/21/`
-Branch: `agent/central-portfolio-visual-lab`
-Worktree: `C:\Users\masuta\Desktop\Coding\cv\portfolio_demos\worktrees\central_portfolio_visual_lab`
+Branch: `main`
+Worktree: `C:\Users\masuta\Desktop\Coding\cv\portfolio_demos\central_portfolio_site`
 
 ## Decision
 
@@ -63,6 +64,15 @@ and the empty Batch 3 decision table are in `BATCH_03_MANIFEST.md`.
 | `npm run test:evidence` | **PASS** — 4/4 mutants killed |
 | `git diff --check` | **PASS** |
 
+### Main integration verification
+
+- `main` first fast-forwarded cleanly to `origin/main@4f0f32d`, preserving the
+  newer live project-detail work.
+- `agent/central-portfolio-visual-lab` merged without conflicts at `5fa6b22`.
+- The merged tree passed the 47-page build, both evidence gates, all 512 content
+  checks, all 464 lab interaction checks, all 27 dashboard checks, and the
+  site-wide browser gate over five routes at 1440px and 390px.
+
 Manual visual review covered the complete desktop/mobile page, review
 dashboard, and representative interaction-heavy routes. The final pass fixed
 mobile route discoverability, corrected the combined-base motion note, and
@@ -76,8 +86,8 @@ made screenshot glare keyboard-focusable.
    the Batch 3 JSON.
 4. Do not change canonical copy or remove a project to accommodate a visual
    choice.
-5. Do not merge, publish, or deploy this branch until the owner selects the
-   next mechanisms and explicitly authorizes production integration.
+5. Do not promote one of routes 22–31 into the production homepage until the
+   owner selects the next mechanisms and explicitly authorizes that change.
 
-The lab branch is ready to push. No merge, publication, or live-site deployment
-has been performed.
+Batch 03 is integrated into `main` as a private-review design lab. No derivative
+has replaced the production homepage.

@@ -103,5 +103,6 @@ review dashboard, and representative interaction-heavy routes. It also caught
 and corrected the mobile route-bar discoverability issue: all eleven Batch 03
 routes now appear without horizontal scrolling.
 
-No merge, publication or production-site change is part of this batch. The
-next action is owner selection in the live Batch 03 dashboard.
+The verified lab was merged into `main` at `5fa6b22`. No derivative has replaced
+the production homepage; the next action is owner selection in the live Batch
+03 dashboard.

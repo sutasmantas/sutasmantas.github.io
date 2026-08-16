@@ -1,7 +1,7 @@
 # Batch 1 variant manifest
 
-Baseline: `origin/main@4f0f32d`  
-Routes: `/design-lab/01/` through `/design-lab/10/`  
+Baseline: `origin/main@4f0f32d`
+Routes: `/design-lab/01/` through `/design-lab/10/`
 Review values: `KEEP`, `REJECT`, `REVISE`
 
 Each experiment changes one primary system and uses the real portfolio data,
