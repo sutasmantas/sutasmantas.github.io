@@ -3,43 +3,43 @@ import Lab from '../../layouts/Lab.astro';
 import { href } from '../../lib/paths.js';
 
 const variants = [
-  ['00', 'Production baseline', 'Current live direction', '/', 'The control. Compare every experiment against the same published page.'],
-  ['01', 'Overall art direction', 'Systems broadsheet', '/design-lab/01/', 'A commissioned editorial rhythm without slowing the scan.'],
-  ['02', 'Hero composition', 'Person × product', '/design-lab/02/', 'The engineer and a working system share the first screen.'],
-  ['03', 'Display typography', 'Variable-width specimen', '/design-lab/03/', 'The existing Archivo width axis becomes an identity device.'],
-  ['04', 'Live-system stage', 'Guided inspection bench', '/design-lab/04/', 'One dense product state becomes legible through explicit inspection points.'],
-  ['05', 'Project discovery', 'Evidence lens', '/design-lab/05/', 'All thirteen projects remain visible while focus reveals real evidence.'],
-  ['06', 'Comparison reference · product identity', 'Complete identity registry', '/design-lab/06/', 'All thirteen systems stay visible while hover or focus reveals the full project in its own visual identity.'],
-  ['07', 'Evidence and results', 'Executable receipt', '/design-lab/07/', 'Reliability proof scans as an outcome, rerun and bounded claim.'],
-  ['08', 'Project detail', 'Case spine', '/design-lab/08/', 'Problem, run, receipt and adaptation remain oriented without one long read.'],
-  ['09', 'Human authorship', 'Engineering field notes', '/design-lab/09/', 'Real engineering judgements visibly belong to the person who made them.'],
-  ['10', 'Selected base · motion and feedback', 'Complete motion proof deck', '/design-lab/10/', 'All thirteen systems stay visible while hover, focus or tap reveals one complete project with bounded motion.'],
+  ['10', 'Control · unchanged base', 'Complete motion proof deck', '/design-lab/10/', 'The selected base. All thirteen systems stay visible while hover, focus or tap reveals one complete project.'],
+  ['11', 'Proof-deck perimeter', 'Signal perimeter', '/design-lab/11/', 'A moving perimeter turns the evidence object into a live signal.'],
+  ['12', 'Pointer lighting', 'Cursor-lit proof deck', '/design-lab/12/', 'Pointer-relative light makes the proof card feel directly inspectable.'],
+  ['13', 'Screenshot inspection', 'Product inspection lens', '/design-lab/13/', 'A radial magnifier makes dense interface evidence explorable in place.'],
+  ['14', 'Project field background', 'Interactive systems grid', '/design-lab/14/', 'A responsive computational grid changes the entire field without obscuring content.'],
+  ['15', 'Surface texture', 'Tactile evidence field', '/design-lab/15/', 'SVG turbulence and a warm material palette replace the glassy digital finish.'],
+  ['16', 'Active-row signal', 'Shimmer-selected directory', '/design-lab/16/', 'A conic shimmer makes the selected project unmissable.'],
+  ['17', 'Hero typography material', 'Spectral headline', '/design-lab/17/', 'Animated gradient material makes the unchanged headline the dominant object.'],
+  ['18', 'Project-change transition', 'Blur-resolve proof transition', '/design-lab/18/', 'The same project change resolves from cinematic blur.'],
+  ['19', 'Screenshot reveal', 'Directional screenshot reveal', '/design-lab/19/', 'Project cards reveal from a direction tied to the client route.'],
+  ['20', 'Evidence-object depth', 'Dimensional proof stack', '/design-lab/20/', 'Layered perspective turns the proof card into a physical evidence object.'],
 ].map(([id, surface, name, route, hypothesis]) => ({
   id,
   surface,
   name,
   route: href(route),
   hypothesis,
-  baselineRoute: href(id === '06' ? '/design-lab/10/' : id === '10' ? '/design-lab/06/' : id === '08' ? '/work/atlas/' : '/'),
-  baselineName: id === '06' ? 'Selected base · complete motion deck' : id === '10' ? 'Comparison reference · complete identity registry' : id === '08' ? 'Atlas project baseline' : 'Production homepage',
-  compareLabel: id === '06' ? 'Compare selected base' : id === '10' ? 'Compare reference' : 'Compare baseline',
+  baselineRoute: href('/design-lab/10/'),
+  baselineName: 'Control · selected base 10',
+  compareLabel: 'Compare base 10',
 }));
 ---
 
-<Lab title="Interactive Batch 1 review">
-  <section class="review" data-review-root data-storage-key="central-portfolio-design-lab-batch-01">
+<Lab title="Interactive Batch 2 review">
+  <section class="review" data-review-root data-storage-key="central-portfolio-design-lab-batch-02">
     <aside class="review-index" aria-label="Experiment index">
       <header>
-        <p>Central portfolio · Batch 01</p>
+        <p>Central portfolio · Batch 02</p>
         <h1>Live review<br />artifact</h1>
         <p class="index-intro">Switch routes, test their controls, compare the baseline and save a decision without leaving this page.</p>
       </header>
       <nav aria-label="Choose a live experiment">
         {variants.map((item) => (
-          <button type="button" class:list={['variant-row', item.id === '10' && 'selected', item.id === '00' && 'baseline-row']} data-review-variant={item.id} data-route={item.route} data-surface={item.surface} data-name={item.name} data-hypothesis={item.hypothesis} data-baseline-route={item.baselineRoute} data-baseline-name={item.baselineName} data-compare-label={item.compareLabel} aria-pressed={item.id === '10' ? 'true' : 'false'}>
+          <button type="button" class:list={['variant-row', item.id === '11' && 'selected', item.id === '10' && 'baseline-row']} data-review-variant={item.id} data-route={item.route} data-surface={item.surface} data-name={item.name} data-hypothesis={item.hypothesis} data-baseline-route={item.baselineRoute} data-baseline-name={item.baselineName} data-compare-label={item.compareLabel} aria-pressed={item.id === '11' ? 'true' : 'false'}>
             <span class="row-id">{item.id}</span>
             <span><small>{item.surface}</small><strong>{item.name}</strong></span>
-            {item.id !== '00' && <span class="row-status" data-status-for={item.id}>—</span>}
+            {item.id !== '10' && <span class="row-status" data-status-for={item.id}>—</span>}
           </button>
         ))}
       </nav>
@@ -52,33 +52,33 @@ const variants = [
     <div class="review-workspace">
       <header class="review-toolbar">
         <div class="current-title">
-          <p><span data-current-id>10</span> / <span data-current-surface>Selected base · motion and feedback</span></p>
-          <h2 data-current-name>Complete motion proof deck</h2>
-          <p data-current-hypothesis>All thirteen systems stay visible while hover, focus or tap reveals one complete project with bounded motion.</p>
+          <p><span data-current-id>11</span> / <span data-current-surface>Proof-deck perimeter</span></p>
+          <h2 data-current-name>Signal perimeter</h2>
+          <p data-current-hypothesis>A moving perimeter turns the evidence object into a live signal.</p>
         </div>
         <div class="toolbar-actions">
           <div class="segmented" role="group" aria-label="Preview width">
             <button type="button" data-viewport="desktop" aria-pressed="true">1440</button>
             <button type="button" data-viewport="mobile" aria-pressed="false">390</button>
           </div>
-          <button type="button" class="tool-button" data-compare aria-pressed="false">Compare reference</button>
+          <button type="button" class="tool-button" data-compare aria-pressed="false">Compare base 10</button>
           <button type="button" class="tool-button" data-reduce aria-pressed="false">Reduced motion</button>
-          <a class="open-full" data-open-full href={href('/design-lab/10/')} target="_blank" rel="noreferrer">Open full size ↗</a>
+          <a class="open-full" data-open-full href={href('/design-lab/11/')} target="_blank" rel="noreferrer">Open full size ↗</a>
         </div>
       </header>
 
       <section class="preview-region" aria-label="Live responsive previews">
         <div class="preview-grid" data-preview-grid>
           <article class="preview-panel baseline-preview" data-baseline-preview hidden>
-            <header><span data-baseline-label>Comparison reference · complete identity registry</span><small>Independent scroll</small></header>
+            <header><span data-baseline-label>Control · selected base 10</span><small>Independent scroll</small></header>
             <div class="frame-holder" data-frame-holder><div class="frame-shell" data-frame-shell>
-              <iframe data-review-frame="baseline" src={href('/design-lab/06/')} title="Comparison reference complete identity registry live preview" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-downloads"></iframe>
+              <iframe data-review-frame="baseline" src={href('/design-lab/10/')} title="Selected base 10 live preview" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-downloads"></iframe>
             </div></div>
           </article>
           <article class="preview-panel current-preview loading" data-current-preview>
-            <header><span data-frame-label>10 / Complete motion proof deck</span><small>Scroll and interact inside</small></header>
+            <header><span data-frame-label>11 / Signal perimeter</span><small>Scroll and interact inside</small></header>
             <div class="frame-holder" data-frame-holder><div class="frame-shell" data-frame-shell>
-              <iframe data-review-frame="current" src={href('/design-lab/10/')} title="Complete motion proof deck live preview" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-downloads"></iframe>
+              <iframe data-review-frame="current" src={href('/design-lab/11/')} title="Signal perimeter live preview" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-downloads"></iframe>
             </div></div>
           </article>
         </div>
@@ -89,10 +89,10 @@ const variants = [
           <div><p>Owner decision</p><h2>What survives into integration?</h2></div>
           <span class="save-state" data-save-state aria-live="polite">Saved locally</span>
         </header>
-        <div class="baseline-message" data-baseline-message hidden><p>The production page is the comparison control. Select experiments 01–10 to record decisions.</p></div>
+        <div class="baseline-message" data-baseline-message hidden><p>Variant 10 is the unchanged comparison control. Select experiments 11–20 to record decisions.</p></div>
         <form data-review-form>
           <fieldset>
-            <legend>Decision for <span data-form-id>01</span></legend>
+            <legend>Decision for <span data-form-id>11</span></legend>
             <label><input type="radio" name="decision" value="KEEP" /> <span>Keep</span><small>Adopt the mechanism</small></label>
             <label><input type="radio" name="decision" value="REVISE" /> <span>Revise</span><small>Keep the idea, change execution</small></label>
             <label><input type="radio" name="decision" value="REJECT" /> <span>Reject</span><small>Do not carry it forward</small></label>
@@ -125,7 +125,7 @@ const variants = [
   const compareButton = root.querySelector('[data-compare]');
   const reduceButton = root.querySelector('[data-reduce]');
   const viewportButtons = Array.from(root.querySelectorAll('[data-viewport]'));
-  let selected = '10';
+  let selected = '11';
   let viewport = 'desktop';
   let compare = false;
   let reduce = false;
@@ -135,7 +135,7 @@ const variants = [
 
   const routeFor = (id) => variants.find((item) => item.id === id);
   const updateProgress = () => {
-    const count = Object.entries(review).filter(([id, value]) => id !== '00' && value?.decision).length;
+    const count = Object.entries(review).filter(([id, value]) => id !== '10' && value?.decision).length;
     root.querySelector('[data-reviewed-count]').textContent = String(count);
     root.querySelector('[data-review-progress]').style.width = `${count * 10}%`;
     for (const row of rows) {
@@ -181,7 +181,7 @@ const variants = [
     }
   };
   const loadDecision = () => {
-    const baseline = selected === '00'; form.hidden = baseline; root.querySelector('[data-baseline-message]').hidden = !baseline;
+    const baseline = selected === '10'; form.hidden = baseline; root.querySelector('[data-baseline-message]').hidden = !baseline;
     root.querySelector('[data-form-id]').textContent = selected; if (baseline) return;
     const value = review[selected] || {};
     for (const input of form.querySelectorAll('input[name="decision"]')) input.checked = input.value === value.decision;
@@ -205,11 +205,11 @@ const variants = [
   compareButton.addEventListener('click', () => { compare = !compare; compareButton.setAttribute('aria-pressed', String(compare)); compareButton.textContent = compare ? 'Hide comparison' : compareButton.dataset.closedLabel || 'Compare baseline'; baselinePreview.hidden = !compare; previewGrid.dataset.compare = String(compare); requestAnimationFrame(applyViewport); });
   reduceButton.addEventListener('click', () => { reduce = !reduce; reduceButton.setAttribute('aria-pressed', String(reduce)); reduceButton.textContent = reduce ? 'Reduced motion: on' : 'Reduced motion'; for (const frame of frames) configureFrame(frame); });
   for (const frame of frames) frame.addEventListener('load', () => { frame.closest('.preview-panel')?.classList.remove('loading'); configureFrame(frame); });
-  form.addEventListener('change', () => { if (selected === '00') return; const choice = form.querySelector('input[name="decision"]:checked')?.value || ''; review[selected] = { ...review[selected], decision: choice, notes: notes.value }; persist(); });
-  notes.addEventListener('input', () => { if (selected === '00') return; saveState.textContent = 'Saving…'; review[selected] = { ...review[selected], notes: notes.value }; clearTimeout(saveTimer); saveTimer = setTimeout(persist, 250); });
+  form.addEventListener('change', () => { if (selected === '10') return; const choice = form.querySelector('input[name="decision"]:checked')?.value || ''; review[selected] = { ...review[selected], decision: choice, notes: notes.value }; persist(); });
+  notes.addEventListener('input', () => { if (selected === '10') return; saveState.textContent = 'Saving…'; review[selected] = { ...review[selected], notes: notes.value }; clearTimeout(saveTimer); saveTimer = setTimeout(persist, 250); });
   const step = (amount) => { const ids = variants.map((item) => item.id); const index = ids.indexOf(selected); select(ids[(index + amount + ids.length) % ids.length]); };
   root.querySelector('[data-previous]').addEventListener('click', () => step(-1)); root.querySelector('[data-next]').addEventListener('click', () => step(1));
-  root.querySelector('[data-export]').addEventListener('click', () => { const payload = { batch: '01', exportedAt: new Date().toISOString(), baseline: 'origin/main@4f0f32d', decisions: review }; const blob = new Blob([`${JSON.stringify(payload, null, 2)}\n`], { type: 'application/json' }); const url = URL.createObjectURL(blob); const link = document.createElement('a'); link.href = url; link.download = 'central-portfolio-batch-01-decisions.json'; link.click(); URL.revokeObjectURL(url); });
+  root.querySelector('[data-export]').addEventListener('click', () => { const payload = { batch: '02', exportedAt: new Date().toISOString(), baseline: 'design-lab/10', decisions: review }; const blob = new Blob([`${JSON.stringify(payload, null, 2)}\n`], { type: 'application/json' }); const url = URL.createObjectURL(blob); const link = document.createElement('a'); link.href = url; link.download = 'central-portfolio-batch-02-decisions.json'; link.click(); URL.revokeObjectURL(url); });
   root.querySelector('[data-clear]').addEventListener('click', () => { if (!confirm('Clear all ten saved decisions and notes from this browser?')) return; review = {}; localStorage.removeItem(storageKey); loadDecision(); updateProgress(); saveState.textContent = 'Review cleared'; });
   new ResizeObserver(applyViewport).observe(previewGrid); updateProgress(); loadDecision(); requestAnimationFrame(applyViewport);
 </script>

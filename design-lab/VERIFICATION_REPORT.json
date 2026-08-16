@@ -1,10 +1,10 @@
 {
-  "verifiedAt": "2026-08-16T08:14:35.074Z",
+  "verifiedAt": "2026-08-16T18:56:56.964Z",
   "origin": "http://127.0.0.1:8912",
   "result": "PASS",
   "summary": {
-    "checks": 79,
-    "passed": 79,
+    "checks": 262,
+    "passed": 262,
     "failed": 0
   },
   "checks": [
@@ -86,7 +86,7 @@
     {
       "name": "05 preview remains within viewport horizontally",
       "pass": true,
-      "detail": "{\"x\":852.484375,\"y\":1193.859375,\"width\":529.921875,\"height\":628.5625}"
+      "detail": "{\"x\":852.484375,\"y\":1057.859375,\"width\":529.921875,\"height\":628.5625}"
     },
     {
       "name": "/design-lab/05/ has no horizontal overflow",
@@ -264,6 +264,546 @@
       "detail": ""
     },
     {
+      "name": "/design-lab/11/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "11 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "11 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "11 identifies its isolated effect",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "11 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "11 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "11 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "11 runs the perimeter treatment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/11/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/11/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/11/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/12/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "12 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "12 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "12 identifies its isolated effect",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "12 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "12 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "12 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "12 updates pointer-relative lighting",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/12/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/12/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/12/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/13/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "13 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "13 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "13 identifies its isolated effect",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "13 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "13 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "13 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "13 activates the screenshot lens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/13/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/13/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/13/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/14/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "14 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "14 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "14 identifies its isolated effect",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "14 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "14 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "14 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "14 activates exactly one grid cell",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/14/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/14/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/14/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/15/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "15 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "15 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "15 identifies its isolated effect",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "15 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "15 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "15 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "15 renders its SVG noise field",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/15/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/15/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/15/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/16/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "16 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "16 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "16 identifies its isolated effect",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "16 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "16 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "16 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "16 runs shimmer only on the selected row",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/16/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/16/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/16/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/17/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "17 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "17 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "17 identifies its isolated effect",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "17 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "17 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "17 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "17 applies gradient material to the canonical headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/17/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/17/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/17/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/18/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "18 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "18 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "18 identifies its isolated effect",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "18 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "18 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "18 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/18/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/18/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/18/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/19/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "19 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "19 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "19 identifies its isolated effect",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "19 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "19 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "19 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/19/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/19/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/19/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/20/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "20 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "20 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "20 identifies its isolated effect",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "20 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "20 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "20 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "20 establishes a perspective evidence stack",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/20/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/20/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/20/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "/design-lab/04/ returns 200",
       "pass": true,
       "detail": "HTTP 200"
@@ -349,7 +889,7 @@
       "detail": "HTTP 200"
     },
     {
-      "name": "10 mobile exposes all thirteen selectors",
+      "name": "/design-lab/10/ mobile exposes all thirteen selectors",
       "pass": true,
       "detail": ""
     },
@@ -374,6 +914,66 @@
       "detail": ""
     },
     {
+      "name": "/design-lab/13/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "/design-lab/13/ mobile exposes all thirteen selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/13/ mobile control responds",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/13/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/13/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/13/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/20/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "/design-lab/20/ mobile exposes all thirteen selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/20/ mobile control responds",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/20/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/20/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/20/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "/design-lab/10/ returns 200",
       "pass": true,
       "detail": "HTTP 200"
@@ -384,7 +984,7 @@
       "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
     },
     {
-      "name": "10 reduced motion has no CSS animation",
+      "name": "10 reduced motion has no card animation",
       "pass": true,
       "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
     },
@@ -400,6 +1000,321 @@
     },
     {
       "name": "/design-lab/10/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/11/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "11 reduced motion swaps state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "11 reduced motion has no card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "11 disables decorative animation under reduced motion",
+      "pass": true,
+      "detail": "none"
+    },
+    {
+      "name": "/design-lab/11/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/11/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/11/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/12/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "12 reduced motion swaps state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "12 reduced motion has no card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "/design-lab/12/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/12/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/12/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/13/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "13 reduced motion swaps state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "13 reduced motion has no card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "/design-lab/13/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/13/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/13/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/14/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "14 reduced motion swaps state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "14 reduced motion has no card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "/design-lab/14/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/14/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/14/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/15/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "15 reduced motion swaps state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "15 reduced motion has no card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "/design-lab/15/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/15/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/15/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/16/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "16 reduced motion swaps state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "16 reduced motion has no card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "16 disables decorative animation under reduced motion",
+      "pass": true,
+      "detail": "none"
+    },
+    {
+      "name": "/design-lab/16/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/16/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/16/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/17/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "17 reduced motion swaps state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "17 reduced motion has no card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "17 disables decorative animation under reduced motion",
+      "pass": true,
+      "detail": "none"
+    },
+    {
+      "name": "/design-lab/17/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/17/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/17/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/18/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "18 reduced motion swaps state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "18 reduced motion has no card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "/design-lab/18/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/18/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/18/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/19/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "19 reduced motion swaps state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "19 reduced motion has no card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "/design-lab/19/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/19/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/19/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/20/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "20 reduced motion swaps state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "20 reduced motion has no card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "/design-lab/20/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/20/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/20/ reduced-motion has no page errors",
       "pass": true,
       "detail": ""
     }

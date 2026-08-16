@@ -4,7 +4,7 @@ import path from 'node:path';
 
 const origin = process.argv[2] ?? 'http://127.0.0.1:8912';
 const root = path.resolve('design-lab/renders');
-const variants = Array.from({ length: 10 }, (_, index) => String(index + 1).padStart(2, '0'));
+const variants = Array.from({ length: 11 }, (_, index) => String(index + 10).padStart(2, '0'));
 const viewports = {
   desktop: { width: 1440, height: 900 },
   mobile: { width: 390, height: 844 },
@@ -60,26 +60,16 @@ for (const variant of variants) {
 
 const fileToDataUrl = async (filename) => `data:image/png;base64,${(await readFile(filename)).toString('base64')}`;
 const contactTitles = {
-  '00': 'Production baseline', '01': 'Systems broadsheet', '02': 'Person × product',
-  '03': 'Variable type', '04': 'Guided stage', '05': 'Evidence lens',
-  '06': 'Colour registry', '07': 'Evidence receipt', '08': 'Case spine',
-  '09': 'Field notes', '10': 'Proof deck',
+  '10': 'Base proof deck', '11': 'Signal perimeter', '12': 'Cursor light',
+  '13': 'Inspection lens', '14': 'Interactive grid', '15': 'Tactile field',
+  '16': 'Selected shimmer', '17': 'Spectral headline', '18': 'Blur resolve',
+  '19': 'Directional reveal', '20': 'Dimensional stack',
 };
 
 for (const [name, viewport] of Object.entries(viewports)) {
-  const baselinePage = await browser.newPage({ viewport });
-  await baselinePage.goto(`${origin}/`, { waitUntil: 'load' });
-  await baselinePage.evaluate(() => Promise.race([
-    Promise.all(Array.from(document.images, (image) => image.decode().catch(() => null))),
-    new Promise((resolve) => setTimeout(resolve, 2500)),
-  ]));
-  await baselinePage.screenshot({ path: path.join(root, 'baseline', `${name}-fold.png`), animations: 'disabled' });
-  await baselinePage.close();
   const items = [];
-  for (const id of ['00', ...variants]) {
-    const filename = id === '00'
-      ? path.join(root, 'baseline', `${name}-fold.png`)
-      : path.join(root, id, `${name}-fold.png`);
+  for (const id of variants) {
+    const filename = path.join(root, id, `${name}-fold.png`);
     items.push({ id, title: contactTitles[id], image: await fileToDataUrl(filename) });
   }
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
@@ -90,7 +80,7 @@ for (const [name, viewport] of Object.entries(viewports)) {
     figure{margin:0;padding:10px;border:1px solid #464641;background:#1c1c1a}figure:first-child{border-color:#e8ff4f}
     .frame{height:${name === 'desktop' ? 215 : 500}px;overflow:hidden;background:#fff;border:1px solid #333}
     img{display:block;width:100%;height:auto}figcaption{display:flex;gap:9px;padding-top:9px}b{color:#e8ff4f}span{color:#d4d0c8}
-  </style></head><body><header><div><h1>Central portfolio · Batch 01</h1><p>${name} contact sheet · top-of-page comparison · full-size files preserved</p></div><p>00 baseline + 10 independently adoptable experiments</p></header><div class="grid">
+  </style></head><body><header><div><h1>Central portfolio · Batch 02</h1><p>${name} contact sheet · base 10 plus ten live derivatives · full-size files preserved</p></div><p>10 control + 11–20 single-aspect experiments</p></header><div class="grid">
   ${items.map((item) => `<figure><div class="frame"><img src="${item.image}" alt=""></div><figcaption><b>${item.id}</b><span>${item.title}</span></figcaption></figure>`).join('')}
   </div></body></html>`, { waitUntil: 'load' });
   await page.evaluate(() => Promise.all(Array.from(document.images, (image) => image.decode())));

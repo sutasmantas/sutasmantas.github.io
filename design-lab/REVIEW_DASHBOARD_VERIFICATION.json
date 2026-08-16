@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-08-16T08:14:34.227Z",
+  "verifiedAt": "2026-08-16T18:53:17.416Z",
   "result": "PASS",
   "summary": {
     "checks": 26,
@@ -13,22 +13,22 @@
       "detail": "HTTP 200"
     },
     {
-      "name": "baseline plus ten live routes are listed",
+      "name": "base 10 plus ten live derivatives are listed",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "selected base 10 starts selected",
+      "name": "first derivative 11 starts selected",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "selected base 10 is the initial live route",
+      "name": "first derivative 11 is the initial live route",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "selected base opens against reference 06",
+      "name": "derivative opens against unchanged base 10",
       "pass": true,
       "detail": ""
     },

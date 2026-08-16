@@ -5,7 +5,7 @@ import sansLatin from '../assets/fonts/plex-sans-var-latin.woff2';
 import sansLatinExt from '../assets/fonts/plex-sans-var-latin-ext.woff2';
 
 const { title, variant } = Astro.props;
-const variants = Array.from({ length: 10 }, (_, index) => String(index + 1).padStart(2, '0'));
+const variants = Array.from({ length: 11 }, (_, index) => String(index + 10).padStart(2, '0'));
 ---
 <!doctype html>
 <html lang="en">
@@ -22,7 +22,7 @@ const variants = Array.from({ length: 10 }, (_, index) => String(index + 1).padS
   <body>
     <a class="skip" href="#experiment">Skip to experiment</a>
     <header class="labbar">
-      <a class="labbrand" href={href('/design-lab/')}>Design lab <span>Batch 01</span></a>
+      <a class="labbrand" href={href('/design-lab/')}>Design lab <span>Batch 02</span></a>
       <nav aria-label="Experiment routes">
         {variants.map((item) => (
           <a

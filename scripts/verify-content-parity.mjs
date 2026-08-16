@@ -3,7 +3,7 @@ import { writeFile } from 'node:fs/promises';
 import { identity, contact, proof, routes, ordered } from '../src/data/portfolio.js';
 
 const origin = process.argv[2] ?? 'http://127.0.0.1:8912';
-const variants = Array.from({ length: 10 }, (_, index) => String(index + 1).padStart(2, '0'));
+const variants = Array.from({ length: 11 }, (_, index) => String(index + 10).padStart(2, '0'));
 const checks = [];
 const failures = [];
 const normalize = (value) => value.replace(/\s+/g, ' ').trim();
@@ -60,19 +60,13 @@ for (const project of ordered) {
 }
 
 await page.goto(`${origin}/design-lab/`, { waitUntil: 'networkidle' });
-check('10 is the explicitly selected initial base', await page.locator('[data-review-variant="10"]').getAttribute('aria-pressed') === 'true');
-check('dashboard initially loads selected base 10', await page.locator('[data-review-frame="current"]').getAttribute('src') === '/design-lab/10/');
-await page.locator('[data-review-variant="08"]').click();
-check('08 compares against the Atlas detail baseline', await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/work/atlas/');
-check('08 labels its comparison scope', await page.locator('[data-baseline-label]').textContent() === 'Atlas project baseline');
-await page.locator('[data-review-variant="07"]').click();
-check('homepage experiments compare against the homepage baseline', await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/');
-await page.locator('[data-review-variant="06"]').click();
-check('06 compares directly against selected base 10', await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/10/');
-check('06 exposes the selected-base comparison action', await page.locator('[data-compare]').textContent() === 'Compare selected base');
-await page.locator('[data-review-variant="10"]').click();
-check('10 compares directly against reference 06', await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/06/');
-check('10 labels reference 06 correctly', await page.locator('[data-baseline-label]').textContent() === 'Comparison reference · complete identity registry');
+check('11 is the explicitly selected initial experiment', await page.locator('[data-review-variant="11"]').getAttribute('aria-pressed') === 'true');
+check('dashboard initially loads experiment 11', await page.locator('[data-review-frame="current"]').getAttribute('src') === '/design-lab/11/');
+for (const id of variants.slice(1)) {
+  await page.locator(`[data-review-variant="${id}"]`).click();
+  check(`${id} compares directly against unchanged base 10`, await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/10/');
+  check(`${id} labels the equal-scope comparison`, await page.locator('[data-baseline-label]').textContent() === 'Control · selected base 10');
+}
 
 await context.close();
 await browser.close();

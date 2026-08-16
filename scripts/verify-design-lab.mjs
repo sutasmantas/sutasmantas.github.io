@@ -113,6 +113,38 @@ const desktop = await browser.newContext({ viewport: { width: 1440, height: 900 
   await closeChecked('/design-lab/10/', state);
 }
 
+for (const id of Array.from({ length: 10 }, (_, index) => String(index + 11))) {
+  const route = `/design-lab/${id}/`;
+  const state = await open(desktop, route);
+  record(`${id} exposes all thirteen project selectors`, await state.page.locator('[data-proof-button]').count() === 13);
+  record(`${id} keeps a single project surface`, await state.page.locator('[data-proof-card]:visible').count() === 1);
+  record(`${id} identifies its isolated effect`, Boolean(await state.page.locator('[data-proof-deck]').getAttribute('data-proof-effect')));
+  const relay = state.page.locator('[data-proof-button="relay"]');
+  await relay.hover();
+  await state.page.waitForTimeout(700);
+  record(`${id} selects projects on hover`, await relay.getAttribute('aria-pressed') === 'true');
+  record(`${id} exposes the complete selected project`, await state.page.locator('[data-proof-card="relay"]').getAttribute('data-active') === 'true');
+  record(`${id} keeps project copy unclipped`, await state.page.locator('[data-proof-card="relay"]').evaluate((element) => element.scrollWidth <= element.clientWidth + 1 && element.scrollHeight <= element.clientHeight + 1));
+  if (id === '11') record('11 runs the perimeter treatment', (await state.page.locator('.v10-stage').evaluate((element) => getComputedStyle(element, '::before').animationName)).includes('batchBeam'));
+  if (id === '12') {
+    await state.page.locator('.v10-stage').hover({ position: { x: 120, y: 120 } });
+    record('12 updates pointer-relative lighting', await state.page.locator('.v10-stage').getAttribute('data-pointer') === 'true');
+  }
+  if (id === '13') {
+    await state.page.locator('[data-lens-surface]:visible').hover({ position: { x: 150, y: 120 } });
+    record('13 activates the screenshot lens', await state.page.locator('[data-lens-surface]:visible').getAttribute('data-lens-active') === 'true');
+  }
+  if (id === '14') {
+    await state.page.locator('[data-proof-deck]').hover({ position: { x: 200, y: 240 } });
+    record('14 activates exactly one grid cell', await state.page.locator('[data-grid-cell][data-active]').count() === 1);
+  }
+  if (id === '15') record('15 renders its SVG noise field', await state.page.locator('.v10-noise').count() === 1);
+  if (id === '16') record('16 runs shimmer only on the selected row', (await state.page.locator('[data-proof-button][aria-pressed="true"]').evaluate((element) => getComputedStyle(element, '::before').animationName)).includes('batchShimmer'));
+  if (id === '17') record('17 applies gradient material to the canonical headline', (await state.page.locator('.continuity-hero h2 span').evaluate((element) => getComputedStyle(element).backgroundImage)) !== 'none');
+  if (id === '20') record('20 establishes a perspective evidence stack', (await state.page.locator('.v10-stage').evaluate((element) => getComputedStyle(element).perspective)) !== 'none');
+  await closeChecked(route, state);
+}
+
 await desktop.close();
 
 const mobile = await browser.newContext({ viewport: { width: 390, height: 844 } });
@@ -121,10 +153,12 @@ for (const [route, selector, value] of [
   ['/design-lab/06/', '[data-registry-row="relay"]', 'true'],
   ['/design-lab/08/', '[data-case-tab="adapt"]', 'true'],
   ['/design-lab/10/', '[data-proof-button="gauge"]', 'true'],
+  ['/design-lab/13/', '[data-proof-button="gauge"]', 'true'],
+  ['/design-lab/20/', '[data-proof-button="gauge"]', 'true'],
 ]) {
   const state = await open(mobile, route);
   if (route === '/design-lab/06/') record('06 mobile exposes all thirteen selectors', await state.page.locator('[data-registry-row]').count() === 13);
-  if (route === '/design-lab/10/') record('10 mobile exposes all thirteen selectors', await state.page.locator('[data-proof-button]').count() === 13);
+  if (['/design-lab/10/', '/design-lab/13/', '/design-lab/20/'].includes(route)) record(`${route} mobile exposes all thirteen selectors`, await state.page.locator('[data-proof-button]').count() === 13);
   await state.page.locator(selector).click();
   record(`${route} mobile control responds`, await state.page.locator(selector).getAttribute('aria-pressed') === value);
   await closeChecked(route, state);
@@ -132,16 +166,23 @@ for (const [route, selector, value] of [
 await mobile.close();
 
 const reduced = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' });
-{
-  const state = await open(reduced, '/design-lab/10/');
+for (const id of Array.from({ length: 11 }, (_, index) => String(index + 10))) {
+  const route = `/design-lab/${id}/`;
+  const state = await open(reduced, route);
   await state.page.locator('[data-proof-button="gauge"]').click();
   const motion = await state.page.locator('[data-proof-card="gauge"]').evaluate((element) => {
     const style = getComputedStyle(element);
     return { transition: style.transitionDuration, animation: style.animationDuration, active: element.dataset.active };
   });
-  record('10 reduced motion swaps state immediately', motion.active === 'true', JSON.stringify(motion));
-  record('10 reduced motion has no CSS animation', motion.transition === '0s' && motion.animation === '0s', JSON.stringify(motion));
-  await closeChecked('/design-lab/10/ reduced-motion', state);
+  record(`${id} reduced motion swaps state immediately`, motion.active === 'true', JSON.stringify(motion));
+  record(`${id} reduced motion has no card animation`, motion.transition === '0s' && motion.animation === '0s', JSON.stringify(motion));
+  if (['11', '16', '17'].includes(id)) {
+    const selector = id === '11' ? '.v10-stage' : id === '16' ? '[data-proof-button][aria-pressed="true"]' : '.continuity-hero h2 span';
+    const pseudo = id === '17' ? null : '::before';
+    const animation = await state.page.locator(selector).evaluate((element, pseudoElement) => getComputedStyle(element, pseudoElement).animationName, pseudo);
+    record(`${id} disables decorative animation under reduced motion`, animation === 'none', animation);
+  }
+  await closeChecked(`${route} reduced-motion`, state);
 }
 await reduced.close();
 await browser.close();
