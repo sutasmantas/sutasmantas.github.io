@@ -1,10 +1,10 @@
 {
-  "verifiedAt": "2026-08-16T18:56:56.964Z",
+  "verifiedAt": "2026-08-16T19:41:45.511Z",
   "origin": "http://127.0.0.1:8912",
   "result": "PASS",
   "summary": {
-    "checks": 262,
-    "passed": 262,
+    "checks": 464,
+    "passed": 464,
     "failed": 0
   },
   "checks": [
@@ -86,7 +86,7 @@
     {
       "name": "05 preview remains within viewport horizontally",
       "pass": true,
-      "detail": "{\"x\":852.484375,\"y\":1057.859375,\"width\":529.921875,\"height\":628.5625}"
+      "detail": "{\"x\":852.484375,\"y\":935.859375,\"width\":529.921875,\"height\":628.5625}"
     },
     {
       "name": "/design-lab/05/ has no horizontal overflow",
@@ -804,6 +804,846 @@
       "detail": ""
     },
     {
+      "name": "/design-lab/21/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "21 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21 derives from combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21 includes the selected screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21 runs the selected perimeter treatment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21 runs the selected active-row shimmer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21 applies the selected spectral headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/21/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/21/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/21/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/22/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "22 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 derives from combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 includes the selected screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 runs the selected perimeter treatment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 runs the selected active-row shimmer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 applies the selected spectral headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 moves its magnetic project action",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/22/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/22/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/22/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/23/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "23 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 derives from combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 includes the selected screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 runs the selected perimeter treatment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 runs the selected active-row shimmer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 applies the selected spectral headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 exposes its screenshot glare by keyboard focus",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/23/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/23/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/23/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/24/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "24 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 derives from combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 includes the selected screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 runs the selected perimeter treatment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 runs the selected active-row shimmer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 applies the selected spectral headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 launches a pixel transition on selection",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/24/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/24/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/24/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/25/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "25 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 derives from combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 includes the selected screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 runs the selected perimeter treatment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 runs the selected active-row shimmer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 applies the selected spectral headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 magnifies nearby directory rows",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/25/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/25/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/25/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/26/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "26 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 derives from combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 includes the selected screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 runs the selected perimeter treatment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 runs the selected active-row shimmer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 applies the selected spectral headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 visibly decrypts the selected title",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 resolves to the exact canonical title",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/26/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/26/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/26/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/27/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "27 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 derives from combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 includes the selected screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 runs the selected perimeter treatment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 runs the selected active-row shimmer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 applies the selected spectral headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 animates a proof number on focus",
+      "pass": true,
+      "detail": "3 vs 13"
+    },
+    {
+      "name": "27 resolves to the exact proof number",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/27/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/27/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/27/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/28/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "28 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 derives from combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 includes the selected screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 runs the selected perimeter treatment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 runs the selected active-row shimmer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 applies the selected spectral headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 emits a click spark burst",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 removes completed spark nodes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/28/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/28/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/28/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/29/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "29 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 derives from combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 includes the selected screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 runs the selected perimeter treatment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 runs the selected active-row shimmer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 applies the selected spectral headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 animates the selected title shadow",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/29/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/29/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/29/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/30/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "30 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 derives from combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 includes the selected screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 runs the selected perimeter treatment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 runs the selected active-row shimmer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 applies the selected spectral headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 expands the screenshot on click",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/30/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/30/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/30/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/31/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "31 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 derives from combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 includes the selected screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 runs the selected perimeter treatment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 runs the selected active-row shimmer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 applies the selected spectral headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 replaces a focused row with its flowing marquee",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 animates its flowing row marquee",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/31/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/31/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/31/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "/design-lab/04/ returns 200",
       "pass": true,
       "detail": "HTTP 200"
@@ -974,347 +1814,517 @@
       "detail": ""
     },
     {
-      "name": "/design-lab/10/ returns 200",
+      "name": "/design-lab/21/ returns 200",
       "pass": true,
       "detail": "HTTP 200"
     },
     {
-      "name": "10 reduced motion swaps state immediately",
-      "pass": true,
-      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
-    },
-    {
-      "name": "10 reduced motion has no card animation",
-      "pass": true,
-      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
-    },
-    {
-      "name": "/design-lab/10/ reduced-motion has no horizontal overflow",
-      "pass": true,
-      "detail": "1440px vs 1440px"
-    },
-    {
-      "name": "/design-lab/10/ reduced-motion has no console errors",
+      "name": "/design-lab/21/ mobile exposes all thirteen selectors",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/10/ reduced-motion has no page errors",
+      "name": "/design-lab/21/ mobile control responds",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/11/ returns 200",
+      "name": "/design-lab/21/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/21/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/21/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/24/ returns 200",
       "pass": true,
       "detail": "HTTP 200"
     },
     {
-      "name": "11 reduced motion swaps state immediately",
-      "pass": true,
-      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
-    },
-    {
-      "name": "11 reduced motion has no card animation",
-      "pass": true,
-      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
-    },
-    {
-      "name": "11 disables decorative animation under reduced motion",
-      "pass": true,
-      "detail": "none"
-    },
-    {
-      "name": "/design-lab/11/ reduced-motion has no horizontal overflow",
-      "pass": true,
-      "detail": "1440px vs 1440px"
-    },
-    {
-      "name": "/design-lab/11/ reduced-motion has no console errors",
+      "name": "/design-lab/24/ mobile exposes all thirteen selectors",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/11/ reduced-motion has no page errors",
+      "name": "/design-lab/24/ mobile control responds",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/12/ returns 200",
+      "name": "/design-lab/24/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/24/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/24/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/30/ returns 200",
       "pass": true,
       "detail": "HTTP 200"
     },
     {
-      "name": "12 reduced motion swaps state immediately",
-      "pass": true,
-      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
-    },
-    {
-      "name": "12 reduced motion has no card animation",
-      "pass": true,
-      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
-    },
-    {
-      "name": "/design-lab/12/ reduced-motion has no horizontal overflow",
-      "pass": true,
-      "detail": "1440px vs 1440px"
-    },
-    {
-      "name": "/design-lab/12/ reduced-motion has no console errors",
+      "name": "/design-lab/30/ mobile exposes all thirteen selectors",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/12/ reduced-motion has no page errors",
+      "name": "/design-lab/30/ mobile control responds",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/13/ returns 200",
+      "name": "/design-lab/30/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/30/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/30/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/31/ returns 200",
       "pass": true,
       "detail": "HTTP 200"
     },
     {
-      "name": "13 reduced motion swaps state immediately",
-      "pass": true,
-      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
-    },
-    {
-      "name": "13 reduced motion has no card animation",
-      "pass": true,
-      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
-    },
-    {
-      "name": "/design-lab/13/ reduced-motion has no horizontal overflow",
-      "pass": true,
-      "detail": "1440px vs 1440px"
-    },
-    {
-      "name": "/design-lab/13/ reduced-motion has no console errors",
+      "name": "/design-lab/31/ mobile exposes all thirteen selectors",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/13/ reduced-motion has no page errors",
+      "name": "/design-lab/31/ mobile control responds",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/14/ returns 200",
+      "name": "/design-lab/31/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/31/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/31/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/21/ returns 200",
       "pass": true,
       "detail": "HTTP 200"
     },
     {
-      "name": "14 reduced motion swaps state immediately",
+      "name": "21 reduced motion swaps state immediately",
       "pass": true,
       "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
     },
     {
-      "name": "14 reduced motion has no card animation",
+      "name": "21 reduced motion has no card animation",
       "pass": true,
       "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
     },
     {
-      "name": "/design-lab/14/ reduced-motion has no horizontal overflow",
+      "name": "21 disables combined-base decoration under reduced motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "/design-lab/21/ reduced-motion has no horizontal overflow",
       "pass": true,
       "detail": "1440px vs 1440px"
     },
     {
-      "name": "/design-lab/14/ reduced-motion has no console errors",
+      "name": "/design-lab/21/ reduced-motion has no console errors",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/14/ reduced-motion has no page errors",
+      "name": "/design-lab/21/ reduced-motion has no page errors",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/15/ returns 200",
+      "name": "/design-lab/22/ returns 200",
       "pass": true,
       "detail": "HTTP 200"
     },
     {
-      "name": "15 reduced motion swaps state immediately",
+      "name": "22 reduced motion swaps state immediately",
       "pass": true,
       "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
     },
     {
-      "name": "15 reduced motion has no card animation",
+      "name": "22 reduced motion has no card animation",
       "pass": true,
       "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
     },
     {
-      "name": "/design-lab/15/ reduced-motion has no horizontal overflow",
+      "name": "22 disables combined-base decoration under reduced motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "/design-lab/22/ reduced-motion has no horizontal overflow",
       "pass": true,
       "detail": "1440px vs 1440px"
     },
     {
-      "name": "/design-lab/15/ reduced-motion has no console errors",
+      "name": "/design-lab/22/ reduced-motion has no console errors",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/15/ reduced-motion has no page errors",
+      "name": "/design-lab/22/ reduced-motion has no page errors",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/16/ returns 200",
+      "name": "/design-lab/23/ returns 200",
       "pass": true,
       "detail": "HTTP 200"
     },
     {
-      "name": "16 reduced motion swaps state immediately",
+      "name": "23 reduced motion swaps state immediately",
       "pass": true,
       "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
     },
     {
-      "name": "16 reduced motion has no card animation",
+      "name": "23 reduced motion has no card animation",
       "pass": true,
       "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
     },
     {
-      "name": "16 disables decorative animation under reduced motion",
+      "name": "23 disables combined-base decoration under reduced motion",
       "pass": true,
-      "detail": "none"
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
     },
     {
-      "name": "/design-lab/16/ reduced-motion has no horizontal overflow",
+      "name": "/design-lab/23/ reduced-motion has no horizontal overflow",
       "pass": true,
       "detail": "1440px vs 1440px"
     },
     {
-      "name": "/design-lab/16/ reduced-motion has no console errors",
+      "name": "/design-lab/23/ reduced-motion has no console errors",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/16/ reduced-motion has no page errors",
+      "name": "/design-lab/23/ reduced-motion has no page errors",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/17/ returns 200",
+      "name": "/design-lab/24/ returns 200",
       "pass": true,
       "detail": "HTTP 200"
     },
     {
-      "name": "17 reduced motion swaps state immediately",
+      "name": "24 reduced motion swaps state immediately",
       "pass": true,
       "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
     },
     {
-      "name": "17 reduced motion has no card animation",
+      "name": "24 reduced motion has no card animation",
       "pass": true,
       "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
     },
     {
-      "name": "17 disables decorative animation under reduced motion",
+      "name": "24 disables combined-base decoration under reduced motion",
       "pass": true,
-      "detail": "none"
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
     },
     {
-      "name": "/design-lab/17/ reduced-motion has no horizontal overflow",
+      "name": "/design-lab/24/ reduced-motion has no horizontal overflow",
       "pass": true,
       "detail": "1440px vs 1440px"
     },
     {
-      "name": "/design-lab/17/ reduced-motion has no console errors",
+      "name": "/design-lab/24/ reduced-motion has no console errors",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/17/ reduced-motion has no page errors",
+      "name": "/design-lab/24/ reduced-motion has no page errors",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/18/ returns 200",
+      "name": "/design-lab/25/ returns 200",
       "pass": true,
       "detail": "HTTP 200"
     },
     {
-      "name": "18 reduced motion swaps state immediately",
+      "name": "25 reduced motion swaps state immediately",
       "pass": true,
       "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
     },
     {
-      "name": "18 reduced motion has no card animation",
+      "name": "25 reduced motion has no card animation",
       "pass": true,
       "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
     },
     {
-      "name": "/design-lab/18/ reduced-motion has no horizontal overflow",
+      "name": "25 disables combined-base decoration under reduced motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "/design-lab/25/ reduced-motion has no horizontal overflow",
       "pass": true,
       "detail": "1440px vs 1440px"
     },
     {
-      "name": "/design-lab/18/ reduced-motion has no console errors",
+      "name": "/design-lab/25/ reduced-motion has no console errors",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/18/ reduced-motion has no page errors",
+      "name": "/design-lab/25/ reduced-motion has no page errors",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/19/ returns 200",
+      "name": "/design-lab/26/ returns 200",
       "pass": true,
       "detail": "HTTP 200"
     },
     {
-      "name": "19 reduced motion swaps state immediately",
+      "name": "26 reduced motion swaps state immediately",
       "pass": true,
       "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
     },
     {
-      "name": "19 reduced motion has no card animation",
+      "name": "26 reduced motion has no card animation",
       "pass": true,
       "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
     },
     {
-      "name": "/design-lab/19/ reduced-motion has no horizontal overflow",
+      "name": "26 disables combined-base decoration under reduced motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "/design-lab/26/ reduced-motion has no horizontal overflow",
       "pass": true,
       "detail": "1440px vs 1440px"
     },
     {
-      "name": "/design-lab/19/ reduced-motion has no console errors",
+      "name": "/design-lab/26/ reduced-motion has no console errors",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/19/ reduced-motion has no page errors",
+      "name": "/design-lab/26/ reduced-motion has no page errors",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/20/ returns 200",
+      "name": "/design-lab/27/ returns 200",
       "pass": true,
       "detail": "HTTP 200"
     },
     {
-      "name": "20 reduced motion swaps state immediately",
+      "name": "27 reduced motion swaps state immediately",
       "pass": true,
       "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
     },
     {
-      "name": "20 reduced motion has no card animation",
+      "name": "27 reduced motion has no card animation",
       "pass": true,
       "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
     },
     {
-      "name": "/design-lab/20/ reduced-motion has no horizontal overflow",
+      "name": "27 disables combined-base decoration under reduced motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "/design-lab/27/ reduced-motion has no horizontal overflow",
       "pass": true,
       "detail": "1440px vs 1440px"
     },
     {
-      "name": "/design-lab/20/ reduced-motion has no console errors",
+      "name": "/design-lab/27/ reduced-motion has no console errors",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "/design-lab/20/ reduced-motion has no page errors",
+      "name": "/design-lab/27/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/28/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "28 reduced motion swaps state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "28 reduced motion has no card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "28 disables combined-base decoration under reduced motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "/design-lab/28/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/28/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/28/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/29/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "29 reduced motion swaps state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "29 reduced motion has no card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "29 disables combined-base decoration under reduced motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "29 disables title-shadow animation under reduced motion",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/29/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/29/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/29/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/30/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "30 reduced motion swaps state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "30 reduced motion has no card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "30 disables combined-base decoration under reduced motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "/design-lab/30/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/30/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/30/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/31/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "31 reduced motion swaps state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "31 reduced motion has no card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "31 disables combined-base decoration under reduced motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "31 disables marquee animation under reduced motion",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/31/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/31/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/31/ reduced-motion has no page errors",
       "pass": true,
       "detail": ""
     }

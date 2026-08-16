@@ -3,7 +3,7 @@
 Date: 2026-08-16
 Base: `/design-lab/10/` — selected complete motion proof deck
 Review routes: `/design-lab/11/` through `/design-lab/20/`
-Status: **PASS_READY_FOR_OWNER_SELECTION**
+Status: **PASS_DECISIONS_APPLIED_TO_BASE_21**
 
 ## Frozen acceptance contract
 
@@ -54,16 +54,16 @@ components or treated as replacement design systems.
 
 | # | Decision | Revision request or reason |
 | ---: | --- | --- |
-| 11 |  |  |
-| 12 |  |  |
-| 13 |  |  |
-| 14 |  |  |
-| 15 |  |  |
-| 16 |  |  |
-| 17 |  |  |
-| 18 |  |  |
-| 19 |  |  |
-| 20 |  |  |
+| 11 | KEEP | Incorporated into combined base 21 |
+| 12 | REJECT | Not carried forward |
+| 13 | KEEP | Incorporated into combined base 21 |
+| 14 | REJECT | Not carried forward |
+| 15 | REJECT | Not carried forward |
+| 16 | KEEP | Incorporated into combined base 21 |
+| 17 | KEEP | Incorporated into combined base 21 |
+| 18 | REJECT | Not carried forward |
+| 19 | KEEP | Incorporated into combined base 21 |
+| 20 | REJECT | Not carried forward |
 
 ## Verification closure
 
@@ -79,5 +79,5 @@ components or treated as replacement design systems.
 - Manual visual review caught and corrected the variant-17 mobile headline
   material clipping that the document-width gate did not expose.
 
-No merge, push, publication or production-site change is authorized by this
-batch. The next action is owner selection in the live dashboard.
+The owner selection was imported from `BATCH_02_DECISIONS.json` and applied to
+route 21. Batch 03 now supersedes this review batch.

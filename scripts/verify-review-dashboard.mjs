@@ -18,15 +18,15 @@ page.on('pageerror', (error) => pageErrors.push(error.message));
 
 const response = await page.goto(`${origin}/design-lab/`, { waitUntil: 'networkidle' });
 check('dashboard route returns 200', response?.status() === 200, `HTTP ${response?.status() ?? 'none'}`);
-check('base 10 plus ten live derivatives are listed', await page.locator('[data-review-variant]').count() === 11);
-check('first derivative 11 starts selected', await page.locator('[data-review-variant="11"]').getAttribute('aria-pressed') === 'true');
-check('first derivative 11 is the initial live route', await page.locator('[data-review-frame="current"]').getAttribute('src') === '/design-lab/11/');
-check('derivative opens against unchanged base 10', await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/10/');
+check('base 21 plus ten live derivatives are listed', await page.locator('[data-review-variant]').count() === 11);
+check('first derivative 22 starts selected', await page.locator('[data-review-variant="22"]').getAttribute('aria-pressed') === 'true');
+check('first derivative 22 is the initial live route', await page.locator('[data-review-frame="current"]').getAttribute('src') === '/design-lab/22/');
+check('derivative opens against combined base 21', await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/21/');
 
-await page.locator('[data-review-variant="13"]').click();
-await page.waitForFunction(() => document.querySelector('[data-review-frame="current"]')?.contentWindow?.location.pathname === '/design-lab/13/');
-check('variant switch loads the real route', await page.locator('[data-current-id]').textContent() === '13');
-check('variant switch updates full-size link', (await page.locator('[data-open-full]').getAttribute('href'))?.endsWith('/design-lab/13/'));
+await page.locator('[data-review-variant="30"]').click();
+await page.waitForFunction(() => document.querySelector('[data-review-frame="current"]')?.contentWindow?.location.pathname === '/design-lab/30/');
+check('variant switch loads the real route', await page.locator('[data-current-id]').textContent() === '30');
+check('variant switch updates full-size link', (await page.locator('[data-open-full]').getAttribute('href'))?.endsWith('/design-lab/30/'));
 const frameBounds = await page.locator('[data-current-preview]').evaluate((panel) => {
   const holder = panel.querySelector('[data-frame-holder]').getBoundingClientRect();
   const shell = panel.querySelector('[data-frame-shell]').getBoundingClientRect();
@@ -37,6 +37,9 @@ check('scaled desktop frame stays fully inside its review canvas', frameBounds.s
 const liveFrame = page.frameLocator('[data-review-frame="current"]');
 await liveFrame.locator('[data-proof-button="relay"]').click();
 check('embedded experiment remains interactive', await liveFrame.locator('[data-proof-button="relay"]').getAttribute('aria-pressed') === 'true');
+await page.waitForTimeout(700);
+await liveFrame.locator('[data-proof-card="relay"] .v10-image').evaluate((element) => element.click());
+check('embedded new mechanism remains interactive', await liveFrame.locator('[data-proof-card="relay"] .v10-image').getAttribute('data-expanded') === 'true');
 
 await page.locator('[data-viewport="mobile"]').click();
 check('mobile control sets a 390px live canvas', await page.locator('[data-current-preview] [data-frame-shell]').evaluate((element) => element.style.width) === '390px');
@@ -48,30 +51,30 @@ await page.locator('[data-reduce]').click();
 check('reduced-motion mode reaches the experiment document', await liveFrame.locator('html').getAttribute('data-review-reduce') === 'true');
 
 await page.locator('input[name="decision"][value="KEEP"]').check();
-await page.locator('[data-review-notes]').fill('Keep the inspection lens, reduce the badge weight.');
+await page.locator('[data-review-notes]').fill('Keep the expanding screenshot, reduce the PROOF label.');
 await page.waitForTimeout(350);
-const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('central-portfolio-design-lab-batch-02')));
-check('decision persists to local storage', saved?.['13']?.decision === 'KEEP');
-check('notes persist to local storage', saved?.['13']?.notes === 'Keep the inspection lens, reduce the badge weight.');
+const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('central-portfolio-design-lab-batch-03')));
+check('decision persists to local storage', saved?.['30']?.decision === 'KEEP');
+check('notes persist to local storage', saved?.['30']?.notes === 'Keep the expanding screenshot, reduce the PROOF label.');
 check('progress count updates', await page.locator('[data-reviewed-count]').textContent() === '1');
 
 await page.reload({ waitUntil: 'networkidle' });
-await page.locator('[data-review-variant="13"]').click();
+await page.locator('[data-review-variant="30"]').click();
 check('saved decision survives reload', await page.locator('input[name="decision"][value="KEEP"]').isChecked());
-check('saved notes survive reload', await page.locator('[data-review-notes]').inputValue() === 'Keep the inspection lens, reduce the badge weight.');
+check('saved notes survive reload', await page.locator('[data-review-notes]').inputValue() === 'Keep the expanding screenshot, reduce the PROOF label.');
 
 const downloadPromise = page.waitForEvent('download');
 await page.locator('[data-export]').click();
 const download = await downloadPromise;
-check('export produces the expected review artifact', download.suggestedFilename() === 'central-portfolio-batch-02-decisions.json');
+check('export produces the expected review artifact', download.suggestedFilename() === 'central-portfolio-batch-03-decisions.json');
 
-await page.locator('[data-review-variant="10"]').click();
+await page.locator('[data-review-variant="21"]').click();
 check('baseline selection hides decision controls', await page.locator('[data-review-form]').isHidden());
 check('baseline selection exposes its explanation', await page.locator('[data-baseline-message]').isVisible());
 
 page.once('dialog', (dialog) => dialog.accept());
 await page.locator('[data-clear]').click();
-check('clear action removes saved review after confirmation', await page.evaluate(() => localStorage.getItem('central-portfolio-design-lab-batch-02')) === null);
+check('clear action removes saved review after confirmation', await page.evaluate(() => localStorage.getItem('central-portfolio-design-lab-batch-03')) === null);
 
 const dimensions = await page.evaluate(() => ({ client: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth }));
 check('desktop dashboard has no horizontal overflow', dimensions.client === dimensions.scroll, JSON.stringify(dimensions));

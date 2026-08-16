@@ -4,7 +4,7 @@ import path from 'node:path';
 
 const origin = process.argv[2] ?? 'http://127.0.0.1:8912';
 const root = path.resolve('design-lab/renders');
-const variants = Array.from({ length: 11 }, (_, index) => String(index + 10).padStart(2, '0'));
+const variants = Array.from({ length: 11 }, (_, index) => String(index + 21).padStart(2, '0'));
 const viewports = {
   desktop: { width: 1440, height: 900 },
   mobile: { width: 390, height: 844 },
@@ -60,10 +60,10 @@ for (const variant of variants) {
 
 const fileToDataUrl = async (filename) => `data:image/png;base64,${(await readFile(filename)).toString('base64')}`;
 const contactTitles = {
-  '10': 'Base proof deck', '11': 'Signal perimeter', '12': 'Cursor light',
-  '13': 'Inspection lens', '14': 'Interactive grid', '15': 'Tactile field',
-  '16': 'Selected shimmer', '17': 'Spectral headline', '18': 'Blur resolve',
-  '19': 'Directional reveal', '20': 'Dimensional stack',
+  '21': 'Combined base', '22': 'Magnetic actions', '23': 'Screenshot glare',
+  '24': 'Pixel transition', '25': 'Dock directory', '26': 'Decrypted title',
+  '27': 'Proof ticker', '28': 'Selection spark', '29': 'Line-shadow title',
+  '30': 'Expanding screenshot', '31': 'Flowing directory',
 };
 
 for (const [name, viewport] of Object.entries(viewports)) {
@@ -80,7 +80,7 @@ for (const [name, viewport] of Object.entries(viewports)) {
     figure{margin:0;padding:10px;border:1px solid #464641;background:#1c1c1a}figure:first-child{border-color:#e8ff4f}
     .frame{height:${name === 'desktop' ? 215 : 500}px;overflow:hidden;background:#fff;border:1px solid #333}
     img{display:block;width:100%;height:auto}figcaption{display:flex;gap:9px;padding-top:9px}b{color:#e8ff4f}span{color:#d4d0c8}
-  </style></head><body><header><div><h1>Central portfolio · Batch 02</h1><p>${name} contact sheet · base 10 plus ten live derivatives · full-size files preserved</p></div><p>10 control + 11–20 single-aspect experiments</p></header><div class="grid">
+  </style></head><body><header><div><h1>Central portfolio · Batch 03</h1><p>${name} contact sheet · base 21 plus ten live derivatives · full-size files preserved</p></div><p>21 control + 22–31 single-aspect experiments</p></header><div class="grid">
   ${items.map((item) => `<figure><div class="frame"><img src="${item.image}" alt=""></div><figcaption><b>${item.id}</b><span>${item.title}</span></figcaption></figure>`).join('')}
   </div></body></html>`, { waitUntil: 'load' });
   await page.evaluate(() => Promise.all(Array.from(document.images, (image) => image.decode())));

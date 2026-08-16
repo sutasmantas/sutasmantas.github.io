@@ -145,6 +145,87 @@ for (const id of Array.from({ length: 10 }, (_, index) => String(index + 11))) {
   await closeChecked(route, state);
 }
 
+for (const id of Array.from({ length: 11 }, (_, index) => String(index + 21))) {
+  const route = `/design-lab/${id}/`;
+  const state = await open(desktop, route);
+  const deck = state.page.locator('[data-proof-deck]');
+  record(`${id} exposes all thirteen project selectors`, await state.page.locator('[data-proof-button]').count() === 13);
+  record(`${id} keeps a single project surface`, await state.page.locator('[data-proof-card]:visible').count() === 1);
+  record(`${id} derives from combined base 21`, await deck.getAttribute('data-combined-base') === 'true');
+  record(`${id} includes the selected screenshot lenses`, await state.page.locator('[data-lens-surface]').count() === 13);
+  record(`${id} runs the selected perimeter treatment`, (await state.page.locator('.v10-stage').evaluate((element) => getComputedStyle(element, '::before').animationName)).includes('batchBeam'));
+  record(`${id} runs the selected active-row shimmer`, (await state.page.locator('[data-proof-button][aria-pressed="true"]').evaluate((element) => getComputedStyle(element, '::before').animationName)).includes('batchShimmer'));
+  record(`${id} applies the selected spectral headline`, (await state.page.locator('.continuity-hero h2 span').evaluate((element) => getComputedStyle(element).backgroundImage)) !== 'none');
+
+  const relay = state.page.locator('[data-proof-button="relay"]');
+  await relay.hover();
+  await state.page.waitForTimeout(700);
+  record(`${id} selects projects on hover`, await relay.getAttribute('aria-pressed') === 'true');
+  record(`${id} exposes the complete selected project`, await state.page.locator('[data-proof-card="relay"]').getAttribute('data-active') === 'true');
+  record(`${id} keeps project copy unclipped`, await state.page.locator('[data-proof-card="relay"]').evaluate((element) => element.scrollWidth <= element.clientWidth + 1 && element.scrollHeight <= element.clientHeight + 1));
+
+  if (id === '22') {
+    const action = state.page.locator('[data-proof-card="relay"] [data-magnet-actions] a').first();
+    const bounds = await action.boundingBox();
+    if (bounds) await action.dispatchEvent('pointermove', { clientX: bounds.x + 12, clientY: bounds.y + 12 });
+    record('22 moves its magnetic project action', await action.evaluate((element) => element.style.getPropertyValue('--magnet-x') !== '0px'));
+  }
+  if (id === '23') {
+    const image = state.page.locator('[data-lens-surface]:visible');
+    await image.focus();
+    await state.page.waitForTimeout(100);
+    record('23 exposes its screenshot glare by keyboard focus', Number(await image.evaluate((element) => getComputedStyle(element, '::before').opacity)) > 0);
+  }
+  if (id === '24') {
+    await state.page.locator('[data-proof-button="gauge"]').click();
+    record('24 launches a pixel transition on selection', await state.page.locator('[data-proof-card="gauge"] .v10-pixels i').evaluateAll((pixels) => pixels.some((pixel) => pixel.getAnimations().length > 0)));
+  }
+  if (id === '25') {
+    const index = state.page.locator('.v10-index');
+    const bounds = await index.boundingBox();
+    if (bounds) await index.hover({ position: { x: 20, y: Math.min(120, bounds.height / 2) } });
+    record('25 magnifies nearby directory rows', await state.page.locator('[data-proof-button]').evaluateAll((buttons) => buttons.some((button) => Number(button.style.getPropertyValue('--dock-scale')) > 1)));
+  }
+  if (id === '26') {
+    await state.page.locator('[data-proof-button="gauge"]').click();
+    const title = state.page.locator('[data-proof-card="gauge"] [data-project-title]');
+    await state.page.waitForTimeout(40);
+    record('26 visibly decrypts the selected title', await title.textContent() !== await title.getAttribute('data-title'));
+    await state.page.waitForTimeout(2500);
+    record('26 resolves to the exact canonical title', await title.textContent() === await title.getAttribute('data-title'));
+  }
+  if (id === '27') {
+    const fact = state.page.locator('.continuity-proof [data-proof-fact]').first();
+    const value = fact.locator('[data-proof-value]');
+    const target = Number(await value.getAttribute('data-proof-value'));
+    await fact.focus();
+    await state.page.waitForTimeout(120);
+    const during = Number.parseInt(await value.textContent(), 10);
+    record('27 animates a proof number on focus', during >= 0 && during < target, `${during} vs ${target}`);
+    await state.page.waitForTimeout(1400);
+    record('27 resolves to the exact proof number', Number.parseInt(await value.textContent(), 10) === target);
+  }
+  if (id === '28') {
+    await state.page.locator('[data-proof-button="gauge"]').click();
+    record('28 emits a click spark burst', await state.page.locator('[data-spark-field] i').count() === 8);
+    await state.page.waitForTimeout(600);
+    record('28 removes completed spark nodes', await state.page.locator('[data-spark-field] i').count() === 0);
+  }
+  if (id === '29') record('29 animates the selected title shadow', (await state.page.locator('[data-project-title]:visible').evaluate((element) => getComputedStyle(element).animationName)).includes('lineShadow'));
+  if (id === '30') {
+    const image = state.page.locator('[data-proof-card="relay"] .v10-image');
+    await image.click();
+    record('30 expands the screenshot on click', await image.getAttribute('data-expanded') === 'true');
+  }
+  if (id === '31') {
+    await relay.focus();
+    const marquee = relay.locator('.v10-flowing-text');
+    record('31 replaces a focused row with its flowing marquee', await marquee.isVisible());
+    record('31 animates its flowing row marquee', (await marquee.evaluate((element) => getComputedStyle(element).animationName)).includes('flowingRow'));
+  }
+  await closeChecked(route, state);
+}
+
 await desktop.close();
 
 const mobile = await browser.newContext({ viewport: { width: 390, height: 844 } });
@@ -155,10 +236,14 @@ for (const [route, selector, value] of [
   ['/design-lab/10/', '[data-proof-button="gauge"]', 'true'],
   ['/design-lab/13/', '[data-proof-button="gauge"]', 'true'],
   ['/design-lab/20/', '[data-proof-button="gauge"]', 'true'],
+  ['/design-lab/21/', '[data-proof-button="gauge"]', 'true'],
+  ['/design-lab/24/', '[data-proof-button="gauge"]', 'true'],
+  ['/design-lab/30/', '[data-proof-button="gauge"]', 'true'],
+  ['/design-lab/31/', '[data-proof-button="gauge"]', 'true'],
 ]) {
   const state = await open(mobile, route);
   if (route === '/design-lab/06/') record('06 mobile exposes all thirteen selectors', await state.page.locator('[data-registry-row]').count() === 13);
-  if (['/design-lab/10/', '/design-lab/13/', '/design-lab/20/'].includes(route)) record(`${route} mobile exposes all thirteen selectors`, await state.page.locator('[data-proof-button]').count() === 13);
+  if (['/design-lab/10/', '/design-lab/13/', '/design-lab/20/', '/design-lab/21/', '/design-lab/24/', '/design-lab/30/', '/design-lab/31/'].includes(route)) record(`${route} mobile exposes all thirteen selectors`, await state.page.locator('[data-proof-button]').count() === 13);
   await state.page.locator(selector).click();
   record(`${route} mobile control responds`, await state.page.locator(selector).getAttribute('aria-pressed') === value);
   await closeChecked(route, state);
@@ -166,7 +251,7 @@ for (const [route, selector, value] of [
 await mobile.close();
 
 const reduced = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' });
-for (const id of Array.from({ length: 11 }, (_, index) => String(index + 10))) {
+for (const id of Array.from({ length: 11 }, (_, index) => String(index + 21))) {
   const route = `/design-lab/${id}/`;
   const state = await open(reduced, route);
   await state.page.locator('[data-proof-button="gauge"]').click();
@@ -176,11 +261,14 @@ for (const id of Array.from({ length: 11 }, (_, index) => String(index + 10))) {
   });
   record(`${id} reduced motion swaps state immediately`, motion.active === 'true', JSON.stringify(motion));
   record(`${id} reduced motion has no card animation`, motion.transition === '0s' && motion.animation === '0s', JSON.stringify(motion));
-  if (['11', '16', '17'].includes(id)) {
-    const selector = id === '11' ? '.v10-stage' : id === '16' ? '[data-proof-button][aria-pressed="true"]' : '.continuity-hero h2 span';
-    const pseudo = id === '17' ? null : '::before';
-    const animation = await state.page.locator(selector).evaluate((element, pseudoElement) => getComputedStyle(element, pseudoElement).animationName, pseudo);
-    record(`${id} disables decorative animation under reduced motion`, animation === 'none', animation);
+  const perimeter = await state.page.locator('.v10-stage').evaluate((element) => getComputedStyle(element, '::before').animationName);
+  const shimmer = await state.page.locator('[data-proof-button][aria-pressed="true"]').evaluate((element) => getComputedStyle(element, '::before').animationName);
+  const spectral = await state.page.locator('.continuity-hero h2 span').evaluate((element) => getComputedStyle(element).animationName);
+  record(`${id} disables combined-base decoration under reduced motion`, perimeter === 'none' && shimmer === 'none' && spectral === 'none', JSON.stringify({ perimeter, shimmer, spectral }));
+  if (id === '29') record('29 disables title-shadow animation under reduced motion', await state.page.locator('[data-project-title]:visible').evaluate((element) => getComputedStyle(element).animationName) === 'none');
+  if (id === '31') {
+    await state.page.locator('[data-proof-button="relay"]').focus();
+    record('31 disables marquee animation under reduced motion', await state.page.locator('[data-proof-button="relay"] .v10-flowing-text').evaluate((element) => getComputedStyle(element).animationName) === 'none');
   }
   await closeChecked(`${route} reduced-motion`, state);
 }

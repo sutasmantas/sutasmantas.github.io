@@ -50,25 +50,42 @@ const experimentNotes = {
   '18': ['Batch 2 · proof transition', 'A copied blur-fade transition can make project changes feel cinematic while remaining instantaneous under reduced motion.'],
   '19': ['Batch 2 · screenshot reveal', 'A Codrops clip-path reveal can make each selected product enter from its client-route direction.'],
   '20': ['Batch 2 · evidence depth', 'A Codrops 3D-stack mechanism can make the proof object feel physically layered without scroll hijacking.'],
+  '21': ['Batch 3 · combined control', 'The five owner-selected Batch 2 mechanisms now operate together as the equal-scope control.'],
+  '22': ['Batch 3 · magnetic actions', 'Copied magnetic proximity can make the two real project actions feel more tactile without changing their destination.'],
+  '23': ['Batch 3 · screenshot glare', 'A copied diagonal glare can make the product screenshot read as a physical inspection surface.'],
+  '24': ['Batch 3 · pixel transition', 'A copied pixel-grid transition can replace the selected clip reveal with a harder digital state change.'],
+  '25': ['Batch 3 · directory magnification', 'Copied dock proximity can enlarge nearby project rows while keeping all thirteen titles visible.'],
+  '26': ['Batch 3 · title decrypt', 'A copied character-scramble mechanism can resolve the exact selected project title on demand.'],
+  '27': ['Batch 3 · proof ticker', 'Copied number-ticker behavior can turn each canonical proof figure into an explicit interactive fact.'],
+  '28': ['Batch 3 · selection spark', 'Copied click-spark feedback can acknowledge project selection without adding a fake action.'],
+  '29': ['Batch 3 · title line shadow', 'A copied moving line shadow can give the selected project title a distinct technical material.'],
+  '30': ['Batch 3 · expanding screenshot', 'A Codrops-inspired crop can expand the real product screenshot from a narrow proof strip.'],
+  '31': ['Batch 3 · flowing directory', 'A copied flowing-menu marquee can amplify the focused project while its full canonical row stays available.'],
 };
 const [surface, hypothesis] = experimentNotes[variant];
-const isMotionDeck = Number(variant) >= 10 && Number(variant) <= 20;
+const numericVariant = Number(variant);
+const isMotionDeck = numericVariant >= 10 && numericVariant <= 31;
+const isCombinedBase = numericVariant >= 21 && numericVariant <= 31;
 const effectName = {
   '10': 'base', '11': 'border-beam', '12': 'magic-light', '13': 'lens',
   '14': 'interactive-grid', '15': 'noise', '16': 'shimmer',
   '17': 'gradient-type', '18': 'blur-fade', '19': 'clip-reveal',
   '20': 'three-d-stack',
+  '21': 'combined-base', '22': 'magnet-actions', '23': 'glare',
+  '24': 'pixel-transition', '25': 'dock-index', '26': 'scramble-title',
+  '27': 'number-ticker', '28': 'click-spark', '29': 'line-shadow',
+  '30': 'image-expand', '31': 'flowing-menu',
 }[variant];
 ---
 
-<article class:list={['experiment', `variant-${variant}`]} data-variant={variant}>
+<article class:list={['experiment', `variant-${variant}`, isCombinedBase && 'combined-base']} data-variant={variant}>
   <header class="experiment-head">
     <div><span class="experiment-no">{variant}</span><span>{surface}</span></div>
     <p>{hypothesis}</p>
     <h1>{title}</h1>
   </header>
 
-  <CompletePortfolio variant={isMotionDeck ? '10' : variant} customDirectory={variant === '05' || variant === '06' || isMotionDeck}>
+  <CompletePortfolio variant={isMotionDeck ? '10' : variant} labVariant={variant} customDirectory={variant === '05' || variant === '06' || isMotionDeck}>
 
   {variant === '01' && (
     <section class="v01-canvas" aria-label="Systems broadsheet art direction">
@@ -299,7 +316,7 @@ const effectName = {
   )}
 
   {isMotionDeck && (
-    <section class="v10-canvas" aria-label="User-triggered proof deck" data-proof-deck data-proof-effect={effectName}>
+    <section class="v10-canvas" aria-label="User-triggered proof deck" data-proof-deck data-proof-effect={effectName} data-combined-base={isCombinedBase ? 'true' : undefined}>
       {variant === '14' && (
         <svg class="v10-interactive-grid" viewBox="0 0 1200 800" preserveAspectRatio="none" aria-hidden="true">
           {Array.from({ length: 96 }, (_, index) => <rect data-grid-cell x={(index % 12) * 100} y={Math.floor(index / 12) * 100} width="100" height="100" />)}
@@ -311,7 +328,7 @@ const effectName = {
           <rect width="100%" height="100%" filter="url(#batch-two-noise)" opacity=".7" />
         </svg>
       )}
-      <header><p>{variant === '10' ? 'Selected base' : `${variant} / base 10 derivative`} / motion-led directory</p><h2>All thirteen.<br />One responsive proof deck.</h2></header>
+      <header><p>{variant === '10' ? 'Selected base' : variant === '21' ? 'Combined selected base' : isCombinedBase ? `${variant} / base 21 derivative` : `${variant} / base 10 derivative`} / motion-led directory</p><h2>All thirteen.<br />One responsive proof deck.</h2></header>
       <div class="v10-layout">
         <div class="v10-index" aria-label="Choose a project">
           {routes.map((route, routeIndex) => (
@@ -324,6 +341,7 @@ const effectName = {
                       <span>{String(project.order).padStart(2, '0')}</span>
                       <b>{project.title}</b>
                       <small>{project.note}</small>
+                      {variant === '31' && <i class="v10-flowing-text" aria-hidden="true">{project.title} · {project.note} · {project.title} · {project.note}</i>}
                     </button>
                   </li>
                 ))}
@@ -334,22 +352,25 @@ const effectName = {
         <div class="v10-stage" aria-live="polite">
           {ordered.map((project) => (
             <article data-proof-card={project.slug} data-project-record data-project-slug={project.slug} data-project-route={project.route} hidden={project.slug !== atlas.slug} style={`--project:${accents[project.slug]}`}>
-              <div class="v10-image" data-lens-surface={variant === '13' ? 'true' : undefined}>
+              <div class="v10-image" tabindex={variant === '23' || variant === '30' ? '0' : undefined} data-lens-surface={variant === '13' || isCombinedBase ? 'true' : undefined}>
                 <Image src={shotFor(project.shot)} alt={project.alt} widths={[650, 1000]} sizes="(max-width: 760px) 92vw, 48vw" />
-                {variant === '13' && <div class="v10-lens" aria-hidden="true"><Image src={shotFor(project.shot)} alt="" widths={[650, 1000]} sizes="(max-width: 760px) 92vw, 48vw" /></div>}
+                {(variant === '13' || isCombinedBase) && <div class="v10-lens" aria-hidden="true"><Image src={shotFor(project.shot)} alt="" widths={[650, 1000]} sizes="(max-width: 760px) 92vw, 48vw" /></div>}
+                {variant === '24' && <div class="v10-pixels" aria-hidden="true">{Array.from({ length: 64 }, (_, index) => <i style={`--pixel:${index}`} />)}</div>}
+                {variant === '30' && <span class="v10-expand-label" aria-hidden="true">PROOF</span>}
               </div>
               <div class="v10-copy">
                 <span>{String(project.order).padStart(2, '0')} / {project.name} / {project.family}</span>
-                <h3>{project.title}</h3>
+                <h3 data-project-title data-title={project.title}>{project.title}</h3>
                 <p>{project.blurb}</p>
                 <b>{project.note}</b>
-                <div class="v10-actions"><a href={href(`/work/${project.slug}/`)}>View case</a><a href={project.live}>Open live ↗</a></div>
+                <div class="v10-actions" data-magnet-actions={variant === '22' ? 'true' : undefined}><a href={href(`/work/${project.slug}/`)}>View case</a><a href={project.live}>Open live ↗</a></div>
               </div>
             </article>
           ))}
         </div>
       </div>
-      <p class="v10-motion-note">Nothing moves on load. Hover, focus or choose a project; reduced motion swaps state instantly. {variant !== '10' && `Variant ${variant} changes only the ${surface.toLowerCase().replace('batch 2 · ', '')}.`}</p>
+      {variant === '28' && <div class="v10-sparks" data-spark-field aria-hidden="true" />}
+      <p class="v10-motion-note">{isCombinedBase ? 'Selected ambient signals run on load.' : 'Nothing moves on load.'} Hover, focus or choose a project; reduced motion swaps state instantly. {variant !== '10' && `Variant ${variant} changes only the ${surface.toLowerCase().replace(/^batch [23] · /, '')}.`}</p>
     </section>
   )}
   </CompletePortfolio>
@@ -431,6 +452,7 @@ const effectName = {
   if (deck) {
     const { animate } = await import('motion');
     const effect = deck.dataset.proofEffect;
+    const combinedBase = deck.dataset.combinedBase === 'true';
     const buttons = Array.from(deck.querySelectorAll('[data-proof-button]'));
     const cards = Array.from(deck.querySelectorAll('[data-proof-card]'));
     const systemReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -439,6 +461,9 @@ const effectName = {
     const select = (slug, animateChange = true) => {
       if (animateChange && slug === selectedSlug) return;
       selectedSlug = slug;
+      for (const title of deck.querySelectorAll('[data-project-title]')) {
+        title.textContent = title.dataset.title;
+      }
       for (const button of buttons) button.setAttribute('aria-pressed', String(button.dataset.proofButton === slug));
       for (const card of cards) {
         const active = card.dataset.proofCard === slug;
@@ -452,7 +477,17 @@ const effectName = {
             transform: ['translate3d(0, 26px, 0) scale(.985)', 'translate3d(0, 0, 0) scale(1)'],
             opacity: [0, 1], filter: ['blur(18px)', 'blur(0px)'],
           }, { duration: .52, easing: [.22, 1, .36, 1] });
-        } else if (effect === 'clip-reveal') {
+        } else if (effect === 'pixel-transition') {
+          Object.assign(card.style, { transform: 'none', opacity: '1', filter: 'none', clipPath: 'none' });
+          const pixels = Array.from(card.querySelectorAll('.v10-pixels i'));
+          for (const pixel of pixels) {
+            pixel.getAnimations().forEach((animation) => animation.cancel());
+            animate(pixel, { opacity: [1, 1, 0], transform: ['scale(1)', 'scale(1)', 'scale(.15)'] }, {
+              duration: .44, delay: (Number(pixel.style.getPropertyValue('--pixel')) % 8) * .025,
+              easing: [.22, 1, .36, 1],
+            });
+          }
+        } else if (effect === 'clip-reveal' || combinedBase) {
           const from = card.dataset.projectRoute === 'build'
             ? 'inset(0 100% 0 0)'
             : card.dataset.projectRoute === 'answer'
@@ -475,9 +510,38 @@ const effectName = {
           }, { type: 'spring', stiffness: 330, damping: 30, mass: .72 });
         }
       }
+      if (effect === 'scramble-title' && animateChange && !shouldReduce()) {
+        const title = deck.querySelector(`[data-proof-card="${slug}"] [data-project-title]`);
+        const target = title?.dataset.title || '';
+        const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let frame = 0;
+        const resolve = () => {
+          if (!title || slug !== selectedSlug) return;
+          title.textContent = target.split('').map((character, index) => character === ' ' || index < frame / 2 ? character : glyphs[(index * 7 + frame) % glyphs.length]).join('');
+          frame += 1;
+          if (frame <= target.length * 2) requestAnimationFrame(resolve); else title.textContent = target;
+        };
+        resolve();
+      }
     };
     for (const button of buttons) {
-      button.addEventListener('click', () => select(button.dataset.proofButton));
+      button.addEventListener('click', (event) => {
+        select(button.dataset.proofButton);
+        if (effect === 'click-spark' && !shouldReduce()) {
+          const field = deck.querySelector('[data-spark-field]');
+          const bounds = deck.getBoundingClientRect();
+          const point = button.getBoundingClientRect();
+          for (let index = 0; index < 8; index += 1) {
+            const spark = document.createElement('i');
+            spark.style.setProperty('--spark-x', `${point.right - bounds.left}px`);
+            spark.style.setProperty('--spark-y', `${point.top + point.height / 2 - bounds.top}px`);
+            spark.style.setProperty('--spark-angle', `${index * 45}deg`);
+            spark.style.setProperty('--spark-color', getComputedStyle(button).getPropertyValue('--project'));
+            field?.append(spark);
+            spark.addEventListener('animationend', () => spark.remove(), { once: true });
+          }
+        }
+      });
       button.addEventListener('mouseenter', () => select(button.dataset.proofButton));
       button.addEventListener('focus', () => select(button.dataset.proofButton));
     }
@@ -516,6 +580,59 @@ const effectName = {
         surface.dataset.lensActive = 'true';
       });
       surface.addEventListener('pointerleave', () => { surface.dataset.lensActive = 'false'; });
+    }
+
+    if (effect === 'magnet-actions') {
+      for (const link of deck.querySelectorAll('[data-magnet-actions] a')) {
+        link.addEventListener('pointermove', (event) => {
+          const bounds = link.getBoundingClientRect();
+          link.style.setProperty('--magnet-x', `${(event.clientX - bounds.left - bounds.width / 2) / 2.6}px`);
+          link.style.setProperty('--magnet-y', `${(event.clientY - bounds.top - bounds.height / 2) / 2.6}px`);
+        });
+        link.addEventListener('pointerleave', () => {
+          link.style.setProperty('--magnet-x', '0px'); link.style.setProperty('--magnet-y', '0px');
+        });
+      }
+    }
+
+    if (effect === 'dock-index') {
+      deck.querySelector('.v10-index')?.addEventListener('pointermove', (event) => {
+        for (const button of buttons) {
+          const bounds = button.getBoundingClientRect();
+          const distance = Math.abs(event.clientY - (bounds.top + bounds.height / 2));
+          button.style.setProperty('--dock-scale', String(1 + Math.max(0, 1 - distance / 150) * .12));
+          button.style.setProperty('--dock-shift', `${Math.max(0, 1 - distance / 150) * 14}px`);
+        }
+      });
+      deck.querySelector('.v10-index')?.addEventListener('pointerleave', () => {
+        for (const button of buttons) { button.style.removeProperty('--dock-scale'); button.style.removeProperty('--dock-shift'); }
+      });
+    }
+
+    if (effect === 'number-ticker') {
+      for (const fact of document.querySelectorAll('[data-proof-fact]')) {
+        const run = () => {
+          const value = fact.querySelector('[data-proof-value]');
+          const target = Number(value?.dataset.proofValue || 0);
+          const unit = value?.dataset.proofUnit || '';
+          if (!value || shouldReduce()) return;
+          animate(0, target, {
+            duration: .7, easing: 'ease-out',
+            onUpdate: (latest) => { value.textContent = `${Math.round(latest)}${unit}`; },
+            onComplete: () => { value.textContent = `${target}${unit}`; },
+          });
+        };
+        fact.addEventListener('pointerenter', run); fact.addEventListener('focus', run);
+      }
+    }
+
+    if (effect === 'image-expand') {
+      for (const image of deck.querySelectorAll('.v10-image')) {
+        image.addEventListener('click', () => { image.dataset.expanded = String(image.dataset.expanded !== 'true'); });
+        image.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); image.click(); }
+        });
+      }
     }
   }
 </script>

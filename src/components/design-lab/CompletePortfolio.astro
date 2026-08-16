@@ -2,7 +2,7 @@
 import { identity, contact, proof, routes, ordered } from '../../data/portfolio.js';
 import { href } from '../../lib/paths.js';
 
-const { variant, customDirectory = false } = Astro.props;
+const { variant, labVariant = variant, customDirectory = false } = Astro.props;
 const routeCount = (id) => ordered.filter((project) => project.route === id).length;
 ---
 
@@ -17,8 +17,8 @@ const routeCount = (id) => ordered.filter((project) => project.route === id).len
     <p class="continuity-sub" data-canonical-positioning>{identity.sub}</p>
     <dl class="continuity-proof">
       {proof.map((fact) => (
-        <div data-proof-fact>
-          <dt>{fact.value}{fact.unit}</dt>
+        <div data-proof-fact tabindex={labVariant === '27' ? '0' : undefined}>
+          <dt data-proof-value={fact.value} data-proof-unit={fact.unit}>{fact.value}{fact.unit}</dt>
           <dd><b>{fact.label}</b><span>{fact.sub}</span></dd>
         </div>
       ))}

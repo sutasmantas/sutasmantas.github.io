@@ -3,7 +3,7 @@ import { writeFile } from 'node:fs/promises';
 import { identity, contact, proof, routes, ordered } from '../src/data/portfolio.js';
 
 const origin = process.argv[2] ?? 'http://127.0.0.1:8912';
-const variants = Array.from({ length: 11 }, (_, index) => String(index + 10).padStart(2, '0'));
+const variants = Array.from({ length: 11 }, (_, index) => String(index + 21).padStart(2, '0'));
 const checks = [];
 const failures = [];
 const normalize = (value) => value.replace(/\s+/g, ' ').trim();
@@ -60,12 +60,12 @@ for (const project of ordered) {
 }
 
 await page.goto(`${origin}/design-lab/`, { waitUntil: 'networkidle' });
-check('11 is the explicitly selected initial experiment', await page.locator('[data-review-variant="11"]').getAttribute('aria-pressed') === 'true');
-check('dashboard initially loads experiment 11', await page.locator('[data-review-frame="current"]').getAttribute('src') === '/design-lab/11/');
+check('22 is the explicitly selected initial experiment', await page.locator('[data-review-variant="22"]').getAttribute('aria-pressed') === 'true');
+check('dashboard initially loads experiment 22', await page.locator('[data-review-frame="current"]').getAttribute('src') === '/design-lab/22/');
 for (const id of variants.slice(1)) {
   await page.locator(`[data-review-variant="${id}"]`).click();
-  check(`${id} compares directly against unchanged base 10`, await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/10/');
-  check(`${id} labels the equal-scope comparison`, await page.locator('[data-baseline-label]').textContent() === 'Control · selected base 10');
+  check(`${id} compares directly against combined base 21`, await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/21/');
+  check(`${id} labels the equal-scope comparison`, await page.locator('[data-baseline-label]').textContent() === 'Control · combined selected base 21');
 }
 
 await context.close();

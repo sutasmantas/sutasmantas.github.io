@@ -1,0 +1,17 @@
+{
+  "batch": "02",
+  "exportedAt": "2026-08-16T19:13:59.704Z",
+  "baseline": "design-lab/10",
+  "decisions": {
+    "11": { "decision": "KEEP", "notes": "" },
+    "12": { "decision": "REJECT", "notes": "" },
+    "13": { "decision": "KEEP", "notes": "" },
+    "14": { "decision": "REJECT", "notes": "" },
+    "15": { "decision": "REJECT", "notes": "" },
+    "16": { "decision": "KEEP", "notes": "" },
+    "17": { "decision": "KEEP", "notes": "" },
+    "18": { "decision": "REJECT", "notes": "" },
+    "19": { "decision": "KEEP", "notes": "" },
+    "20": { "decision": "REJECT", "notes": "" }
+  }
+}

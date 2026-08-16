@@ -1,9 +1,9 @@
 {
-  "verifiedAt": "2026-08-16T18:53:17.416Z",
+  "verifiedAt": "2026-08-16T19:41:53.004Z",
   "result": "PASS",
   "summary": {
-    "checks": 26,
-    "passed": 26,
+    "checks": 27,
+    "passed": 27,
     "failed": 0
   },
   "checks": [
@@ -13,22 +13,22 @@
       "detail": "HTTP 200"
     },
     {
-      "name": "base 10 plus ten live derivatives are listed",
+      "name": "base 21 plus ten live derivatives are listed",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "first derivative 11 starts selected",
+      "name": "first derivative 22 starts selected",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "first derivative 11 is the initial live route",
+      "name": "first derivative 22 is the initial live route",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "derivative opens against unchanged base 10",
+      "name": "derivative opens against combined base 21",
       "pass": true,
       "detail": ""
     },
@@ -49,6 +49,11 @@
     },
     {
       "name": "embedded experiment remains interactive",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "embedded new mechanism remains interactive",
       "pass": true,
       "detail": ""
     },
