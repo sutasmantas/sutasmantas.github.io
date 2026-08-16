@@ -1,8 +1,8 @@
 # Central portfolio visual lab — Batch 1 handoff
 
 Date: 2026-08-16
-Status: **PASS_BATCH_01_INTERACTIVE_REVIEW_READY_NOT_SELECTED**
-Implementation checkpoint: `f919efa9c849eb44ec254aa91172985415d55e6d`
+Status: **PASS_BATCH_01_EQUAL_SCOPE_REVIEW_READY_NOT_SELECTED**
+Implementation checkpoint: `5dc187cf7dd1955fb9b61dfff737044a896ba3cb`
 Initial experiment checkpoint: `26ab9ea726e07c32e6a3fcd17ecc19b0941fc326`
 Baseline: `origin/main@4f0f32d`
 Branch: `agent/central-portfolio-visual-lab`
@@ -13,6 +13,15 @@ Worktree: `C:\Users\masuta\Desktop\Coding\cv\portfolio_demos\worktrees\central_p
 Batch 1 is complete. It does not authorize production integration. The ten
 routes are substantial, independently adoptable mechanisms—not ten palettes—and
 the live production homepage remains unchanged.
+
+The original `f919efa` artifact was not a valid whole-portfolio comparison:
+most experiment routes rendered only the mechanism under study, omitted much of
+the 13-project directory, and sometimes replaced canonical descriptions with
+shorter experiment copy. That made the alternatives look cleaner by weakening
+the content. The corrected artifact treats every experiment as a complete page
+with equal information scope. Each route now preserves the exact canonical
+headline, positioning copy, proof figures, all 13 project titles, descriptions,
+evidence notes and actions, all three client routes, and contact path.
 
 The most defensible eventual direction is **01 as the broad compositional
 grammar**, selectively combined with **02, 05, 07 and 09**. That combination
@@ -42,6 +51,15 @@ the integration handoff.
 - Added ten real-content interactions covering overall art direction, hero,
   typography, live-system staging, discovery, product identity, evidence,
   project detail, human authorship and explicit motion.
+- Rebuilt every experiment as an additive layer around the complete canonical
+  portfolio. Variants 05 and 06 retain their specialized selectors while making
+  every canonical project record available through those interfaces.
+- Replaced unexplained Relay-led headings with the descriptive product title;
+  `Relay` now appears only as the secondary product identity.
+- Made experiment 08 compare against the existing Atlas project-detail page;
+  the other nine experiments continue to compare against the homepage.
+- Added an exact content-parity gate so missing or shortened portfolio copy is a
+  release failure rather than a matter of visual review.
 - Added narrow third-party reuse: Floating UI loads only for experiment 05;
   Motion loads only for experiment 10. Production routes import neither.
 - Added reproducible capture and interaction-verification scripts.
@@ -104,6 +122,8 @@ The owner-facing decision cells remain blank in `VARIANT_MANIFEST.md`.
 - `VERIFICATION_REPORT.json` — machine-readable interaction verification.
 - `REVIEW_DASHBOARD_VERIFICATION.json` — machine-readable live-dashboard,
   persistence, export and responsive verification.
+- `CONTENT_PARITY_VERIFICATION.json` — machine-readable equal-scope checks for
+  canonical positioning, all 13 projects, client routes and comparison targets.
 - `../OPEN_DESIGN_LAB.cmd` — one-click Windows launcher.
 
 ## Verification
@@ -114,6 +134,7 @@ All checks were run against the static build served at
 | Gate | Result |
 | --- | --- |
 | `npm run build` | **PASS** — 26 static pages |
+| `npm run gate:lab-content` | **PASS** — 413 canonical-content and equal-scope comparison checks |
 | Existing UI gate with the dashboard and all ten lab routes | **PASS** — gutter, overflow, focus, targets, alt, contrast and reduced motion at 11 routes × 2 viewports |
 | `node scripts/verify-design-lab.mjs` | **PASS** — 68 route, keyboard interaction, console, overflow and reduced-motion checks |
 | `node scripts/verify-review-dashboard.mjs` | **PASS** — 24 live route, interaction, comparison, persistence, export, responsive and error checks |
@@ -122,12 +143,12 @@ All checks were run against the static build served at
 | `npm run gate:evidence` | **PASS** — 13 projects, 26 immutable links |
 | `npm run test:evidence` | **PASS** — 4/4 evidence-contract mutants killed |
 | Production `npm run gate:ui` | **PASS** — 5 routes × 2 viewports |
-| Authenticated `npm run gate:links` | **PASS** — 26 pages, 643 anchors, 79 external and 27 internal targets |
+| Authenticated `npm run gate:links` | **PASS** — 26 pages, 920 anchors, 79 external and 27 internal targets |
 
-The unauthenticated link run hit GitHub API HTTP 403 for six repository roots,
-matching the baseline environment limitation. Re-running with the existing
-`gh` credential supplied as `GITHUB_TOKEN` passed every link and action; no
-credential is stored in the repository or report.
+The unauthenticated link run hit GitHub API HTTP 403 after exhausting the API
+rate limit. Re-running with the existing `gh` credential supplied as
+`GITHUB_TOKEN` passed every link and action; no credential is stored in the
+repository or report.
 
 ## Exact restart point
 
