@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import CompletePortfolio from './CompletePortfolio.astro';
 import '../../styles/design-lab.css';
 import portrait from '../../assets/photo/mantas.png';
 import { ordered, projects, routes } from '../../data/portfolio.js';
@@ -50,6 +51,8 @@ const [surface, hypothesis] = experimentNotes[variant];
     <h1>{title}</h1>
   </header>
 
+  <CompletePortfolio variant={variant} customDirectory={variant === '05' || variant === '06'}>
+
   {variant === '01' && (
     <section class="v01-canvas" aria-label="Systems broadsheet art direction">
       <header class="v01-mast">
@@ -66,12 +69,12 @@ const [surface, hypothesis] = experimentNotes[variant];
       </div>
       <figure class="v01-main-media">
         <Image src={shotFor(atlas.shot)} alt={atlas.alt} widths={[720, 1100]} sizes="(max-width: 760px) 100vw, 58vw" />
-        <figcaption><b>01 / Atlas</b><span>Cites the passage—or declines.</span></figcaption>
+        <figcaption><b>{atlas.title}</b><span>{atlas.name} / {atlas.note}</span></figcaption>
       </figure>
       <div class="v01-index">
         {[relay, lead, firstRing, gauge].map((project) => (
           <a href={href(`/work/${project.slug}/`)} style={`--project:${accents[project.slug]}`}>
-            <span>{String(project.order).padStart(2, '0')}</span><b>{project.name}</b><small>{project.note}</small>
+            <span>{String(project.order).padStart(2, '0')}</span><b>{project.title}</b><small>{project.name} / {project.note}</small>
           </a>
         ))}
       </div>
@@ -97,7 +100,7 @@ const [surface, hypothesis] = experimentNotes[variant];
       </figure>
       <div class="v02-work" id="v02-work">
         <div class="v02-screen"><Image src={shotFor(relay.shot)} alt={relay.alt} widths={[720, 1200]} sizes="(max-width: 760px) 100vw, 55vw" /></div>
-        <div class="v02-card"><span>Running evidence / 02</span><h3>{relay.name}</h3><p>{relay.asks}</p><b>{relay.note}</b><a href={relay.live}>Run Relay ↗</a></div>
+        <div class="v02-card"><span>Running evidence / {relay.name}</span><h3>{relay.title}</h3><p>{relay.blurb}</p><b>{relay.note}</b><a href={relay.live}>Open the support system ↗</a></div>
       </div>
     </section>
   )}
@@ -117,7 +120,7 @@ const [surface, hypothesis] = experimentNotes[variant];
         {[atlas, relay, gauge].map((project) => (
           <a href={href(`/work/${project.slug}/`)} style={`--project:${accents[project.slug]}`}>
             <Image src={shotFor(project.shot)} alt={project.alt} widths={[360, 560]} sizes="(max-width: 760px) 90vw, 27vw" />
-            <span>{String(project.order).padStart(2, '0')} / {project.name}</span><b>{project.note}</b>
+            <span>{String(project.order).padStart(2, '0')} / {project.name}</span><b>{project.title}</b><small>{project.blurb}</small>
           </a>
         ))}
       </div>
@@ -166,9 +169,12 @@ const [surface, hypothesis] = experimentNotes[variant];
         </div>
         <aside class="v05-preview" data-discovery-preview aria-live="polite">
           {ordered.map((project) => (
-            <figure data-discovery-card={project.slug} hidden={project.slug !== atlas.slug}>
+            <figure data-discovery-card={project.slug} data-project-record data-project-slug={project.slug} hidden={project.slug !== atlas.slug}>
               <div style={`--project:${accents[project.slug]}`}><Image src={shotFor(project.shot)} alt={project.alt} widths={[560, 840]} sizes="(max-width: 900px) 92vw, 36vw" /></div>
-              <figcaption><span>{project.name} / {project.family}</span><h3>{project.asks}</h3><p>{project.blurb}</p><b>{project.note}</b></figcaption>
+              <figcaption>
+                <span>{project.name} / {project.family}</span><h3>{project.title}</h3><p>{project.blurb}</p><b>{project.note}</b>
+                <div class="v05-actions"><a href={href(`/work/${project.slug}/`)}>View case</a><a href={project.live}>Open live ↗</a></div>
+              </figcaption>
             </figure>
           ))}
         </aside>
@@ -191,9 +197,9 @@ const [surface, hypothesis] = experimentNotes[variant];
         </ol>
         <div class="v06-display" data-registry-display>
           {ordered.map((project) => (
-            <article data-registry-card={project.slug} hidden={project.slug !== atlas.slug} style={`--project:${accents[project.slug]}`}>
+            <article data-registry-card={project.slug} data-project-record data-project-slug={project.slug} hidden={project.slug !== atlas.slug} style={`--project:${accents[project.slug]}`}>
               <div class="v06-image"><Image src={shotFor(project.shot)} alt={project.alt} widths={[700, 1100]} sizes="(max-width: 760px) 92vw, 56vw" /></div>
-              <div><span>{project.name}</span><h3>{project.asks}</h3><p>{project.note}</p><a href={project.live}>Open in its own world ↗</a></div>
+              <div><span>{project.name} / {project.family}</span><h3>{project.title}</h3><p>{project.blurb}</p><b>{project.note}</b><div class="v06-actions"><a href={href(`/work/${project.slug}/`)}>View case</a><a href={project.live}>Open live ↗</a></div></div>
             </article>
           ))}
         </div>
@@ -203,8 +209,8 @@ const [surface, hypothesis] = experimentNotes[variant];
 
   {variant === '07' && (
     <section class="v07-canvas" aria-label="Executable evidence receipt" data-receipt>
-      <header><span>Verification receipt / Relay / immutable</span><b>PASS</b></header>
-      <div class="v07-score"><strong>7<span>/7</span></strong><div><h2>Injected fault cases.<br />Zero duplicate effects.</h2><p>{relayEvidence.claim}</p></div></div>
+      <header><span>Verification receipt / AI support operations / {relay.name}</span><b>PASS</b></header>
+      <div class="v07-score"><strong>7<span>/7</span></strong><div><h2>{relay.title}</h2><p>{relay.blurb}</p><p>{relayEvidence.claim}</p></div></div>
       <div class="v07-body">
         <figure><Image src={shotFor(relay.shot)} alt={relay.alt} widths={[650, 1000]} sizes="(max-width: 760px) 100vw, 48vw" /><figcaption>Real operator surface / approved once / applied once</figcaption></figure>
         <div class="v07-timeline">
@@ -263,7 +269,7 @@ const [surface, hypothesis] = experimentNotes[variant];
           ].map(([project, note], index) => (
             <article style={`--project:${accents[project.slug]}`}>
               <Image src={shotFor(project.shot)} alt={project.alt} widths={[360, 560]} sizes="(max-width: 760px) 88vw, 24vw" />
-              <span>Note {String(index + 1).padStart(2, '0')} / {project.name}</span><blockquote>“{note}”</blockquote><a href={href(`/work/${project.slug}/`)}>Inspect the decision ↗</a>
+              <span>Note {String(index + 1).padStart(2, '0')} / {project.title} / {project.name}</span><blockquote>“{note}”</blockquote><a href={href(`/work/${project.slug}/`)}>Inspect the decision ↗</a>
             </article>
           ))}
         </div>
@@ -288,13 +294,14 @@ const [surface, hypothesis] = experimentNotes[variant];
         ].map(([project, receipt], index) => (
           <article data-proof-card={project.slug} data-order={index} style={`--project:${accents[project.slug]}`}>
             <div class="v10-image"><Image src={shotFor(project.shot)} alt={project.alt} widths={[650, 1000]} sizes="(max-width: 760px) 92vw, 54vw" /></div>
-            <div class="v10-copy"><span>{String(project.order).padStart(2, '0')} / {project.name}</span><h3>{project.asks}</h3><p>{receipt}</p><b>{project.note}</b><a href={href(`/work/${project.slug}/`)}>Inspect the full receipt ↗</a></div>
+            <div class="v10-copy"><span>{String(project.order).padStart(2, '0')} / {project.name}</span><h3>{project.title}</h3><p>{project.blurb}</p><p>{receipt}</p><b>{project.note}</b><a href={href(`/work/${project.slug}/`)}>Inspect the full receipt ↗</a></div>
           </article>
         ))}
       </div>
       <p class="v10-motion-note">Nothing moves on load. Click or use the buttons; reduced motion swaps state instantly.</p>
     </section>
   )}
+  </CompletePortfolio>
 </article>
 
 <script>

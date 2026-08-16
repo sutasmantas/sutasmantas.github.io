@@ -121,6 +121,7 @@
 .v03-strip img { grid-column: 1 / -1; width: 100%; aspect-ratio: 16/10; object-fit: cover; border: 1px solid #cbc7bd; }
 .v03-strip span { font-size: .68rem; text-transform: uppercase; }
 .v03-strip b { text-align: right; font-size: .75rem; }
+.v03-strip small { grid-column: 1 / -1; color: #625f59; font-size: .72rem; line-height: 1.4; }
 
 /* 04 — guided inspection */
 .v04-canvas { min-height: 100vh; padding: clamp(1.5rem, 3vw, 3rem); background: #121b24; color: #eef3f0; }
@@ -168,6 +169,8 @@
 .v05-preview h3 { margin: .6rem 0; font-size: clamp(1.5rem, 2.2vw, 2.35rem); line-height: 1; }
 .v05-preview p { color: #cbc5bb; font-size: .88rem; line-height: 1.45; }
 .v05-preview b { color: #f3d26d; font-size: .78rem; }
+.v05-actions, .v06-actions { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: 1rem; }
+.v05-actions a, .v06-actions a { padding: .65rem .8rem; border: 1px solid currentColor; color: #fff; font-size: .72rem; font-weight: 700; text-decoration: none; }
 
 /* 06 — product colour registry */
 .v06-canvas { min-height: 100vh; padding: clamp(2rem, 4vw, 4rem); background: #131313; color: #f4f0e8; }
@@ -189,7 +192,8 @@
 .v06-display span { color: color-mix(in srgb, var(--project), white 65%); font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
 .v06-display h3 { margin: .8rem 0; font-size: clamp(2rem, 3.4vw, 3.5rem); line-height: .96; }
 .v06-display p { color: #bbb6ad; }
-.v06-display a { align-self: start; margin-top: 1rem; padding: .8rem 1rem; border: 1px solid var(--project); color: #fff; font-size: .75rem; text-decoration: none; }
+.v06-display b { color: color-mix(in srgb, var(--project), white 72%); font-size: .8rem; }
+.v06-actions a { border-color: var(--project); }
 
 /* 07 — evidence receipt */
 .v07-canvas { min-height: 100vh; padding: clamp(1.2rem, 3vw, 3rem); background: #d9d6ce; color: #111; }

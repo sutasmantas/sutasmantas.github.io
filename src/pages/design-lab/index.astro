@@ -14,7 +14,15 @@ const variants = [
   ['08', 'Project detail', 'Case spine', '/design-lab/08/', 'Problem, run, receipt and adaptation remain oriented without one long read.'],
   ['09', 'Human authorship', 'Engineering field notes', '/design-lab/09/', 'Real engineering judgements visibly belong to the person who made them.'],
   ['10', 'Motion and feedback', 'User-triggered proof deck', '/design-lab/10/', 'Explicit choices reveal different proof types with interruptible motion.'],
-].map(([id, surface, name, route, hypothesis]) => ({ id, surface, name, route: href(route), hypothesis }));
+].map(([id, surface, name, route, hypothesis]) => ({
+  id,
+  surface,
+  name,
+  route: href(route),
+  hypothesis,
+  baselineRoute: href(id === '08' ? '/work/atlas/' : '/'),
+  baselineName: id === '08' ? 'Atlas project baseline' : 'Production homepage',
+}));
 ---
 
 <Lab title="Interactive Batch 1 review">
@@ -27,7 +35,7 @@ const variants = [
       </header>
       <nav aria-label="Choose a live experiment">
         {variants.map((item, index) => (
-          <button type="button" class:list={['variant-row', index === 1 && 'selected', item.id === '00' && 'baseline-row']} data-review-variant={item.id} data-route={item.route} data-surface={item.surface} data-name={item.name} data-hypothesis={item.hypothesis} aria-pressed={index === 1 ? 'true' : 'false'}>
+          <button type="button" class:list={['variant-row', index === 1 && 'selected', item.id === '00' && 'baseline-row']} data-review-variant={item.id} data-route={item.route} data-surface={item.surface} data-name={item.name} data-hypothesis={item.hypothesis} data-baseline-route={item.baselineRoute} data-baseline-name={item.baselineName} aria-pressed={index === 1 ? 'true' : 'false'}>
             <span class="row-id">{item.id}</span>
             <span><small>{item.surface}</small><strong>{item.name}</strong></span>
             {item.id !== '00' && <span class="row-status" data-status-for={item.id}>—</span>}
@@ -61,7 +69,7 @@ const variants = [
       <section class="preview-region" aria-label="Live responsive previews">
         <div class="preview-grid" data-preview-grid>
           <article class="preview-panel baseline-preview" data-baseline-preview hidden>
-            <header><span>00 / Production baseline</span><small>Independent scroll</small></header>
+            <header><span data-baseline-label>Production homepage</span><small>Independent scroll</small></header>
             <div class="frame-holder" data-frame-holder><div class="frame-shell" data-frame-shell>
               <iframe data-review-frame="baseline" src={href('/')} title="Production baseline live preview" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-downloads"></iframe>
             </div></div>
@@ -105,6 +113,7 @@ const variants = [
   const rows = Array.from(root.querySelectorAll('[data-review-variant]'));
   const frames = Array.from(root.querySelectorAll('[data-review-frame]'));
   const currentFrame = root.querySelector('[data-review-frame="current"]');
+  const baselineFrame = root.querySelector('[data-review-frame="baseline"]');
   const baselinePreview = root.querySelector('[data-baseline-preview]');
   const currentPreview = root.querySelector('[data-current-preview]');
   const previewGrid = root.querySelector('[data-preview-grid]');
@@ -183,6 +192,9 @@ const variants = [
     root.querySelector('[data-current-id]').textContent = id; root.querySelector('[data-current-surface]').textContent = item.surface;
     root.querySelector('[data-current-name]').textContent = item.name; root.querySelector('[data-current-hypothesis]').textContent = item.hypothesis;
     root.querySelector('[data-frame-label]').textContent = `${id} / ${item.name}`; currentFrame.title = `${item.name} live preview`;
+    root.querySelector('[data-baseline-label]').textContent = item.baselineName;
+    baselineFrame.title = `${item.baselineName} live preview`;
+    if (baselineFrame.getAttribute('src') !== item.baselineRoute) { baselinePreview.classList.add('loading'); baselineFrame.src = item.baselineRoute; }
     currentPreview.classList.add('loading'); currentFrame.src = item.route; openFull.href = item.route; loadDecision();
   };
   for (const row of rows) row.addEventListener('click', () => select(row.dataset.reviewVariant));
