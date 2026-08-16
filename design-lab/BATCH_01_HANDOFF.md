@@ -1,10 +1,11 @@
 # Central portfolio visual lab — Batch 1 handoff
 
-Date: 2026-08-16  
-Status: **PASS_BATCH_01_COMPLETE_NOT_SELECTED**  
-Implementation checkpoint: `26ab9ea726e07c32e6a3fcd17ecc19b0941fc326`  
-Baseline: `origin/main@4f0f32d`  
-Branch: `agent/central-portfolio-visual-lab`  
+Date: 2026-08-16
+Status: **PASS_BATCH_01_INTERACTIVE_REVIEW_READY_NOT_SELECTED**
+Implementation checkpoint: `f919efa9c849eb44ec254aa91172985415d55e6d`
+Initial experiment checkpoint: `26ab9ea726e07c32e6a3fcd17ecc19b0941fc326`
+Baseline: `origin/main@4f0f32d`
+Branch: `agent/central-portfolio-visual-lab`
 Worktree: `C:\Users\masuta\Desktop\Coding\cv\portfolio_demos\worktrees\central_portfolio_visual_lab`
 
 ## Decision
@@ -18,6 +19,21 @@ grammar**, selectively combined with **02, 05, 07 and 09**. That combination
 improves authored identity, human trust, project discovery and evidence
 legibility while preserving the five-second message and direct access. It must
 be integrated as a new bounded slice, not by copying every experiment wholesale.
+
+## Open the interactive review artifact
+
+From this worktree, double-click `OPEN_DESIGN_LAB.cmd`. It builds the pinned
+site, starts a private local preview at `http://127.0.0.1:8912/design-lab/`,
+and opens the review dashboard in the default browser. Keep the launcher window
+open while reviewing; press Enter in that window to stop the local server.
+
+The dashboard embeds the real routes rather than screenshots. It supports live
+scrolling and controls, 1440/390 viewport switching, a second independent
+production-baseline preview, reduced-motion review, full-size opening,
+previous/next navigation, and per-experiment `KEEP`/`REVISE`/`REJECT` decisions
+with notes. Review state survives reloads in that browser's local storage. Use
+**Export decisions** to create `central-portfolio-batch-01-decisions.json` for
+the integration handoff.
 
 ## What changed
 
@@ -79,11 +95,16 @@ The owner-facing decision cells remain blank in `VARIANT_MANIFEST.md`.
   effort and owner decision field for all ten experiments.
 - `renders/desktop-contact-sheet.png` — ordered desktop comparison.
 - `renders/mobile-contact-sheet.png` — ordered mobile comparison.
+- `renders/review-dashboard-desktop.png` — verified desktop dashboard state.
+- `renders/review-dashboard-mobile.png` — verified 390px dashboard state.
 - `renders/baseline/{desktop,mobile}.png` — full-page production baseline.
 - `renders/{01..10}/{desktop,mobile}.png` — twenty full-page final renders.
 - `renders/CAPTURE_REPORT.json` — route status, width, height, visible-image,
   console and page-error evidence.
 - `VERIFICATION_REPORT.json` — machine-readable interaction verification.
+- `REVIEW_DASHBOARD_VERIFICATION.json` — machine-readable live-dashboard,
+  persistence, export and responsive verification.
+- `../OPEN_DESIGN_LAB.cmd` — one-click Windows launcher.
 
 ## Verification
 
@@ -93,13 +114,15 @@ All checks were run against the static build served at
 | Gate | Result |
 | --- | --- |
 | `npm run build` | **PASS** — 26 static pages |
-| Existing UI gate with all ten lab routes | **PASS** — gutter, overflow, focus, targets, alt, contrast and reduced motion at 10 routes × 2 viewports |
+| Existing UI gate with the dashboard and all ten lab routes | **PASS** — gutter, overflow, focus, targets, alt, contrast and reduced motion at 11 routes × 2 viewports |
 | `node scripts/verify-design-lab.mjs` | **PASS** — 68 route, keyboard interaction, console, overflow and reduced-motion checks |
+| `node scripts/verify-review-dashboard.mjs` | **PASS** — 24 live route, interaction, comparison, persistence, export, responsive and error checks |
+| `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/open-design-lab.ps1 -NoBrowser -NoWait` | **PASS** — clean build, start, readiness and shutdown; port 8912 released |
 | `node scripts/capture-design-lab.mjs` | **PASS** — 20 full-page renders and two ordered contact sheets |
 | `npm run gate:evidence` | **PASS** — 13 projects, 26 immutable links |
 | `npm run test:evidence` | **PASS** — 4/4 evidence-contract mutants killed |
 | Production `npm run gate:ui` | **PASS** — 5 routes × 2 viewports |
-| Authenticated `npm run gate:links` | **PASS** — 26 pages, 652 anchors, 79 external and 27 internal targets |
+| Authenticated `npm run gate:links` | **PASS** — 26 pages, 643 anchors, 79 external and 27 internal targets |
 
 The unauthenticated link run hit GitHub API HTTP 403 for six repository roots,
 matching the baseline environment limitation. Re-running with the existing
@@ -108,10 +131,10 @@ credential is stored in the repository or report.
 
 ## Exact restart point
 
-1. Open `renders/desktop-contact-sheet.png` and
-   `renders/mobile-contact-sheet.png` at full size.
-2. Fill the `Decision` column in `VARIANT_MANIFEST.md` with
-   `KEEP`, `REVISE` or `REJECT` and record revision requests.
+1. Double-click `OPEN_DESIGN_LAB.cmd` and review all ten live experiments at
+   1440 and 390, using the baseline comparison where needed.
+2. Record `KEEP`, `REVISE` or `REJECT` plus revision notes in the dashboard,
+   then use **Export decisions** and preserve the resulting JSON for handoff.
 3. Identify conflicts before combining choices: 01/03 compete for global type
    voice; 02/09 compete for portrait prominence; 05/06 compete for the primary
    project index; 04/08 compete for detail-page staging.
