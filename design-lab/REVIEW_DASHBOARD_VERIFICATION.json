@@ -1,9 +1,9 @@
 {
-  "verifiedAt": "2026-08-16T07:47:10.835Z",
+  "verifiedAt": "2026-08-16T08:14:34.227Z",
   "result": "PASS",
   "summary": {
-    "checks": 24,
-    "passed": 24,
+    "checks": 26,
+    "passed": 26,
     "failed": 0
   },
   "checks": [
@@ -18,7 +18,17 @@
       "detail": ""
     },
     {
-      "name": "experiment 01 starts selected",
+      "name": "selected base 10 starts selected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "selected base 10 is the initial live route",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "selected base opens against reference 06",
       "pass": true,
       "detail": ""
     },

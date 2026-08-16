@@ -52,18 +52,27 @@ for (const variant of variants) {
   check(`${variant} preserves the contact path`, await page.locator(`a[href="mailto:${contact.email}"]`).count() >= 1);
 }
 
+for (const project of ordered) {
+  await page.goto(`${origin}/work/${project.slug}/`, { waitUntil: 'networkidle' });
+  check(`${project.slug} removes project-specific email actions`, await page.locator('a[href^="mailto:"][href*="subject="]').count() === 0);
+  check(`${project.slug} removes the Talk about project button`, await page.getByRole('link', { name: /^Talk about / }).count() === 0);
+  check(`${project.slug} retains the site-level contact path`, await page.locator(`a[href="mailto:${contact.email}"]`).count() >= 1);
+}
+
 await page.goto(`${origin}/design-lab/`, { waitUntil: 'networkidle' });
+check('10 is the explicitly selected initial base', await page.locator('[data-review-variant="10"]').getAttribute('aria-pressed') === 'true');
+check('dashboard initially loads selected base 10', await page.locator('[data-review-frame="current"]').getAttribute('src') === '/design-lab/10/');
 await page.locator('[data-review-variant="08"]').click();
 check('08 compares against the Atlas detail baseline', await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/work/atlas/');
 check('08 labels its comparison scope', await page.locator('[data-baseline-label]').textContent() === 'Atlas project baseline');
 await page.locator('[data-review-variant="07"]').click();
 check('homepage experiments compare against the homepage baseline', await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/');
 await page.locator('[data-review-variant="06"]').click();
-check('06 compares directly against finalist 10', await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/10/');
-check('06 exposes the finalist comparison action', await page.locator('[data-compare]').textContent() === 'Compare finalist');
+check('06 compares directly against selected base 10', await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/10/');
+check('06 exposes the selected-base comparison action', await page.locator('[data-compare]').textContent() === 'Compare selected base');
 await page.locator('[data-review-variant="10"]').click();
-check('10 compares directly against finalist 06', await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/06/');
-check('10 labels finalist 06 correctly', await page.locator('[data-baseline-label]').textContent() === 'Finalist A · complete identity registry');
+check('10 compares directly against reference 06', await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/06/');
+check('10 labels reference 06 correctly', await page.locator('[data-baseline-label]').textContent() === 'Comparison reference · complete identity registry');
 
 await context.close();
 await browser.close();

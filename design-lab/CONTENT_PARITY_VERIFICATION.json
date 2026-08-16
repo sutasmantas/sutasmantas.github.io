@@ -1,9 +1,9 @@
 {
-  "verifiedAt": "2026-08-16T07:47:15.736Z",
+  "verifiedAt": "2026-08-16T08:14:52.553Z",
   "result": "PASS",
   "summary": {
-    "checks": 417,
-    "passed": 417,
+    "checks": 458,
+    "passed": 458,
     "failed": 0
   },
   "checks": [
@@ -2058,6 +2058,211 @@
       "detail": ""
     },
     {
+      "name": "atlas removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "atlas removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "atlas retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "relay removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "relay removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "relay retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "leaddock removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "leaddock removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "leaddock retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "firstring removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "firstring removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "firstring retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ledger-lens removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ledger-lens removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ledger-lens retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "proofgrid removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "proofgrid removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "proofgrid retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "switchback removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "switchback removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "switchback retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "pipelineforge removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "pipelineforge removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "pipelineforge retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "deliveryguard removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "deliveryguard removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "deliveryguard retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "adapterproof removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "adapterproof removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "adapterproof retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "printline removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "printline removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "printline retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "gauge removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "gauge removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "gauge retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "signalroom removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "signalroom removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "signalroom retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "10 is the explicitly selected initial base",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "dashboard initially loads selected base 10",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "08 compares against the Atlas detail baseline",
       "pass": true,
       "detail": ""
@@ -2073,22 +2278,22 @@
       "detail": ""
     },
     {
-      "name": "06 compares directly against finalist 10",
+      "name": "06 compares directly against selected base 10",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "06 exposes the finalist comparison action",
+      "name": "06 exposes the selected-base comparison action",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "10 compares directly against finalist 06",
+      "name": "10 compares directly against reference 06",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "10 labels finalist 06 correctly",
+      "name": "10 labels reference 06 correctly",
       "pass": true,
       "detail": ""
     }

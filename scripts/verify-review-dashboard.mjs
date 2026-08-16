@@ -19,7 +19,9 @@ page.on('pageerror', (error) => pageErrors.push(error.message));
 const response = await page.goto(`${origin}/design-lab/`, { waitUntil: 'networkidle' });
 check('dashboard route returns 200', response?.status() === 200, `HTTP ${response?.status() ?? 'none'}`);
 check('baseline plus ten live routes are listed', await page.locator('[data-review-variant]').count() === 11);
-check('experiment 01 starts selected', await page.locator('[data-review-variant="01"]').getAttribute('aria-pressed') === 'true');
+check('selected base 10 starts selected', await page.locator('[data-review-variant="10"]').getAttribute('aria-pressed') === 'true');
+check('selected base 10 is the initial live route', await page.locator('[data-review-frame="current"]').getAttribute('src') === '/design-lab/10/');
+check('selected base opens against reference 06', await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/06/');
 
 await page.locator('[data-review-variant="03"]').click();
 await page.waitForFunction(() => document.querySelector('[data-review-frame="current"]')?.contentWindow?.location.pathname === '/design-lab/03/');

@@ -35,11 +35,11 @@ const experimentNotes = {
   '03': ['Display typography', 'The width axis already in Archivo can become an identity device without adding another font.'],
   '04': ['Live-system stage', 'A guided inspection view can make one product state legible at contact-sheet size.'],
   '05': ['Project discovery', 'Keep all thirteen visible, but give hover and focus a collision-safe evidence preview.'],
-  '06': ['Finalist A · product identity', 'A complete visible index can keep the quiet shell and per-system identity while borrowing the fast hover and focus preview from 05.'],
+  '06': ['Comparison reference · product identity', 'A complete visible index keeps the quiet shell and per-system identity available as the comparison reference for selected base 10.'],
   '07': ['Evidence and results', 'Reliability proof should scan like a receipt, not like ordinary documentation metadata.'],
   '08': ['Project detail', 'A sticky case spine can expose depth without forcing one long undifferentiated read.'],
   '09': ['Human authorship', 'Real engineering judgements can make the site personal without invented clients or testimonials.'],
-  '10': ['Finalist B · motion and feedback', 'The motion-led direction should expose all thirteen systems once, with readable controls and a bounded user-triggered transition.'],
+  '10': ['Selected base · motion and feedback', 'The selected motion-led base exposes all thirteen systems once, with readable controls and a bounded user-triggered transition.'],
 };
 const [surface, hypothesis] = experimentNotes[variant];
 ---
@@ -184,7 +184,7 @@ const [surface, hypothesis] = experimentNotes[variant];
 
   {variant === '06' && (
     <section class="v06-canvas" aria-label="Per-product colour registry" data-registry>
-      <header><p>Finalist A / identity-led directory</p><h2>Every system visible. Every system distinct.</h2></header>
+      <header><p>Comparison reference / identity-led directory</p><h2>Every system visible. Every system distinct.</h2></header>
       <div class="v06-layout">
         <ol class="v06-list">
           {ordered.map((project) => (
@@ -283,7 +283,7 @@ const [surface, hypothesis] = experimentNotes[variant];
 
   {variant === '10' && (
     <section class="v10-canvas" aria-label="User-triggered proof deck" data-proof-deck>
-      <header><p>Finalist B / motion-led directory</p><h2>All thirteen.<br />One responsive proof deck.</h2></header>
+      <header><p>Selected base / motion-led directory</p><h2>All thirteen.<br />One responsive proof deck.</h2></header>
       <div class="v10-layout">
         <div class="v10-index" aria-label="Choose a project">
           {routes.map((route, routeIndex) => (

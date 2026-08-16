@@ -1,12 +1,12 @@
 {
-  "capturedAt": "2026-08-16T07:47:47.051Z",
+  "capturedAt": "2026-08-16T08:15:25.227Z",
   "origin": "http://127.0.0.1:8912",
   "routes": {
     "10": {
       "desktop": {
         "status": 200,
         "screenshot": "design-lab/renders/10/desktop.png",
-        "title": "Complete motion proof deck — Portfolio design lab",
+        "title": "Selected base — complete motion proof deck — Portfolio design lab",
         "clientWidth": 1440,
         "scrollWidth": 1440,
         "scrollHeight": 4119,
@@ -20,7 +20,7 @@
       "mobile": {
         "status": 200,
         "screenshot": "design-lab/renders/10/mobile.png",
-        "title": "Complete motion proof deck — Portfolio design lab",
+        "title": "Selected base — complete motion proof deck — Portfolio design lab",
         "clientWidth": 390,
         "scrollWidth": 390,
         "scrollHeight": 5289,
@@ -186,7 +186,7 @@
       "desktop": {
         "status": 200,
         "screenshot": "design-lab/renders/06/desktop.png",
-        "title": "Complete identity registry — Portfolio design lab",
+        "title": "Comparison reference — complete identity registry — Portfolio design lab",
         "clientWidth": 1440,
         "scrollWidth": 1440,
         "scrollHeight": 3798,
@@ -200,10 +200,10 @@
       "mobile": {
         "status": 200,
         "screenshot": "design-lab/renders/06/mobile.png",
-        "title": "Complete identity registry — Portfolio design lab",
+        "title": "Comparison reference — complete identity registry — Portfolio design lab",
         "clientWidth": 390,
         "scrollWidth": 390,
-        "scrollHeight": 5036,
+        "scrollHeight": 5039,
         "images": 13,
         "visibleImages": 1,
         "brokenVisibleImages": 0,

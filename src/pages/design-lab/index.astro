@@ -9,11 +9,11 @@ const variants = [
   ['03', 'Display typography', 'Variable-width specimen', '/design-lab/03/', 'The existing Archivo width axis becomes an identity device.'],
   ['04', 'Live-system stage', 'Guided inspection bench', '/design-lab/04/', 'One dense product state becomes legible through explicit inspection points.'],
   ['05', 'Project discovery', 'Evidence lens', '/design-lab/05/', 'All thirteen projects remain visible while focus reveals real evidence.'],
-  ['06', 'Finalist A · product identity', 'Complete identity registry', '/design-lab/06/', 'All thirteen systems stay visible while hover or focus reveals the full project in its own visual identity.'],
+  ['06', 'Comparison reference · product identity', 'Complete identity registry', '/design-lab/06/', 'All thirteen systems stay visible while hover or focus reveals the full project in its own visual identity.'],
   ['07', 'Evidence and results', 'Executable receipt', '/design-lab/07/', 'Reliability proof scans as an outcome, rerun and bounded claim.'],
   ['08', 'Project detail', 'Case spine', '/design-lab/08/', 'Problem, run, receipt and adaptation remain oriented without one long read.'],
   ['09', 'Human authorship', 'Engineering field notes', '/design-lab/09/', 'Real engineering judgements visibly belong to the person who made them.'],
-  ['10', 'Finalist B · motion and feedback', 'Complete motion proof deck', '/design-lab/10/', 'All thirteen systems stay visible while hover, focus or tap reveals one complete project with bounded motion.'],
+  ['10', 'Selected base · motion and feedback', 'Complete motion proof deck', '/design-lab/10/', 'All thirteen systems stay visible while hover, focus or tap reveals one complete project with bounded motion.'],
 ].map(([id, surface, name, route, hypothesis]) => ({
   id,
   surface,
@@ -21,8 +21,8 @@ const variants = [
   route: href(route),
   hypothesis,
   baselineRoute: href(id === '06' ? '/design-lab/10/' : id === '10' ? '/design-lab/06/' : id === '08' ? '/work/atlas/' : '/'),
-  baselineName: id === '06' ? 'Finalist B · complete motion deck' : id === '10' ? 'Finalist A · complete identity registry' : id === '08' ? 'Atlas project baseline' : 'Production homepage',
-  compareLabel: id === '06' || id === '10' ? 'Compare finalist' : 'Compare baseline',
+  baselineName: id === '06' ? 'Selected base · complete motion deck' : id === '10' ? 'Comparison reference · complete identity registry' : id === '08' ? 'Atlas project baseline' : 'Production homepage',
+  compareLabel: id === '06' ? 'Compare selected base' : id === '10' ? 'Compare reference' : 'Compare baseline',
 }));
 ---
 
@@ -35,8 +35,8 @@ const variants = [
         <p class="index-intro">Switch routes, test their controls, compare the baseline and save a decision without leaving this page.</p>
       </header>
       <nav aria-label="Choose a live experiment">
-        {variants.map((item, index) => (
-          <button type="button" class:list={['variant-row', index === 1 && 'selected', item.id === '00' && 'baseline-row']} data-review-variant={item.id} data-route={item.route} data-surface={item.surface} data-name={item.name} data-hypothesis={item.hypothesis} data-baseline-route={item.baselineRoute} data-baseline-name={item.baselineName} data-compare-label={item.compareLabel} aria-pressed={index === 1 ? 'true' : 'false'}>
+        {variants.map((item) => (
+          <button type="button" class:list={['variant-row', item.id === '10' && 'selected', item.id === '00' && 'baseline-row']} data-review-variant={item.id} data-route={item.route} data-surface={item.surface} data-name={item.name} data-hypothesis={item.hypothesis} data-baseline-route={item.baselineRoute} data-baseline-name={item.baselineName} data-compare-label={item.compareLabel} aria-pressed={item.id === '10' ? 'true' : 'false'}>
             <span class="row-id">{item.id}</span>
             <span><small>{item.surface}</small><strong>{item.name}</strong></span>
             {item.id !== '00' && <span class="row-status" data-status-for={item.id}>—</span>}
@@ -52,33 +52,33 @@ const variants = [
     <div class="review-workspace">
       <header class="review-toolbar">
         <div class="current-title">
-          <p><span data-current-id>01</span> / <span data-current-surface>Overall art direction</span></p>
-          <h2 data-current-name>Systems broadsheet</h2>
-          <p data-current-hypothesis>A commissioned editorial rhythm without slowing the scan.</p>
+          <p><span data-current-id>10</span> / <span data-current-surface>Selected base · motion and feedback</span></p>
+          <h2 data-current-name>Complete motion proof deck</h2>
+          <p data-current-hypothesis>All thirteen systems stay visible while hover, focus or tap reveals one complete project with bounded motion.</p>
         </div>
         <div class="toolbar-actions">
           <div class="segmented" role="group" aria-label="Preview width">
             <button type="button" data-viewport="desktop" aria-pressed="true">1440</button>
             <button type="button" data-viewport="mobile" aria-pressed="false">390</button>
           </div>
-          <button type="button" class="tool-button" data-compare aria-pressed="false">Compare baseline</button>
+          <button type="button" class="tool-button" data-compare aria-pressed="false">Compare reference</button>
           <button type="button" class="tool-button" data-reduce aria-pressed="false">Reduced motion</button>
-          <a class="open-full" data-open-full href={href('/design-lab/01/')} target="_blank" rel="noreferrer">Open full size ↗</a>
+          <a class="open-full" data-open-full href={href('/design-lab/10/')} target="_blank" rel="noreferrer">Open full size ↗</a>
         </div>
       </header>
 
       <section class="preview-region" aria-label="Live responsive previews">
         <div class="preview-grid" data-preview-grid>
           <article class="preview-panel baseline-preview" data-baseline-preview hidden>
-            <header><span data-baseline-label>Production homepage</span><small>Independent scroll</small></header>
+            <header><span data-baseline-label>Comparison reference · complete identity registry</span><small>Independent scroll</small></header>
             <div class="frame-holder" data-frame-holder><div class="frame-shell" data-frame-shell>
-              <iframe data-review-frame="baseline" src={href('/')} title="Production baseline live preview" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-downloads"></iframe>
+              <iframe data-review-frame="baseline" src={href('/design-lab/06/')} title="Comparison reference complete identity registry live preview" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-downloads"></iframe>
             </div></div>
           </article>
           <article class="preview-panel current-preview loading" data-current-preview>
-            <header><span data-frame-label>01 / Systems broadsheet</span><small>Scroll and interact inside</small></header>
+            <header><span data-frame-label>10 / Complete motion proof deck</span><small>Scroll and interact inside</small></header>
             <div class="frame-holder" data-frame-holder><div class="frame-shell" data-frame-shell>
-              <iframe data-review-frame="current" src={href('/design-lab/01/')} title="Systems broadsheet live preview" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-downloads"></iframe>
+              <iframe data-review-frame="current" src={href('/design-lab/10/')} title="Complete motion proof deck live preview" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-downloads"></iframe>
             </div></div>
           </article>
         </div>
@@ -125,7 +125,7 @@ const variants = [
   const compareButton = root.querySelector('[data-compare]');
   const reduceButton = root.querySelector('[data-reduce]');
   const viewportButtons = Array.from(root.querySelectorAll('[data-viewport]'));
-  let selected = '01';
+  let selected = '10';
   let viewport = 'desktop';
   let compare = false;
   let reduce = false;
