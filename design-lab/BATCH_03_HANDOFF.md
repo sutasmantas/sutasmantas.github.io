@@ -22,6 +22,12 @@ canonical projects, complete descriptions and evidence notes, case/live links,
 three client routes, site contact, and keyboard/tap project selection. There
 are no project-specific email actions and no added runtime dependency.
 
+Each route now gives an exact test instruction: where the changed surface is,
+which pointer/keyboard/click action triggers it, and what should visibly
+happen. The dashboard also labels each option by immediate design impact:
+`SMALL`, `MEDIUM`, or `LARGE`. These labels are deliberately candid; route 27
+is a proof-number microinteraction, not a drastic redesign.
+
 ## Open the artifact
 
 Double-click `OPEN_DESIGN_LAB.cmd` in the worktree. It builds the static site,
@@ -35,18 +41,18 @@ all eleven routes without requiring horizontal scrolling.
 
 ## Variant inventory
 
-| Route | One additional changed system | Source mechanism |
-| ---: | --- | --- |
-| 22 | magnetic case/live actions | React Bits Magnet |
-| 23 | keyboard/pointer screenshot glare | React Bits GlareHover |
-| 24 | pixel-resolve project transition | React Bits PixelTransition |
-| 25 | proximity-magnified project rows | React Bits Dock |
-| 26 | decrypting selected project title | React Bits DecryptedText |
-| 27 | interactive canonical proof figures | Magic UI NumberTicker |
-| 28 | palette-matched selection sparks | React Bits ClickSpark |
-| 29 | moving hard-line project-title shadow | Magic UI LineShadowText |
-| 30 | expanding proof screenshot | Codrops ImageExpansionTypography |
-| 31 | flowing focused-row marquee | React Bits FlowingMenu |
+| Route | Impact | One additional changed system | Source mechanism |
+| ---: | --- | --- | --- |
+| 22 | Small | magnetic case/live actions | React Bits Magnet |
+| 23 | Medium | keyboard/pointer screenshot glare | React Bits GlareHover |
+| 24 | Medium | pixel-resolve project transition | React Bits PixelTransition |
+| 25 | Medium | proximity-magnified project rows | React Bits Dock |
+| 26 | Medium | decrypting selected project title | React Bits DecryptedText |
+| 27 | Small | 13, 10, and 100% proof-number ticker | Magic UI NumberTicker |
+| 28 | Small | palette-matched selection sparks | React Bits ClickSpark |
+| 29 | Medium | moving hard-line project-title shadow | Magic UI LineShadowText |
+| 30 | Large | expanding proof screenshot | Codrops ImageExpansionTypography |
+| 31 | Large | flowing focused-row marquee | React Bits FlowingMenu |
 
 Pinned commits, licenses, inspected upstream sources, the acceptance contract,
 and the empty Batch 3 decision table are in `BATCH_03_MANIFEST.md`.
@@ -57,8 +63,8 @@ and the empty Batch 3 decision table are in `BATCH_03_MANIFEST.md`.
 | --- | --- |
 | `npm run build` | **PASS** — 47 static pages |
 | `node scripts/verify-content-parity.mjs` | **PASS** — 512 checks |
-| `node scripts/verify-design-lab.mjs` | **PASS** — 464 checks |
-| `node scripts/verify-review-dashboard.mjs` | **PASS** — 27 checks |
+| `node scripts/verify-design-lab.mjs` | **PASS** — 468 checks |
+| `node scripts/verify-review-dashboard.mjs` | **PASS** — 30 checks |
 | `node scripts/capture-design-lab.mjs` | **PASS** — 22 full-page renders plus two contact sheets |
 | `npm run gate:evidence` | **PASS** — 13 projects, 26 immutable links |
 | `npm run test:evidence` | **PASS** — 4/4 mutants killed |
@@ -76,7 +82,10 @@ and the empty Batch 3 decision table are in `BATCH_03_MANIFEST.md`.
 Manual visual review covered the complete desktop/mobile page, review
 dashboard, and representative interaction-heavy routes. The final pass fixed
 mobile route discoverability, corrected the combined-base motion note, and
-made screenshot glare keyboard-focusable.
+made screenshot glare keyboard-focusable. The owner-clarity pass then replaced
+vague mechanism summaries with exact test instructions and exposed impact size
+in both the dashboard and route header. It also fixed route 27 so its `100%`
+proof value—along with `13` and `10`—animates and resolves exactly.
 
 ## Exact restart point
 

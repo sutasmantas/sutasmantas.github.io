@@ -1,10 +1,10 @@
 {
-  "verifiedAt": "2026-08-16T19:41:45.511Z",
-  "origin": "http://127.0.0.1:8912",
+  "verifiedAt": "2026-08-16T20:04:35.616Z",
+  "origin": "http://127.0.0.1:8913",
   "result": "PASS",
   "summary": {
-    "checks": 464,
-    "passed": 464,
+    "checks": 468,
+    "passed": 468,
     "failed": 0
   },
   "checks": [
@@ -1309,12 +1309,32 @@
       "detail": ""
     },
     {
-      "name": "27 animates a proof number on focus",
+      "name": "27 animates proof number 13 on focus",
       "pass": true,
-      "detail": "3 vs 13"
+      "detail": "4 vs 13"
     },
     {
-      "name": "27 resolves to the exact proof number",
+      "name": "27 resolves to exact proof value 13",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 animates proof number 10 on focus",
+      "pass": true,
+      "detail": "3 vs 10"
+    },
+    {
+      "name": "27 resolves to exact proof value 10",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 animates proof number 100% on focus",
+      "pass": true,
+      "detail": "28 vs 100"
+    },
+    {
+      "name": "27 resolves to exact proof value 100%",
       "pass": true,
       "detail": ""
     },

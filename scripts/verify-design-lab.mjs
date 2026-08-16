@@ -195,15 +195,19 @@ for (const id of Array.from({ length: 11 }, (_, index) => String(index + 21))) {
     record('26 resolves to the exact canonical title', await title.textContent() === await title.getAttribute('data-title'));
   }
   if (id === '27') {
-    const fact = state.page.locator('.continuity-proof [data-proof-fact]').first();
-    const value = fact.locator('[data-proof-value]');
-    const target = Number(await value.getAttribute('data-proof-value'));
-    await fact.focus();
-    await state.page.waitForTimeout(120);
-    const during = Number.parseInt(await value.textContent(), 10);
-    record('27 animates a proof number on focus', during >= 0 && during < target, `${during} vs ${target}`);
-    await state.page.waitForTimeout(1400);
-    record('27 resolves to the exact proof number', Number.parseInt(await value.textContent(), 10) === target);
+    const facts = state.page.locator('.continuity-proof [data-proof-fact]');
+    for (let index = 0; index < await facts.count(); index += 1) {
+      const fact = facts.nth(index);
+      const value = fact.locator('[data-proof-value]');
+      const targetText = await value.getAttribute('data-proof-value');
+      const target = Number.parseInt(targetText, 10);
+      await fact.focus();
+      await state.page.waitForTimeout(120);
+      const during = Number.parseInt(await value.textContent(), 10);
+      record(`27 animates proof number ${targetText} on focus`, during >= 0 && during < target, `${during} vs ${target}`);
+      await state.page.waitForTimeout(800);
+      record(`27 resolves to exact proof value ${targetText}`, await value.textContent() === targetText);
+    }
   }
   if (id === '28') {
     await state.page.locator('[data-proof-button="gauge"]').click();

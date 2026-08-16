@@ -50,19 +50,19 @@ const experimentNotes = {
   '18': ['Batch 2 · proof transition', 'A copied blur-fade transition can make project changes feel cinematic while remaining instantaneous under reduced motion.'],
   '19': ['Batch 2 · screenshot reveal', 'A Codrops clip-path reveal can make each selected product enter from its client-route direction.'],
   '20': ['Batch 2 · evidence depth', 'A Codrops 3D-stack mechanism can make the proof object feel physically layered without scroll hijacking.'],
-  '21': ['Batch 3 · combined control', 'The five owner-selected Batch 2 mechanisms now operate together as the equal-scope control.'],
-  '22': ['Batch 3 · magnetic actions', 'Copied magnetic proximity can make the two real project actions feel more tactile without changing their destination.'],
-  '23': ['Batch 3 · screenshot glare', 'A copied diagonal glare can make the product screenshot read as a physical inspection surface.'],
-  '24': ['Batch 3 · pixel transition', 'A copied pixel-grid transition can replace the selected clip reveal with a harder digital state change.'],
-  '25': ['Batch 3 · directory magnification', 'Copied dock proximity can enlarge nearby project rows while keeping all thirteen titles visible.'],
-  '26': ['Batch 3 · title decrypt', 'A copied character-scramble mechanism can resolve the exact selected project title on demand.'],
-  '27': ['Batch 3 · proof ticker', 'Copied number-ticker behavior can turn each canonical proof figure into an explicit interactive fact.'],
-  '28': ['Batch 3 · selection spark', 'Copied click-spark feedback can acknowledge project selection without adding a fake action.'],
-  '29': ['Batch 3 · title line shadow', 'A copied moving line shadow can give the selected project title a distinct technical material.'],
-  '30': ['Batch 3 · expanding screenshot', 'A Codrops-inspired crop can expand the real product screenshot from a narrow proof strip.'],
-  '31': ['Batch 3 · flowing directory', 'A copied flowing-menu marquee can amplify the focused project while its full canonical row stays available.'],
+  '21': ['Batch 3 · combined control', 'Baseline: scroll to the project deck and select different rows to see the five retained effects working together.', 'BASE'],
+  '22': ['Batch 3 · magnetic actions', 'Scroll to a project card and move the pointer inside “View case” or “Open live.” The button shifts toward the pointer and settles back when you leave.', 'SMALL'],
+  '23': ['Batch 3 · screenshot glare', 'Scroll to the large project screenshot, then hover it or focus it with the keyboard. A bright diagonal band sweeps across the image.', 'MEDIUM'],
+  '24': ['Batch 3 · pixel transition', 'Scroll to the project directory and choose a different row. The newly selected proof appears through an 8×8 field of disappearing colored tiles.', 'MEDIUM'],
+  '25': ['Batch 3 · directory magnification', 'Scroll to the project directory and move the pointer vertically over its rows. The nearest rows enlarge and slide right while every title remains visible.', 'MEDIUM'],
+  '26': ['Batch 3 · title decrypt', 'Scroll to the directory and choose a different project. Its full title starts as changing letters and numbers, then resolves from left to right.', 'MEDIUM'],
+  '27': ['Batch 3 · proof ticker', 'Scroll below the large intro paragraph to the three boxes labeled “Systems shipped,” “Areas of AI work,” and “Open source.” Hover or keyboard-focus one: 13, 10, or 100% resets to 0 and counts back over 0.7 seconds.', 'SMALL'],
+  '28': ['Batch 3 · selection spark', 'Scroll to the project directory and click a row—hover is not enough. Eight short project-colored sparks burst from the row’s right edge.', 'SMALL'],
+  '29': ['Batch 3 · title line shadow', 'Scroll to the selected project card and watch its large title. A cyan-and-purple hard shadow shifts behind the letters without changing the title.', 'MEDIUM'],
+  '30': ['Batch 3 · expanding screenshot', 'Scroll to the project card. Its screenshot starts as a narrow strip marked “PROOF”; hover, keyboard-focus, or click it to expand the full image.', 'LARGE'],
+  '31': ['Batch 3 · flowing directory', 'Scroll to the project directory and hover or keyboard-focus a row. The normal row text is replaced by a repeated moving title-and-evidence marquee.', 'LARGE'],
 };
-const [surface, hypothesis] = experimentNotes[variant];
+const [surface, hypothesis, impact] = experimentNotes[variant];
 const numericVariant = Number(variant);
 const isMotionDeck = numericVariant >= 10 && numericVariant <= 31;
 const isCombinedBase = numericVariant >= 21 && numericVariant <= 31;
@@ -80,7 +80,7 @@ const effectName = {
 
 <article class:list={['experiment', `variant-${variant}`, isCombinedBase && 'combined-base']} data-variant={variant}>
   <header class="experiment-head">
-    <div><span class="experiment-no">{variant}</span><span>{surface}</span></div>
+    <div><span class="experiment-no">{variant}</span><span>{surface}</span>{impact && <b class="experiment-impact">{impact} CHANGE</b>}</div>
     <p>{hypothesis}</p>
     <h1>{title}</h1>
   </header>
@@ -613,8 +613,9 @@ const effectName = {
       for (const fact of document.querySelectorAll('[data-proof-fact]')) {
         const run = () => {
           const value = fact.querySelector('[data-proof-value]');
-          const target = Number(value?.dataset.proofValue || 0);
-          const unit = value?.dataset.proofUnit || '';
+          const rawTarget = value?.dataset.proofValue || '0';
+          const target = Number.parseInt(rawTarget, 10);
+          const unit = value?.dataset.proofUnit || rawTarget.replace(String(target), '');
           if (!value || shouldReduce()) return;
           animate(0, target, {
             duration: .7, easing: 'ease-out',

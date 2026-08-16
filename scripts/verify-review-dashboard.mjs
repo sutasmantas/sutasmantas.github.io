@@ -22,6 +22,11 @@ check('base 21 plus ten live derivatives are listed', await page.locator('[data-
 check('first derivative 22 starts selected', await page.locator('[data-review-variant="22"]').getAttribute('aria-pressed') === 'true');
 check('first derivative 22 is the initial live route', await page.locator('[data-review-frame="current"]').getAttribute('src') === '/design-lab/22/');
 check('derivative opens against combined base 21', await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/21/');
+check('every derivative declares its change size', await page.locator('[data-review-variant]:not([data-review-variant="21"])').evaluateAll((rows) => rows.every((row) => ['SMALL', 'MEDIUM', 'LARGE'].includes(row.dataset.impact))));
+
+await page.locator('[data-review-variant="27"]').click();
+check('27 is candidly labeled as a small change', await page.locator('[data-current-impact]').textContent() === 'SMALL CHANGE');
+check('27 explains its exact location, targets and result', (await page.locator('[data-current-hypothesis]').textContent()).includes('below the large intro paragraph') && (await page.locator('[data-current-hypothesis]').textContent()).includes('13, 10, or 100%') && (await page.locator('[data-current-hypothesis]').textContent()).includes('counts back'));
 
 await page.locator('[data-review-variant="30"]').click();
 await page.waitForFunction(() => document.querySelector('[data-review-frame="current"]')?.contentWindow?.location.pathname === '/design-lab/30/');

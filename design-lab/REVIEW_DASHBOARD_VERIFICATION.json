@@ -1,9 +1,9 @@
 {
-  "verifiedAt": "2026-08-16T19:41:53.004Z",
+  "verifiedAt": "2026-08-16T20:03:55.982Z",
   "result": "PASS",
   "summary": {
-    "checks": 27,
-    "passed": 27,
+    "checks": 30,
+    "passed": 30,
     "failed": 0
   },
   "checks": [
@@ -29,6 +29,21 @@
     },
     {
       "name": "derivative opens against combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "every derivative declares its change size",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 is candidly labeled as a small change",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 explains its exact location, targets and result",
       "pass": true,
       "detail": ""
     },

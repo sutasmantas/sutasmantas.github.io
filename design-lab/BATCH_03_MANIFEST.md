@@ -24,6 +24,9 @@ information architecture, links, or project count. Rejected mechanisms 12,
 - Route 21 exposes every selected mechanism and all 13 complete project
   records exactly once.
 - Routes 22–31 are derivatives of 21 and change one additional named system.
+- Every derivative identifies where to look, what action triggers it, what
+  visible result to expect, and whether its design impact is small, medium, or
+  large.
 - All routes preserve exact canonical headline, positioning, descriptions,
   evidence notes, client routes, case links, live links and site contact.
 - All 13 project names remain visible from the start in the grouped index.
@@ -54,18 +57,23 @@ are not imported and no source library replaces the portfolio architecture.
 
 ## Variant matrix
 
-| # | One additional changed system | Adapted source mechanism | Intended visible difference |
-| ---: | --- | --- | --- |
-| 22 | Project actions | React Bits `Magnet` | Case/live actions pull toward the pointer and settle back |
-| 23 | Screenshot surface | React Bits `GlareHover` | A hard diagonal glare scans across the product screenshot |
-| 24 | Project-change transition | React Bits `PixelTransition` | Selected proof resolves through a grid of disappearing pixels |
-| 25 | Directory proximity | React Bits `Dock` | Nearby project rows magnify around the pointer without hiding titles |
-| 26 | Selected project title | React Bits `DecryptedText` | The exact title unscrambles when a project is selected |
-| 27 | Proof figures | Magic UI `NumberTicker` | Each canonical figure counts on explicit hover/focus |
-| 28 | Selection feedback | React Bits `ClickSpark` | A short palette-matched spark confirms project selection |
-| 29 | Proof-card title material | Magic UI `LineShadowText` | The selected title receives a moving hard-line shadow |
-| 30 | Screenshot crop | Codrops `ImageExpansionTypography` | The screenshot expands from a typographic proof strip on interaction |
-| 31 | Directory hover | React Bits `FlowingMenu` | A repeated title/evidence marquee runs inside the focused row |
+| # | Impact | One additional changed system | Adapted source mechanism | Intended visible difference |
+| ---: | --- | --- | --- | --- |
+| 22 | Small | Project actions | React Bits `Magnet` | Case/live actions pull toward the pointer and settle back |
+| 23 | Medium | Screenshot surface | React Bits `GlareHover` | A hard diagonal glare scans across the product screenshot |
+| 24 | Medium | Project-change transition | React Bits `PixelTransition` | Selected proof resolves through a grid of disappearing pixels |
+| 25 | Medium | Directory proximity | React Bits `Dock` | Nearby project rows magnify around the pointer without hiding titles |
+| 26 | Medium | Selected project title | React Bits `DecryptedText` | The exact title unscrambles when a project is selected |
+| 27 | Small | Proof figures | Magic UI `NumberTicker` | The 13, 10, and 100% figures count on explicit hover/focus |
+| 28 | Small | Selection feedback | React Bits `ClickSpark` | A short palette-matched spark confirms project selection |
+| 29 | Medium | Proof-card title material | Magic UI `LineShadowText` | The selected title receives a moving hard-line shadow |
+| 30 | Large | Screenshot crop | Codrops `ImageExpansionTypography` | The screenshot expands from a typographic proof strip on interaction |
+| 31 | Large | Directory hover | React Bits `FlowingMenu` | A repeated title/evidence marquee runs inside the focused row |
+
+The impact labels describe immediate visual prominence, not implementation
+quality. Routes 22, 27, and 28 are intentionally microinteractions. They should
+be rejected if the owner wants only changes that materially alter the first
+impression.
 
 ## Decision table
 
@@ -87,9 +95,9 @@ are not imported and no source library replaces the portfolio architecture.
 - `npm run build`: **PASS** — 47 static pages.
 - `node scripts/verify-content-parity.mjs`: **PASS** — 512 canonical-content
   and equal-scope checks across combined base 21 and derivatives 22–31.
-- `node scripts/verify-design-lab.mjs`: **PASS** — 464 route, mechanism,
+- `node scripts/verify-design-lab.mjs`: **PASS** — 468 route, mechanism,
   interaction, console, clipping, responsive and reduced-motion checks.
-- `node scripts/verify-review-dashboard.mjs`: **PASS** — 27 dashboard,
+- `node scripts/verify-review-dashboard.mjs`: **PASS** — 30 dashboard,
   persistence, comparison, export, responsive and error checks.
 - `node scripts/capture-design-lab.mjs`: **PASS** — 22 full-page renders and
   two ordered base-plus-derivative contact sheets.
@@ -101,7 +109,10 @@ are not imported and no source library replaces the portfolio architecture.
 Manual visual review covered the complete desktop/mobile portfolio, the live
 review dashboard, and representative interaction-heavy routes. It also caught
 and corrected the mobile route-bar discoverability issue: all eleven Batch 03
-routes now appear without horizontal scrolling.
+routes now appear without horizontal scrolling. The later owner-clarity pass
+made every description an exact test instruction, added candid impact labels,
+and caught a parsing defect that prevented the `100%` figure in route 27 from
+animating. All three route-27 proof values now animate and resolve exactly.
 
 The verified lab was merged into `main` at `5fa6b22`. No derivative has replaced
 the production homepage; the next action is owner selection in the live Batch
