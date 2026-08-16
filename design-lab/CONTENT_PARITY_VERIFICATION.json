@@ -1,0 +1,2571 @@
+{
+  "verifiedAt": "2026-08-16T19:40:56.470Z",
+  "result": "PASS",
+  "summary": {
+    "checks": 512,
+    "passed": 512,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "name": "21 returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "21 preserves the canonical headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21 preserves the canonical positioning copy",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21 has no opaque Run Relay action",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21 never uses Relay as a standalone heading",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21 exposes exactly thirteen canonical project records",
+      "pass": true,
+      "detail": "found 13"
+    },
+    {
+      "name": "21 exposes every project once",
+      "pass": true,
+      "detail": "atlas,relay,leaddock,firstring,ledger-lens,proofgrid,switchback,pipelineforge,deliveryguard,adapterproof,printline,gauge,signalroom"
+    },
+    {
+      "name": "21/atlas preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/atlas preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/relay preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/relay preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/leaddock preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/leaddock preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/firstring preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/firstring preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/ledger-lens preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/ledger-lens preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/proofgrid preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/proofgrid preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/switchback preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/switchback preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/pipelineforge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/pipelineforge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/deliveryguard preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/deliveryguard preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/adapterproof preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/adapterproof preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/printline preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/printline preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/gauge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/gauge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/signalroom preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/signalroom preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21 preserves proof fact 13",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21 preserves proof fact 10",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21 preserves proof fact 100%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21 preserves all three client routes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/build preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/answer preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21/fix preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "21 preserves the contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "22 preserves the canonical headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 preserves the canonical positioning copy",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 has no opaque Run Relay action",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 never uses Relay as a standalone heading",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 exposes exactly thirteen canonical project records",
+      "pass": true,
+      "detail": "found 13"
+    },
+    {
+      "name": "22 exposes every project once",
+      "pass": true,
+      "detail": "atlas,relay,leaddock,firstring,ledger-lens,proofgrid,switchback,pipelineforge,deliveryguard,adapterproof,printline,gauge,signalroom"
+    },
+    {
+      "name": "22/atlas preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/atlas preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/relay preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/relay preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/leaddock preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/leaddock preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/firstring preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/firstring preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/ledger-lens preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/ledger-lens preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/proofgrid preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/proofgrid preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/switchback preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/switchback preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/pipelineforge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/pipelineforge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/deliveryguard preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/deliveryguard preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/adapterproof preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/adapterproof preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/printline preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/printline preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/gauge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/gauge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/signalroom preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/signalroom preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 preserves proof fact 13",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 preserves proof fact 10",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 preserves proof fact 100%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 preserves all three client routes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/build preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/answer preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22/fix preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 preserves the contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "23 preserves the canonical headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 preserves the canonical positioning copy",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 has no opaque Run Relay action",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 never uses Relay as a standalone heading",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 exposes exactly thirteen canonical project records",
+      "pass": true,
+      "detail": "found 13"
+    },
+    {
+      "name": "23 exposes every project once",
+      "pass": true,
+      "detail": "atlas,relay,leaddock,firstring,ledger-lens,proofgrid,switchback,pipelineforge,deliveryguard,adapterproof,printline,gauge,signalroom"
+    },
+    {
+      "name": "23/atlas preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/atlas preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/relay preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/relay preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/leaddock preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/leaddock preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/firstring preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/firstring preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/ledger-lens preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/ledger-lens preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/proofgrid preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/proofgrid preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/switchback preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/switchback preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/pipelineforge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/pipelineforge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/deliveryguard preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/deliveryguard preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/adapterproof preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/adapterproof preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/printline preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/printline preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/gauge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/gauge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/signalroom preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/signalroom preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 preserves proof fact 13",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 preserves proof fact 10",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 preserves proof fact 100%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 preserves all three client routes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/build preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/answer preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23/fix preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 preserves the contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "24 preserves the canonical headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 preserves the canonical positioning copy",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 has no opaque Run Relay action",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 never uses Relay as a standalone heading",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 exposes exactly thirteen canonical project records",
+      "pass": true,
+      "detail": "found 13"
+    },
+    {
+      "name": "24 exposes every project once",
+      "pass": true,
+      "detail": "atlas,relay,leaddock,firstring,ledger-lens,proofgrid,switchback,pipelineforge,deliveryguard,adapterproof,printline,gauge,signalroom"
+    },
+    {
+      "name": "24/atlas preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/atlas preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/relay preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/relay preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/leaddock preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/leaddock preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/firstring preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/firstring preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/ledger-lens preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/ledger-lens preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/proofgrid preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/proofgrid preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/switchback preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/switchback preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/pipelineforge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/pipelineforge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/deliveryguard preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/deliveryguard preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/adapterproof preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/adapterproof preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/printline preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/printline preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/gauge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/gauge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/signalroom preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/signalroom preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 preserves proof fact 13",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 preserves proof fact 10",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 preserves proof fact 100%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 preserves all three client routes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/build preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/answer preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24/fix preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 preserves the contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "25 preserves the canonical headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 preserves the canonical positioning copy",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 has no opaque Run Relay action",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 never uses Relay as a standalone heading",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 exposes exactly thirteen canonical project records",
+      "pass": true,
+      "detail": "found 13"
+    },
+    {
+      "name": "25 exposes every project once",
+      "pass": true,
+      "detail": "atlas,relay,leaddock,firstring,ledger-lens,proofgrid,switchback,pipelineforge,deliveryguard,adapterproof,printline,gauge,signalroom"
+    },
+    {
+      "name": "25/atlas preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/atlas preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/relay preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/relay preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/leaddock preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/leaddock preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/firstring preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/firstring preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/ledger-lens preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/ledger-lens preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/proofgrid preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/proofgrid preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/switchback preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/switchback preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/pipelineforge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/pipelineforge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/deliveryguard preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/deliveryguard preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/adapterproof preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/adapterproof preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/printline preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/printline preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/gauge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/gauge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/signalroom preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/signalroom preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 preserves proof fact 13",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 preserves proof fact 10",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 preserves proof fact 100%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 preserves all three client routes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/build preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/answer preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25/fix preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 preserves the contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "26 preserves the canonical headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 preserves the canonical positioning copy",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 has no opaque Run Relay action",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 never uses Relay as a standalone heading",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 exposes exactly thirteen canonical project records",
+      "pass": true,
+      "detail": "found 13"
+    },
+    {
+      "name": "26 exposes every project once",
+      "pass": true,
+      "detail": "atlas,relay,leaddock,firstring,ledger-lens,proofgrid,switchback,pipelineforge,deliveryguard,adapterproof,printline,gauge,signalroom"
+    },
+    {
+      "name": "26/atlas preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/atlas preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/relay preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/relay preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/leaddock preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/leaddock preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/firstring preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/firstring preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/ledger-lens preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/ledger-lens preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/proofgrid preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/proofgrid preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/switchback preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/switchback preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/pipelineforge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/pipelineforge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/deliveryguard preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/deliveryguard preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/adapterproof preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/adapterproof preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/printline preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/printline preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/gauge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/gauge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/signalroom preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/signalroom preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 preserves proof fact 13",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 preserves proof fact 10",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 preserves proof fact 100%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 preserves all three client routes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/build preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/answer preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26/fix preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 preserves the contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "27 preserves the canonical headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 preserves the canonical positioning copy",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 has no opaque Run Relay action",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 never uses Relay as a standalone heading",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 exposes exactly thirteen canonical project records",
+      "pass": true,
+      "detail": "found 13"
+    },
+    {
+      "name": "27 exposes every project once",
+      "pass": true,
+      "detail": "atlas,relay,leaddock,firstring,ledger-lens,proofgrid,switchback,pipelineforge,deliveryguard,adapterproof,printline,gauge,signalroom"
+    },
+    {
+      "name": "27/atlas preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/atlas preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/relay preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/relay preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/leaddock preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/leaddock preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/firstring preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/firstring preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/ledger-lens preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/ledger-lens preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/proofgrid preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/proofgrid preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/switchback preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/switchback preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/pipelineforge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/pipelineforge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/deliveryguard preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/deliveryguard preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/adapterproof preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/adapterproof preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/printline preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/printline preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/gauge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/gauge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/signalroom preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/signalroom preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 preserves proof fact 13",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 preserves proof fact 10",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 preserves proof fact 100%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 preserves all three client routes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/build preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/answer preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27/fix preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 preserves the contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "28 preserves the canonical headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 preserves the canonical positioning copy",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 has no opaque Run Relay action",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 never uses Relay as a standalone heading",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 exposes exactly thirteen canonical project records",
+      "pass": true,
+      "detail": "found 13"
+    },
+    {
+      "name": "28 exposes every project once",
+      "pass": true,
+      "detail": "atlas,relay,leaddock,firstring,ledger-lens,proofgrid,switchback,pipelineforge,deliveryguard,adapterproof,printline,gauge,signalroom"
+    },
+    {
+      "name": "28/atlas preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/atlas preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/relay preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/relay preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/leaddock preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/leaddock preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/firstring preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/firstring preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/ledger-lens preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/ledger-lens preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/proofgrid preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/proofgrid preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/switchback preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/switchback preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/pipelineforge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/pipelineforge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/deliveryguard preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/deliveryguard preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/adapterproof preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/adapterproof preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/printline preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/printline preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/gauge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/gauge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/signalroom preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/signalroom preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 preserves proof fact 13",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 preserves proof fact 10",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 preserves proof fact 100%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 preserves all three client routes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/build preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/answer preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28/fix preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 preserves the contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "29 preserves the canonical headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 preserves the canonical positioning copy",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 has no opaque Run Relay action",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 never uses Relay as a standalone heading",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 exposes exactly thirteen canonical project records",
+      "pass": true,
+      "detail": "found 13"
+    },
+    {
+      "name": "29 exposes every project once",
+      "pass": true,
+      "detail": "atlas,relay,leaddock,firstring,ledger-lens,proofgrid,switchback,pipelineforge,deliveryguard,adapterproof,printline,gauge,signalroom"
+    },
+    {
+      "name": "29/atlas preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/atlas preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/relay preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/relay preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/leaddock preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/leaddock preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/firstring preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/firstring preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/ledger-lens preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/ledger-lens preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/proofgrid preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/proofgrid preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/switchback preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/switchback preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/pipelineforge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/pipelineforge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/deliveryguard preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/deliveryguard preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/adapterproof preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/adapterproof preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/printline preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/printline preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/gauge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/gauge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/signalroom preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/signalroom preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 preserves proof fact 13",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 preserves proof fact 10",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 preserves proof fact 100%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 preserves all three client routes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/build preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/answer preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29/fix preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 preserves the contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "30 preserves the canonical headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 preserves the canonical positioning copy",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 has no opaque Run Relay action",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 never uses Relay as a standalone heading",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 exposes exactly thirteen canonical project records",
+      "pass": true,
+      "detail": "found 13"
+    },
+    {
+      "name": "30 exposes every project once",
+      "pass": true,
+      "detail": "atlas,relay,leaddock,firstring,ledger-lens,proofgrid,switchback,pipelineforge,deliveryguard,adapterproof,printline,gauge,signalroom"
+    },
+    {
+      "name": "30/atlas preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/atlas preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/relay preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/relay preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/leaddock preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/leaddock preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/firstring preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/firstring preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/ledger-lens preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/ledger-lens preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/proofgrid preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/proofgrid preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/switchback preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/switchback preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/pipelineforge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/pipelineforge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/deliveryguard preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/deliveryguard preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/adapterproof preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/adapterproof preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/printline preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/printline preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/gauge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/gauge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/signalroom preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/signalroom preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 preserves proof fact 13",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 preserves proof fact 10",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 preserves proof fact 100%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 preserves all three client routes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/build preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/answer preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30/fix preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 preserves the contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "31 preserves the canonical headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 preserves the canonical positioning copy",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 has no opaque Run Relay action",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 never uses Relay as a standalone heading",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 exposes exactly thirteen canonical project records",
+      "pass": true,
+      "detail": "found 13"
+    },
+    {
+      "name": "31 exposes every project once",
+      "pass": true,
+      "detail": "atlas,relay,leaddock,firstring,ledger-lens,proofgrid,switchback,pipelineforge,deliveryguard,adapterproof,printline,gauge,signalroom"
+    },
+    {
+      "name": "31/atlas preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/atlas preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/relay preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/relay preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/leaddock preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/leaddock preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/firstring preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/firstring preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/ledger-lens preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/ledger-lens preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/proofgrid preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/proofgrid preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/switchback preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/switchback preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/pipelineforge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/pipelineforge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/deliveryguard preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/deliveryguard preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/adapterproof preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/adapterproof preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/printline preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/printline preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/gauge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/gauge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/signalroom preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/signalroom preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 preserves proof fact 13",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 preserves proof fact 10",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 preserves proof fact 100%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 preserves all three client routes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/build preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/answer preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31/fix preserves route copy and deliverables",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 preserves the contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "atlas removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "atlas removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "atlas retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "relay removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "relay removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "relay retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "leaddock removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "leaddock removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "leaddock retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "firstring removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "firstring removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "firstring retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ledger-lens removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ledger-lens removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ledger-lens retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "proofgrid removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "proofgrid removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "proofgrid retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "switchback removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "switchback removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "switchback retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "pipelineforge removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "pipelineforge removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "pipelineforge retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "deliveryguard removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "deliveryguard removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "deliveryguard retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "adapterproof removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "adapterproof removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "adapterproof retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "printline removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "printline removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "printline retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "gauge removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "gauge removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "gauge retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "signalroom removes project-specific email actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "signalroom removes the Talk about project button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "signalroom retains the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 is the explicitly selected initial experiment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "dashboard initially loads experiment 22",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 compares directly against combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "22 labels the equal-scope comparison",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 compares directly against combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "23 labels the equal-scope comparison",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 compares directly against combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "24 labels the equal-scope comparison",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 compares directly against combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "25 labels the equal-scope comparison",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 compares directly against combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "26 labels the equal-scope comparison",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 compares directly against combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "27 labels the equal-scope comparison",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 compares directly against combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "28 labels the equal-scope comparison",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 compares directly against combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "29 labels the equal-scope comparison",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 compares directly against combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "30 labels the equal-scope comparison",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 compares directly against combined base 21",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 labels the equal-scope comparison",
+      "pass": true,
+      "detail": ""
+    }
+  ]
+}

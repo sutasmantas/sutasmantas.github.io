@@ -1,0 +1,336 @@
+{
+  "capturedAt": "2026-08-16T19:41:58.622Z",
+  "origin": "http://127.0.0.1:8912",
+  "routes": {
+    "21": {
+      "desktop": {
+        "status": 200,
+        "screenshot": "design-lab/renders/21/desktop.png",
+        "title": "Combined selected base — Portfolio design lab",
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "scrollHeight": 4116,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "mobile": {
+        "status": 200,
+        "screenshot": "design-lab/renders/21/mobile.png",
+        "title": "Combined selected base — Portfolio design lab",
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "scrollHeight": 5340,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      }
+    },
+    "22": {
+      "desktop": {
+        "status": 200,
+        "screenshot": "design-lab/renders/22/desktop.png",
+        "title": "Magnetic project actions — Portfolio design lab",
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "scrollHeight": 4116,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "mobile": {
+        "status": 200,
+        "screenshot": "design-lab/renders/22/mobile.png",
+        "title": "Magnetic project actions — Portfolio design lab",
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "scrollHeight": 5340,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      }
+    },
+    "23": {
+      "desktop": {
+        "status": 200,
+        "screenshot": "design-lab/renders/23/desktop.png",
+        "title": "Glare-inspected screenshots — Portfolio design lab",
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "scrollHeight": 4116,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "mobile": {
+        "status": 200,
+        "screenshot": "design-lab/renders/23/mobile.png",
+        "title": "Glare-inspected screenshots — Portfolio design lab",
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "scrollHeight": 5340,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      }
+    },
+    "24": {
+      "desktop": {
+        "status": 200,
+        "screenshot": "design-lab/renders/24/desktop.png",
+        "title": "Pixel-resolve project transition — Portfolio design lab",
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "scrollHeight": 4111,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "mobile": {
+        "status": 200,
+        "screenshot": "design-lab/renders/24/mobile.png",
+        "title": "Pixel-resolve project transition — Portfolio design lab",
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "scrollHeight": 5340,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      }
+    },
+    "25": {
+      "desktop": {
+        "status": 200,
+        "screenshot": "design-lab/renders/25/desktop.png",
+        "title": "Dock-magnified directory — Portfolio design lab",
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "scrollHeight": 4136,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "mobile": {
+        "status": 200,
+        "screenshot": "design-lab/renders/25/mobile.png",
+        "title": "Dock-magnified directory — Portfolio design lab",
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "scrollHeight": 5343,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      }
+    },
+    "26": {
+      "desktop": {
+        "status": 200,
+        "screenshot": "design-lab/renders/26/desktop.png",
+        "title": "Decrypted project title — Portfolio design lab",
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "scrollHeight": 4111,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "mobile": {
+        "status": 200,
+        "screenshot": "design-lab/renders/26/mobile.png",
+        "title": "Decrypted project title — Portfolio design lab",
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "scrollHeight": 5340,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      }
+    },
+    "27": {
+      "desktop": {
+        "status": 200,
+        "screenshot": "design-lab/renders/27/desktop.png",
+        "title": "Interactive proof ticker — Portfolio design lab",
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "scrollHeight": 4111,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "mobile": {
+        "status": 200,
+        "screenshot": "design-lab/renders/27/mobile.png",
+        "title": "Interactive proof ticker — Portfolio design lab",
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "scrollHeight": 5340,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      }
+    },
+    "28": {
+      "desktop": {
+        "status": 200,
+        "screenshot": "design-lab/renders/28/desktop.png",
+        "title": "Selection spark feedback — Portfolio design lab",
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "scrollHeight": 4111,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "mobile": {
+        "status": 200,
+        "screenshot": "design-lab/renders/28/mobile.png",
+        "title": "Selection spark feedback — Portfolio design lab",
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "scrollHeight": 5340,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      }
+    },
+    "29": {
+      "desktop": {
+        "status": 200,
+        "screenshot": "design-lab/renders/29/desktop.png",
+        "title": "Line-shadow project title — Portfolio design lab",
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "scrollHeight": 4116,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "mobile": {
+        "status": 200,
+        "screenshot": "design-lab/renders/29/mobile.png",
+        "title": "Line-shadow project title — Portfolio design lab",
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "scrollHeight": 5340,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      }
+    },
+    "30": {
+      "desktop": {
+        "status": 200,
+        "screenshot": "design-lab/renders/30/desktop.png",
+        "title": "Expanding proof screenshot — Portfolio design lab",
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "scrollHeight": 4116,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "mobile": {
+        "status": 200,
+        "screenshot": "design-lab/renders/30/mobile.png",
+        "title": "Expanding proof screenshot — Portfolio design lab",
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "scrollHeight": 5343,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      }
+    },
+    "31": {
+      "desktop": {
+        "status": 200,
+        "screenshot": "design-lab/renders/31/desktop.png",
+        "title": "Flowing project directory — Portfolio design lab",
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "scrollHeight": 4116,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      "mobile": {
+        "status": 200,
+        "screenshot": "design-lab/renders/31/mobile.png",
+        "title": "Flowing project directory — Portfolio design lab",
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "scrollHeight": 5340,
+        "images": 26,
+        "visibleImages": 2,
+        "brokenVisibleImages": 0,
+        "unloadedHiddenImages": 24,
+        "consoleErrors": [],
+        "pageErrors": []
+      }
+    }
+  }
+}

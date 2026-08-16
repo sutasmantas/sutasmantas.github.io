@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import ProjectStage from '../../components/ProjectStage.astro';
-import { projects, ordered, routeLabel, contact } from '../../data/portfolio.js';
+import { projects, ordered, routeLabel } from '../../data/portfolio.js';
 import { evidenceBySlug } from '../../data/evidence.js';
 import { href, homeAnchor, homeFiltered } from '../../lib/paths.js';
 
@@ -97,7 +97,6 @@ const num = String(p.order).padStart(2, '0');
     </div>
     <p class="lede">If you want this pointed at your own systems and data, tell me what you are trying to fix.</p>
     <div class="acts">
-      <a class="btn" href={`mailto:${contact.email}?subject=${encodeURIComponent(p.name)}`}>Talk about {p.name}</a>
       <a class="btn ghost" href={href(`/evidence/#${p.slug}`)}>Evidence and rerun</a>
       <a class="btn ghost" href={p.source}>Source and tests</a>
     </div>

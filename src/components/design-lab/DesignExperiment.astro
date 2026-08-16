@@ -1,0 +1,638 @@
+---
+import { Image } from 'astro:assets';
+import CompletePortfolio from './CompletePortfolio.astro';
+import '../../styles/design-lab.css';
+import portrait from '../../assets/photo/mantas.png';
+import { ordered, projects, routes } from '../../data/portfolio.js';
+import { evidenceBySlug } from '../../data/evidence.js';
+import { shotFor } from '../../data/shots.js';
+import { href } from '../../lib/paths.js';
+
+const { variant, title } = Astro.props;
+const bySlug = Object.fromEntries(projects.map((project) => [project.slug, project]));
+const atlas = bySlug.atlas;
+const relay = bySlug.relay;
+const gauge = bySlug.gauge;
+const lead = bySlug.leaddock;
+const firstRing = bySlug.firstring;
+const ledger = bySlug['ledger-lens'];
+const signal = bySlug.signalroom;
+const proofgrid = bySlug.proofgrid;
+
+const accents = {
+  atlas: '#6457d9', relay: '#ec6848', leaddock: '#7b43c5', firstring: '#ef7d32',
+  'ledger-lens': '#2d796e', proofgrid: '#624cc8', switchback: '#168765',
+  pipelineforge: '#b7663e', deliveryguard: '#316b92', adapterproof: '#99703c',
+  printline: '#b9497d', gauge: '#d9a414', signalroom: '#39718a',
+};
+
+const routeName = { build: 'Do the work', answer: 'Answer the evidence', fix: 'Make it reliable' };
+const relayEvidence = evidenceBySlug.relay;
+const atlasEvidence = evidenceBySlug.atlas;
+const experimentNotes = {
+  '01': ['Overall art direction', 'A broadsheet rhythm can make the whole site feel commissioned without slowing the scan.'],
+  '02': ['Hero composition', 'A person and a running product should share the first screen instead of appearing as separate signals.'],
+  '03': ['Display typography', 'The width axis already in Archivo can become an identity device without adding another font.'],
+  '04': ['Live-system stage', 'A guided inspection view can make one product state legible at contact-sheet size.'],
+  '05': ['Project discovery', 'Keep all thirteen visible, but give hover and focus a collision-safe evidence preview.'],
+  '06': ['Comparison reference · product identity', 'A complete visible index keeps the quiet shell and per-system identity available as the comparison reference for selected base 10.'],
+  '07': ['Evidence and results', 'Reliability proof should scan like a receipt, not like ordinary documentation metadata.'],
+  '08': ['Project detail', 'A sticky case spine can expose depth without forcing one long undifferentiated read.'],
+  '09': ['Human authorship', 'Real engineering judgements can make the site personal without invented clients or testimonials.'],
+  '10': ['Selected base · motion and feedback', 'The selected motion-led base exposes all thirteen systems once, with readable controls and a bounded user-triggered transition.'],
+  '11': ['Batch 2 · proof-deck perimeter', 'A copied border-beam mechanism can turn the evidence object into a live signal without changing its content or controls.'],
+  '12': ['Batch 2 · pointer lighting', 'A pointer-relative light field can make the proof deck feel inspectable while keeping motion entirely user-triggered.'],
+  '13': ['Batch 2 · screenshot inspection', 'A copied radial lens can make dense product screenshots explorable without replacing the full image.'],
+  '14': ['Batch 2 · interactive field', 'A copied responsive grid can make the directory field feel computational without obscuring a single project.'],
+  '15': ['Batch 2 · surface texture', 'A copied SVG turbulence treatment can make the same composition tactile instead of glassy.'],
+  '16': ['Batch 2 · active-row signal', 'A copied conic shimmer can make the selected project unmistakable without changing index structure.'],
+  '17': ['Batch 2 · headline material', 'A copied animated-gradient treatment can turn the exact same headline into the dominant visual object.'],
+  '18': ['Batch 2 · proof transition', 'A copied blur-fade transition can make project changes feel cinematic while remaining instantaneous under reduced motion.'],
+  '19': ['Batch 2 · screenshot reveal', 'A Codrops clip-path reveal can make each selected product enter from its client-route direction.'],
+  '20': ['Batch 2 · evidence depth', 'A Codrops 3D-stack mechanism can make the proof object feel physically layered without scroll hijacking.'],
+  '21': ['Batch 3 · combined control', 'The five owner-selected Batch 2 mechanisms now operate together as the equal-scope control.'],
+  '22': ['Batch 3 · magnetic actions', 'Copied magnetic proximity can make the two real project actions feel more tactile without changing their destination.'],
+  '23': ['Batch 3 · screenshot glare', 'A copied diagonal glare can make the product screenshot read as a physical inspection surface.'],
+  '24': ['Batch 3 · pixel transition', 'A copied pixel-grid transition can replace the selected clip reveal with a harder digital state change.'],
+  '25': ['Batch 3 · directory magnification', 'Copied dock proximity can enlarge nearby project rows while keeping all thirteen titles visible.'],
+  '26': ['Batch 3 · title decrypt', 'A copied character-scramble mechanism can resolve the exact selected project title on demand.'],
+  '27': ['Batch 3 · proof ticker', 'Copied number-ticker behavior can turn each canonical proof figure into an explicit interactive fact.'],
+  '28': ['Batch 3 · selection spark', 'Copied click-spark feedback can acknowledge project selection without adding a fake action.'],
+  '29': ['Batch 3 · title line shadow', 'A copied moving line shadow can give the selected project title a distinct technical material.'],
+  '30': ['Batch 3 · expanding screenshot', 'A Codrops-inspired crop can expand the real product screenshot from a narrow proof strip.'],
+  '31': ['Batch 3 · flowing directory', 'A copied flowing-menu marquee can amplify the focused project while its full canonical row stays available.'],
+};
+const [surface, hypothesis] = experimentNotes[variant];
+const numericVariant = Number(variant);
+const isMotionDeck = numericVariant >= 10 && numericVariant <= 31;
+const isCombinedBase = numericVariant >= 21 && numericVariant <= 31;
+const effectName = {
+  '10': 'base', '11': 'border-beam', '12': 'magic-light', '13': 'lens',
+  '14': 'interactive-grid', '15': 'noise', '16': 'shimmer',
+  '17': 'gradient-type', '18': 'blur-fade', '19': 'clip-reveal',
+  '20': 'three-d-stack',
+  '21': 'combined-base', '22': 'magnet-actions', '23': 'glare',
+  '24': 'pixel-transition', '25': 'dock-index', '26': 'scramble-title',
+  '27': 'number-ticker', '28': 'click-spark', '29': 'line-shadow',
+  '30': 'image-expand', '31': 'flowing-menu',
+}[variant];
+---
+
+<article class:list={['experiment', `variant-${variant}`, isCombinedBase && 'combined-base']} data-variant={variant}>
+  <header class="experiment-head">
+    <div><span class="experiment-no">{variant}</span><span>{surface}</span></div>
+    <p>{hypothesis}</p>
+    <h1>{title}</h1>
+  </header>
+
+  <CompletePortfolio variant={isMotionDeck ? '10' : variant} labVariant={variant} customDirectory={variant === '05' || variant === '06' || isMotionDeck}>
+
+  {variant === '01' && (
+    <section class="v01-canvas" aria-label="Systems broadsheet art direction">
+      <header class="v01-mast">
+        <span>MŠ / Independent AI engineering</span><b>Systems issue 13</b><span>Vilnius · Remote · 2026</span>
+      </header>
+      <div class="v01-hero">
+        <p class="v01-kicker">Working systems, open evidence</p>
+        <h2>AI that survives<br /><em>contact with reality.</em></h2>
+        <p class="v01-deck">Thirteen open systems for voice, documents, retrieval, workflows and reliability—built end to end by Mantas Šutas.</p>
+        <a href={atlas.live}>Open a working system ↗</a>
+      </div>
+      <div class="v01-signal">
+        <span class="v01-big">13</span><span>systems<br />open now</span>
+      </div>
+      <figure class="v01-main-media">
+        <Image src={shotFor(atlas.shot)} alt={atlas.alt} widths={[720, 1100]} sizes="(max-width: 760px) 100vw, 58vw" />
+        <figcaption><b>{atlas.title}</b><span>{atlas.name} / {atlas.note}</span></figcaption>
+      </figure>
+      <div class="v01-index">
+        {[relay, lead, firstRing, gauge].map((project) => (
+          <a href={href(`/work/${project.slug}/`)} style={`--project:${accents[project.slug]}`}>
+            <span>{String(project.order).padStart(2, '0')}</span><b>{project.title}</b><small>{project.name} / {project.note}</small>
+          </a>
+        ))}
+      </div>
+      <aside class="v01-aside">
+        <p>One engineer.<br />Three client routes.<br />Every claim inspectable.</p>
+        <span>Build / Answer / Fix</span>
+      </aside>
+    </section>
+  )}
+
+  {variant === '02' && (
+    <section class="v02-canvas" aria-label="Person and product hero">
+      <div class="v02-person">
+        <p class="v02-eyebrow">Independent AI engineer · Remote</p>
+        <h2>I build the system.<br /><em>You can open the proof.</em></h2>
+        <p>Agent workflows, retrieval, documents, voice and the reliability layer underneath—designed and built by the person you are talking to.</p>
+        <div class="v02-actions"><a href="#v02-work">See the work</a><a href="mailto:sutasmantas@gmail.com">Email Mantas ↗</a></div>
+        <dl><div><dt>13</dt><dd>working systems</dd></div><div><dt>100%</dt><dd>open source</dd></div></dl>
+      </div>
+      <figure class="v02-portrait">
+        <Image src={portrait} alt="Mantas Šutas" widths={[480, 720, 960]} sizes="(max-width: 760px) 100vw, 38vw" loading="eager" />
+        <figcaption><span>Mantas Šutas</span><span>Designs it · builds it · tests it</span></figcaption>
+      </figure>
+      <div class="v02-work" id="v02-work">
+        <div class="v02-screen"><Image src={shotFor(relay.shot)} alt={relay.alt} widths={[720, 1200]} sizes="(max-width: 760px) 100vw, 55vw" /></div>
+        <div class="v02-card"><span>Running evidence / {relay.name}</span><h3>{relay.title}</h3><p>{relay.blurb}</p><b>{relay.note}</b><a href={relay.live}>Open the support system ↗</a></div>
+      </div>
+    </section>
+  )}
+
+  {variant === '03' && (
+    <section class="v03-canvas" aria-label="Variable-width typographic composition">
+      <div class="v03-copy">
+        <p>Independent AI engineering / thirteen open systems</p>
+        <h2><span>BUILD</span><span>THE WORK.</span><em>PROVE</em><span>THE EFFECT.</span></h2>
+      </div>
+      <div class="v03-control">
+        <label for="type-width">Set the voice <output for="type-width" data-width-output>112%</output></label>
+        <input id="type-width" data-type-width type="range" min="78" max="125" value="112" />
+        <p>Same self-hosted Archivo file. No new font and no decorative graphic.</p>
+      </div>
+      <div class="v03-strip">
+        {[atlas, relay, gauge].map((project) => (
+          <a href={href(`/work/${project.slug}/`)} style={`--project:${accents[project.slug]}`}>
+            <Image src={shotFor(project.shot)} alt={project.alt} widths={[360, 560]} sizes="(max-width: 760px) 90vw, 27vw" />
+            <span>{String(project.order).padStart(2, '0')} / {project.name}</span><b>{project.title}</b><small>{project.blurb}</small>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {variant === '04' && (
+    <section class="v04-canvas" aria-label="Guided product inspection stage" data-inspection>
+      <header class="v04-title"><span>12 / Gauge inspection</span><h2>One product state.<br />Three things worth checking.</h2><a href={gauge.live}>Open full system ↗</a></header>
+      <div class="v04-stage">
+        <Image src={shotFor(gauge.shot)} alt={gauge.alt} widths={[760, 1280, 1600]} sizes="(max-width: 760px) 100vw, 72vw" />
+        <div class="v04-focus" data-inspection-focus aria-hidden="true"></div>
+        <button style="--x:31%;--y:29%" data-inspection-point="input" aria-pressed="true"><span>1</span><b>Source image</b></button>
+        <button style="--x:59%;--y:52%" data-inspection-point="decision" aria-pressed="false"><span>2</span><b>Defect decision</b></button>
+        <button style="--x:82%;--y:77%" data-inspection-point="review" aria-pressed="false"><span>3</span><b>Human route</b></button>
+      </div>
+      <div class="v04-notes" aria-live="polite">
+        <article data-inspection-note="input"><span>01 / Input</span><h3>The real inspection frame stays visible.</h3><p>The stage starts with the product’s own image and crop, not a generic dashboard mockup.</p></article>
+        <article data-inspection-note="decision" hidden><span>02 / Decision</span><h3>The important output gets a deliberate focus.</h3><p>The rejected part and its localized defect are the product argument—not the surrounding controls.</p></article>
+        <article data-inspection-note="review" hidden><span>03 / Boundary</span><h3>Uncertain cases go to a person.</h3><p>The public claim stays bounded: autonomous where safe, review-routed where it is not.</p></article>
+      </div>
+    </section>
+  )}
+
+  {variant === '05' && (
+    <section class="v05-canvas" aria-label="Project discovery evidence lens" data-discovery>
+      <header><p>Find the closest evidence</p><h2>What are you trying to get done?</h2><span>All thirteen remain visible.</span></header>
+      <div class="v05-layout">
+        <div class="v05-groups">
+          {routes.map((route, routeIndex) => (
+            <section>
+              <h3><span>{['A', 'B', 'C'][routeIndex]}</span>{routeName[route.id]}</h3>
+              <ol>
+                {ordered.filter((project) => project.route === route.id).map((project) => (
+                  <li>
+                    <a
+                      href={href(`/work/${project.slug}/`)}
+                      data-discovery-row={project.slug}
+                      style={`--project:${accents[project.slug]}`}
+                    ><span>{String(project.order).padStart(2, '0')}</span><b>{project.title}</b><small>{project.note}</small></a>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          ))}
+        </div>
+        <aside class="v05-preview" data-discovery-preview aria-live="polite">
+          {ordered.map((project) => (
+            <figure data-discovery-card={project.slug} data-project-record data-project-slug={project.slug} hidden={project.slug !== atlas.slug}>
+              <div style={`--project:${accents[project.slug]}`}><Image src={shotFor(project.shot)} alt={project.alt} widths={[560, 840]} sizes="(max-width: 900px) 92vw, 36vw" /></div>
+              <figcaption>
+                <span>{project.name} / {project.family}</span><h3>{project.title}</h3><p>{project.blurb}</p><b>{project.note}</b>
+                <div class="v05-actions"><a href={href(`/work/${project.slug}/`)}>View case</a><a href={project.live}>Open live ↗</a></div>
+              </figcaption>
+            </figure>
+          ))}
+        </aside>
+      </div>
+    </section>
+  )}
+
+  {variant === '06' && (
+    <section class="v06-canvas" aria-label="Per-product colour registry" data-registry>
+      <header><p>Comparison reference / identity-led directory</p><h2>Every system visible. Every system distinct.</h2></header>
+      <div class="v06-layout">
+        <ol class="v06-list">
+          {ordered.map((project) => (
+            <li style={`--project:${accents[project.slug]}`}>
+              <button type="button" data-registry-row={project.slug} aria-pressed={project.slug === atlas.slug ? 'true' : 'false'}>
+                <span>{String(project.order).padStart(2, '0')}</span>
+                <b>{project.title}</b>
+                <small>{project.name} / {project.family}</small>
+                <i aria-hidden="true"></i>
+              </button>
+            </li>
+          ))}
+        </ol>
+        <div class="v06-display" data-registry-display>
+          {ordered.map((project) => (
+            <article data-registry-card={project.slug} data-project-record data-project-slug={project.slug} hidden={project.slug !== atlas.slug} style={`--project:${accents[project.slug]}`}>
+              <div class="v06-image"><Image src={shotFor(project.shot)} alt={project.alt} widths={[700, 1100]} sizes="(max-width: 760px) 92vw, 56vw" /></div>
+              <div><span>{project.name} / {project.family}</span><h3>{project.title}</h3><p>{project.blurb}</p><b>{project.note}</b><div class="v06-actions"><a href={href(`/work/${project.slug}/`)}>View case</a><a href={project.live}>Open live ↗</a></div></div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {variant === '07' && (
+    <section class="v07-canvas" aria-label="Executable evidence receipt" data-receipt>
+      <header><span>Verification receipt / AI support operations / {relay.name}</span><b>PASS</b></header>
+      <div class="v07-score"><strong>7<span>/7</span></strong><div><h2>{relay.title}</h2><p>{relay.blurb}</p><p>{relayEvidence.claim}</p></div></div>
+      <div class="v07-body">
+        <figure><Image src={shotFor(relay.shot)} alt={relay.alt} widths={[650, 1000]} sizes="(max-width: 760px) 100vw, 48vw" /><figcaption>Real operator surface / approved once / applied once</figcaption></figure>
+        <div class="v07-timeline">
+          <button type="button" data-replay>Replay the failure path <span>→</span></button>
+          <ol aria-live="polite">
+            <li data-step="1"><span>01</span><b>Action accepted</b><small>idempotency key fixed</small></li>
+            <li data-step="2"><span>02</span><b>Process killed</b><small>receipt survives restart</small></li>
+            <li data-step="3"><span>03</span><b>Retry recovered</b><small>same effect identity</small></li>
+            <li data-step="4"><span>04</span><b>Duplicate refused</b><small>external count remains one</small></li>
+          </ol>
+        </div>
+      </div>
+      <dl class="v07-links">
+        <div><dt>Artifact</dt><dd><a href={relayEvidence.artifact.url}>{relayEvidence.artifact.label} ↗</a></dd></div>
+        <div><dt>Test</dt><dd><a href={relayEvidence.test.url}>{relayEvidence.test.label} ↗</a></dd></div>
+        <div><dt>Hosted gate</dt><dd><a href={relayEvidence.hosted.url}>{relayEvidence.hosted.label} ↗</a></dd></div>
+      </dl>
+      <div class="v07-limit"><span>Rerun</span><code>{relayEvidence.rerun}</code><p><b>Limit:</b> {relayEvidence.boundary}</p></div>
+    </section>
+  )}
+
+  {variant === '08' && (
+    <section class="v08-canvas" aria-label="Project detail case spine" data-case-spine>
+      <aside>
+        <p>01 / Atlas</p><h2>{atlas.asks}</h2>
+        <nav aria-label="Case chapters">
+          <button type="button" data-case-tab="problem" aria-pressed="true"><span>01</span>Problem</button>
+          <button type="button" data-case-tab="run" aria-pressed="false"><span>02</span>Run it</button>
+          <button type="button" data-case-tab="receipt" aria-pressed="false"><span>03</span>Receipt</button>
+          <button type="button" data-case-tab="adapt" aria-pressed="false"><span>04</span>Adapt it</button>
+        </nav>
+        <a href={atlas.live}>Open Atlas full size ↗</a>
+      </aside>
+      <div class="v08-content">
+        <section data-case-panel="problem"><span>Chapter 01 / Problem</span><h3>Answers are cheap.<br />Evidence is the product.</h3><p>{atlas.blurb}</p><div class="v08-facts"><b>Cites, or declines</b><b>Document versions visible</b><b>No-key public path</b></div></section>
+        <section data-case-panel="run" hidden><span>Chapter 02 / Run it</span><h3>Ask a prepared policy question.</h3><p>The running workspace stays in the case page. A visitor can inspect the cited passage before reading implementation detail.</p></section>
+        <section data-case-panel="receipt" hidden><span>Chapter 03 / Receipt</span><h3>{atlasEvidence.claim}</h3><p>{atlasEvidence.boundary}</p></section>
+        <section data-case-panel="adapt" hidden><span>Chapter 04 / Adapt it</span><h3>Your documents, access rules and provider.</h3><p>The public build proves the seam: corpus, vector store and generator can be replaced without changing the evidence contract.</p></section>
+        <figure><Image src={shotFor(atlas.shot)} alt={atlas.alt} widths={[760, 1200]} sizes="(max-width: 800px) 100vw, 61vw" /></figure>
+        <div class="v08-receipt"><span>Immutable receipt</span><b>{atlas.note}</b><code>{atlasEvidence.rerun}</code></div>
+      </div>
+    </section>
+  )}
+
+  {variant === '09' && (
+    <section class="v09-canvas" aria-label="Engineering field notes and human authorship">
+      <header><p>Mantas Šutas / field notes / public work</p><h2>The judgement is part of the build.</h2></header>
+      <div class="v09-grid">
+        <figure class="v09-person"><Image src={portrait} alt="Mantas Šutas" widths={[480, 720, 960]} sizes="(max-width: 760px) 100vw, 39vw" /><figcaption>Independent AI engineer · Vilnius / remote</figcaption></figure>
+        <div class="v09-intro"><p>I don’t need every experiment to win. I need the system to know what it can prove, what failed, and where a person has to decide.</p><a href="mailto:sutasmantas@gmail.com">Tell me what is breaking ↗</a></div>
+        <div class="v09-notes">
+          {[
+            [gauge, 'I rejected a model that scored better because one run in three waved real defects through.'],
+            [signal, 'The headline uplift held. Per-customer targeting did not. The shipped policy uses the result that survived.'],
+            [relay, 'A retry is not reliable because the sender says so. I count the effect at the system it hits.'],
+          ].map(([project, note], index) => (
+            <article style={`--project:${accents[project.slug]}`}>
+              <Image src={shotFor(project.shot)} alt={project.alt} widths={[360, 560]} sizes="(max-width: 760px) 88vw, 24vw" />
+              <span>Note {String(index + 1).padStart(2, '0')} / {project.title} / {project.name}</span><blockquote>“{note}”</blockquote><a href={href(`/work/${project.slug}/`)}>Inspect the decision ↗</a>
+            </article>
+          ))}
+        </div>
+      </div>
+      <footer><span>Designed, built and tested by the person on the page.</span><b>MŠ / 2026</b></footer>
+    </section>
+  )}
+
+  {isMotionDeck && (
+    <section class="v10-canvas" aria-label="User-triggered proof deck" data-proof-deck data-proof-effect={effectName} data-combined-base={isCombinedBase ? 'true' : undefined}>
+      {variant === '14' && (
+        <svg class="v10-interactive-grid" viewBox="0 0 1200 800" preserveAspectRatio="none" aria-hidden="true">
+          {Array.from({ length: 96 }, (_, index) => <rect data-grid-cell x={(index % 12) * 100} y={Math.floor(index / 12) * 100} width="100" height="100" />)}
+        </svg>
+      )}
+      {variant === '15' && (
+        <svg class="v10-noise" aria-hidden="true">
+          <filter id="batch-two-noise"><feTurbulence type="fractalNoise" baseFrequency="0.46" numOctaves="5" stitchTiles="stitch" /><feColorMatrix type="saturate" values="0" /><feComponentTransfer><feFuncR type="linear" slope=".24" /><feFuncG type="linear" slope=".24" /><feFuncB type="linear" slope=".24" /></feComponentTransfer></filter>
+          <rect width="100%" height="100%" filter="url(#batch-two-noise)" opacity=".7" />
+        </svg>
+      )}
+      <header><p>{variant === '10' ? 'Selected base' : variant === '21' ? 'Combined selected base' : isCombinedBase ? `${variant} / base 21 derivative` : `${variant} / base 10 derivative`} / motion-led directory</p><h2>All thirteen.<br />One responsive proof deck.</h2></header>
+      <div class="v10-layout">
+        <div class="v10-index" aria-label="Choose a project">
+          {routes.map((route, routeIndex) => (
+            <section>
+              <h3><span>0{routeIndex + 1}</span>{routeName[route.id]}</h3>
+              <ol>
+                {ordered.filter((project) => project.route === route.id).map((project) => (
+                  <li>
+                    <button type="button" data-proof-button={project.slug} aria-pressed={project.slug === atlas.slug ? 'true' : 'false'} style={`--project:${accents[project.slug]}`}>
+                      <span>{String(project.order).padStart(2, '0')}</span>
+                      <b>{project.title}</b>
+                      <small>{project.note}</small>
+                      {variant === '31' && <i class="v10-flowing-text" aria-hidden="true">{project.title} · {project.note} · {project.title} · {project.note}</i>}
+                    </button>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          ))}
+        </div>
+        <div class="v10-stage" aria-live="polite">
+          {ordered.map((project) => (
+            <article data-proof-card={project.slug} data-project-record data-project-slug={project.slug} data-project-route={project.route} hidden={project.slug !== atlas.slug} style={`--project:${accents[project.slug]}`}>
+              <div class="v10-image" tabindex={variant === '23' || variant === '30' ? '0' : undefined} data-lens-surface={variant === '13' || isCombinedBase ? 'true' : undefined}>
+                <Image src={shotFor(project.shot)} alt={project.alt} widths={[650, 1000]} sizes="(max-width: 760px) 92vw, 48vw" />
+                {(variant === '13' || isCombinedBase) && <div class="v10-lens" aria-hidden="true"><Image src={shotFor(project.shot)} alt="" widths={[650, 1000]} sizes="(max-width: 760px) 92vw, 48vw" /></div>}
+                {variant === '24' && <div class="v10-pixels" aria-hidden="true">{Array.from({ length: 64 }, (_, index) => <i style={`--pixel:${index}`} />)}</div>}
+                {variant === '30' && <span class="v10-expand-label" aria-hidden="true">PROOF</span>}
+              </div>
+              <div class="v10-copy">
+                <span>{String(project.order).padStart(2, '0')} / {project.name} / {project.family}</span>
+                <h3 data-project-title data-title={project.title}>{project.title}</h3>
+                <p>{project.blurb}</p>
+                <b>{project.note}</b>
+                <div class="v10-actions" data-magnet-actions={variant === '22' ? 'true' : undefined}><a href={href(`/work/${project.slug}/`)}>View case</a><a href={project.live}>Open live ↗</a></div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+      {variant === '28' && <div class="v10-sparks" data-spark-field aria-hidden="true" />}
+      <p class="v10-motion-note">{isCombinedBase ? 'Selected ambient signals run on load.' : 'Nothing moves on load.'} Hover, focus or choose a project; reduced motion swaps state instantly. {variant !== '10' && `Variant ${variant} changes only the ${surface.toLowerCase().replace(/^batch [23] · /, '')}.`}</p>
+    </section>
+  )}
+  </CompletePortfolio>
+</article>
+
+<script>
+  const widthInput = document.querySelector('[data-type-width]');
+  const widthOutput = document.querySelector('[data-width-output]');
+  widthInput?.addEventListener('input', () => {
+    document.querySelector('.v03-canvas')?.style.setProperty('--specimen-width', `${widthInput.value}%`);
+    if (widthOutput) widthOutput.textContent = `${widthInput.value}%`;
+  });
+
+  const inspection = document.querySelector('[data-inspection]');
+  if (inspection) {
+    const points = Array.from(inspection.querySelectorAll('[data-inspection-point]'));
+    const notes = Array.from(inspection.querySelectorAll('[data-inspection-note]'));
+    for (const point of points) point.addEventListener('click', () => {
+      for (const item of points) item.setAttribute('aria-pressed', String(item === point));
+      for (const note of notes) note.hidden = note.dataset.inspectionNote !== point.dataset.inspectionPoint;
+      inspection.dataset.active = point.dataset.inspectionPoint;
+    });
+  }
+
+  const discovery = document.querySelector('[data-discovery]');
+  if (discovery) {
+    const { computePosition, flip, offset, shift } = await import('@floating-ui/dom');
+    const preview = discovery.querySelector('[data-discovery-preview]');
+    const rows = Array.from(discovery.querySelectorAll('[data-discovery-row]'));
+    const cards = Array.from(discovery.querySelectorAll('[data-discovery-card]'));
+    const show = async (row) => {
+      for (const item of rows) item.dataset.active = String(item === row);
+      for (const card of cards) card.hidden = card.dataset.discoveryCard !== row.dataset.discoveryRow;
+      if (window.matchMedia('(min-width: 901px)').matches) {
+        const position = await computePosition(row, preview, { placement: 'right-start', middleware: [offset(24), flip(), shift({ padding: 24 })] });
+        preview.style.setProperty('--float-y', `${Math.max(0, position.y - discovery.getBoundingClientRect().top)}px`);
+      }
+    };
+    for (const row of rows) {
+      row.addEventListener('mouseenter', () => show(row));
+      row.addEventListener('focus', () => show(row));
+    }
+    show(rows[0]);
+  }
+
+  const registry = document.querySelector('[data-registry]');
+  if (registry) {
+    const rows = Array.from(registry.querySelectorAll('[data-registry-row]'));
+    const cards = Array.from(registry.querySelectorAll('[data-registry-card]'));
+    const show = (row) => {
+      for (const item of rows) item.setAttribute('aria-pressed', String(item === row));
+      for (const card of cards) card.hidden = card.dataset.registryCard !== row.dataset.registryRow;
+    };
+    for (const row of rows) {
+      row.addEventListener('click', () => show(row));
+      row.addEventListener('mouseenter', () => show(row));
+      row.addEventListener('focus', () => show(row));
+    }
+  }
+
+  const replay = document.querySelector('[data-replay]');
+  replay?.addEventListener('click', () => {
+    const receipt = replay.closest('[data-receipt]');
+    receipt?.classList.remove('playing');
+    requestAnimationFrame(() => receipt?.classList.add('playing'));
+  });
+
+  const caseSpine = document.querySelector('[data-case-spine]');
+  if (caseSpine) {
+    const tabs = Array.from(caseSpine.querySelectorAll('[data-case-tab]'));
+    const panels = Array.from(caseSpine.querySelectorAll('[data-case-panel]'));
+    for (const tab of tabs) tab.addEventListener('click', () => {
+      for (const item of tabs) item.setAttribute('aria-pressed', String(item === tab));
+      for (const panel of panels) panel.hidden = panel.dataset.casePanel !== tab.dataset.caseTab;
+    });
+  }
+
+  const deck = document.querySelector('[data-proof-deck]');
+  if (deck) {
+    const { animate } = await import('motion');
+    const effect = deck.dataset.proofEffect;
+    const combinedBase = deck.dataset.combinedBase === 'true';
+    const buttons = Array.from(deck.querySelectorAll('[data-proof-button]'));
+    const cards = Array.from(deck.querySelectorAll('[data-proof-card]'));
+    const systemReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const shouldReduce = () => systemReduce.matches || document.documentElement.dataset.reviewReduce === 'true';
+    let selectedSlug;
+    const select = (slug, animateChange = true) => {
+      if (animateChange && slug === selectedSlug) return;
+      selectedSlug = slug;
+      for (const title of deck.querySelectorAll('[data-project-title]')) {
+        title.textContent = title.dataset.title;
+      }
+      for (const button of buttons) button.setAttribute('aria-pressed', String(button.dataset.proofButton === slug));
+      for (const card of cards) {
+        const active = card.dataset.proofCard === slug;
+        card.dataset.active = String(active);
+        card.hidden = !active;
+        if (!active) continue;
+        if (!animateChange || shouldReduce()) {
+          Object.assign(card.style, { transform: 'none', opacity: '1', filter: 'none', clipPath: 'none' });
+        } else if (effect === 'blur-fade') {
+          animate(card, {
+            transform: ['translate3d(0, 26px, 0) scale(.985)', 'translate3d(0, 0, 0) scale(1)'],
+            opacity: [0, 1], filter: ['blur(18px)', 'blur(0px)'],
+          }, { duration: .52, easing: [.22, 1, .36, 1] });
+        } else if (effect === 'pixel-transition') {
+          Object.assign(card.style, { transform: 'none', opacity: '1', filter: 'none', clipPath: 'none' });
+          const pixels = Array.from(card.querySelectorAll('.v10-pixels i'));
+          for (const pixel of pixels) {
+            pixel.getAnimations().forEach((animation) => animation.cancel());
+            animate(pixel, { opacity: [1, 1, 0], transform: ['scale(1)', 'scale(1)', 'scale(.15)'] }, {
+              duration: .44, delay: (Number(pixel.style.getPropertyValue('--pixel')) % 8) * .025,
+              easing: [.22, 1, .36, 1],
+            });
+          }
+        } else if (effect === 'clip-reveal' || combinedBase) {
+          const from = card.dataset.projectRoute === 'build'
+            ? 'inset(0 100% 0 0)'
+            : card.dataset.projectRoute === 'answer'
+              ? 'inset(100% 0 0 0)'
+              : 'inset(0 0 0 100%)';
+          animate(card, {
+            clipPath: [from, 'inset(0 0 0 0)'],
+            transform: ['scale(1.045)', 'scale(1)'],
+            opacity: [0, 1],
+          }, { duration: .62, easing: [.22, 1, .36, 1] });
+        } else if (effect === 'three-d-stack') {
+          animate(card, {
+            transform: ['perspective(1200px) rotateX(16deg) rotateY(-13deg) translate3d(46px, 34px, -120px)', 'perspective(1200px) rotateX(0deg) rotateY(0deg) translate3d(0, 0, 0)'],
+            opacity: [.25, 1],
+          }, { type: 'spring', stiffness: 220, damping: 28, mass: .9 });
+        } else {
+          animate(card, {
+            transform: ['translate3d(30px, 22px, 0) scale(.97)', 'translate3d(0, 0, 0) scale(1)'],
+            opacity: [0, 1],
+          }, { type: 'spring', stiffness: 330, damping: 30, mass: .72 });
+        }
+      }
+      if (effect === 'scramble-title' && animateChange && !shouldReduce()) {
+        const title = deck.querySelector(`[data-proof-card="${slug}"] [data-project-title]`);
+        const target = title?.dataset.title || '';
+        const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let frame = 0;
+        const resolve = () => {
+          if (!title || slug !== selectedSlug) return;
+          title.textContent = target.split('').map((character, index) => character === ' ' || index < frame / 2 ? character : glyphs[(index * 7 + frame) % glyphs.length]).join('');
+          frame += 1;
+          if (frame <= target.length * 2) requestAnimationFrame(resolve); else title.textContent = target;
+        };
+        resolve();
+      }
+    };
+    for (const button of buttons) {
+      button.addEventListener('click', (event) => {
+        select(button.dataset.proofButton);
+        if (effect === 'click-spark' && !shouldReduce()) {
+          const field = deck.querySelector('[data-spark-field]');
+          const bounds = deck.getBoundingClientRect();
+          const point = button.getBoundingClientRect();
+          for (let index = 0; index < 8; index += 1) {
+            const spark = document.createElement('i');
+            spark.style.setProperty('--spark-x', `${point.right - bounds.left}px`);
+            spark.style.setProperty('--spark-y', `${point.top + point.height / 2 - bounds.top}px`);
+            spark.style.setProperty('--spark-angle', `${index * 45}deg`);
+            spark.style.setProperty('--spark-color', getComputedStyle(button).getPropertyValue('--project'));
+            field?.append(spark);
+            spark.addEventListener('animationend', () => spark.remove(), { once: true });
+          }
+        }
+      });
+      button.addEventListener('mouseenter', () => select(button.dataset.proofButton));
+      button.addEventListener('focus', () => select(button.dataset.proofButton));
+    }
+    select('atlas', false);
+
+    if (effect === 'magic-light') {
+      const stage = deck.querySelector('.v10-stage');
+      stage?.addEventListener('pointermove', (event) => {
+        const bounds = stage.getBoundingClientRect();
+        stage.style.setProperty('--pointer-x', `${event.clientX - bounds.left}px`);
+        stage.style.setProperty('--pointer-y', `${event.clientY - bounds.top}px`);
+        stage.dataset.pointer = 'true';
+      });
+      stage?.addEventListener('pointerleave', () => { stage.dataset.pointer = 'false'; });
+    }
+
+    if (effect === 'interactive-grid') {
+      const cells = Array.from(deck.querySelectorAll('[data-grid-cell]'));
+      deck.addEventListener('pointermove', (event) => {
+        const bounds = deck.getBoundingClientRect();
+        const column = Math.max(0, Math.min(11, Math.floor(((event.clientX - bounds.left) / bounds.width) * 12)));
+        const row = Math.max(0, Math.min(7, Math.floor(((event.clientY - bounds.top) / bounds.height) * 8)));
+        const active = row * 12 + column;
+        for (const [index, cell] of cells.entries()) cell.toggleAttribute('data-active', index === active);
+      });
+      deck.addEventListener('pointerleave', () => {
+        for (const cell of cells) cell.removeAttribute('data-active');
+      });
+    }
+
+    for (const surface of deck.querySelectorAll('[data-lens-surface]')) {
+      surface.addEventListener('pointermove', (event) => {
+        const bounds = surface.getBoundingClientRect();
+        surface.style.setProperty('--lens-x', `${event.clientX - bounds.left}px`);
+        surface.style.setProperty('--lens-y', `${event.clientY - bounds.top}px`);
+        surface.dataset.lensActive = 'true';
+      });
+      surface.addEventListener('pointerleave', () => { surface.dataset.lensActive = 'false'; });
+    }
+
+    if (effect === 'magnet-actions') {
+      for (const link of deck.querySelectorAll('[data-magnet-actions] a')) {
+        link.addEventListener('pointermove', (event) => {
+          const bounds = link.getBoundingClientRect();
+          link.style.setProperty('--magnet-x', `${(event.clientX - bounds.left - bounds.width / 2) / 2.6}px`);
+          link.style.setProperty('--magnet-y', `${(event.clientY - bounds.top - bounds.height / 2) / 2.6}px`);
+        });
+        link.addEventListener('pointerleave', () => {
+          link.style.setProperty('--magnet-x', '0px'); link.style.setProperty('--magnet-y', '0px');
+        });
+      }
+    }
+
+    if (effect === 'dock-index') {
+      deck.querySelector('.v10-index')?.addEventListener('pointermove', (event) => {
+        for (const button of buttons) {
+          const bounds = button.getBoundingClientRect();
+          const distance = Math.abs(event.clientY - (bounds.top + bounds.height / 2));
+          button.style.setProperty('--dock-scale', String(1 + Math.max(0, 1 - distance / 150) * .12));
+          button.style.setProperty('--dock-shift', `${Math.max(0, 1 - distance / 150) * 14}px`);
+        }
+      });
+      deck.querySelector('.v10-index')?.addEventListener('pointerleave', () => {
+        for (const button of buttons) { button.style.removeProperty('--dock-scale'); button.style.removeProperty('--dock-shift'); }
+      });
+    }
+
+    if (effect === 'number-ticker') {
+      for (const fact of document.querySelectorAll('[data-proof-fact]')) {
+        const run = () => {
+          const value = fact.querySelector('[data-proof-value]');
+          const target = Number(value?.dataset.proofValue || 0);
+          const unit = value?.dataset.proofUnit || '';
+          if (!value || shouldReduce()) return;
+          animate(0, target, {
+            duration: .7, easing: 'ease-out',
+            onUpdate: (latest) => { value.textContent = `${Math.round(latest)}${unit}`; },
+            onComplete: () => { value.textContent = `${target}${unit}`; },
+          });
+        };
+        fact.addEventListener('pointerenter', run); fact.addEventListener('focus', run);
+      }
+    }
+
+    if (effect === 'image-expand') {
+      for (const image of deck.querySelectorAll('.v10-image')) {
+        image.addEventListener('click', () => { image.dataset.expanded = String(image.dataset.expanded !== 'true'); });
+        image.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); image.click(); }
+        });
+      }
+    }
+  }
+</script>

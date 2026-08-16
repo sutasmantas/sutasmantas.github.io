@@ -5,14 +5,18 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "lab": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/open-design-lab.ps1",
     "preview": "astro preview --host 127.0.0.1 --port 8912",
     "gate:evidence": "node scripts/check-evidence.mjs",
+    "gate:lab-content": "node scripts/verify-content-parity.mjs",
     "test:evidence": "node scripts/test-evidence.mjs",
     "gate:links": "node scripts/check-links.mjs dist",
     "gate:ui": "node scripts/gate.mjs http://127.0.0.1:8912"
   },
   "dependencies": {
-    "astro": "^7.2.0"
+    "@floating-ui/dom": "^1.8.0",
+    "astro": "^7.2.0",
+    "motion": "^13.1.0"
   },
   "devDependencies": {
     "playwright": "^1.62.1"

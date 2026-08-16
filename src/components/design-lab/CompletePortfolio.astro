@@ -1,0 +1,168 @@
+---
+import { identity, contact, proof, routes, ordered } from '../../data/portfolio.js';
+import { href } from '../../lib/paths.js';
+
+const { variant, labVariant = variant, customDirectory = false } = Astro.props;
+const routeCount = (id) => ordered.filter((project) => project.route === id).length;
+---
+
+<div class="complete-portfolio" data-complete-portfolio data-portfolio-variant={variant}>
+  <header class="continuity-hero">
+    <div class="continuity-who">
+      <p><b>{identity.name}</b><span>{identity.role} · {identity.locale}</span></p>
+      <a href={`mailto:${contact.email}`}>Start a conversation ↗</a>
+    </div>
+    <p class="continuity-kicker">Thirteen working systems / live / open source / tested</p>
+    <h2><span>{identity.headline[0]}</span><em>{identity.headline[1]}.</em></h2>
+    <p class="continuity-sub" data-canonical-positioning>{identity.sub}</p>
+    <dl class="continuity-proof">
+      {proof.map((fact) => (
+        <div data-proof-fact tabindex={labVariant === '27' ? '0' : undefined}>
+          <dt data-proof-value={fact.value} data-proof-unit={fact.unit}>{fact.value}{fact.unit}</dt>
+          <dd><b>{fact.label}</b><span>{fact.sub}</span></dd>
+        </div>
+      ))}
+    </dl>
+  </header>
+
+  <slot />
+
+  {!customDirectory && (
+    <section class="canonical-directory" aria-labelledby={`canonical-work-${variant}`} data-canonical-directory>
+      <header>
+        <div><p>Complete project directory</p><h2 id={`canonical-work-${variant}`}>The work</h2></div>
+        <span>All 13 / full descriptions / direct access</span>
+      </header>
+      <ol>
+        {ordered.map((project) => (
+          <li data-project-record data-project-slug={project.slug}>
+            <span class="project-number">{String(project.order).padStart(2, '0')}</span>
+            <div class="project-identity">
+              <h3>{project.title}</h3>
+              <p class="project-wordmark">{project.name} / {project.family}</p>
+            </div>
+            <div class="project-copy">
+              <p>{project.blurb}</p>
+              <b>{project.note}</b>
+            </div>
+            <div class="project-actions">
+              <a href={href(`/work/${project.slug}/`)}>View case</a>
+              <a href={project.live}>Open live ↗</a>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )}
+
+  <section class="canonical-routes" aria-labelledby={`canonical-routes-${variant}`} data-canonical-routes>
+    <header><p>What I could build for you</p><h2 id={`canonical-routes-${variant}`}>Three ways into the work</h2></header>
+    <ol>
+      {routes.map((route, index) => (
+        <li data-client-route={route.id}>
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <div><h3>{route.title}</h3><p>{route.blurb}</p><b>{routeCount(route.id)} relevant systems</b></div>
+          <ul>{route.does.map((item) => <li>{item}</li>)}</ul>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <footer class="canonical-contact">
+    <div><p>{identity.name}</p><h2>Bring me the workflow, evidence problem, or failure mode.</h2></div>
+    <div><a href={`mailto:${contact.email}`}>{contact.email}</a><a href={contact.github}>GitHub ↗</a></div>
+  </footer>
+</div>
+
+<style>
+  .complete-portfolio {
+    --page: #f1eee6;
+    --ink: #171715;
+    --soft: #5b5953;
+    --line: color-mix(in srgb, var(--ink) 28%, transparent);
+    --wash: color-mix(in srgb, var(--page) 88%, var(--ink));
+    --signal: #1473e6;
+    background: var(--page);
+    color: var(--ink);
+  }
+  .complete-portfolio[data-portfolio-variant='01'] { --page: #f2eee2; --ink: #171612; --soft: #555047; --signal: #3f49ed; --wash: #dfff00; }
+  .complete-portfolio[data-portfolio-variant='02'] { --page: #271b19; --ink: #fff8ed; --soft: #d8c8c0; --signal: #ff8064; --wash: #3a2925; }
+  .complete-portfolio[data-portfolio-variant='03'] { --page: #f4f1e9; --ink: #181715; --soft: #65625c; --signal: #a82f1e; --wash: #ebe5d8; }
+  .complete-portfolio[data-portfolio-variant='04'] { --page: #121b24; --ink: #eef3f0; --soft: #b8c2c6; --signal: #e8bc28; --wash: #1c2832; }
+  .complete-portfolio[data-portfolio-variant='05'] { --page: #f1eadc; --ink: #181714; --soft: #625c53; --signal: #70400f; --wash: #e3d8c5; }
+  .complete-portfolio[data-portfolio-variant='06'] { --page: #131313; --ink: #f4f0e8; --soft: #aaa69e; --signal: #dfff00; --wash: #252523; }
+  .complete-portfolio[data-portfolio-variant='07'] { --page: #f4f2ea; --ink: #131512; --soft: #5b6159; --signal: #087551; --wash: #dceade; }
+  .complete-portfolio[data-portfolio-variant='08'] { --page: #e8e5dc; --ink: #171716; --soft: #5d5a54; --signal: #4f3aa9; --wash: #d7d1ea; }
+  .complete-portfolio[data-portfolio-variant='09'] { --page: #eee8dc; --ink: #201d18; --soft: #4f4941; --signal: #882f1c; --wash: #dfd2bd; }
+  .complete-portfolio[data-portfolio-variant='10'] { --page: #171a22; --ink: #f1f1ed; --soft: #b3b6c0; --signal: #82e3ff; --wash: #272b37; }
+  .continuity-hero,
+  .canonical-directory,
+  .canonical-routes,
+  .canonical-contact { padding-inline: clamp(18px, 4vw, 64px); }
+  .continuity-hero { padding-block: clamp(54px, 8vw, 112px) clamp(44px, 6vw, 84px); border-bottom: 1px solid var(--line); }
+  .continuity-who { display: flex; justify-content: space-between; gap: 24px; align-items: start; margin-bottom: clamp(54px, 9vw, 118px); }
+  .continuity-who p { display: grid; gap: 3px; margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+  .continuity-who span { color: var(--soft); }
+  .continuity-who a { display: inline-flex; align-items: center; min-height: 44px; padding-inline: 4px; color: var(--ink); font-size: 12px; font-weight: 700; text-decoration-color: var(--signal); text-underline-offset: 5px; }
+  .continuity-kicker { margin: 0 0 18px; color: var(--signal); font-size: 11px; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+  .continuity-hero h2 { display: grid; max-width: 15ch; margin: 0; font-size: clamp(3.6rem, 9vw, 9rem); font-stretch: 112%; font-weight: 860; letter-spacing: -.075em; line-height: .8; }
+  .continuity-hero h2 em { color: var(--signal); font-family: Georgia, serif; font-weight: 400; letter-spacing: -.065em; }
+  .continuity-sub { max-width: 72ch; margin: clamp(32px, 5vw, 64px) 0 0; color: var(--soft); font-size: clamp(1.05rem, 1.55vw, 1.38rem); line-height: 1.5; }
+  .continuity-proof { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: clamp(34px, 5vw, 62px) 0 0; border-block: 1px solid var(--line); }
+  .continuity-proof div { display: grid; grid-template-columns: auto 1fr; gap: 16px; padding: 20px; border-right: 1px solid var(--line); }
+  .continuity-proof div:last-child { border-right: 0; }
+  .continuity-proof dt { color: var(--signal); font-size: clamp(2rem, 4vw, 4.2rem); font-weight: 850; line-height: 1; }
+  .continuity-proof dd { display: grid; gap: 5px; align-content: center; margin: 0; font-size: 12px; }
+  .continuity-proof dd span { color: var(--soft); }
+  .canonical-directory { padding-block: clamp(64px, 9vw, 120px); border-top: 1px solid var(--line); }
+  .canonical-directory > header { display: flex; justify-content: space-between; gap: 24px; align-items: end; margin-bottom: 30px; }
+  .canonical-directory header p,
+  .canonical-directory header span,
+  .canonical-routes header p { margin: 0; color: var(--soft); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+  .canonical-directory header h2,
+  .canonical-routes header h2 { margin: 4px 0 0; font-size: clamp(2.6rem, 5.5vw, 5.8rem); letter-spacing: -.06em; line-height: .86; }
+  .canonical-directory > ol { margin: 0; padding: 0; border-top: 2px solid var(--ink); list-style: none; }
+  .canonical-directory > ol > li { display: grid; grid-template-columns: 50px minmax(260px, .85fr) minmax(300px, 1fr) auto; gap: clamp(18px, 3vw, 46px); align-items: start; padding: 26px 4px; border-bottom: 1px solid var(--line); }
+  .project-number { color: var(--signal); font-size: 18px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .project-identity h3 { margin: 0; font-size: clamp(1.15rem, 1.8vw, 1.55rem); line-height: 1.15; }
+  .project-wordmark { margin: 9px 0 0; color: var(--signal); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+  .project-copy p { max-width: 64ch; margin: 0 0 10px; color: var(--soft); font-size: 14px; line-height: 1.48; }
+  .project-copy b { font-size: 12px; }
+  .project-actions { display: grid; gap: 7px; min-width: 102px; }
+  .project-actions a { padding: 9px 10px; border: 1px solid var(--line); color: var(--ink); font-size: 11px; font-weight: 700; text-align: center; text-decoration: none; }
+  .project-actions a:last-child { border-color: var(--signal); color: var(--signal); }
+  .project-actions a:hover { background: var(--signal); color: var(--page); }
+  .canonical-routes { padding-block: clamp(64px, 9vw, 120px); border-top: 1px solid var(--line); background: var(--wash); }
+  .canonical-routes > header { display: grid; grid-template-columns: minmax(180px, .55fr) 1.5fr; gap: 24px; align-items: end; margin-bottom: 34px; }
+  .canonical-routes > ol { margin: 0; padding: 0; border-top: 2px solid var(--ink); list-style: none; }
+  .canonical-routes > ol > li { display: grid; grid-template-columns: 50px minmax(280px, 1fr) minmax(280px, .8fr); gap: clamp(18px, 3vw, 46px); padding: 28px 4px; border-bottom: 1px solid var(--line); }
+  .canonical-routes > ol > li > span { color: var(--signal); font-size: 18px; font-weight: 800; }
+  .canonical-routes h3 { margin: 0; font-size: clamp(1.3rem, 2.2vw, 2rem); line-height: 1.1; }
+  .canonical-routes li p { max-width: 58ch; margin: 10px 0; color: var(--soft); line-height: 1.45; }
+  .canonical-routes li b { color: var(--signal); font-size: 12px; text-transform: uppercase; }
+  .canonical-routes ul { margin: 0; padding: 0; border-left: 1px solid var(--line); list-style: none; }
+  .canonical-routes ul li { padding: 8px 16px; border-bottom: 1px solid var(--line); font-size: 13px; }
+  .canonical-routes ul li:last-child { border-bottom: 0; }
+  .canonical-contact { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; padding-block: clamp(54px, 8vw, 100px); border-top: 1px solid var(--line); background: var(--ink); color: var(--page); }
+  .canonical-contact p { margin: 0 0 12px; color: var(--signal); font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+  .canonical-contact h2 { max-width: 18ch; margin: 0; font-size: clamp(2.2rem, 4.6vw, 5rem); letter-spacing: -.055em; line-height: .9; }
+  .canonical-contact > div:last-child { display: grid; align-content: end; justify-items: start; gap: 12px; }
+  .canonical-contact a { color: var(--page); font-size: clamp(1rem, 1.8vw, 1.4rem); text-underline-offset: 6px; }
+  @media (max-width: 900px) {
+    .canonical-directory > ol > li { grid-template-columns: 38px minmax(0, 1fr); gap: 14px 18px; }
+    .project-copy, .project-actions { grid-column: 2; }
+    .project-actions { display: flex; flex-wrap: wrap; }
+    .canonical-routes > ol > li { grid-template-columns: 38px minmax(0, 1fr); }
+    .canonical-routes ul { grid-column: 2; }
+  }
+  @media (max-width: 620px) {
+    .continuity-who, .canonical-directory > header { align-items: start; flex-direction: column; }
+    .continuity-hero h2 { font-size: clamp(3rem, 15vw, 5rem); }
+    .continuity-proof { grid-template-columns: 1fr; }
+    .continuity-proof div { border-right: 0; border-bottom: 1px solid var(--line); }
+    .continuity-proof div:last-child { border-bottom: 0; }
+    .canonical-routes > header, .canonical-contact { grid-template-columns: 1fr; }
+    .canonical-routes ul { border-left: 0; border-top: 1px solid var(--line); }
+    .canonical-routes ul li { padding-inline: 0; }
+  }
+</style>
