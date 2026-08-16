@@ -1,0 +1,28 @@
+---
+import Lab from '../../layouts/Lab.astro';
+import DesignExperiment from '../../components/design-lab/DesignExperiment.astro';
+
+export function getStaticPaths() {
+  const titles = {
+    '01': 'Systems broadsheet',
+    '02': 'Person × product hero',
+    '03': 'Variable-width type specimen',
+    '04': 'Guided live-system stage',
+    '05': 'Project evidence lens',
+    '06': 'Thirteen-colour registry',
+    '07': 'Executable evidence receipt',
+    '08': 'Project-detail case spine',
+    '09': 'Engineering field notes',
+    '10': 'User-triggered proof deck',
+  };
+  return Object.entries(titles).map(([variant, title]) => ({
+    params: { variant },
+    props: { variant, title },
+  }));
+}
+
+const { variant, title } = Astro.props;
+---
+<Lab title={title} variant={variant}>
+  <DesignExperiment variant={variant} title={title} />
+</Lab>

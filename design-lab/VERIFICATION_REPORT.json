@@ -1,0 +1,352 @@
+{
+  "verifiedAt": "2026-08-16T06:15:44.060Z",
+  "origin": "http://127.0.0.1:8912",
+  "result": "PASS",
+  "summary": {
+    "checks": 68,
+    "passed": 68,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "name": "/design-lab/03/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "03 width control updates specimen",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "03 width control updates CSS axis",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/03/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/03/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/03/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/04/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "04 inspection point selects by keyboard",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "04 inspection note switches",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/04/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/04/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/04/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/05/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "05 focus switches evidence preview",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "05 selected row is exposed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "05 preview remains within viewport horizontally",
+      "pass": true,
+      "detail": "{\"x\":852.484375,\"y\":116,\"width\":529.921875,\"height\":539.671875}"
+    },
+    {
+      "name": "/design-lab/05/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/05/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/05/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/06/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "06 product registry selects by keyboard",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "06 product surface switches",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/06/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/06/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/06/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/07/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "07 receipt replay is user-triggered",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/07/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/07/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/07/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/08/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "08 case chapter selects by keyboard",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "08 case chapter panel switches",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/08/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/08/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/08/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/10/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "10 proof deck selects by keyboard",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "10 proof deck promotes selected card",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/10/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/10/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/10/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/04/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "/design-lab/04/ mobile control responds",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/04/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/04/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/04/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/06/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "/design-lab/06/ mobile control responds",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/06/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/06/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/06/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/08/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "/design-lab/08/ mobile control responds",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/08/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/08/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/08/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/10/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "/design-lab/10/ mobile control responds",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/10/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/10/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/10/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/10/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "10 reduced motion swaps state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "10 reduced motion has no CSS animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "/design-lab/10/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/10/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/10/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    }
+  ]
+}

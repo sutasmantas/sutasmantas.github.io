@@ -1,0 +1,387 @@
+---
+import { Image } from 'astro:assets';
+import '../../styles/design-lab.css';
+import portrait from '../../assets/photo/mantas.png';
+import { ordered, projects, routes } from '../../data/portfolio.js';
+import { evidenceBySlug } from '../../data/evidence.js';
+import { shotFor } from '../../data/shots.js';
+import { href } from '../../lib/paths.js';
+
+const { variant, title } = Astro.props;
+const bySlug = Object.fromEntries(projects.map((project) => [project.slug, project]));
+const atlas = bySlug.atlas;
+const relay = bySlug.relay;
+const gauge = bySlug.gauge;
+const lead = bySlug.leaddock;
+const firstRing = bySlug.firstring;
+const ledger = bySlug['ledger-lens'];
+const signal = bySlug.signalroom;
+const proofgrid = bySlug.proofgrid;
+
+const accents = {
+  atlas: '#6457d9', relay: '#ec6848', leaddock: '#7b43c5', firstring: '#ef7d32',
+  'ledger-lens': '#2d796e', proofgrid: '#624cc8', switchback: '#168765',
+  pipelineforge: '#b7663e', deliveryguard: '#316b92', adapterproof: '#99703c',
+  printline: '#b9497d', gauge: '#d9a414', signalroom: '#39718a',
+};
+
+const routeName = { build: 'Do the work', answer: 'Answer the evidence', fix: 'Make it reliable' };
+const relayEvidence = evidenceBySlug.relay;
+const atlasEvidence = evidenceBySlug.atlas;
+const experimentNotes = {
+  '01': ['Overall art direction', 'A broadsheet rhythm can make the whole site feel commissioned without slowing the scan.'],
+  '02': ['Hero composition', 'A person and a running product should share the first screen instead of appearing as separate signals.'],
+  '03': ['Display typography', 'The width axis already in Archivo can become an identity device without adding another font.'],
+  '04': ['Live-system stage', 'A guided inspection view can make one product state legible at contact-sheet size.'],
+  '05': ['Project discovery', 'Keep all thirteen visible, but give hover and focus a collision-safe evidence preview.'],
+  '06': ['Product identity', 'The central shell can stay quiet while every system brings its own accent and visual temperature.'],
+  '07': ['Evidence and results', 'Reliability proof should scan like a receipt, not like ordinary documentation metadata.'],
+  '08': ['Project detail', 'A sticky case spine can expose depth without forcing one long undifferentiated read.'],
+  '09': ['Human authorship', 'Real engineering judgements can make the site personal without invented clients or testimonials.'],
+  '10': ['Motion and feedback', 'Motion earns its place only when an explicit choice reveals a different kind of proof.'],
+};
+const [surface, hypothesis] = experimentNotes[variant];
+---
+
+<article class:list={['experiment', `variant-${variant}`]} data-variant={variant}>
+  <header class="experiment-head">
+    <div><span class="experiment-no">{variant}</span><span>{surface}</span></div>
+    <p>{hypothesis}</p>
+    <h1>{title}</h1>
+  </header>
+
+  {variant === '01' && (
+    <section class="v01-canvas" aria-label="Systems broadsheet art direction">
+      <header class="v01-mast">
+        <span>MŠ / Independent AI engineering</span><b>Systems issue 13</b><span>Vilnius · Remote · 2026</span>
+      </header>
+      <div class="v01-hero">
+        <p class="v01-kicker">Working systems, open evidence</p>
+        <h2>AI that survives<br /><em>contact with reality.</em></h2>
+        <p class="v01-deck">Thirteen open systems for voice, documents, retrieval, workflows and reliability—built end to end by Mantas Šutas.</p>
+        <a href={atlas.live}>Open a working system ↗</a>
+      </div>
+      <div class="v01-signal">
+        <span class="v01-big">13</span><span>systems<br />open now</span>
+      </div>
+      <figure class="v01-main-media">
+        <Image src={shotFor(atlas.shot)} alt={atlas.alt} widths={[720, 1100]} sizes="(max-width: 760px) 100vw, 58vw" />
+        <figcaption><b>01 / Atlas</b><span>Cites the passage—or declines.</span></figcaption>
+      </figure>
+      <div class="v01-index">
+        {[relay, lead, firstRing, gauge].map((project) => (
+          <a href={href(`/work/${project.slug}/`)} style={`--project:${accents[project.slug]}`}>
+            <span>{String(project.order).padStart(2, '0')}</span><b>{project.name}</b><small>{project.note}</small>
+          </a>
+        ))}
+      </div>
+      <aside class="v01-aside">
+        <p>One engineer.<br />Three client routes.<br />Every claim inspectable.</p>
+        <span>Build / Answer / Fix</span>
+      </aside>
+    </section>
+  )}
+
+  {variant === '02' && (
+    <section class="v02-canvas" aria-label="Person and product hero">
+      <div class="v02-person">
+        <p class="v02-eyebrow">Independent AI engineer · Remote</p>
+        <h2>I build the system.<br /><em>You can open the proof.</em></h2>
+        <p>Agent workflows, retrieval, documents, voice and the reliability layer underneath—designed and built by the person you are talking to.</p>
+        <div class="v02-actions"><a href="#v02-work">See the work</a><a href="mailto:sutasmantas@gmail.com">Email Mantas ↗</a></div>
+        <dl><div><dt>13</dt><dd>working systems</dd></div><div><dt>100%</dt><dd>open source</dd></div></dl>
+      </div>
+      <figure class="v02-portrait">
+        <Image src={portrait} alt="Mantas Šutas" widths={[480, 720, 960]} sizes="(max-width: 760px) 100vw, 38vw" loading="eager" />
+        <figcaption><span>Mantas Šutas</span><span>Designs it · builds it · tests it</span></figcaption>
+      </figure>
+      <div class="v02-work" id="v02-work">
+        <div class="v02-screen"><Image src={shotFor(relay.shot)} alt={relay.alt} widths={[720, 1200]} sizes="(max-width: 760px) 100vw, 55vw" /></div>
+        <div class="v02-card"><span>Running evidence / 02</span><h3>{relay.name}</h3><p>{relay.asks}</p><b>{relay.note}</b><a href={relay.live}>Run Relay ↗</a></div>
+      </div>
+    </section>
+  )}
+
+  {variant === '03' && (
+    <section class="v03-canvas" aria-label="Variable-width typographic composition">
+      <div class="v03-copy">
+        <p>Independent AI engineering / thirteen open systems</p>
+        <h2><span>BUILD</span><span>THE WORK.</span><em>PROVE</em><span>THE EFFECT.</span></h2>
+      </div>
+      <div class="v03-control">
+        <label for="type-width">Set the voice <output for="type-width" data-width-output>112%</output></label>
+        <input id="type-width" data-type-width type="range" min="78" max="125" value="112" />
+        <p>Same self-hosted Archivo file. No new font and no decorative graphic.</p>
+      </div>
+      <div class="v03-strip">
+        {[atlas, relay, gauge].map((project) => (
+          <a href={href(`/work/${project.slug}/`)} style={`--project:${accents[project.slug]}`}>
+            <Image src={shotFor(project.shot)} alt={project.alt} widths={[360, 560]} sizes="(max-width: 760px) 90vw, 27vw" />
+            <span>{String(project.order).padStart(2, '0')} / {project.name}</span><b>{project.note}</b>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {variant === '04' && (
+    <section class="v04-canvas" aria-label="Guided product inspection stage" data-inspection>
+      <header class="v04-title"><span>12 / Gauge inspection</span><h2>One product state.<br />Three things worth checking.</h2><a href={gauge.live}>Open full system ↗</a></header>
+      <div class="v04-stage">
+        <Image src={shotFor(gauge.shot)} alt={gauge.alt} widths={[760, 1280, 1600]} sizes="(max-width: 760px) 100vw, 72vw" />
+        <div class="v04-focus" data-inspection-focus aria-hidden="true"></div>
+        <button style="--x:31%;--y:29%" data-inspection-point="input" aria-pressed="true"><span>1</span><b>Source image</b></button>
+        <button style="--x:59%;--y:52%" data-inspection-point="decision" aria-pressed="false"><span>2</span><b>Defect decision</b></button>
+        <button style="--x:82%;--y:77%" data-inspection-point="review" aria-pressed="false"><span>3</span><b>Human route</b></button>
+      </div>
+      <div class="v04-notes" aria-live="polite">
+        <article data-inspection-note="input"><span>01 / Input</span><h3>The real inspection frame stays visible.</h3><p>The stage starts with the product’s own image and crop, not a generic dashboard mockup.</p></article>
+        <article data-inspection-note="decision" hidden><span>02 / Decision</span><h3>The important output gets a deliberate focus.</h3><p>The rejected part and its localized defect are the product argument—not the surrounding controls.</p></article>
+        <article data-inspection-note="review" hidden><span>03 / Boundary</span><h3>Uncertain cases go to a person.</h3><p>The public claim stays bounded: autonomous where safe, review-routed where it is not.</p></article>
+      </div>
+    </section>
+  )}
+
+  {variant === '05' && (
+    <section class="v05-canvas" aria-label="Project discovery evidence lens" data-discovery>
+      <header><p>Find the closest evidence</p><h2>What are you trying to get done?</h2><span>All thirteen remain visible.</span></header>
+      <div class="v05-layout">
+        <div class="v05-groups">
+          {routes.map((route, routeIndex) => (
+            <section>
+              <h3><span>0{routeIndex + 1}</span>{routeName[route.id]}</h3>
+              <ol>
+                {ordered.filter((project) => project.route === route.id).map((project) => (
+                  <li>
+                    <a
+                      href={href(`/work/${project.slug}/`)}
+                      data-discovery-row={project.slug}
+                      style={`--project:${accents[project.slug]}`}
+                    ><span>{String(project.order).padStart(2, '0')}</span><b>{project.title}</b><small>{project.note}</small></a>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          ))}
+        </div>
+        <aside class="v05-preview" data-discovery-preview aria-live="polite">
+          {ordered.map((project) => (
+            <figure data-discovery-card={project.slug} hidden={project.slug !== atlas.slug}>
+              <div style={`--project:${accents[project.slug]}`}><Image src={shotFor(project.shot)} alt={project.alt} widths={[560, 840]} sizes="(max-width: 900px) 92vw, 36vw" /></div>
+              <figcaption><span>{project.name} / {project.family}</span><h3>{project.asks}</h3><p>{project.blurb}</p><b>{project.note}</b></figcaption>
+            </figure>
+          ))}
+        </aside>
+      </div>
+    </section>
+  )}
+
+  {variant === '06' && (
+    <section class="v06-canvas" aria-label="Per-product colour registry" data-registry>
+      <header><p>Thirteen products / thirteen accents / one quiet shell</p><h2>Stop repainting the work green.</h2></header>
+      <div class="v06-layout">
+        <ol class="v06-list">
+          {ordered.map((project) => (
+            <li style={`--project:${accents[project.slug]}`}>
+              <button type="button" data-registry-row={project.slug} aria-pressed={project.slug === atlas.slug ? 'true' : 'false'}>
+                <span>{String(project.order).padStart(2, '0')}</span><b>{project.name}</b><small>{project.family}</small><i aria-hidden="true"></i>
+              </button>
+            </li>
+          ))}
+        </ol>
+        <div class="v06-display" data-registry-display>
+          {ordered.map((project) => (
+            <article data-registry-card={project.slug} hidden={project.slug !== atlas.slug} style={`--project:${accents[project.slug]}`}>
+              <div class="v06-image"><Image src={shotFor(project.shot)} alt={project.alt} widths={[700, 1100]} sizes="(max-width: 760px) 92vw, 56vw" /></div>
+              <div><span>{project.name}</span><h3>{project.asks}</h3><p>{project.note}</p><a href={project.live}>Open in its own world ↗</a></div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {variant === '07' && (
+    <section class="v07-canvas" aria-label="Executable evidence receipt" data-receipt>
+      <header><span>Verification receipt / Relay / immutable</span><b>PASS</b></header>
+      <div class="v07-score"><strong>7<span>/7</span></strong><div><h2>Injected fault cases.<br />Zero duplicate effects.</h2><p>{relayEvidence.claim}</p></div></div>
+      <div class="v07-body">
+        <figure><Image src={shotFor(relay.shot)} alt={relay.alt} widths={[650, 1000]} sizes="(max-width: 760px) 100vw, 48vw" /><figcaption>Real operator surface / approved once / applied once</figcaption></figure>
+        <div class="v07-timeline">
+          <button type="button" data-replay>Replay the failure path <span>→</span></button>
+          <ol aria-live="polite">
+            <li data-step="1"><span>01</span><b>Action accepted</b><small>idempotency key fixed</small></li>
+            <li data-step="2"><span>02</span><b>Process killed</b><small>receipt survives restart</small></li>
+            <li data-step="3"><span>03</span><b>Retry recovered</b><small>same effect identity</small></li>
+            <li data-step="4"><span>04</span><b>Duplicate refused</b><small>external count remains one</small></li>
+          </ol>
+        </div>
+      </div>
+      <dl class="v07-links">
+        <div><dt>Artifact</dt><dd><a href={relayEvidence.artifact.url}>{relayEvidence.artifact.label} ↗</a></dd></div>
+        <div><dt>Test</dt><dd><a href={relayEvidence.test.url}>{relayEvidence.test.label} ↗</a></dd></div>
+        <div><dt>Hosted gate</dt><dd><a href={relayEvidence.hosted.url}>{relayEvidence.hosted.label} ↗</a></dd></div>
+      </dl>
+      <div class="v07-limit"><span>Rerun</span><code>{relayEvidence.rerun}</code><p><b>Limit:</b> {relayEvidence.boundary}</p></div>
+    </section>
+  )}
+
+  {variant === '08' && (
+    <section class="v08-canvas" aria-label="Project detail case spine" data-case-spine>
+      <aside>
+        <p>01 / Atlas</p><h2>{atlas.asks}</h2>
+        <nav aria-label="Case chapters">
+          <button type="button" data-case-tab="problem" aria-pressed="true"><span>01</span>Problem</button>
+          <button type="button" data-case-tab="run" aria-pressed="false"><span>02</span>Run it</button>
+          <button type="button" data-case-tab="receipt" aria-pressed="false"><span>03</span>Receipt</button>
+          <button type="button" data-case-tab="adapt" aria-pressed="false"><span>04</span>Adapt it</button>
+        </nav>
+        <a href={atlas.live}>Open Atlas full size ↗</a>
+      </aside>
+      <div class="v08-content">
+        <section data-case-panel="problem"><span>Chapter 01 / Problem</span><h3>Answers are cheap.<br />Evidence is the product.</h3><p>{atlas.blurb}</p><div class="v08-facts"><b>Cites, or declines</b><b>Document versions visible</b><b>No-key public path</b></div></section>
+        <section data-case-panel="run" hidden><span>Chapter 02 / Run it</span><h3>Ask a prepared policy question.</h3><p>The running workspace stays in the case page. A visitor can inspect the cited passage before reading implementation detail.</p></section>
+        <section data-case-panel="receipt" hidden><span>Chapter 03 / Receipt</span><h3>{atlasEvidence.claim}</h3><p>{atlasEvidence.boundary}</p></section>
+        <section data-case-panel="adapt" hidden><span>Chapter 04 / Adapt it</span><h3>Your documents, access rules and provider.</h3><p>The public build proves the seam: corpus, vector store and generator can be replaced without changing the evidence contract.</p></section>
+        <figure><Image src={shotFor(atlas.shot)} alt={atlas.alt} widths={[760, 1200]} sizes="(max-width: 800px) 100vw, 61vw" /></figure>
+        <div class="v08-receipt"><span>Immutable receipt</span><b>{atlas.note}</b><code>{atlasEvidence.rerun}</code></div>
+      </div>
+    </section>
+  )}
+
+  {variant === '09' && (
+    <section class="v09-canvas" aria-label="Engineering field notes and human authorship">
+      <header><p>Mantas Šutas / field notes / public work</p><h2>The judgement is part of the build.</h2></header>
+      <div class="v09-grid">
+        <figure class="v09-person"><Image src={portrait} alt="Mantas Šutas" widths={[480, 720, 960]} sizes="(max-width: 760px) 100vw, 39vw" /><figcaption>Independent AI engineer · Vilnius / remote</figcaption></figure>
+        <div class="v09-intro"><p>I don’t need every experiment to win. I need the system to know what it can prove, what failed, and where a person has to decide.</p><a href="mailto:sutasmantas@gmail.com">Tell me what is breaking ↗</a></div>
+        <div class="v09-notes">
+          {[
+            [gauge, 'I rejected a model that scored better because one run in three waved real defects through.'],
+            [signal, 'The headline uplift held. Per-customer targeting did not. The shipped policy uses the result that survived.'],
+            [relay, 'A retry is not reliable because the sender says so. I count the effect at the system it hits.'],
+          ].map(([project, note], index) => (
+            <article style={`--project:${accents[project.slug]}`}>
+              <Image src={shotFor(project.shot)} alt={project.alt} widths={[360, 560]} sizes="(max-width: 760px) 88vw, 24vw" />
+              <span>Note {String(index + 1).padStart(2, '0')} / {project.name}</span><blockquote>“{note}”</blockquote><a href={href(`/work/${project.slug}/`)}>Inspect the decision ↗</a>
+            </article>
+          ))}
+        </div>
+      </div>
+      <footer><span>Designed, built and tested by the person on the page.</span><b>MŠ / 2026</b></footer>
+    </section>
+  )}
+
+  {variant === '10' && (
+    <section class="v10-canvas" aria-label="User-triggered proof deck" data-proof-deck>
+      <header><p>Choose the kind of proof you care about.</p><h2>Working software.<br />Three different receipts.</h2></header>
+      <div class="v10-controls" role="group" aria-label="Select proof">
+        <button type="button" data-proof-button="atlas" aria-pressed="true"><span>01</span>Cited answer</button>
+        <button type="button" data-proof-button="relay" aria-pressed="false"><span>02</span>Killed process</button>
+        <button type="button" data-proof-button="gauge" aria-pressed="false"><span>12</span>Rejected model</button>
+      </div>
+      <div class="v10-stage">
+        {[
+          [atlas, 'The answer points back to the exact passage—or the system declines.'],
+          [relay, 'Seven injected failures completed with no duplicate external effect.'],
+          [gauge, 'A higher-scoring candidate stayed out because its worst run was unsafe.'],
+        ].map(([project, receipt], index) => (
+          <article data-proof-card={project.slug} data-order={index} style={`--project:${accents[project.slug]}`}>
+            <div class="v10-image"><Image src={shotFor(project.shot)} alt={project.alt} widths={[650, 1000]} sizes="(max-width: 760px) 92vw, 54vw" /></div>
+            <div class="v10-copy"><span>{String(project.order).padStart(2, '0')} / {project.name}</span><h3>{project.asks}</h3><p>{receipt}</p><b>{project.note}</b><a href={href(`/work/${project.slug}/`)}>Inspect the full receipt ↗</a></div>
+          </article>
+        ))}
+      </div>
+      <p class="v10-motion-note">Nothing moves on load. Click or use the buttons; reduced motion swaps state instantly.</p>
+    </section>
+  )}
+</article>
+
+<script>
+  const widthInput = document.querySelector('[data-type-width]');
+  const widthOutput = document.querySelector('[data-width-output]');
+  widthInput?.addEventListener('input', () => {
+    document.querySelector('.v03-canvas')?.style.setProperty('--specimen-width', `${widthInput.value}%`);
+    if (widthOutput) widthOutput.textContent = `${widthInput.value}%`;
+  });
+
+  const inspection = document.querySelector('[data-inspection]');
+  if (inspection) {
+    const points = Array.from(inspection.querySelectorAll('[data-inspection-point]'));
+    const notes = Array.from(inspection.querySelectorAll('[data-inspection-note]'));
+    for (const point of points) point.addEventListener('click', () => {
+      for (const item of points) item.setAttribute('aria-pressed', String(item === point));
+      for (const note of notes) note.hidden = note.dataset.inspectionNote !== point.dataset.inspectionPoint;
+      inspection.dataset.active = point.dataset.inspectionPoint;
+    });
+  }
+
+  const discovery = document.querySelector('[data-discovery]');
+  if (discovery) {
+    const { computePosition, flip, offset, shift } = await import('@floating-ui/dom');
+    const preview = discovery.querySelector('[data-discovery-preview]');
+    const rows = Array.from(discovery.querySelectorAll('[data-discovery-row]'));
+    const cards = Array.from(discovery.querySelectorAll('[data-discovery-card]'));
+    const show = async (row) => {
+      for (const item of rows) item.dataset.active = String(item === row);
+      for (const card of cards) card.hidden = card.dataset.discoveryCard !== row.dataset.discoveryRow;
+      if (window.matchMedia('(min-width: 901px)').matches) {
+        const position = await computePosition(row, preview, { placement: 'right-start', middleware: [offset(24), flip(), shift({ padding: 24 })] });
+        preview.style.setProperty('--float-y', `${Math.max(0, position.y - discovery.getBoundingClientRect().top)}px`);
+      }
+    };
+    for (const row of rows) {
+      row.addEventListener('mouseenter', () => show(row));
+      row.addEventListener('focus', () => show(row));
+    }
+    show(rows[0]);
+  }
+
+  const registry = document.querySelector('[data-registry]');
+  if (registry) {
+    const rows = Array.from(registry.querySelectorAll('[data-registry-row]'));
+    const cards = Array.from(registry.querySelectorAll('[data-registry-card]'));
+    for (const row of rows) row.addEventListener('click', () => {
+      for (const item of rows) item.setAttribute('aria-pressed', String(item === row));
+      for (const card of cards) card.hidden = card.dataset.registryCard !== row.dataset.registryRow;
+    });
+  }
+
+  const replay = document.querySelector('[data-replay]');
+  replay?.addEventListener('click', () => {
+    const receipt = replay.closest('[data-receipt]');
+    receipt?.classList.remove('playing');
+    requestAnimationFrame(() => receipt?.classList.add('playing'));
+  });
+
+  const caseSpine = document.querySelector('[data-case-spine]');
+  if (caseSpine) {
+    const tabs = Array.from(caseSpine.querySelectorAll('[data-case-tab]'));
+    const panels = Array.from(caseSpine.querySelectorAll('[data-case-panel]'));
+    for (const tab of tabs) tab.addEventListener('click', () => {
+      for (const item of tabs) item.setAttribute('aria-pressed', String(item === tab));
+      for (const panel of panels) panel.hidden = panel.dataset.casePanel !== tab.dataset.caseTab;
+    });
+  }
+
+  const deck = document.querySelector('[data-proof-deck]');
+  if (deck) {
+    const { animate } = await import('motion');
+    const buttons = Array.from(deck.querySelectorAll('[data-proof-button]'));
+    const cards = Array.from(deck.querySelectorAll('[data-proof-card]'));
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const select = (slug) => {
+      for (const button of buttons) button.setAttribute('aria-pressed', String(button.dataset.proofButton === slug));
+      for (const card of cards) {
+        const active = card.dataset.proofCard === slug;
+        card.dataset.active = String(active);
+        card.style.zIndex = active ? '4' : String(2 - Number(card.dataset.order));
+        const target = active ? { x: 0, y: 0, scale: 1, opacity: 1 } : { x: Number(card.dataset.order) * 16 + 28, y: Number(card.dataset.order) * 13 + 34, scale: .94, opacity: .48 };
+        if (reduce.matches) Object.assign(card.style, { transform: `translate(${target.x}px, ${target.y}px) scale(${target.scale})`, opacity: String(target.opacity) });
+        else animate(card, target, { type: 'spring', stiffness: 360, damping: 34, mass: .7 });
+      }
+    };
+    for (const button of buttons) button.addEventListener('click', () => select(button.dataset.proofButton));
+    select('atlas');
+  }
+</script>

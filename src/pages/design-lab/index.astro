@@ -1,0 +1,55 @@
+---
+import Lab from '../../layouts/Lab.astro';
+import { href } from '../../lib/paths.js';
+
+const variants = [
+  ['01', 'Overall art direction', 'Systems broadsheet'],
+  ['02', 'Hero composition', 'Person × product'],
+  ['03', 'Display typography', 'Variable-width specimen'],
+  ['04', 'Live-system stage', 'Guided inspection bench'],
+  ['05', 'Project discovery', 'Evidence lens'],
+  ['06', 'Product identity', 'Thirteen-colour registry'],
+  ['07', 'Evidence/results', 'Executable receipt'],
+  ['08', 'Project detail', 'Case spine'],
+  ['09', 'Human presence', 'Engineering field notes'],
+  ['10', 'Motion and feedback', 'User-triggered proof deck'],
+];
+---
+<Lab title="Batch 1 index">
+  <section class="index">
+    <p class="kicker">Portfolio visual laboratory · Batch 01</p>
+    <h1>Ten decisions.<br /><em>Not ten redesigns.</em></h1>
+    <p class="intro">Each route changes one primary design system while keeping the real work, claims and actions in view. Review at 1440px and 390px, then mark KEEP, REJECT or REVISE.</p>
+    <ol>
+      {variants.map(([id, surface, name]) => (
+        <li>
+          <a href={href(`/design-lab/${id}/`)}>
+            <span class="id">{id}</span><span class="surface">{surface}</span><strong>{name}</strong><span class="go">Open ↗</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </section>
+</Lab>
+
+<style>
+  .index { min-height: calc(100vh - 52px); padding: clamp(48px, 8vw, 112px) clamp(20px, 8vw, 128px); background: #f2f0ea; color: #111; }
+  .kicker { font: 11px/1.4 var(--mono); text-transform: uppercase; letter-spacing: .1em; }
+  h1 { margin: 28px 0; font-size: clamp(3rem, 8vw, 8rem); line-height: .86; max-width: 10ch; font-stretch: 120%; }
+  h1 em { font-style: normal; color: #087551; }
+  .intro { max-width: 62ch; font-size: 18px; color: #45443f; margin-bottom: 56px; }
+  ol { list-style: none; margin: 0; padding: 0; border-top: 2px solid #111; }
+  li { border-bottom: 1px solid #b8b5aa; }
+  a { display: grid; grid-template-columns: 56px minmax(140px,.6fr) 1fr auto; gap: 20px; align-items: baseline; padding: 20px 0; text-decoration: none; }
+  a:hover strong, a:hover .go { color: #087551; }
+  .id, .surface, .go { font: 12px/1.4 var(--mono); }
+  .surface { color: #6b6961; }
+  strong { font: 700 clamp(1.1rem,2vw,1.7rem)/1.1 var(--display); }
+  @media (max-width: 620px) {
+    h1 { font-size: 3.7rem; }
+    a { grid-template-columns: 36px 1fr auto; gap: 12px; }
+    .surface { grid-column: 2; }
+    strong { grid-column: 2; }
+    .go { grid-column: 3; grid-row: 1 / 4; }
+  }
+</style>
