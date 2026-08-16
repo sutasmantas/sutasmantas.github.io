@@ -4,6 +4,7 @@ Date: 2026-08-16
 Status: **PASS_MERGED_TO_MAIN_READY_FOR_OWNER_SELECTION**
 Implementation checkpoint: `6972343eba0c9814202e83e800c4cd4d71756482`
 Merge checkpoint: `5fa6b225c2724ab4d4418db3468dc3d7b7daf873`
+Owner-review clarity checkpoint: `2d9145e7cc2f782879c03976da477407d7e94835`
 Combined control: `/design-lab/21/`
 Branch: `main`
 Worktree: `C:\Users\masuta\Desktop\Coding\cv\portfolio_demos\central_portfolio_site`
