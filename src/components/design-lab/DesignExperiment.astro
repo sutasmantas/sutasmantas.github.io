@@ -369,19 +369,20 @@ const [surface, hypothesis] = experimentNotes[variant];
     const { animate } = await import('motion');
     const buttons = Array.from(deck.querySelectorAll('[data-proof-button]'));
     const cards = Array.from(deck.querySelectorAll('[data-proof-card]'));
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const select = (slug) => {
+    const systemReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const shouldReduce = () => systemReduce.matches || document.documentElement.dataset.reviewReduce === 'true';
+    const select = (slug, animateChange = true) => {
       for (const button of buttons) button.setAttribute('aria-pressed', String(button.dataset.proofButton === slug));
       for (const card of cards) {
         const active = card.dataset.proofCard === slug;
         card.dataset.active = String(active);
         card.style.zIndex = active ? '4' : String(2 - Number(card.dataset.order));
         const target = active ? { x: 0, y: 0, scale: 1, opacity: 1 } : { x: Number(card.dataset.order) * 16 + 28, y: Number(card.dataset.order) * 13 + 34, scale: .94, opacity: .48 };
-        if (reduce.matches) Object.assign(card.style, { transform: `translate(${target.x}px, ${target.y}px) scale(${target.scale})`, opacity: String(target.opacity) });
+        if (!animateChange || shouldReduce()) Object.assign(card.style, { transform: `translate(${target.x}px, ${target.y}px) scale(${target.scale})`, opacity: String(target.opacity) });
         else animate(card, target, { type: 'spring', stiffness: 360, damping: 34, mass: .7 });
       }
     };
     for (const button of buttons) button.addEventListener('click', () => select(button.dataset.proofButton));
-    select('atlas');
+    select('atlas', false);
   }
 </script>

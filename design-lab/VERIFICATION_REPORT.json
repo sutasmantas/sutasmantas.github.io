@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-08-16T06:15:44.060Z",
+  "verifiedAt": "2026-08-16T06:46:44.058Z",
   "origin": "http://127.0.0.1:8912",
   "result": "PASS",
   "summary": {
@@ -86,7 +86,7 @@
     {
       "name": "05 preview remains within viewport horizontally",
       "pass": true,
-      "detail": "{\"x\":852.484375,\"y\":116,\"width\":529.921875,\"height\":539.671875}"
+      "detail": "{\"x\":852.484375,\"y\":-23,\"width\":529.921875,\"height\":539.671875}"
     },
     {
       "name": "/design-lab/05/ has no horizontal overflow",

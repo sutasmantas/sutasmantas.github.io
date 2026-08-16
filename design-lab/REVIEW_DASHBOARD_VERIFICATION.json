@@ -1,0 +1,131 @@
+{
+  "verifiedAt": "2026-08-16T06:46:43.904Z",
+  "result": "PASS",
+  "summary": {
+    "checks": 24,
+    "passed": 24,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "name": "dashboard route returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "baseline plus ten live routes are listed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "experiment 01 starts selected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "variant switch loads the real route",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "variant switch updates full-size link",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "scaled desktop frame stays fully inside its review canvas",
+      "pass": true,
+      "detail": "{\"holderLeft\":346,\"holderRight\":1404,\"shellLeft\":362,\"shellRight\":1388}"
+    },
+    {
+      "name": "embedded experiment remains interactive",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile control sets a 390px live canvas",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "baseline comparison becomes visible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "comparison keeps independent iframes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced-motion mode reaches the experiment document",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "decision persists to local storage",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "notes persist to local storage",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "progress count updates",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "saved decision survives reload",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "saved notes survive reload",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "export produces the expected review artifact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "baseline selection hides decision controls",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "baseline selection exposes its explanation",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "clear action removes saved review after confirmation",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop dashboard has no horizontal overflow",
+      "pass": true,
+      "detail": "{\"client\":1440,\"scroll\":1440}"
+    },
+    {
+      "name": "dashboard has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "dashboard has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile dashboard has no horizontal overflow",
+      "pass": true,
+      "detail": "{\"client\":390,\"scroll\":390}"
+    }
+  ]
+}

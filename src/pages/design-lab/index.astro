@@ -3,53 +3,207 @@ import Lab from '../../layouts/Lab.astro';
 import { href } from '../../lib/paths.js';
 
 const variants = [
-  ['01', 'Overall art direction', 'Systems broadsheet'],
-  ['02', 'Hero composition', 'Person × product'],
-  ['03', 'Display typography', 'Variable-width specimen'],
-  ['04', 'Live-system stage', 'Guided inspection bench'],
-  ['05', 'Project discovery', 'Evidence lens'],
-  ['06', 'Product identity', 'Thirteen-colour registry'],
-  ['07', 'Evidence/results', 'Executable receipt'],
-  ['08', 'Project detail', 'Case spine'],
-  ['09', 'Human presence', 'Engineering field notes'],
-  ['10', 'Motion and feedback', 'User-triggered proof deck'],
-];
+  ['00', 'Production baseline', 'Current live direction', '/', 'The control. Compare every experiment against the same published page.'],
+  ['01', 'Overall art direction', 'Systems broadsheet', '/design-lab/01/', 'A commissioned editorial rhythm without slowing the scan.'],
+  ['02', 'Hero composition', 'Person × product', '/design-lab/02/', 'The engineer and a working system share the first screen.'],
+  ['03', 'Display typography', 'Variable-width specimen', '/design-lab/03/', 'The existing Archivo width axis becomes an identity device.'],
+  ['04', 'Live-system stage', 'Guided inspection bench', '/design-lab/04/', 'One dense product state becomes legible through explicit inspection points.'],
+  ['05', 'Project discovery', 'Evidence lens', '/design-lab/05/', 'All thirteen projects remain visible while focus reveals real evidence.'],
+  ['06', 'Product identity', 'Thirteen-colour registry', '/design-lab/06/', 'Every system retains its own visual temperature inside a quiet shell.'],
+  ['07', 'Evidence and results', 'Executable receipt', '/design-lab/07/', 'Reliability proof scans as an outcome, rerun and bounded claim.'],
+  ['08', 'Project detail', 'Case spine', '/design-lab/08/', 'Problem, run, receipt and adaptation remain oriented without one long read.'],
+  ['09', 'Human authorship', 'Engineering field notes', '/design-lab/09/', 'Real engineering judgements visibly belong to the person who made them.'],
+  ['10', 'Motion and feedback', 'User-triggered proof deck', '/design-lab/10/', 'Explicit choices reveal different proof types with interruptible motion.'],
+].map(([id, surface, name, route, hypothesis]) => ({ id, surface, name, route: href(route), hypothesis }));
 ---
-<Lab title="Batch 1 index">
-  <section class="index">
-    <p class="kicker">Portfolio visual laboratory · Batch 01</p>
-    <h1>Ten decisions.<br /><em>Not ten redesigns.</em></h1>
-    <p class="intro">Each route changes one primary design system while keeping the real work, claims and actions in view. Review at 1440px and 390px, then mark KEEP, REJECT or REVISE.</p>
-    <ol>
-      {variants.map(([id, surface, name]) => (
-        <li>
-          <a href={href(`/design-lab/${id}/`)}>
-            <span class="id">{id}</span><span class="surface">{surface}</span><strong>{name}</strong><span class="go">Open ↗</span>
-          </a>
-        </li>
-      ))}
-    </ol>
+
+<Lab title="Interactive Batch 1 review">
+  <section class="review" data-review-root data-storage-key="central-portfolio-design-lab-batch-01">
+    <aside class="review-index" aria-label="Experiment index">
+      <header>
+        <p>Central portfolio · Batch 01</p>
+        <h1>Live review<br />artifact</h1>
+        <p class="index-intro">Switch routes, test their controls, compare the baseline and save a decision without leaving this page.</p>
+      </header>
+      <nav aria-label="Choose a live experiment">
+        {variants.map((item, index) => (
+          <button type="button" class:list={['variant-row', index === 1 && 'selected', item.id === '00' && 'baseline-row']} data-review-variant={item.id} data-route={item.route} data-surface={item.surface} data-name={item.name} data-hypothesis={item.hypothesis} aria-pressed={index === 1 ? 'true' : 'false'}>
+            <span class="row-id">{item.id}</span>
+            <span><small>{item.surface}</small><strong>{item.name}</strong></span>
+            {item.id !== '00' && <span class="row-status" data-status-for={item.id}>—</span>}
+          </button>
+        ))}
+      </nav>
+      <footer>
+        <div><strong data-reviewed-count>0</strong><span>of 10 reviewed</span></div>
+        <div class="progress" aria-hidden="true"><i data-review-progress></i></div>
+      </footer>
+    </aside>
+
+    <div class="review-workspace">
+      <header class="review-toolbar">
+        <div class="current-title">
+          <p><span data-current-id>01</span> / <span data-current-surface>Overall art direction</span></p>
+          <h2 data-current-name>Systems broadsheet</h2>
+          <p data-current-hypothesis>A commissioned editorial rhythm without slowing the scan.</p>
+        </div>
+        <div class="toolbar-actions">
+          <div class="segmented" role="group" aria-label="Preview width">
+            <button type="button" data-viewport="desktop" aria-pressed="true">1440</button>
+            <button type="button" data-viewport="mobile" aria-pressed="false">390</button>
+          </div>
+          <button type="button" class="tool-button" data-compare aria-pressed="false">Compare baseline</button>
+          <button type="button" class="tool-button" data-reduce aria-pressed="false">Reduced motion</button>
+          <a class="open-full" data-open-full href={href('/design-lab/01/')} target="_blank" rel="noreferrer">Open full size ↗</a>
+        </div>
+      </header>
+
+      <section class="preview-region" aria-label="Live responsive previews">
+        <div class="preview-grid" data-preview-grid>
+          <article class="preview-panel baseline-preview" data-baseline-preview hidden>
+            <header><span>00 / Production baseline</span><small>Independent scroll</small></header>
+            <div class="frame-holder" data-frame-holder><div class="frame-shell" data-frame-shell>
+              <iframe data-review-frame="baseline" src={href('/')} title="Production baseline live preview" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-downloads"></iframe>
+            </div></div>
+          </article>
+          <article class="preview-panel current-preview loading" data-current-preview>
+            <header><span data-frame-label>01 / Systems broadsheet</span><small>Scroll and interact inside</small></header>
+            <div class="frame-holder" data-frame-holder><div class="frame-shell" data-frame-shell>
+              <iframe data-review-frame="current" src={href('/design-lab/01/')} title="Systems broadsheet live preview" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-downloads"></iframe>
+            </div></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="review-decision" data-decision-panel>
+        <header>
+          <div><p>Owner decision</p><h2>What survives into integration?</h2></div>
+          <span class="save-state" data-save-state aria-live="polite">Saved locally</span>
+        </header>
+        <div class="baseline-message" data-baseline-message hidden><p>The production page is the comparison control. Select experiments 01–10 to record decisions.</p></div>
+        <form data-review-form>
+          <fieldset>
+            <legend>Decision for <span data-form-id>01</span></legend>
+            <label><input type="radio" name="decision" value="KEEP" /> <span>Keep</span><small>Adopt the mechanism</small></label>
+            <label><input type="radio" name="decision" value="REVISE" /> <span>Revise</span><small>Keep the idea, change execution</small></label>
+            <label><input type="radio" name="decision" value="REJECT" /> <span>Reject</span><small>Do not carry it forward</small></label>
+          </fieldset>
+          <label class="notes-label" for="review-notes"><span>Revision request or reason</span><textarea id="review-notes" data-review-notes rows="4" placeholder="What works, what conflicts, and what must change before integration?"></textarea></label>
+        </form>
+        <footer>
+          <div class="step-actions"><button type="button" data-previous>← Previous</button><button type="button" data-next>Next →</button></div>
+          <div class="file-actions"><button type="button" data-export>Export decisions</button><button type="button" class="danger" data-clear>Clear saved review</button></div>
+        </footer>
+      </section>
+    </div>
   </section>
 </Lab>
 
+<script define:vars={{ variants }}>
+  const root = document.querySelector('[data-review-root]');
+  const storageKey = root.dataset.storageKey;
+  const rows = Array.from(root.querySelectorAll('[data-review-variant]'));
+  const frames = Array.from(root.querySelectorAll('[data-review-frame]'));
+  const currentFrame = root.querySelector('[data-review-frame="current"]');
+  const baselinePreview = root.querySelector('[data-baseline-preview]');
+  const currentPreview = root.querySelector('[data-current-preview]');
+  const previewGrid = root.querySelector('[data-preview-grid]');
+  const form = root.querySelector('[data-review-form]');
+  const notes = root.querySelector('[data-review-notes]');
+  const saveState = root.querySelector('[data-save-state]');
+  const openFull = root.querySelector('[data-open-full]');
+  const compareButton = root.querySelector('[data-compare]');
+  const reduceButton = root.querySelector('[data-reduce]');
+  const viewportButtons = Array.from(root.querySelectorAll('[data-viewport]'));
+  let selected = '01';
+  let viewport = 'desktop';
+  let compare = false;
+  let reduce = false;
+  let review = {};
+  let saveTimer;
+  try { review = JSON.parse(localStorage.getItem(storageKey) || '{}'); } catch { review = {}; }
+
+  const routeFor = (id) => variants.find((item) => item.id === id);
+  const updateProgress = () => {
+    const count = Object.entries(review).filter(([id, value]) => id !== '00' && value?.decision).length;
+    root.querySelector('[data-reviewed-count]').textContent = String(count);
+    root.querySelector('[data-review-progress]').style.width = `${count * 10}%`;
+    for (const row of rows) {
+      const id = row.dataset.reviewVariant;
+      const status = root.querySelector(`[data-status-for="${id}"]`);
+      if (!status) continue;
+      const decision = review[id]?.decision || '—';
+      status.textContent = decision === 'REVISE' ? 'REV' : decision === 'REJECT' ? 'NO' : decision === 'KEEP' ? 'YES' : '—';
+      status.dataset.decision = decision;
+    }
+  };
+  const persist = () => {
+    localStorage.setItem(storageKey, JSON.stringify(review));
+    saveState.textContent = 'Saved locally';
+    saveState.dataset.saved = 'true';
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => { saveState.dataset.saved = 'false'; }, 1200);
+    updateProgress();
+  };
+  const configureFrame = (frame) => {
+    try {
+      const doc = frame.contentDocument;
+      if (!doc) return;
+      doc.documentElement.dataset.reviewReduce = String(reduce);
+      let style = doc.querySelector('#review-reduced-motion');
+      if (reduce && !style) {
+        style = doc.createElement('style'); style.id = 'review-reduced-motion';
+        style.textContent = '*,*::before,*::after{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}';
+        doc.head.append(style);
+      } else if (!reduce) style?.remove();
+      for (const link of doc.querySelectorAll('a[href]')) if (!link.getAttribute('href')?.startsWith('#')) { link.target = '_blank'; link.rel = 'noreferrer'; }
+    } catch { /* A followed external URL may no longer be same-origin. */ }
+  };
+  const applyViewport = () => {
+    const size = viewport === 'mobile' ? { width: 390, height: 844 } : { width: 1440, height: 900 };
+    const panels = Array.from(root.querySelectorAll('.preview-panel')).filter((panel) => !panel.hidden);
+    for (const panel of panels) {
+      const holder = panel.querySelector('[data-frame-holder]'); const shell = panel.querySelector('[data-frame-shell]');
+      const scale = Math.min(1, Math.max(280, holder.clientWidth - 32) / size.width);
+      shell.style.width = `${size.width}px`; shell.style.height = `${size.height}px`;
+      shell.style.left = `${Math.max(16, (holder.clientWidth - size.width * scale) / 2)}px`;
+      shell.style.transform = `scale(${scale})`; holder.style.height = `${Math.ceil(size.height * scale) + 32}px`;
+    }
+  };
+  const loadDecision = () => {
+    const baseline = selected === '00'; form.hidden = baseline; root.querySelector('[data-baseline-message]').hidden = !baseline;
+    root.querySelector('[data-form-id]').textContent = selected; if (baseline) return;
+    const value = review[selected] || {};
+    for (const input of form.querySelectorAll('input[name="decision"]')) input.checked = input.value === value.decision;
+    notes.value = value.notes || '';
+  };
+  const select = (id) => {
+    const item = routeFor(id); if (!item) return; selected = id;
+    for (const row of rows) { const active = row.dataset.reviewVariant === id; row.classList.toggle('selected', active); row.setAttribute('aria-pressed', String(active)); }
+    root.querySelector('[data-current-id]').textContent = id; root.querySelector('[data-current-surface]').textContent = item.surface;
+    root.querySelector('[data-current-name]').textContent = item.name; root.querySelector('[data-current-hypothesis]').textContent = item.hypothesis;
+    root.querySelector('[data-frame-label]').textContent = `${id} / ${item.name}`; currentFrame.title = `${item.name} live preview`;
+    currentPreview.classList.add('loading'); currentFrame.src = item.route; openFull.href = item.route; loadDecision();
+  };
+  for (const row of rows) row.addEventListener('click', () => select(row.dataset.reviewVariant));
+  for (const button of viewportButtons) button.addEventListener('click', () => { viewport = button.dataset.viewport; for (const item of viewportButtons) item.setAttribute('aria-pressed', String(item === button)); applyViewport(); });
+  compareButton.addEventListener('click', () => { compare = !compare; compareButton.setAttribute('aria-pressed', String(compare)); compareButton.textContent = compare ? 'Hide baseline' : 'Compare baseline'; baselinePreview.hidden = !compare; previewGrid.dataset.compare = String(compare); requestAnimationFrame(applyViewport); });
+  reduceButton.addEventListener('click', () => { reduce = !reduce; reduceButton.setAttribute('aria-pressed', String(reduce)); reduceButton.textContent = reduce ? 'Reduced motion: on' : 'Reduced motion'; for (const frame of frames) configureFrame(frame); });
+  for (const frame of frames) frame.addEventListener('load', () => { frame.closest('.preview-panel')?.classList.remove('loading'); configureFrame(frame); });
+  form.addEventListener('change', () => { if (selected === '00') return; const choice = form.querySelector('input[name="decision"]:checked')?.value || ''; review[selected] = { ...review[selected], decision: choice, notes: notes.value }; persist(); });
+  notes.addEventListener('input', () => { if (selected === '00') return; saveState.textContent = 'Saving…'; review[selected] = { ...review[selected], notes: notes.value }; clearTimeout(saveTimer); saveTimer = setTimeout(persist, 250); });
+  const step = (amount) => { const ids = variants.map((item) => item.id); const index = ids.indexOf(selected); select(ids[(index + amount + ids.length) % ids.length]); };
+  root.querySelector('[data-previous]').addEventListener('click', () => step(-1)); root.querySelector('[data-next]').addEventListener('click', () => step(1));
+  root.querySelector('[data-export]').addEventListener('click', () => { const payload = { batch: '01', exportedAt: new Date().toISOString(), baseline: 'origin/main@4f0f32d', decisions: review }; const blob = new Blob([`${JSON.stringify(payload, null, 2)}\n`], { type: 'application/json' }); const url = URL.createObjectURL(blob); const link = document.createElement('a'); link.href = url; link.download = 'central-portfolio-batch-01-decisions.json'; link.click(); URL.revokeObjectURL(url); });
+  root.querySelector('[data-clear]').addEventListener('click', () => { if (!confirm('Clear all ten saved decisions and notes from this browser?')) return; review = {}; localStorage.removeItem(storageKey); loadDecision(); updateProgress(); saveState.textContent = 'Review cleared'; });
+  new ResizeObserver(applyViewport).observe(previewGrid); updateProgress(); loadDecision(); requestAnimationFrame(applyViewport);
+</script>
+
 <style>
-  .index { min-height: calc(100vh - 52px); padding: clamp(48px, 8vw, 112px) clamp(20px, 8vw, 128px); background: #f2f0ea; color: #111; }
-  .kicker { font: 11px/1.4 var(--mono); text-transform: uppercase; letter-spacing: .1em; }
-  h1 { margin: 28px 0; font-size: clamp(3rem, 8vw, 8rem); line-height: .86; max-width: 10ch; font-stretch: 120%; }
-  h1 em { font-style: normal; color: #087551; }
-  .intro { max-width: 62ch; font-size: 18px; color: #45443f; margin-bottom: 56px; }
-  ol { list-style: none; margin: 0; padding: 0; border-top: 2px solid #111; }
-  li { border-bottom: 1px solid #b8b5aa; }
-  a { display: grid; grid-template-columns: 56px minmax(140px,.6fr) 1fr auto; gap: 20px; align-items: baseline; padding: 20px 0; text-decoration: none; }
-  a:hover strong, a:hover .go { color: #087551; }
-  .id, .surface, .go { font: 12px/1.4 var(--mono); }
-  .surface { color: #6b6961; }
-  strong { font: 700 clamp(1.1rem,2vw,1.7rem)/1.1 var(--display); }
-  @media (max-width: 620px) {
-    h1 { font-size: 3.7rem; }
-    a { grid-template-columns: 36px 1fr auto; gap: 12px; }
-    .surface { grid-column: 2; }
-    strong { grid-column: 2; }
-    .go { grid-column: 3; grid-row: 1 / 4; }
-  }
+  [hidden]{display:none!important}
+  .review{min-height:calc(100vh - 52px);display:grid;grid-template-columns:310px minmax(0,1fr);background:#dedbd2;color:#151513}.review-index{position:sticky;top:0;align-self:start;height:calc(100vh - 52px);display:flex;flex-direction:column;overflow:hidden;border-right:1px solid #393833;background:#171716;color:#f4f1e8}.review-index>header{padding:24px 22px 18px;border-bottom:1px solid #45443f}.review-index header>p:first-child,.current-title>p:first-child,.review-decision header p{margin:0;font:10px/1.4 var(--mono);letter-spacing:.09em;text-transform:uppercase}.review-index h1{margin:10px 0 12px;font:780 38px/.88 var(--display);letter-spacing:-.045em}.index-intro{margin:0;color:#aaa79f;font-size:12px;line-height:1.45}.review-index nav{flex:1;min-height:0;overflow-y:auto}.variant-row{display:grid;grid-template-columns:30px minmax(0,1fr) 34px;gap:8px;align-items:center;width:100%;min-height:58px;padding:8px 14px;border:0;border-bottom:1px solid #363531;background:transparent;color:#d2cfc6;text-align:left;cursor:pointer;font:inherit}.variant-row:hover{background:#242421}.variant-row.selected{background:#f1eee6;color:#151513;box-shadow:inset 5px 0 #dfff00}.variant-row.baseline-row{border-bottom-color:#78766e}.row-id{color:#8d8a82;font:10px/1 var(--mono)}.variant-row small,.variant-row strong{display:block}.variant-row small{margin-bottom:3px;color:#8f8c84;font:9px/1.2 var(--mono);text-transform:uppercase}.variant-row strong{font-size:13px;line-height:1.15}.row-status{justify-self:end;display:grid;place-items:center;width:30px;height:23px;border:1px solid #4a4944;color:#8f8c84;font:9px/1 var(--mono)}.row-status[data-decision=KEEP]{border-color:#56d696;color:#56d696}.row-status[data-decision=REVISE]{border-color:#efbd42;color:#efbd42}.row-status[data-decision=REJECT]{border-color:#ef715d;color:#ef715d}.review-index>footer{padding:14px 18px 18px;border-top:1px solid #45443f}.review-index footer>div:first-child{display:flex;align-items:baseline;gap:7px}.review-index footer strong{font-size:22px}.review-index footer span{color:#aaa79f;font-size:10px;text-transform:uppercase}.progress{height:4px;margin-top:9px;overflow:hidden;background:#3d3c38}.progress i{display:block;width:0;height:100%;background:#dfff00;transition:width .2s ease}
+  .review-workspace{min-width:0;padding:22px}.review-toolbar{display:grid;grid-template-columns:minmax(260px,1fr) auto;gap:24px;align-items:end;margin-bottom:16px}.current-title h2{margin:4px 0;font:760 clamp(1.7rem,3vw,3rem)/.95 var(--display);letter-spacing:-.04em}.current-title>p:last-child{max-width:68ch;margin:0;color:#57554f;font-size:12px}.toolbar-actions{display:flex;justify-content:flex-end;gap:7px;flex-wrap:wrap}.segmented{display:flex}.segmented button,.tool-button,.open-full,.review-decision button{min-height:38px;padding:9px 11px;border:1px solid #77746c;background:#f4f1e9;color:#171716;font:10px/1 var(--mono);text-decoration:none;cursor:pointer}.segmented button+button{border-left:0}.segmented button[aria-pressed=true],.tool-button[aria-pressed=true]{background:#171716;color:#fff}.open-full{display:inline-flex;align-items:center;background:#dfff00;border-color:#171716;font-weight:600}
+  .preview-region{padding:12px;border:1px solid #77746c;background-color:#bbb8b0;background-image:linear-gradient(45deg,#b1aea7 25%,transparent 25%),linear-gradient(-45deg,#b1aea7 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#b1aea7 75%),linear-gradient(-45deg,transparent 75%,#b1aea7 75%);background-size:18px 18px;background-position:0 0,0 9px,9px -9px,-9px 0}.preview-grid{display:grid;grid-template-columns:1fr;gap:12px}.preview-grid[data-compare=true]{grid-template-columns:repeat(2,minmax(0,1fr))}.preview-panel{min-width:0;border:1px solid #222;background:#222;box-shadow:0 12px 35px #27251f32}.preview-panel>header{display:flex;justify-content:space-between;gap:12px;padding:9px 11px;color:#efebe2;font:10px/1 var(--mono)}.preview-panel>header small{color:#99968e}.frame-holder{position:relative;min-height:300px;overflow:hidden;background:#79766e}.frame-shell{position:absolute;top:16px;left:16px;transform-origin:top left;background:#fff;box-shadow:0 4px 18px #0006}.frame-shell iframe{display:block;width:100%;height:100%;border:0;background:#fff}.preview-panel.loading .frame-holder::after{content:'Loading live route…';position:absolute;inset:0;display:grid;place-items:center;background:#222d;color:#fff;font:11px/1 var(--mono)}
+  .review-decision{margin-top:16px;border:1px solid #77746c;background:#f2efe7}.review-decision>header{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:16px 18px;border-bottom:1px solid #b7b3aa}.review-decision header h2{margin:3px 0 0;font-size:19px}.save-state{color:#6e6a62;font:10px/1 var(--mono)}.save-state[data-saved=true]{color:#087551}.baseline-message{padding:24px 18px}.baseline-message p{margin:0}.review-decision form{display:grid;grid-template-columns:1.25fr 1fr}fieldset{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0;padding:18px;border:0;border-right:1px solid #b7b3aa}legend{padding:0 0 4px;font:10px/1 var(--mono);text-transform:uppercase}fieldset label{position:relative;display:grid;gap:5px;min-height:84px;padding:12px;border:1px solid #aaa69d;cursor:pointer}fieldset label:has(input:checked){border-color:#171716;background:#171716;color:#fff}fieldset input{position:absolute;top:10px;right:10px;accent-color:#dfff00}fieldset label span{align-self:end;font-weight:750}fieldset label small{color:#706d66;font-size:10px}fieldset label:has(input:checked) small{color:#c7c3b9}.notes-label{display:grid;gap:8px;padding:18px;font:10px/1 var(--mono);text-transform:uppercase}textarea{width:100%;resize:vertical;min-height:92px;padding:10px;border:1px solid #aaa69d;background:#fff;color:#171716;font:13px/1.45 var(--sans);text-transform:none}.review-decision>footer{display:flex;justify-content:space-between;gap:12px;padding:12px 18px;border-top:1px solid #b7b3aa}.review-decision footer>div{display:flex;gap:7px}.review-decision .danger{color:#9a2f22}button:focus-visible,a:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid #1473e6;outline-offset:3px}
+  @media(max-width:1050px){.review{grid-template-columns:250px minmax(0,1fr)}.review-toolbar{grid-template-columns:1fr}.toolbar-actions{justify-content:flex-start}.review-decision form{grid-template-columns:1fr}fieldset{border-right:0;border-bottom:1px solid #b7b3aa}}@media(max-width:760px){.review{display:block}.review-index{position:relative;width:100%;height:auto;border-right:0}.review-index>header{padding:18px 16px}.review-index h1{font-size:32px}.review-index nav{display:flex;overflow-x:auto}.variant-row{flex:0 0 190px;min-height:64px;border-right:1px solid #363531}.review-index>footer{padding:10px 16px}.review-workspace{padding:14px}.preview-grid[data-compare=true]{grid-template-columns:1fr}.review-decision>footer{align-items:stretch;flex-direction:column}.review-decision footer>div{display:grid;grid-template-columns:1fr 1fr}fieldset{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){.progress i{transition:none}}
 </style>
