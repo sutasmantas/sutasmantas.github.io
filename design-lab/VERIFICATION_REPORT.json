@@ -1,10 +1,10 @@
 {
-  "verifiedAt": "2026-08-16T07:12:46.883Z",
+  "verifiedAt": "2026-08-16T07:47:12.514Z",
   "origin": "http://127.0.0.1:8912",
   "result": "PASS",
   "summary": {
-    "checks": 68,
-    "passed": 68,
+    "checks": 79,
+    "passed": 79,
     "failed": 0
   },
   "checks": [
@@ -86,7 +86,7 @@
     {
       "name": "05 preview remains within viewport horizontally",
       "pass": true,
-      "detail": "{\"x\":852.484375,\"y\":777.859375,\"width\":529.921875,\"height\":628.5625}"
+      "detail": "{\"x\":852.484375,\"y\":1057.859375,\"width\":529.921875,\"height\":628.5625}"
     },
     {
       "name": "/design-lab/05/ has no horizontal overflow",
@@ -109,12 +109,27 @@
       "detail": "HTTP 200"
     },
     {
-      "name": "06 product registry selects by keyboard",
+      "name": "06 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "06 selectors do not clip their project text",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "06 product registry selects on hover",
       "pass": true,
       "detail": ""
     },
     {
       "name": "06 product surface switches",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "06 product registry selects on keyboard focus",
       "pass": true,
       "detail": ""
     },
@@ -194,12 +209,42 @@
       "detail": "HTTP 200"
     },
     {
-      "name": "10 proof deck selects by keyboard",
+      "name": "10 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "10 has no duplicate canonical directory",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "10 selectors do not clip their project text",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "10 proof deck selects on hover",
       "pass": true,
       "detail": ""
     },
     {
       "name": "10 proof deck promotes selected card",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "10 shows exactly one complete project card",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "10 selected project card does not clip copy",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "10 proof deck selects on keyboard focus",
       "pass": true,
       "detail": ""
     },
@@ -247,6 +292,11 @@
       "name": "/design-lab/06/ returns 200",
       "pass": true,
       "detail": "HTTP 200"
+    },
+    {
+      "name": "06 mobile exposes all thirteen selectors",
+      "pass": true,
+      "detail": ""
     },
     {
       "name": "/design-lab/06/ mobile control responds",
@@ -297,6 +347,11 @@
       "name": "/design-lab/10/ returns 200",
       "pass": true,
       "detail": "HTTP 200"
+    },
+    {
+      "name": "10 mobile exposes all thirteen selectors",
+      "pass": true,
+      "detail": ""
     },
     {
       "name": "/design-lab/10/ mobile control responds",

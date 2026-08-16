@@ -67,10 +67,14 @@ const desktop = await browser.newContext({ viewport: { width: 1440, height: 900 
 {
   const state = await open(desktop, '/design-lab/06/');
   const gauge = state.page.locator('[data-registry-row="gauge"]');
-  await gauge.focus();
-  await state.page.keyboard.press('Enter');
-  record('06 product registry selects by keyboard', await gauge.getAttribute('aria-pressed') === 'true');
+  record('06 exposes all thirteen project selectors', await state.page.locator('[data-registry-row]').count() === 13);
+  record('06 selectors do not clip their project text', await state.page.locator('[data-registry-row]').evaluateAll((elements) => elements.every((element) => element.scrollWidth <= element.clientWidth + 1 && element.scrollHeight <= element.clientHeight + 1)));
+  await gauge.hover();
+  record('06 product registry selects on hover', await gauge.getAttribute('aria-pressed') === 'true');
   record('06 product surface switches', await state.page.locator('[data-registry-card="gauge"]').isVisible());
+  const relay = state.page.locator('[data-registry-row="relay"]');
+  await relay.focus();
+  record('06 product registry selects on keyboard focus', await relay.getAttribute('aria-pressed') === 'true');
   await closeChecked('/design-lab/06/', state);
 }
 
@@ -94,11 +98,18 @@ const desktop = await browser.newContext({ viewport: { width: 1440, height: 900 
 {
   const state = await open(desktop, '/design-lab/10/');
   const relay = state.page.locator('[data-proof-button="relay"]');
-  await relay.focus();
-  await state.page.keyboard.press('Enter');
+  record('10 exposes all thirteen project selectors', await state.page.locator('[data-proof-button]').count() === 13);
+  record('10 has no duplicate canonical directory', await state.page.locator('[data-canonical-directory]').count() === 0);
+  record('10 selectors do not clip their project text', await state.page.locator('[data-proof-button]').evaluateAll((elements) => elements.every((element) => element.scrollWidth <= element.clientWidth + 1 && element.scrollHeight <= element.clientHeight + 1)));
+  await relay.hover();
   await state.page.waitForTimeout(400);
-  record('10 proof deck selects by keyboard', await relay.getAttribute('aria-pressed') === 'true');
+  record('10 proof deck selects on hover', await relay.getAttribute('aria-pressed') === 'true');
   record('10 proof deck promotes selected card', await state.page.locator('[data-proof-card="relay"]').getAttribute('data-active') === 'true');
+  record('10 shows exactly one complete project card', await state.page.locator('[data-proof-card]:visible').count() === 1);
+  record('10 selected project card does not clip copy', await state.page.locator('[data-proof-card="relay"]').evaluate((element) => element.scrollWidth <= element.clientWidth + 1 && element.scrollHeight <= element.clientHeight + 1));
+  const gauge = state.page.locator('[data-proof-button="gauge"]');
+  await gauge.focus();
+  record('10 proof deck selects on keyboard focus', await gauge.getAttribute('aria-pressed') === 'true');
   await closeChecked('/design-lab/10/', state);
 }
 
@@ -112,6 +123,8 @@ for (const [route, selector, value] of [
   ['/design-lab/10/', '[data-proof-button="gauge"]', 'true'],
 ]) {
   const state = await open(mobile, route);
+  if (route === '/design-lab/06/') record('06 mobile exposes all thirteen selectors', await state.page.locator('[data-registry-row]').count() === 13);
+  if (route === '/design-lab/10/') record('10 mobile exposes all thirteen selectors', await state.page.locator('[data-proof-button]').count() === 13);
   await state.page.locator(selector).click();
   record(`${route} mobile control responds`, await state.page.locator(selector).getAttribute('aria-pressed') === value);
   await closeChecked(route, state);

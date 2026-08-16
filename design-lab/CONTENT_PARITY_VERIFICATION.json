@@ -1,9 +1,9 @@
 {
-  "verifiedAt": "2026-08-16T07:12:48.644Z",
+  "verifiedAt": "2026-08-16T07:47:15.736Z",
   "result": "PASS",
   "summary": {
-    "checks": 413,
-    "passed": 413,
+    "checks": 417,
+    "passed": 417,
     "failed": 0
   },
   "checks": [
@@ -2069,6 +2069,26 @@
     },
     {
       "name": "homepage experiments compare against the homepage baseline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "06 compares directly against finalist 10",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "06 exposes the finalist comparison action",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "10 compares directly against finalist 06",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "10 labels finalist 06 correctly",
       "pass": true,
       "detail": ""
     }

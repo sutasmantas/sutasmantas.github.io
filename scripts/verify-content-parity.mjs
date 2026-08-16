@@ -58,6 +58,12 @@ check('08 compares against the Atlas detail baseline', await page.locator('[data
 check('08 labels its comparison scope', await page.locator('[data-baseline-label]').textContent() === 'Atlas project baseline');
 await page.locator('[data-review-variant="07"]').click();
 check('homepage experiments compare against the homepage baseline', await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/');
+await page.locator('[data-review-variant="06"]').click();
+check('06 compares directly against finalist 10', await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/10/');
+check('06 exposes the finalist comparison action', await page.locator('[data-compare]').textContent() === 'Compare finalist');
+await page.locator('[data-review-variant="10"]').click();
+check('10 compares directly against finalist 06', await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/06/');
+check('10 labels finalist 06 correctly', await page.locator('[data-baseline-label]').textContent() === 'Finalist A · complete identity registry');
 
 await context.close();
 await browser.close();

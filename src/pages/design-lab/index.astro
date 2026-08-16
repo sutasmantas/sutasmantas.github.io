@@ -9,19 +9,20 @@ const variants = [
   ['03', 'Display typography', 'Variable-width specimen', '/design-lab/03/', 'The existing Archivo width axis becomes an identity device.'],
   ['04', 'Live-system stage', 'Guided inspection bench', '/design-lab/04/', 'One dense product state becomes legible through explicit inspection points.'],
   ['05', 'Project discovery', 'Evidence lens', '/design-lab/05/', 'All thirteen projects remain visible while focus reveals real evidence.'],
-  ['06', 'Product identity', 'Thirteen-colour registry', '/design-lab/06/', 'Every system retains its own visual temperature inside a quiet shell.'],
+  ['06', 'Finalist A · product identity', 'Complete identity registry', '/design-lab/06/', 'All thirteen systems stay visible while hover or focus reveals the full project in its own visual identity.'],
   ['07', 'Evidence and results', 'Executable receipt', '/design-lab/07/', 'Reliability proof scans as an outcome, rerun and bounded claim.'],
   ['08', 'Project detail', 'Case spine', '/design-lab/08/', 'Problem, run, receipt and adaptation remain oriented without one long read.'],
   ['09', 'Human authorship', 'Engineering field notes', '/design-lab/09/', 'Real engineering judgements visibly belong to the person who made them.'],
-  ['10', 'Motion and feedback', 'User-triggered proof deck', '/design-lab/10/', 'Explicit choices reveal different proof types with interruptible motion.'],
+  ['10', 'Finalist B · motion and feedback', 'Complete motion proof deck', '/design-lab/10/', 'All thirteen systems stay visible while hover, focus or tap reveals one complete project with bounded motion.'],
 ].map(([id, surface, name, route, hypothesis]) => ({
   id,
   surface,
   name,
   route: href(route),
   hypothesis,
-  baselineRoute: href(id === '08' ? '/work/atlas/' : '/'),
-  baselineName: id === '08' ? 'Atlas project baseline' : 'Production homepage',
+  baselineRoute: href(id === '06' ? '/design-lab/10/' : id === '10' ? '/design-lab/06/' : id === '08' ? '/work/atlas/' : '/'),
+  baselineName: id === '06' ? 'Finalist B · complete motion deck' : id === '10' ? 'Finalist A · complete identity registry' : id === '08' ? 'Atlas project baseline' : 'Production homepage',
+  compareLabel: id === '06' || id === '10' ? 'Compare finalist' : 'Compare baseline',
 }));
 ---
 
@@ -35,7 +36,7 @@ const variants = [
       </header>
       <nav aria-label="Choose a live experiment">
         {variants.map((item, index) => (
-          <button type="button" class:list={['variant-row', index === 1 && 'selected', item.id === '00' && 'baseline-row']} data-review-variant={item.id} data-route={item.route} data-surface={item.surface} data-name={item.name} data-hypothesis={item.hypothesis} data-baseline-route={item.baselineRoute} data-baseline-name={item.baselineName} aria-pressed={index === 1 ? 'true' : 'false'}>
+          <button type="button" class:list={['variant-row', index === 1 && 'selected', item.id === '00' && 'baseline-row']} data-review-variant={item.id} data-route={item.route} data-surface={item.surface} data-name={item.name} data-hypothesis={item.hypothesis} data-baseline-route={item.baselineRoute} data-baseline-name={item.baselineName} data-compare-label={item.compareLabel} aria-pressed={index === 1 ? 'true' : 'false'}>
             <span class="row-id">{item.id}</span>
             <span><small>{item.surface}</small><strong>{item.name}</strong></span>
             {item.id !== '00' && <span class="row-status" data-status-for={item.id}>—</span>}
@@ -194,12 +195,14 @@ const variants = [
     root.querySelector('[data-frame-label]').textContent = `${id} / ${item.name}`; currentFrame.title = `${item.name} live preview`;
     root.querySelector('[data-baseline-label]').textContent = item.baselineName;
     baselineFrame.title = `${item.baselineName} live preview`;
+    compareButton.dataset.closedLabel = item.compareLabel;
+    compareButton.textContent = compare ? 'Hide comparison' : item.compareLabel;
     if (baselineFrame.getAttribute('src') !== item.baselineRoute) { baselinePreview.classList.add('loading'); baselineFrame.src = item.baselineRoute; }
     currentPreview.classList.add('loading'); currentFrame.src = item.route; openFull.href = item.route; loadDecision();
   };
   for (const row of rows) row.addEventListener('click', () => select(row.dataset.reviewVariant));
   for (const button of viewportButtons) button.addEventListener('click', () => { viewport = button.dataset.viewport; for (const item of viewportButtons) item.setAttribute('aria-pressed', String(item === button)); applyViewport(); });
-  compareButton.addEventListener('click', () => { compare = !compare; compareButton.setAttribute('aria-pressed', String(compare)); compareButton.textContent = compare ? 'Hide baseline' : 'Compare baseline'; baselinePreview.hidden = !compare; previewGrid.dataset.compare = String(compare); requestAnimationFrame(applyViewport); });
+  compareButton.addEventListener('click', () => { compare = !compare; compareButton.setAttribute('aria-pressed', String(compare)); compareButton.textContent = compare ? 'Hide comparison' : compareButton.dataset.closedLabel || 'Compare baseline'; baselinePreview.hidden = !compare; previewGrid.dataset.compare = String(compare); requestAnimationFrame(applyViewport); });
   reduceButton.addEventListener('click', () => { reduce = !reduce; reduceButton.setAttribute('aria-pressed', String(reduce)); reduceButton.textContent = reduce ? 'Reduced motion: on' : 'Reduced motion'; for (const frame of frames) configureFrame(frame); });
   for (const frame of frames) frame.addEventListener('load', () => { frame.closest('.preview-panel')?.classList.remove('loading'); configureFrame(frame); });
   form.addEventListener('change', () => { if (selected === '00') return; const choice = form.querySelector('input[name="decision"]:checked')?.value || ''; review[selected] = { ...review[selected], decision: choice, notes: notes.value }; persist(); });

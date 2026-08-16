@@ -35,11 +35,11 @@ const experimentNotes = {
   '03': ['Display typography', 'The width axis already in Archivo can become an identity device without adding another font.'],
   '04': ['Live-system stage', 'A guided inspection view can make one product state legible at contact-sheet size.'],
   '05': ['Project discovery', 'Keep all thirteen visible, but give hover and focus a collision-safe evidence preview.'],
-  '06': ['Product identity', 'The central shell can stay quiet while every system brings its own accent and visual temperature.'],
+  '06': ['Finalist A · product identity', 'A complete visible index can keep the quiet shell and per-system identity while borrowing the fast hover and focus preview from 05.'],
   '07': ['Evidence and results', 'Reliability proof should scan like a receipt, not like ordinary documentation metadata.'],
   '08': ['Project detail', 'A sticky case spine can expose depth without forcing one long undifferentiated read.'],
   '09': ['Human authorship', 'Real engineering judgements can make the site personal without invented clients or testimonials.'],
-  '10': ['Motion and feedback', 'Motion earns its place only when an explicit choice reveals a different kind of proof.'],
+  '10': ['Finalist B · motion and feedback', 'The motion-led direction should expose all thirteen systems once, with readable controls and a bounded user-triggered transition.'],
 };
 const [surface, hypothesis] = experimentNotes[variant];
 ---
@@ -51,7 +51,7 @@ const [surface, hypothesis] = experimentNotes[variant];
     <h1>{title}</h1>
   </header>
 
-  <CompletePortfolio variant={variant} customDirectory={variant === '05' || variant === '06'}>
+  <CompletePortfolio variant={variant} customDirectory={variant === '05' || variant === '06' || variant === '10'}>
 
   {variant === '01' && (
     <section class="v01-canvas" aria-label="Systems broadsheet art direction">
@@ -152,7 +152,7 @@ const [surface, hypothesis] = experimentNotes[variant];
         <div class="v05-groups">
           {routes.map((route, routeIndex) => (
             <section>
-              <h3><span>0{routeIndex + 1}</span>{routeName[route.id]}</h3>
+              <h3><span>{['A', 'B', 'C'][routeIndex]}</span>{routeName[route.id]}</h3>
               <ol>
                 {ordered.filter((project) => project.route === route.id).map((project) => (
                   <li>
@@ -184,13 +184,16 @@ const [surface, hypothesis] = experimentNotes[variant];
 
   {variant === '06' && (
     <section class="v06-canvas" aria-label="Per-product colour registry" data-registry>
-      <header><p>Thirteen products / thirteen accents / one quiet shell</p><h2>Stop repainting the work green.</h2></header>
+      <header><p>Finalist A / identity-led directory</p><h2>Every system visible. Every system distinct.</h2></header>
       <div class="v06-layout">
         <ol class="v06-list">
           {ordered.map((project) => (
             <li style={`--project:${accents[project.slug]}`}>
               <button type="button" data-registry-row={project.slug} aria-pressed={project.slug === atlas.slug ? 'true' : 'false'}>
-                <span>{String(project.order).padStart(2, '0')}</span><b>{project.name}</b><small>{project.family}</small><i aria-hidden="true"></i>
+                <span>{String(project.order).padStart(2, '0')}</span>
+                <b>{project.title}</b>
+                <small>{project.name} / {project.family}</small>
+                <i aria-hidden="true"></i>
               </button>
             </li>
           ))}
@@ -280,25 +283,42 @@ const [surface, hypothesis] = experimentNotes[variant];
 
   {variant === '10' && (
     <section class="v10-canvas" aria-label="User-triggered proof deck" data-proof-deck>
-      <header><p>Choose the kind of proof you care about.</p><h2>Working software.<br />Three different receipts.</h2></header>
-      <div class="v10-controls" role="group" aria-label="Select proof">
-        <button type="button" data-proof-button="atlas" aria-pressed="true"><span>01</span>Cited answer</button>
-        <button type="button" data-proof-button="relay" aria-pressed="false"><span>02</span>Killed process</button>
-        <button type="button" data-proof-button="gauge" aria-pressed="false"><span>12</span>Rejected model</button>
+      <header><p>Finalist B / motion-led directory</p><h2>All thirteen.<br />One responsive proof deck.</h2></header>
+      <div class="v10-layout">
+        <div class="v10-index" aria-label="Choose a project">
+          {routes.map((route, routeIndex) => (
+            <section>
+              <h3><span>0{routeIndex + 1}</span>{routeName[route.id]}</h3>
+              <ol>
+                {ordered.filter((project) => project.route === route.id).map((project) => (
+                  <li>
+                    <button type="button" data-proof-button={project.slug} aria-pressed={project.slug === atlas.slug ? 'true' : 'false'} style={`--project:${accents[project.slug]}`}>
+                      <span>{String(project.order).padStart(2, '0')}</span>
+                      <b>{project.title}</b>
+                      <small>{project.note}</small>
+                    </button>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          ))}
+        </div>
+        <div class="v10-stage" aria-live="polite">
+          {ordered.map((project) => (
+            <article data-proof-card={project.slug} data-project-record data-project-slug={project.slug} hidden={project.slug !== atlas.slug} style={`--project:${accents[project.slug]}`}>
+              <div class="v10-image"><Image src={shotFor(project.shot)} alt={project.alt} widths={[650, 1000]} sizes="(max-width: 760px) 92vw, 48vw" /></div>
+              <div class="v10-copy">
+                <span>{String(project.order).padStart(2, '0')} / {project.name} / {project.family}</span>
+                <h3>{project.title}</h3>
+                <p>{project.blurb}</p>
+                <b>{project.note}</b>
+                <div class="v10-actions"><a href={href(`/work/${project.slug}/`)}>View case</a><a href={project.live}>Open live ↗</a></div>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
-      <div class="v10-stage">
-        {[
-          [atlas, 'The answer points back to the exact passage—or the system declines.'],
-          [relay, 'Seven injected failures completed with no duplicate external effect.'],
-          [gauge, 'A higher-scoring candidate stayed out because its worst run was unsafe.'],
-        ].map(([project, receipt], index) => (
-          <article data-proof-card={project.slug} data-order={index} style={`--project:${accents[project.slug]}`}>
-            <div class="v10-image"><Image src={shotFor(project.shot)} alt={project.alt} widths={[650, 1000]} sizes="(max-width: 760px) 92vw, 54vw" /></div>
-            <div class="v10-copy"><span>{String(project.order).padStart(2, '0')} / {project.name}</span><h3>{project.title}</h3><p>{project.blurb}</p><p>{receipt}</p><b>{project.note}</b><a href={href(`/work/${project.slug}/`)}>Inspect the full receipt ↗</a></div>
-          </article>
-        ))}
-      </div>
-      <p class="v10-motion-note">Nothing moves on load. Click or use the buttons; reduced motion swaps state instantly.</p>
+      <p class="v10-motion-note">Nothing moves on load. Hover, focus or choose a project; reduced motion swaps state instantly.</p>
     </section>
   )}
   </CompletePortfolio>
@@ -348,10 +368,15 @@ const [surface, hypothesis] = experimentNotes[variant];
   if (registry) {
     const rows = Array.from(registry.querySelectorAll('[data-registry-row]'));
     const cards = Array.from(registry.querySelectorAll('[data-registry-card]'));
-    for (const row of rows) row.addEventListener('click', () => {
+    const show = (row) => {
       for (const item of rows) item.setAttribute('aria-pressed', String(item === row));
       for (const card of cards) card.hidden = card.dataset.registryCard !== row.dataset.registryRow;
-    });
+    };
+    for (const row of rows) {
+      row.addEventListener('click', () => show(row));
+      row.addEventListener('mouseenter', () => show(row));
+      row.addEventListener('focus', () => show(row));
+    }
   }
 
   const replay = document.querySelector('[data-replay]');
@@ -378,18 +403,31 @@ const [surface, hypothesis] = experimentNotes[variant];
     const cards = Array.from(deck.querySelectorAll('[data-proof-card]'));
     const systemReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
     const shouldReduce = () => systemReduce.matches || document.documentElement.dataset.reviewReduce === 'true';
+    let selectedSlug;
     const select = (slug, animateChange = true) => {
+      if (animateChange && slug === selectedSlug) return;
+      selectedSlug = slug;
       for (const button of buttons) button.setAttribute('aria-pressed', String(button.dataset.proofButton === slug));
       for (const card of cards) {
         const active = card.dataset.proofCard === slug;
         card.dataset.active = String(active);
-        card.style.zIndex = active ? '4' : String(2 - Number(card.dataset.order));
-        const target = active ? { x: 0, y: 0, scale: 1, opacity: 1 } : { x: Number(card.dataset.order) * 16 + 28, y: Number(card.dataset.order) * 13 + 34, scale: .94, opacity: .48 };
-        if (!animateChange || shouldReduce()) Object.assign(card.style, { transform: `translate(${target.x}px, ${target.y}px) scale(${target.scale})`, opacity: String(target.opacity) });
-        else animate(card, target, { type: 'spring', stiffness: 360, damping: 34, mass: .7 });
+        card.hidden = !active;
+        if (!active) continue;
+        if (!animateChange || shouldReduce()) {
+          Object.assign(card.style, { transform: 'none', opacity: '1' });
+        } else {
+          animate(card, {
+            transform: ['translate3d(30px, 22px, 0) scale(.97)', 'translate3d(0, 0, 0) scale(1)'],
+            opacity: [0, 1],
+          }, { type: 'spring', stiffness: 330, damping: 30, mass: .72 });
+        }
       }
     };
-    for (const button of buttons) button.addEventListener('click', () => select(button.dataset.proofButton));
+    for (const button of buttons) {
+      button.addEventListener('click', () => select(button.dataset.proofButton));
+      button.addEventListener('mouseenter', () => select(button.dataset.proofButton));
+      button.addEventListener('focus', () => select(button.dataset.proofButton));
+    }
     select('atlas', false);
   }
 </script>

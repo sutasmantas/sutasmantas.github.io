@@ -34,14 +34,15 @@ if ($alreadyRunning) {
   exit 0
 }
 
-$startInfo = [System.Diagnostics.ProcessStartInfo]::new()
-$startInfo.FileName = (Get-Command node.exe).Source
 $astroCli = Join-Path $projectRoot 'node_modules\astro\bin\astro.mjs'
-$startInfo.Arguments = "`"$astroCli`" preview --port 8912 --host 127.0.0.1"
-$startInfo.WorkingDirectory = $projectRoot
-$startInfo.UseShellExecute = $false
-$startInfo.CreateNoWindow = $true
-$previewProcess = [System.Diagnostics.Process]::Start($startInfo)
+$nodeExe = (Get-Command node.exe).Source
+
+# Astro 7 manages preview as a background process. Starting it through
+# ProcessStartInfo and watching the short-lived parent races the daemon: the
+# parent can exit before the listener becomes ready. Ask Astro to own the
+# background lifecycle explicitly, then verify the actual listener below.
+& $nodeExe $astroCli preview --background --port 8912 --host 127.0.0.1
+if ($LASTEXITCODE -ne 0) { throw "Astro preview failed with exit code $LASTEXITCODE" }
 
 function Stop-OwnedPreview {
   $listener = Get-NetTCPConnection -LocalPort 8912 -State Listen -ErrorAction SilentlyContinue | Select-Object -First 1
@@ -53,19 +54,14 @@ function Stop-OwnedPreview {
     if (-not $belongsToLab) {
       throw "Refusing to stop unrelated process $($listener.OwningProcess) on port 8912."
     }
-    Stop-Process -Id $listener.OwningProcess -Force -ErrorAction SilentlyContinue
-  }
-
-  if (-not $previewProcess.HasExited) {
-    Stop-Process -Id $previewProcess.Id -Force -ErrorAction SilentlyContinue
-    $previewProcess.WaitForExit()
+    & $nodeExe $astroCli preview stop
+    if ($LASTEXITCODE -ne 0) { throw "Astro preview stop failed with exit code $LASTEXITCODE" }
   }
 }
 
 $ready = $false
 for ($attempt = 0; $attempt -lt 40; $attempt++) {
   Start-Sleep -Milliseconds 250
-  if ($previewProcess.HasExited) { break }
   try {
     $response = Invoke-WebRequest -UseBasicParsing -Uri $reviewUrl -TimeoutSec 1
     if ($response.StatusCode -eq 200) { $ready = $true; break }
