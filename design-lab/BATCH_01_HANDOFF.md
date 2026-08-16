@@ -1,8 +1,8 @@
 # Central portfolio visual lab — Batch 1 handoff
 
 Date: 2026-08-16
-Status: **PASS_TWO_FINALIST_BASES_READY_NOT_SELECTED**
-Implementation checkpoint: `5e46777076c40091dbd67a74817b72cd394bebbb`
+Status: **PASS_BASE_10_SELECTED_READY_FOR_IMPROVEMENT_SLICE**
+Implementation checkpoint: `23a91bde7d033408f02567fd65f7db6bb83316ba`
 Initial experiment checkpoint: `26ab9ea726e07c32e6a3fcd17ecc19b0941fc326`
 Baseline: `origin/main@4f0f32d`
 Branch: `agent/central-portfolio-visual-lab`
@@ -10,9 +10,11 @@ Worktree: `C:\Users\masuta\Desktop\Coding\cv\portfolio_demos\worktrees\central_p
 
 ## Decision
 
-Batch 1 is complete, and owner review has narrowed the base decision to two
-parallel finalists. It does not authorize production integration, and the live
-production homepage remains unchanged.
+Batch 1 is complete, and the owner selected **10 / complete motion proof deck**
+as the base for the next bounded improvement slice. Variant 06 remains an
+equal-content comparison reference, not a parallel candidate. This decision
+does not authorize production integration, and the live production homepage
+remains unchanged.
 
 The original `f919efa` artifact was not a valid whole-portfolio comparison:
 most experiment routes rendered only the mechanism under study, omitted much of
@@ -23,22 +25,17 @@ with equal information scope. Each route now preserves the exact canonical
 headline, positioning copy, proof figures, all 13 project titles, descriptions,
 evidence notes and actions, all three client routes, and contact path.
 
-There is deliberately no selected winner:
+Selected base 10 exposes all 13 full project titles from the start in three
+client-oriented groups. Hover, keyboard focus or tap updates one bounded proof
+deck with user-triggered motion and an immediate reduced-motion path. It
+preserves the exact canonical project descriptions, evidence notes, case links
+and live links without a three-project prelude or second generic directory.
 
-- **06 / Finalist A — complete identity registry:** the calmer, faster-scanning
-  base. All 13 full project titles are visible in one flat index; hover, keyboard
-  focus or tap updates a sticky evidence preview while per-product accents keep
-  systems distinct.
-- **10 / Finalist B — complete motion proof deck:** the more expressive base.
-  All 13 full project titles are visible from the start in three client-oriented
-  groups; the same hover, focus or tap interaction updates one bounded proof
-  deck with user-triggered motion and an immediate reduced-motion path.
-
-Both preserve the exact canonical project descriptions, evidence notes, case
-links and live links. Neither uses a three-project prelude or a second generic
-project directory. The dashboard compares 06 directly against 10 and vice
-versa, so the next decision is about scan character and motion—not missing
-content.
+The dashboard now opens directly on 10. Its **Compare reference** action opens
+06's calmer flat registry beside it when scan density needs checking. Project
+detail pages no longer include subject-prefilled **Talk about [project]** email
+buttons; their real evidence/source actions and the single site-wide contact
+path remain.
 
 ## Open the interactive review artifact
 
@@ -49,7 +46,7 @@ open while reviewing; press Enter in that window to stop the local server.
 
 The dashboard embeds the real routes rather than screenshots. It supports live
 scrolling and controls, 1440/390 viewport switching, a second independent
-production-baseline preview, reduced-motion review, full-size opening,
+comparison preview, reduced-motion review, full-size opening,
 previous/next navigation, and per-experiment `KEEP`/`REVISE`/`REJECT` decisions
 with notes. Review state survives reloads in that browser's local storage. Use
 **Export decisions** to create `central-portfolio-batch-01-decisions.json` for
@@ -65,19 +62,22 @@ the integration handoff.
 - Rebuilt every experiment as an additive layer around the complete canonical
   portfolio. Variants 05 and 06 retain their specialized selectors while making
   every canonical project record available through those interfaces.
-- Promoted 06 and 10 to equal-scope finalists without selecting a winner. Both
-  expose all 13 complete project records in the first and only project section.
-- Reused 05's low-friction hover-preview mechanism in both finalists, with
-  equivalent keyboard-focus and tap behavior.
+- Recorded 10 as the selected base and retained 06 only as its equal-content
+  comparison reference. The dashboard now opens directly on 10.
+- Reused 05's low-friction hover-preview mechanism in both complete comparison
+  routes, with equivalent keyboard-focus and tap behavior.
 - Rebuilt 10's three-project motion demo as a complete grouped directory with
   one readable, auto-height proof deck. Removed clipped text, fixed-height card
   overflow, unreadable actions and the duplicate secondary directory.
 - Made the dashboard's comparison action pair 06 with 10 in either direction;
   the other routes retain their appropriate production/detail baselines.
+- Removed all thirteen project-specific **Talk about** mail actions while
+  retaining evidence, source, live-project and site-level contact paths.
 - Replaced unexplained Relay-led headings with the descriptive product title;
   `Relay` now appears only as the secondary product identity.
 - Made experiment 08 compare against the existing Atlas project-detail page;
-  the other nine experiments continue to compare against the homepage.
+  06 and 10 compare against each other, and the remaining seven experiments
+  compare against the homepage.
 - Added an exact content-parity gate so missing or shortened portfolio copy is a
   release failure rather than a matter of visual review.
 - Added narrow third-party reuse: Floating UI loads only for experiment 05;
@@ -118,13 +118,14 @@ decisions.
 | 03 | **REVISE** | Excellent low-payload identity device; use as a chapter or campaign moment, not the entire homepage voice. |
 | 04 | **KEEP** | Makes dense product screens legible; apply only to featured products whose important state can be maintained. |
 | 05 | **REVISE** | Its hover/focus discovery mechanism has been reused in both finalists; the standalone route still leaves the mobile preview after the full index. |
-| 06 | **FINALIST A** | Best for calm, immediate scanning and the clearest all-project overview; choose it if motion does not materially improve selection confidence. |
+| 06 | **REFERENCE** | Retained only for direct scan-density comparison with selected base 10. |
 | 07 | **KEEP** | Best conversion of invisible reliability work into inspectable proof; make receipt language project-specific. |
 | 08 | **REVISE** | Strong case orientation, but thirteen fully bespoke spines are expensive; reserve for featured cases or define 3–4 artifact families. |
 | 09 | **KEEP** | Adds defensible human judgement without fake social proof; avoid duplicating the full portrait if 02 is selected. |
-| 10 | **FINALIST B** | Best for a cooler, more authored transition from index to evidence; choose it only if that expressiveness justifies the longer grouped mobile index and Motion dependency. |
+| 10 | **SELECTED BASE** | Owner-selected foundation for the next bounded improvement slice; retain the grouped all-project index, readable proof deck and reduced-motion-safe transition. |
 
-The owner-facing decision cells remain blank in `VARIANT_MANIFEST.md`.
+The owner decision and comparison-reference disposition are recorded in
+`VARIANT_MANIFEST.md`.
 
 ## Artifacts
 
@@ -154,16 +155,16 @@ All checks were run against the static build served at
 | Gate | Result |
 | --- | --- |
 | `npm run build` | **PASS** — 26 static pages |
-| `npm run gate:lab-content` | **PASS** — 417 canonical-content and equal-scope comparison checks |
+| `npm run gate:lab-content` | **PASS** — 458 canonical-content, selected-base and project-mail-action checks |
 | Existing UI gate with the dashboard and all ten lab routes | **PASS** — gutter, overflow, focus, targets, alt, contrast and reduced motion at 11 routes × 2 viewports |
 | `node scripts/verify-design-lab.mjs` | **PASS** — 79 route, hover/focus interaction, console, clipping, overflow and reduced-motion checks |
-| `node scripts/verify-review-dashboard.mjs` | **PASS** — 24 live route, interaction, comparison, persistence, export, responsive and error checks |
+| `node scripts/verify-review-dashboard.mjs` | **PASS** — 26 live route, selected-base default, interaction, comparison, persistence, export, responsive and error checks |
 | `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/open-design-lab.ps1 -NoBrowser -NoWait` | **PASS** — clean build, start, readiness and shutdown; port 8912 released |
 | `node scripts/capture-design-lab.mjs` | **PASS** — 20 full-page renders and two ordered contact sheets |
 | `npm run gate:evidence` | **PASS** — 13 projects, 26 immutable links |
 | `npm run test:evidence` | **PASS** — 4/4 evidence-contract mutants killed |
 | Production `npm run gate:ui` | **PASS** — 5 routes × 2 viewports |
-| Authenticated `npm run gate:links` | **PASS** — 26 pages, 917 anchors, 79 external and 27 internal targets |
+| Authenticated `npm run gate:links` | **PASS** — 26 pages, 904 anchors, 79 external and 27 internal targets |
 
 The unauthenticated link run hit GitHub API HTTP 403 after exhausting the API
 rate limit. Re-running with the existing `gh` credential supplied as
@@ -172,16 +173,14 @@ repository or report.
 
 ## Exact restart point
 
-1. Double-click `OPEN_DESIGN_LAB.cmd`, select **06**, and click **Compare
-   finalist**. Review 06 and 10 side by side at both 1440 and 390.
-2. Choose **06** if the flat, calm index wins on scan speed. Choose **10** if the
-   grouped routes and bounded proof-deck motion make the work easier to
-   understand, not merely more novel.
-3. Record any cross-finalist reuse explicitly—for example, 06's flat index with
-   10's selected-card transition—rather than authorizing an undefined hybrid.
-4. Authorize one new integration branch with the chosen base, retained pieces
-   and acceptance criteria. Do not merge this branch merely to begin
-   integration.
+1. Double-click `OPEN_DESIGN_LAB.cmd`; the dashboard opens directly on selected
+   base 10 at 1440. Check it again at 390 and in reduced-motion mode.
+2. Use **Compare reference** only when a proposed change needs a scan-density
+   check against 06. Do not reopen the base selection without new evidence.
+3. Define the next improvement as one bounded behavior/visual slice against 10
+   with explicit desktop, mobile, reduced-motion and canonical-content gates.
+4. Do not merge this branch merely to begin improvement work. Production
+   integration still requires a separately authorized branch and gate.
 
-No second visual batch, production edit, merge, push or publication has been
-performed.
+The project-page action removal exists only on this lab branch. No merge, push,
+publication or live-site deployment has been performed.
