@@ -1,8 +1,8 @@
 # Central portfolio visual lab — Batch 4 handoff
 
 Date: 2026-08-17
-Status: **PASS_LOCAL_READY_FOR_OWNER_REVIEW**
-Implementation checkpoint: **PENDING COMMIT**
+Status: **PASS_COMMITTED_READY_FOR_OWNER_REVIEW**
+Implementation checkpoint: **10da51bcd11fecb13dbf5328e0a60fac6efefcc8**
 Selected control: `/design-lab/32/`
 Production route: `/`
 Review routes: `/design-lab/33/` through `/design-lab/42/`
