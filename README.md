@@ -11,11 +11,14 @@ gutter does not reach the live site.
 
 | Route | What it is |
 | --- | --- |
-| `/` | Production base 21: the three owned proof figures, a grouped 13-project directory, one selected full-evidence stage, the three problems clients arrive with, and direct case/live links. |
+| `/` | Production base 32: the three owned proof figures, a grouped 13-project directory, one selected full-evidence stage, the accepted professional interactions, the three problems clients arrive with, and direct case/live links. |
 | `/work/<slug>/` | One system running in place on desktop, plus its immutable artifact, test, hosted gate, rerun command and explicit limit. |
 | `/evidence/` | Public claim-to-artifact ledger: immutable evidence and test links, rerun commands, hosted gates and explicit limits for all thirteen systems. |
 | `/evidence/receipt.json` | Machine-readable form of the same thirteen-project receipt. |
 | `/design-lab/` | Private-review dashboard for the retained production base and the current single-aspect experiments. |
+
+Current visual checkpoint: `design-lab/BATCH_04_HANDOFF.md`. The dashboard
+compares selected base 32 with equal-content routes 33–42.
 
 There is deliberately no separate index page. It existed, listed the same
 thirteen cards in the same order as the home page, and split one job across two

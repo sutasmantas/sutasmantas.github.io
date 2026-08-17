@@ -42,7 +42,7 @@ subpath build.
 
 ## What the gates cover
 
-`scripts/check-links.mjs` — every anchor in the 47-page built site. Fails on a
+`scripts/check-links.mjs` — every anchor in the 58-page built site. Fails on a
 placeholder action (`href="#"`, an empty `mailto:`), a fragment with no matching
 `id` on that page, an internal route missing from `dist`, or an external URL that
 does not answer.

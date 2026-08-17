@@ -3,7 +3,7 @@
 Date: 2026-08-16
 Combined control: `/design-lab/21/`
 Review routes: `/design-lab/22/` through `/design-lab/31/`
-Status: **PASS_BASE_21_PROMOTED_TO_PRODUCTION**
+Status: **PASS_OWNER_DECISIONS_INTEGRATED_IN_BASE_32**
 
 ## Owner-selected base composition
 
@@ -84,16 +84,16 @@ impression.
 
 | # | Decision | Revision request or reason |
 | ---: | --- | --- |
-| 22 |  |  |
-| 23 |  |  |
-| 24 |  |  |
-| 25 |  |  |
-| 26 |  |  |
-| 27 |  |  |
-| 28 |  |  |
-| 29 |  |  |
-| 30 |  |  |
-| 31 |  |  |
+| 22 | KEEP | Incorporated into selected base 32. |
+| 23 | KEEP | Incorporated into selected base 32. |
+| 24 | REJECT | Too playful and unprofessional; its note also rejects the prior intrusive project transition. |
+| 25 | KEEP | Incorporated into selected base 32. |
+| 26 | REJECT | Too playful and unprofessional. |
+| 27 | REVISE → KEEP | Incorporated only after `100%` was verified to resolve exactly instead of showing `NaN`. |
+| 28 | KEEP | Incorporated into selected base 32. |
+| 29 | REJECT | Makes the title harder to read. |
+| 30 | REJECT | Interferes with seeing the screenshot and worsens the user experience. |
+| 31 | KEEP | Incorporated into selected base 32. |
 
 ## Verification closure
 
@@ -119,6 +119,6 @@ made every description an exact test instruction, added candid impact labels,
 and caught a parsing defect that prevented the `100%` figure in route 27 from
 animating. All three route-27 proof values now animate and resolve exactly.
 
-The verified lab was merged into `main` at `5fa6b22`. Base 21 is now the
-production homepage; derivatives 22–31 remain unpromoted pending owner
-selection in the live Batch 03 dashboard.
+The verified lab was merged into `main` at `5fa6b22`. The owner decisions are
+preserved verbatim in `BATCH_03_DECISIONS.json` and integrated into production
+base 32. Batch 04 routes 33–42 now control the live review dashboard.

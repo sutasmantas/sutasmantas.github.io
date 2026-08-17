@@ -61,11 +61,29 @@ const experimentNotes = {
   '29': ['Batch 3 · title line shadow', 'Scroll to the selected project card and watch its large title. A cyan-and-purple hard shadow shifts behind the letters without changing the title.', 'MEDIUM'],
   '30': ['Batch 3 · expanding screenshot', 'Scroll to the project card. Its screenshot starts as a narrow strip marked “PROOF”; hover, keyboard-focus, or click it to expand the full image.', 'LARGE'],
   '31': ['Batch 3 · flowing directory', 'Scroll to the project directory and hover or keyboard-focus a row. The normal row text is replaced by a repeated moving title-and-evidence marquee.', 'LARGE'],
+  '32': ['Batch 4 · selected control', 'Baseline: the approved Batch 3 mechanisms are combined, the proof ticker is fixed, and project changes use a restrained 0.18-second settle instead of the rejected directional wipe.', 'BASE'],
+  '33': ['Batch 4 · proof bento', 'Look at the three proof figures below the opening paragraph. The same 13, 10, and 100% evidence becomes an asymmetric editorial bento with one dominant systems figure.', 'LARGE'],
+  '34': ['Batch 4 · stage spotlight', 'Move the pointer across the selected project card. A bounded project-colour spotlight follows around the card edge without covering its screenshot or copy.', 'MEDIUM'],
+  '35': ['Batch 4 · proof-stage tilt', 'Move the pointer across the selected project card. The entire evidence object tilts by at most 2.4 degrees and settles flat when the pointer leaves.', 'MEDIUM'],
+  '36': ['Batch 4 · chroma directory', 'Choose or hover different project rows. The directory field changes to a broad, low-contrast wash of that project’s own colour while all text remains unchanged.', 'LARGE'],
+  '37': ['Batch 4 · active-row backplate', 'Choose different projects in the directory. One shared inset backplate slides to the active row, making selection state read as a single moving object.', 'MEDIUM'],
+  '38': ['Batch 4 · measured systems grid', 'Look across the complete project deck. A strong labelled blueprint grid reframes the same directory and proof card as one engineered systems field.', 'LARGE'],
+  '39': ['Batch 4 · progress spine', 'Scroll through the page. A numbered right-edge spine fills from 00 to 100 and shows your position without blocking content or changing native scrolling.', 'MEDIUM'],
+  '40': ['Batch 4 · stacked client routes', 'Scroll through “Three ways into the work.” The three complete client-route rows pin into a restrained overlapping stack, then release normally.', 'LARGE'],
+  '41': ['Batch 4 · positioning highlight', 'Watch the opening positioning paragraph as it enters view. A clause-level ink highlight travels behind the unchanged sentence while every word stays readable.', 'MEDIUM'],
+  '42': ['Batch 4 · action border trail', 'Hover or keyboard-focus “View case” and “Open live.” A short project-colour trail travels once around the action border while the label stays still.', 'MEDIUM'],
 };
 const [surface, hypothesis, impact] = experimentNotes[variant];
 const numericVariant = Number(variant);
-const isMotionDeck = numericVariant >= 10 && numericVariant <= 31;
-const isCombinedBase = numericVariant >= 21 && numericVariant <= 31;
+const isMotionDeck = numericVariant >= 10 && numericVariant <= 42;
+const isCombinedBase = numericVariant >= 21 && numericVariant <= 42;
+const isBatchFourBase = numericVariant >= 32 && numericVariant <= 42;
+const hasMagnetActions = variant === '22' || isBatchFourBase;
+const hasGlare = variant === '23' || isBatchFourBase;
+const hasDockIndex = variant === '25' || isBatchFourBase;
+const hasNumberTicker = variant === '27' || isBatchFourBase;
+const hasClickSpark = variant === '28' || isBatchFourBase;
+const hasFlowingMenu = variant === '31' || isBatchFourBase;
 const effectName = {
   '10': 'base', '11': 'border-beam', '12': 'magic-light', '13': 'lens',
   '14': 'interactive-grid', '15': 'noise', '16': 'shimmer',
@@ -75,10 +93,14 @@ const effectName = {
   '24': 'pixel-transition', '25': 'dock-index', '26': 'scramble-title',
   '27': 'number-ticker', '28': 'click-spark', '29': 'line-shadow',
   '30': 'image-expand', '31': 'flowing-menu',
+  '32': 'selected-control', '33': 'proof-bento', '34': 'stage-spotlight',
+  '35': 'stage-tilt', '36': 'chroma-directory', '37': 'active-backplate',
+  '38': 'measured-grid', '39': 'progress-spine', '40': 'route-stack',
+  '41': 'positioning-highlight', '42': 'action-border-trail',
 }[variant];
 ---
 
-<article class:list={['experiment', `variant-${variant}`, isCombinedBase && 'combined-base']} data-variant={variant}>
+<article class:list={['experiment', `variant-${variant}`, isCombinedBase && 'combined-base', isBatchFourBase && 'batch-four-base']} data-variant={variant}>
   {!production && (
     <header class="experiment-head">
       <div><span class="experiment-no">{variant}</span><span>{surface}</span>{impact && <b class="experiment-impact">{impact} CHANGE</b>}</div>
@@ -318,7 +340,7 @@ const effectName = {
   )}
 
   {isMotionDeck && (
-    <section class="v10-canvas" aria-label={production ? 'Project directory and selected system' : 'User-triggered proof deck'} data-proof-deck data-proof-effect={effectName} data-combined-base={isCombinedBase ? 'true' : undefined}>
+    <section class="v10-canvas" aria-label={production ? 'Project directory and selected system' : 'User-triggered proof deck'} data-proof-deck data-proof-effect={effectName} data-combined-base={isCombinedBase ? 'true' : undefined} data-batch-four={isBatchFourBase ? 'true' : undefined} data-has-magnet={hasMagnetActions ? 'true' : undefined} data-has-dock={hasDockIndex ? 'true' : undefined} data-has-ticker={hasNumberTicker ? 'true' : undefined} data-has-sparks={hasClickSpark ? 'true' : undefined}>
       {variant === '14' && (
         <svg class="v10-interactive-grid" viewBox="0 0 1200 800" preserveAspectRatio="none" aria-hidden="true">
           {Array.from({ length: 96 }, (_, index) => <rect data-grid-cell x={(index % 12) * 100} y={Math.floor(index / 12) * 100} width="100" height="100" />)}
@@ -330,9 +352,11 @@ const effectName = {
           <rect width="100%" height="100%" filter="url(#batch-two-noise)" opacity=".7" />
         </svg>
       )}
-      <header><p>{production ? 'Complete project directory / live systems' : `${variant === '10' ? 'Selected base' : variant === '21' ? 'Combined selected base' : isCombinedBase ? `${variant} / base 21 derivative` : `${variant} / base 10 derivative`} / motion-led directory`}</p><h2>{production ? <>All thirteen.<br />One system at a time.</> : <>All thirteen.<br />One responsive proof deck.</>}</h2></header>
+      {variant === '39' && <aside class="v10-progress-spine" aria-hidden="true"><span>00</span><i><b data-scroll-progress></b></i><span>100</span></aside>}
+      <header><p>{production ? 'Complete project directory / live systems' : `${variant === '10' ? 'Selected base' : variant === '21' ? 'Combined selected base' : variant === '32' ? 'Selected Batch 4 base' : isBatchFourBase ? `${variant} / base 32 derivative` : isCombinedBase ? `${variant} / base 21 derivative` : `${variant} / base 10 derivative`} / motion-led directory`}</p><h2>{production ? <>All thirteen.<br />One system at a time.</> : <>All thirteen.<br />One responsive proof deck.</>}</h2></header>
       <div class="v10-layout">
         <div class="v10-index" aria-label="Choose a project">
+          {variant === '37' && <i class="v10-active-backplate" data-active-backplate aria-hidden="true" />}
           {routes.map((route, routeIndex) => (
             <section>
               <h3><span>0{routeIndex + 1}</span>{routeName[route.id]}</h3>
@@ -343,7 +367,7 @@ const effectName = {
                       <span>{String(project.order).padStart(2, '0')}</span>
                       <b>{project.title}</b>
                       <small>{project.note}</small>
-                      {variant === '31' && <i class="v10-flowing-text" aria-hidden="true">{project.title} · {project.note} · {project.title} · {project.note}</i>}
+                      {hasFlowingMenu && <i class="v10-flowing-text" aria-hidden="true">{project.title} · {project.note} · {project.title} · {project.note}</i>}
                     </button>
                   </li>
                 ))}
@@ -354,7 +378,7 @@ const effectName = {
         <div class="v10-stage" aria-live="polite">
           {ordered.map((project) => (
             <article data-proof-card={project.slug} data-project-record data-project-slug={project.slug} data-project-route={project.route} hidden={project.slug !== atlas.slug} style={`--project:${accents[project.slug]}`}>
-              <div class="v10-image" tabindex={variant === '23' || variant === '30' ? '0' : undefined} data-lens-surface={variant === '13' || isCombinedBase ? 'true' : undefined}>
+              <div class="v10-image" tabindex={hasGlare || variant === '30' ? '0' : undefined} data-lens-surface={variant === '13' || isCombinedBase ? 'true' : undefined}>
                 <Image src={shotFor(project.shot)} alt={project.alt} widths={[650, 1000]} sizes="(max-width: 760px) 92vw, 48vw" />
                 {(variant === '13' || isCombinedBase) && <div class="v10-lens" aria-hidden="true"><Image src={shotFor(project.shot)} alt="" widths={[650, 1000]} sizes="(max-width: 760px) 92vw, 48vw" /></div>}
                 {variant === '24' && <div class="v10-pixels" aria-hidden="true">{Array.from({ length: 64 }, (_, index) => <i style={`--pixel:${index}`} />)}</div>}
@@ -365,14 +389,14 @@ const effectName = {
                 <h3 data-project-title data-title={project.title}>{project.title}</h3>
                 <p>{project.blurb}</p>
                 <b>{project.note}</b>
-                <div class="v10-actions" data-magnet-actions={variant === '22' ? 'true' : undefined}><a href={href(`/work/${project.slug}/`)}>View case</a><a href={project.live}>Open live ↗</a></div>
+                <div class="v10-actions" data-magnet-actions={hasMagnetActions ? 'true' : undefined}><a href={href(`/work/${project.slug}/`)}>View case</a><a href={project.live}>Open live ↗</a></div>
               </div>
             </article>
           ))}
         </div>
       </div>
-      {variant === '28' && <div class="v10-sparks" data-spark-field aria-hidden="true" />}
-      <p class="v10-motion-note">{production ? 'Choose a system above to inspect its product screenshot, complete description, evidence note and working links.' : <>{isCombinedBase ? 'Selected ambient signals run on load.' : 'Nothing moves on load.'} Hover, focus or choose a project; reduced motion swaps state instantly. {variant !== '10' && `Variant ${variant} changes only the ${surface.toLowerCase().replace(/^batch [23] · /, '')}.`}</>}</p>
+      {hasClickSpark && <div class="v10-sparks" data-spark-field aria-hidden="true" />}
+      <p class="v10-motion-note">{production ? 'Choose a system above to inspect its product screenshot, complete description, evidence note and working links.' : <>{isCombinedBase ? 'Selected ambient signals run on load.' : 'Nothing moves on load.'} Hover, focus or choose a project; reduced motion swaps state instantly. {variant !== '10' && `Variant ${variant} changes only the ${surface.toLowerCase().replace(/^batch [234] · /, '')}.`}</>}</p>
     </section>
   )}
   </CompletePortfolio>
@@ -455,6 +479,11 @@ const effectName = {
     const { animate } = await import('motion');
     const effect = deck.dataset.proofEffect;
     const combinedBase = deck.dataset.combinedBase === 'true';
+    const batchFour = deck.dataset.batchFour === 'true';
+    const hasMagnet = deck.dataset.hasMagnet === 'true';
+    const hasDock = deck.dataset.hasDock === 'true';
+    const hasTicker = deck.dataset.hasTicker === 'true';
+    const hasSparks = deck.dataset.hasSparks === 'true';
     const buttons = Array.from(deck.querySelectorAll('[data-proof-button]'));
     const cards = Array.from(deck.querySelectorAll('[data-proof-card]'));
     const systemReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -467,6 +496,17 @@ const effectName = {
         title.textContent = title.dataset.title;
       }
       for (const button of buttons) button.setAttribute('aria-pressed', String(button.dataset.proofButton === slug));
+      const activeButton = buttons.find((button) => button.dataset.proofButton === slug);
+      if (activeButton) deck.style.setProperty('--active-project', getComputedStyle(activeButton).getPropertyValue('--project').trim());
+      const backplate = deck.querySelector('[data-active-backplate]');
+      const index = deck.querySelector('.v10-index');
+      if (backplate && index && activeButton) {
+        const indexBox = index.getBoundingClientRect();
+        const buttonBox = activeButton.getBoundingClientRect();
+        backplate.style.setProperty('--backplate-y', `${buttonBox.top - indexBox.top}px`);
+        backplate.style.setProperty('--backplate-h', `${buttonBox.height}px`);
+        backplate.style.setProperty('--backplate-color', getComputedStyle(activeButton).getPropertyValue('--project').trim());
+      }
       for (const card of cards) {
         const active = card.dataset.proofCard === slug;
         card.dataset.active = String(active);
@@ -474,6 +514,11 @@ const effectName = {
         if (!active) continue;
         if (!animateChange || shouldReduce()) {
           Object.assign(card.style, { transform: 'none', opacity: '1', filter: 'none', clipPath: 'none' });
+        } else if (batchFour) {
+          animate(card, {
+            transform: ['translate3d(0, 8px, 0)', 'translate3d(0, 0, 0)'],
+            opacity: [.78, 1], filter: ['saturate(.96)', 'saturate(1)'], clipPath: ['inset(0 0 0 0)', 'inset(0 0 0 0)'],
+          }, { duration: .18, easing: [.2, .8, .2, 1] });
         } else if (effect === 'blur-fade') {
           animate(card, {
             transform: ['translate3d(0, 26px, 0) scale(.985)', 'translate3d(0, 0, 0) scale(1)'],
@@ -529,7 +574,7 @@ const effectName = {
     for (const button of buttons) {
       button.addEventListener('click', (event) => {
         select(button.dataset.proofButton);
-        if (effect === 'click-spark' && !shouldReduce()) {
+        if (hasSparks && !shouldReduce()) {
           const field = deck.querySelector('[data-spark-field]');
           const bounds = deck.getBoundingClientRect();
           const point = button.getBoundingClientRect();
@@ -584,7 +629,7 @@ const effectName = {
       surface.addEventListener('pointerleave', () => { surface.dataset.lensActive = 'false'; });
     }
 
-    if (effect === 'magnet-actions') {
+    if (hasMagnet) {
       for (const link of deck.querySelectorAll('[data-magnet-actions] a')) {
         link.addEventListener('pointermove', (event) => {
           const bounds = link.getBoundingClientRect();
@@ -597,7 +642,7 @@ const effectName = {
       }
     }
 
-    if (effect === 'dock-index') {
+    if (hasDock) {
       deck.querySelector('.v10-index')?.addEventListener('pointermove', (event) => {
         for (const button of buttons) {
           const bounds = button.getBoundingClientRect();
@@ -611,7 +656,7 @@ const effectName = {
       });
     }
 
-    if (effect === 'number-ticker') {
+    if (hasTicker) {
       for (const fact of document.querySelectorAll('[data-proof-fact]')) {
         const run = () => {
           const value = fact.querySelector('[data-proof-value]');
@@ -635,6 +680,59 @@ const effectName = {
         image.addEventListener('keydown', (event) => {
           if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); image.click(); }
         });
+      }
+    }
+
+    if (effect === 'stage-spotlight') {
+      const stage = deck.querySelector('.v10-stage');
+      stage?.addEventListener('pointermove', (event) => {
+        const bounds = stage.getBoundingClientRect();
+        stage.style.setProperty('--stage-x', `${event.clientX - bounds.left}px`);
+        stage.style.setProperty('--stage-y', `${event.clientY - bounds.top}px`);
+        stage.dataset.spotlight = 'true';
+      });
+      stage?.addEventListener('pointerleave', () => { stage.dataset.spotlight = 'false'; });
+    }
+
+    if (effect === 'stage-tilt') {
+      const stage = deck.querySelector('.v10-stage');
+      stage?.addEventListener('pointermove', (event) => {
+        if (shouldReduce()) return;
+        const bounds = stage.getBoundingClientRect();
+        const x = (event.clientX - bounds.left) / bounds.width - .5;
+        const y = (event.clientY - bounds.top) / bounds.height - .5;
+        stage.style.setProperty('--tilt-x', `${(-y * 4.8).toFixed(2)}deg`);
+        stage.style.setProperty('--tilt-y', `${(x * 4.8).toFixed(2)}deg`);
+      });
+      stage?.addEventListener('pointerleave', () => {
+        stage.style.setProperty('--tilt-x', '0deg'); stage.style.setProperty('--tilt-y', '0deg');
+      });
+    }
+
+    if (effect === 'active-backplate') {
+      const refreshBackplate = () => select(selectedSlug, false);
+      window.addEventListener('resize', refreshBackplate, { passive: true });
+    }
+
+    if (effect === 'progress-spine') {
+      const progress = deck.querySelector('[data-scroll-progress]');
+      const updateProgress = () => {
+        if (!progress) return;
+        const bounds = deck.getBoundingClientRect();
+        const travel = Math.max(1, bounds.height - window.innerHeight);
+        const ratio = Math.max(0, Math.min(1, -bounds.top / travel));
+        progress.style.transform = `scaleY(${ratio})`;
+      };
+      updateProgress();
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress, { passive: true });
+    }
+
+    if (effect === 'positioning-highlight') {
+      const positioning = document.querySelector('[data-canonical-positioning]');
+      if (positioning) {
+        const observer = new IntersectionObserver(([entry]) => positioning.toggleAttribute('data-highlighted', entry.isIntersecting), { threshold: .65 });
+        observer.observe(positioning);
       }
     }
   }

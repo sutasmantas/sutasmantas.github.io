@@ -1,10 +1,10 @@
 {
-  "verifiedAt": "2026-08-17T05:31:36.036Z",
+  "verifiedAt": "2026-08-17T06:22:18.134Z",
   "origin": "http://127.0.0.1:8913",
   "result": "PASS",
   "summary": {
-    "checks": 468,
-    "passed": 468,
+    "checks": 756,
+    "passed": 756,
     "failed": 0
   },
   "checks": [
@@ -86,7 +86,7 @@
     {
       "name": "05 preview remains within viewport horizontally",
       "pass": true,
-      "detail": "{\"x\":852.484375,\"y\":69.859375,\"width\":529.921875,\"height\":628.5625}"
+      "detail": "{\"x\":852.484375,\"y\":484.859375,\"width\":529.921875,\"height\":628.5625}"
     },
     {
       "name": "/design-lab/05/ has no horizontal overflow",
@@ -1331,7 +1331,7 @@
     {
       "name": "27 animates proof number 100% on focus",
       "pass": true,
-      "detail": "30 vs 100"
+      "detail": "25 vs 100"
     },
     {
       "name": "27 resolves to exact proof value 100%",
@@ -1664,6 +1664,856 @@
       "detail": ""
     },
     {
+      "name": "/design-lab/32/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "32 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "32 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "32 derives from selected base 32",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "32 retains every approved Batch 3 behavior flag",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "32 includes all screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "32 includes all flowing-row labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "32 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "32 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "32 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "32 replaces the intrusive wipe with a restrained transition",
+      "pass": true,
+      "detail": "180,180,180"
+    },
+    {
+      "name": "32 retains magnetic project actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "32 retains keyboard-triggered screenshot glare",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "32 retains directory magnification",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "32 fixes the revised open-source ticker without NaN",
+      "pass": true,
+      "detail": "100% vs 100%"
+    },
+    {
+      "name": "32 retains click-spark feedback",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "32 retains the flowing focused row",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/32/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/32/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/32/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/33/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "33 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "33 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "33 derives from selected base 32",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "33 retains every approved Batch 3 behavior flag",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "33 includes all screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "33 includes all flowing-row labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "33 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "33 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "33 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "33 replaces the intrusive wipe with a restrained transition",
+      "pass": true,
+      "detail": "180,180,180"
+    },
+    {
+      "name": "33 creates an asymmetric proof bento",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/33/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/33/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/33/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/34/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "34 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "34 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "34 derives from selected base 32",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "34 retains every approved Batch 3 behavior flag",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "34 includes all screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "34 includes all flowing-row labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "34 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "34 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "34 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "34 replaces the intrusive wipe with a restrained transition",
+      "pass": true,
+      "detail": "180,180,180"
+    },
+    {
+      "name": "34 activates the bounded stage spotlight",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/34/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/34/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/34/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/35/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "35 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "35 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "35 derives from selected base 32",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "35 retains every approved Batch 3 behavior flag",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "35 includes all screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "35 includes all flowing-row labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "35 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "35 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "35 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "35 replaces the intrusive wipe with a restrained transition",
+      "pass": true,
+      "detail": "180,180,180"
+    },
+    {
+      "name": "35 tilts the proof stage within a bounded range",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/35/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/35/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/35/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/36/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "36 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "36 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "36 derives from selected base 32",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "36 retains every approved Batch 3 behavior flag",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "36 includes all screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "36 includes all flowing-row labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "36 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "36 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "36 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "36 replaces the intrusive wipe with a restrained transition",
+      "pass": true,
+      "detail": "180,180,180"
+    },
+    {
+      "name": "36 changes the directory wash with project identity",
+      "pass": true,
+      "detail": "#ec6848 -> #d9a414"
+    },
+    {
+      "name": "/design-lab/36/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/36/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/36/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/37/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "37 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "37 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "37 derives from selected base 32",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "37 retains every approved Batch 3 behavior flag",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "37 includes all screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "37 includes all flowing-row labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "37 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "37 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "37 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "37 replaces the intrusive wipe with a restrained transition",
+      "pass": true,
+      "detail": "180,180,180"
+    },
+    {
+      "name": "37 moves one shared active-row backplate",
+      "pass": true,
+      "detail": "44.828125px -> 672.375px"
+    },
+    {
+      "name": "/design-lab/37/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/37/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/37/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/38/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "38 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "38 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "38 derives from selected base 32",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "38 retains every approved Batch 3 behavior flag",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "38 includes all screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "38 includes all flowing-row labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "38 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "38 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "38 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "38 replaces the intrusive wipe with a restrained transition",
+      "pass": true,
+      "detail": "180,180,180"
+    },
+    {
+      "name": "38 renders the measured systems grid",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/38/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/38/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/38/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/39/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "39 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "39 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "39 derives from selected base 32",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "39 retains every approved Batch 3 behavior flag",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "39 includes all screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "39 includes all flowing-row labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "39 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "39 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "39 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "39 replaces the intrusive wipe with a restrained transition",
+      "pass": true,
+      "detail": "180,180,180"
+    },
+    {
+      "name": "39 advances the page progress spine",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/39/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/39/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/39/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/40/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "40 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "40 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "40 derives from selected base 32",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "40 retains every approved Batch 3 behavior flag",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "40 includes all screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "40 includes all flowing-row labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "40 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "40 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "40 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "40 replaces the intrusive wipe with a restrained transition",
+      "pass": true,
+      "detail": "180,180,180"
+    },
+    {
+      "name": "40 stacks complete client routes with native sticky positioning",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/40/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/40/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/40/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/41/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "41 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "41 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "41 derives from selected base 32",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "41 retains every approved Batch 3 behavior flag",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "41 includes all screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "41 includes all flowing-row labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "41 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "41 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "41 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "41 replaces the intrusive wipe with a restrained transition",
+      "pass": true,
+      "detail": "180,180,180"
+    },
+    {
+      "name": "41 highlights the unchanged positioning copy in view",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/41/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/41/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/41/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/42/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "42 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "42 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "42 derives from selected base 32",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "42 retains every approved Batch 3 behavior flag",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "42 includes all screenshot lenses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "42 includes all flowing-row labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "42 selects projects on hover",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "42 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "42 keeps project copy unclipped",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "42 replaces the intrusive wipe with a restrained transition",
+      "pass": true,
+      "detail": "180,180,180"
+    },
+    {
+      "name": "42 runs one action-border trail on keyboard focus",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/42/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/42/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/42/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "/design-lab/04/ returns 200",
       "pass": true,
       "detail": "HTTP 200"
@@ -1950,6 +2800,156 @@
     },
     {
       "name": "/design-lab/31/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/32/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "/design-lab/32/ mobile exposes all thirteen selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/32/ mobile control responds",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/32/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/32/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/32/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/33/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "/design-lab/33/ mobile exposes all thirteen selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/33/ mobile control responds",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/33/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/33/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/33/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/36/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "/design-lab/36/ mobile exposes all thirteen selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/36/ mobile control responds",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/36/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/36/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/36/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/40/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "/design-lab/40/ mobile exposes all thirteen selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/40/ mobile control responds",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/40/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/40/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/40/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/42/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "/design-lab/42/ mobile exposes all thirteen selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/42/ mobile control responds",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/42/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/42/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/42/ has no page errors",
       "pass": true,
       "detail": ""
     },
@@ -2345,6 +3345,446 @@
     },
     {
       "name": "/design-lab/31/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/32/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "32 reduced motion swaps selected-base state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "32 reduced motion has no project-card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "32 disables selected-base ambient motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "32 disables retained flowing-row motion",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/32/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/32/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/32/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/33/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "33 reduced motion swaps selected-base state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "33 reduced motion has no project-card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "33 disables selected-base ambient motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "33 disables retained flowing-row motion",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/33/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/33/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/33/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/34/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "34 reduced motion swaps selected-base state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "34 reduced motion has no project-card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "34 disables selected-base ambient motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "34 disables retained flowing-row motion",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/34/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/34/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/34/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/35/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "35 reduced motion swaps selected-base state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "35 reduced motion has no project-card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "35 disables selected-base ambient motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "35 disables retained flowing-row motion",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/35/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/35/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/35/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/36/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "36 reduced motion swaps selected-base state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "36 reduced motion has no project-card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "36 disables selected-base ambient motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "36 disables retained flowing-row motion",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/36/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/36/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/36/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/37/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "37 reduced motion swaps selected-base state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "37 reduced motion has no project-card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "37 disables selected-base ambient motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "37 disables retained flowing-row motion",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/37/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/37/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/37/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/38/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "38 reduced motion swaps selected-base state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "38 reduced motion has no project-card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "38 disables selected-base ambient motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "38 disables retained flowing-row motion",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/38/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/38/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/38/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/39/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "39 reduced motion swaps selected-base state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "39 reduced motion has no project-card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "39 disables selected-base ambient motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "39 disables retained flowing-row motion",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/39/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/39/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/39/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/40/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "40 reduced motion swaps selected-base state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "40 reduced motion has no project-card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "40 disables selected-base ambient motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "40 disables retained flowing-row motion",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/40/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/40/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/40/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/41/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "41 reduced motion swaps selected-base state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "41 reduced motion has no project-card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "41 disables selected-base ambient motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "41 disables retained flowing-row motion",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/41/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/41/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/41/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/42/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "42 reduced motion swaps selected-base state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "42 reduced motion has no project-card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "42 disables selected-base ambient motion",
+      "pass": true,
+      "detail": "{\"perimeter\":\"none\",\"shimmer\":\"none\",\"spectral\":\"none\"}"
+    },
+    {
+      "name": "42 disables retained flowing-row motion",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/42/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/42/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/42/ reduced-motion has no page errors",
       "pass": true,
       "detail": ""
     }

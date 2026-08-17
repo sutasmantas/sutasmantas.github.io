@@ -3,7 +3,7 @@ import { writeFile } from 'node:fs/promises';
 import { identity, contact, proof, routes, ordered } from '../src/data/portfolio.js';
 
 const origin = process.argv[2] ?? 'http://127.0.0.1:8912';
-const variants = Array.from({ length: 11 }, (_, index) => String(index + 21).padStart(2, '0'));
+const variants = Array.from({ length: 11 }, (_, index) => String(index + 32).padStart(2, '0'));
 const checks = [];
 const failures = [];
 const normalize = (value) => value.replace(/\s+/g, ' ').trim();
@@ -59,7 +59,7 @@ check('production homepage uses the combined-base headline', homeText.includes(`
 check('production homepage preserves the canonical positioning copy', homeText.includes(normalize(identity.sub)));
 check('production homepage removes design-lab chrome and review copy', await page.locator('.labbar, .experiment-head').count() === 0 && !homeText.includes('Design lab') && !homeText.includes('Combined selected base'));
 check('production homepage is indexable', await page.locator('meta[name="robots"][content*="noindex"]').count() === 0);
-check('production homepage activates all five selected base mechanisms', await page.locator('[data-proof-deck][data-proof-effect="combined-base"][data-combined-base="true"]').count() === 1);
+check('production homepage activates the selected Batch 4 base', await page.locator('[data-proof-deck][data-proof-effect="selected-control"][data-combined-base="true"][data-batch-four="true"][data-has-magnet="true"][data-has-dock="true"][data-has-ticker="true"][data-has-sparks="true"]').count() === 1);
 
 const homeRecords = page.locator('[data-project-record]');
 check('production homepage exposes exactly thirteen canonical project records', await homeRecords.count() === ordered.length, `found ${await homeRecords.count()}`);
@@ -87,12 +87,12 @@ for (const project of ordered) {
 }
 
 await page.goto(`${origin}/design-lab/`, { waitUntil: 'networkidle' });
-check('22 is the explicitly selected initial experiment', await page.locator('[data-review-variant="22"]').getAttribute('aria-pressed') === 'true');
-check('dashboard initially loads experiment 22', await page.locator('[data-review-frame="current"]').getAttribute('src') === '/design-lab/22/');
+check('33 is the explicitly selected initial experiment', await page.locator('[data-review-variant="33"]').getAttribute('aria-pressed') === 'true');
+check('dashboard initially loads experiment 33', await page.locator('[data-review-frame="current"]').getAttribute('src') === '/design-lab/33/');
 for (const id of variants.slice(1)) {
   await page.locator(`[data-review-variant="${id}"]`).click();
-  check(`${id} compares directly against combined base 21`, await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/21/');
-  check(`${id} labels the equal-scope comparison`, await page.locator('[data-baseline-label]').textContent() === 'Control · combined selected base 21');
+  check(`${id} compares directly against selected base 32`, await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/32/');
+  check(`${id} labels the equal-scope comparison`, await page.locator('[data-baseline-label]').textContent() === 'Control · selected Batch 4 base 32');
 }
 
 await context.close();

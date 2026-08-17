@@ -5,7 +5,9 @@ import sansLatin from '../assets/fonts/plex-sans-var-latin.woff2';
 import sansLatinExt from '../assets/fonts/plex-sans-var-latin-ext.woff2';
 
 const { title, variant } = Astro.props;
-const variants = Array.from({ length: 11 }, (_, index) => String(index + 21).padStart(2, '0'));
+const batchStart = !variant || Number(variant) >= 32 ? 32 : 21;
+const batch = batchStart === 32 ? '04' : '03';
+const variants = Array.from({ length: 11 }, (_, index) => String(index + batchStart).padStart(2, '0'));
 ---
 <!doctype html>
 <html lang="en">
@@ -22,7 +24,7 @@ const variants = Array.from({ length: 11 }, (_, index) => String(index + 21).pad
   <body>
     <a class="skip" href="#experiment">Skip to experiment</a>
     <header class="labbar">
-      <a class="labbrand" href={href('/design-lab/')}>Design lab <span>Batch 03</span></a>
+      <a class="labbrand" href={href('/design-lab/')}>Design lab <span>Batch {batch}</span></a>
       <nav aria-label="Experiment routes">
         {variants.map((item) => (
           <a

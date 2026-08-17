@@ -1,7 +1,7 @@
 # Central portfolio visual lab — Batch 3 handoff
 
 Date: 2026-08-17
-Status: **PASS_BASE_21_PROMOTED_TO_PRODUCTION**
+Status: **PASS_SUPERSEDED_BY_BATCH_04_BASE_32**
 Implementation checkpoint: `6972343eba0c9814202e83e800c4cd4d71756482`
 Merge checkpoint: `5fa6b225c2724ab4d4418db3468dc3d7b7daf873`
 Owner-review clarity checkpoint: `2d9145e7cc2f782879c03976da477407d7e94835`
@@ -43,10 +43,10 @@ Double-click `OPEN_DESIGN_LAB.cmd` in the worktree. It builds the static site,
 starts the private preview at `http://127.0.0.1:8912/design-lab/`, and opens the
 Batch 3 dashboard. Keep the launcher window open during review.
 
-The dashboard starts on route 22, compares against base 21, stores
-`KEEP`/`REVISE`/`REJECT` decisions plus notes locally, and exports
-`central-portfolio-batch-03-decisions.json`. The mobile route header exposes
-all eleven routes without requiring horizontal scrolling.
+At the Batch 03 checkpoint, the dashboard started on route 22 and compared
+against base 21. The current dashboard is Batch 04; the completed Batch 03
+export is preserved in `BATCH_03_DECISIONS.json`. Historical routes 21–31
+remain directly accessible.
 
 ## Variant inventory
 
@@ -96,10 +96,11 @@ vague mechanism summaries with exact test instructions and exposed impact size
 in both the dashboard and route header. It also fixed route 27 so its `100%`
 proof value—along with `13` and `10`—animates and resolves exactly.
 
-### Production promotion verification
+### Historical production-promotion verification
 
-- `/` renders base 21 without `.labbar`, `.experiment-head`, review copy, or
-  `noindex` metadata.
+- At commit `e7fe6ca`, `/` rendered base 21 without `.labbar`,
+  `.experiment-head`, review copy, or `noindex` metadata. Production now uses
+  selected base 32.
 - All 13 canonical projects occur exactly once with their complete title,
   description, evidence note, case link, and live link.
 - Project selection, the five accepted mechanisms, three client routes, and
@@ -110,16 +111,7 @@ proof value—along with `13` and `10`—animates and resolves exactly.
 
 ## Exact restart point
 
-1. Treat `/` and `/design-lab/21/` as the same design base; only the lab route
-   carries review chrome.
-2. Open the dashboard with `OPEN_DESIGN_LAB.cmd` and test routes 22–31 against
-   base 21 at both widths and with reduced motion.
-3. Record decisions and explanations where a choice is `REVISE`, then export
-   the Batch 3 JSON.
-4. Do not change canonical copy or remove a project to accommodate a visual
-   choice.
-5. Do not promote one of routes 22–31 until the owner selects it and explicitly
-   authorizes that additional production change.
-
-Base 21 is the production homepage. Batch 03 derivatives remain private-review
-routes and have not changed production.
+Batch 03 is closed. The decisions are preserved in
+`BATCH_03_DECISIONS.json`; accepted mechanisms and the repaired route-27 ticker
+are integrated into base 32, while the intrusive directional transition is
+replaced. Continue only from `BATCH_04_HANDOFF.md`.

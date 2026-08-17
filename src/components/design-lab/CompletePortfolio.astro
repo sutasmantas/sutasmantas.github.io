@@ -17,7 +17,7 @@ const routeCount = (id) => ordered.filter((project) => project.route === id).len
     <p class="continuity-sub" data-canonical-positioning>{identity.sub}</p>
     <dl class="continuity-proof">
       {proof.map((fact) => (
-        <div data-proof-fact tabindex={labVariant === '27' ? '0' : undefined}>
+        <div data-proof-fact tabindex={labVariant === '27' || Number(labVariant) >= 32 ? '0' : undefined}>
           <dt data-proof-value={fact.value} data-proof-unit={fact.unit}>{fact.value}{fact.unit}</dt>
           <dd><b>{fact.label}</b><span>{fact.sub}</span></dd>
         </div>

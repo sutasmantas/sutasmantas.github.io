@@ -1,0 +1,47 @@
+{
+  "batch": "03",
+  "exportedAt": "2026-08-16T20:01:19.898Z",
+  "baseline": "design-lab/21",
+  "decisions": {
+    "22": {
+      "decision": "KEEP",
+      "notes": ""
+    },
+    "23": {
+      "decision": "KEEP",
+      "notes": ""
+    },
+    "24": {
+      "decision": "REJECT",
+      "notes": "too much, does not look porfessional, actually even the current transition is too much, it is interfering and seems like we dont get the  line of what is profesional and what is too playfull maybe we should remove current rtransittion as well, or change it to something less intrusive"
+    },
+    "25": {
+      "decision": "KEEP",
+      "notes": ""
+    },
+    "26": {
+      "decision": "REJECT",
+      "notes": "too much, does not look porfessional"
+    },
+    "27": {
+      "decision": "REVISE",
+      "notes": "ok, but open source 100% breaks and shows nan that firsst needs fixing"
+    },
+    "28": {
+      "decision": "KEEP",
+      "notes": ""
+    },
+    "29": {
+      "decision": "REJECT",
+      "notes": "too much, makes it hard to read, which is not professional"
+    },
+    "30": {
+      "decision": "REJECT",
+      "notes": "interferes with seeing the screenshot, i dont like the changes that make the user experience worse"
+    },
+    "31": {
+      "decision": "KEEP",
+      "notes": ""
+    }
+  }
+}
