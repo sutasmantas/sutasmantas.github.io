@@ -4,6 +4,7 @@ import { href } from '../../lib/paths.js';
 
 const { variant, labVariant = variant, customDirectory = false } = Astro.props;
 const routeCount = (id) => ordered.filter((project) => project.route === id).length;
+const pressureHeadline = labVariant === '44';
 ---
 
 <div class="complete-portfolio" data-complete-portfolio data-portfolio-variant={variant}>
@@ -13,7 +14,10 @@ const routeCount = (id) => ordered.filter((project) => project.route === id).len
       <a href={`mailto:${contact.email}`}>Start a conversation ↗</a>
     </div>
     <p class="continuity-kicker">Thirteen working systems / live / open source / tested</p>
-    <h2><span>{identity.headline[0]}</span><em>{identity.headline[1]}.</em></h2>
+    <h2 data-pressure-headline={pressureHeadline ? 'true' : undefined} aria-label={pressureHeadline ? `${identity.headline[0]} ${identity.headline[1]}.` : undefined}>
+      <span>{pressureHeadline ? identity.headline[0].split(' ').map((word, index, words) => <i class="pressure-word" aria-hidden="true">{Array.from(word).map((character) => <b>{character}</b>)}{index < words.length - 1 ? ' ' : ''}</i>) : identity.headline[0]}</span>
+      <em>{pressureHeadline ? `${identity.headline[1]}.`.split(' ').map((word, index, words) => <i class="pressure-word" aria-hidden="true">{Array.from(word).map((character) => <b>{character}</b>)}{index < words.length - 1 ? ' ' : ''}</i>) : `${identity.headline[1]}.`}</em>
+    </h2>
     <p class="continuity-sub" data-canonical-positioning>{identity.sub}</p>
     <dl class="continuity-proof">
       {proof.map((fact) => (
@@ -68,9 +72,10 @@ const routeCount = (id) => ordered.filter((project) => project.route === id).len
     </ol>
   </section>
 
-  <footer class="canonical-contact">
+  <footer class="canonical-contact" data-canonical-contact>
+    {labVariant === '48' && <div class="contact-flow" tabindex="0" aria-label="Tell me what’s breaking"><span aria-hidden="true">Tell me what’s breaking · Tell me what’s breaking · Tell me what’s breaking · </span></div>}
     <div><p>{identity.name}</p><h2>Bring me the workflow, evidence problem, or failure mode.</h2></div>
-    <div><a href={`mailto:${contact.email}`}>{contact.email}</a><a href={contact.github}>GitHub ↗</a></div>
+    <div class="contact-ways"><a href={`mailto:${contact.email}`}>{contact.email}</a><a href={contact.github}>GitHub ↗</a></div>
   </footer>
 </div>
 

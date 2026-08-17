@@ -18,20 +18,20 @@ page.on('pageerror', (error) => pageErrors.push(error.message));
 
 const response = await page.goto(`${origin}/design-lab/`, { waitUntil: 'networkidle' });
 check('dashboard route returns 200', response?.status() === 200, `HTTP ${response?.status() ?? 'none'}`);
-check('base 32 plus ten live derivatives are listed', await page.locator('[data-review-variant]').count() === 11);
-check('first derivative 33 starts selected', await page.locator('[data-review-variant="33"]').getAttribute('aria-pressed') === 'true');
-check('first derivative 33 is the initial live route', await page.locator('[data-review-frame="current"]').getAttribute('src') === '/design-lab/33/');
-check('derivative opens against selected base 32', await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/32/');
-check('every derivative declares its change size', await page.locator('[data-review-variant]:not([data-review-variant="32"])').evaluateAll((rows) => rows.every((row) => ['SMALL', 'MEDIUM', 'LARGE'].includes(row.dataset.impact))));
+check('base 43 plus ten live derivatives are listed', await page.locator('[data-review-variant]').count() === 11);
+check('first derivative 44 starts selected', await page.locator('[data-review-variant="44"]').getAttribute('aria-pressed') === 'true');
+check('first derivative 44 is the initial live route', await page.locator('[data-review-frame="current"]').getAttribute('src') === '/design-lab/44/');
+check('derivative opens against selected base 43', await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/43/');
+check('every derivative declares its change size', await page.locator('[data-review-variant]:not([data-review-variant="43"])').evaluateAll((rows) => rows.every((row) => ['SMALL', 'MEDIUM', 'LARGE'].includes(row.dataset.impact))));
 
-await page.locator('[data-review-variant="33"]').click();
-check('33 is candidly labeled as a large change', await page.locator('[data-current-impact]').textContent() === 'LARGE CHANGE');
-check('33 explains its exact location, preserved values and result', (await page.locator('[data-current-hypothesis]').textContent()).includes('below the opening paragraph') && (await page.locator('[data-current-hypothesis]').textContent()).includes('13, 10, and 100%') && (await page.locator('[data-current-hypothesis]').textContent()).includes('asymmetric editorial bento'));
+await page.locator('[data-review-variant="44"]').click();
+check('44 is candidly labeled as a large change', await page.locator('[data-current-impact]').textContent() === 'LARGE CHANGE');
+check('44 explains its exact trigger and visible result', (await page.locator('[data-current-hypothesis]').textContent()).includes('opening headline') && (await page.locator('[data-current-hypothesis]').textContent()).includes('nearest the pointer') && (await page.locator('[data-current-hypothesis]').textContent()).includes('original typography returns'));
 
-await page.locator('[data-review-variant="35"]').click();
-await page.waitForFunction(() => document.querySelector('[data-review-frame="current"]')?.contentWindow?.location.pathname === '/design-lab/35/');
-check('variant switch loads the real route', await page.locator('[data-current-id]').textContent() === '35');
-check('variant switch updates full-size link', (await page.locator('[data-open-full]').getAttribute('href'))?.endsWith('/design-lab/35/'));
+await page.locator('[data-review-variant="45"]').click();
+await page.waitForFunction(() => document.querySelector('[data-review-frame="current"]')?.contentWindow?.location.pathname === '/design-lab/45/');
+check('variant switch loads the real route', await page.locator('[data-current-id]').textContent() === '45');
+check('variant switch updates full-size link', (await page.locator('[data-open-full]').getAttribute('href'))?.endsWith('/design-lab/45/'));
 const frameBounds = await page.locator('[data-current-preview]').evaluate((panel) => {
   const holder = panel.querySelector('[data-frame-holder]').getBoundingClientRect();
   const shell = panel.querySelector('[data-frame-shell]').getBoundingClientRect();
@@ -42,8 +42,14 @@ check('scaled desktop frame stays fully inside its review canvas', frameBounds.s
 const liveFrame = page.frameLocator('[data-review-frame="current"]');
 await liveFrame.locator('[data-proof-button="relay"]').click();
 check('embedded experiment remains interactive', await liveFrame.locator('[data-proof-button="relay"]').getAttribute('aria-pressed') === 'true');
-await liveFrame.locator('.v10-stage').hover({ position: { x: 40, y: 40 } });
-check('embedded new mechanism remains interactive', (await liveFrame.locator('.v10-stage').evaluate((element) => getComputedStyle(element).transform)) !== 'none');
+check('embedded new mechanism remains visibly applied', (await liveFrame.locator('.continuity-hero').evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length)) === 2);
+
+await page.locator('[data-review-variant="52"]').click();
+await page.waitForFunction(() => document.querySelector('[data-review-frame="current"]')?.contentWindow?.location.pathname === '/design-lab/case/52/atlas/');
+check('case-template switch loads the real shared route', await page.locator('[data-current-id]').textContent() === '52');
+const caseFrame = page.frameLocator('[data-review-frame="current"]');
+await caseFrame.locator('[data-evidence-toggle]').click();
+check('embedded case-template mechanism remains interactive', await caseFrame.locator('[data-evidence-panel]').isVisible());
 
 await page.locator('[data-viewport="mobile"]').click();
 check('mobile control sets a 390px live canvas', await page.locator('[data-current-preview] [data-frame-shell]').evaluate((element) => element.style.width) === '390px');
@@ -57,28 +63,28 @@ check('reduced-motion mode reaches the experiment document', await liveFrame.loc
 await page.locator('input[name="decision"][value="KEEP"]').check();
 await page.locator('[data-review-notes]').fill('Keep the bounded tilt, reduce it further on narrow screens.');
 await page.waitForTimeout(350);
-const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('central-portfolio-design-lab-batch-04')));
-check('decision persists to local storage', saved?.['35']?.decision === 'KEEP');
-check('notes persist to local storage', saved?.['35']?.notes === 'Keep the bounded tilt, reduce it further on narrow screens.');
+const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('central-portfolio-design-lab-batch-05')));
+check('decision persists to local storage', saved?.['52']?.decision === 'KEEP');
+check('notes persist to local storage', saved?.['52']?.notes === 'Keep the bounded tilt, reduce it further on narrow screens.');
 check('progress count updates', await page.locator('[data-reviewed-count]').textContent() === '1');
 
 await page.reload({ waitUntil: 'networkidle' });
-await page.locator('[data-review-variant="35"]').click();
+await page.locator('[data-review-variant="52"]').click();
 check('saved decision survives reload', await page.locator('input[name="decision"][value="KEEP"]').isChecked());
 check('saved notes survive reload', await page.locator('[data-review-notes]').inputValue() === 'Keep the bounded tilt, reduce it further on narrow screens.');
 
 const downloadPromise = page.waitForEvent('download');
 await page.locator('[data-export]').click();
 const download = await downloadPromise;
-check('export produces the expected review artifact', download.suggestedFilename() === 'central-portfolio-batch-04-decisions.json');
+check('export produces the expected review artifact', download.suggestedFilename() === 'central-portfolio-batch-05-decisions.json');
 
-await page.locator('[data-review-variant="32"]').click();
+await page.locator('[data-review-variant="43"]').click();
 check('baseline selection hides decision controls', await page.locator('[data-review-form]').isHidden());
 check('baseline selection exposes its explanation', await page.locator('[data-baseline-message]').isVisible());
 
 page.once('dialog', (dialog) => dialog.accept());
 await page.locator('[data-clear]').click();
-check('clear action removes saved review after confirmation', await page.evaluate(() => localStorage.getItem('central-portfolio-design-lab-batch-04')) === null);
+check('clear action removes saved review after confirmation', await page.evaluate(() => localStorage.getItem('central-portfolio-design-lab-batch-05')) === null);
 
 const dimensions = await page.evaluate(() => ({ client: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth }));
 check('desktop dashboard has no horizontal overflow', dimensions.client === dimensions.scroll, JSON.stringify(dimensions));

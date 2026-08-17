@@ -1,7 +1,7 @@
 # Central portfolio visual lab — Batch 4 handoff
 
 Date: 2026-08-17
-Status: **PASS_DEPLOYED_READY_FOR_OWNER_REVIEW**
+Status: **SUPERSEDED_BY_BATCH_05**
 Implementation checkpoint: **10da51bcd11fecb13dbf5328e0a60fac6efefcc8**
 Production deployment checkpoint: **c44f7ba7cab5c6b90c326598fe55b31aaf8579e7**
 GitHub Pages run: **32001514455 — PASS**
@@ -10,6 +10,10 @@ Production route: `/`
 Review routes: `/design-lab/33/` through `/design-lab/42/`
 Branch: `main`
 Worktree: `C:\Users\masuta\Desktop\Coding\cv\portfolio_demos\central_portfolio_site`
+
+> Owner decisions were received and integrated into selected base 43. Continue
+> from `BATCH_05_HANDOFF.md`; this file remains the immutable Batch 04 review
+> checkpoint.
 
 ## Decision
 

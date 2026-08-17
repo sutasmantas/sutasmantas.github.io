@@ -1,9 +1,11 @@
 import { chromium } from 'playwright';
 import { writeFile } from 'node:fs/promises';
 import { identity, contact, proof, routes, ordered } from '../src/data/portfolio.js';
+import { evidenceBySlug } from '../src/data/evidence.js';
 
 const origin = process.argv[2] ?? 'http://127.0.0.1:8912';
-const variants = Array.from({ length: 11 }, (_, index) => String(index + 32).padStart(2, '0'));
+const variants = Array.from({ length: 6 }, (_, index) => String(index + 43).padStart(2, '0'));
+const caseVariants = Array.from({ length: 5 }, (_, index) => String(index + 49));
 const checks = [];
 const failures = [];
 const normalize = (value) => value.replace(/\s+/g, ' ').trim();
@@ -59,7 +61,8 @@ check('production homepage uses the combined-base headline', homeText.includes(`
 check('production homepage preserves the canonical positioning copy', homeText.includes(normalize(identity.sub)));
 check('production homepage removes design-lab chrome and review copy', await page.locator('.labbar, .experiment-head').count() === 0 && !homeText.includes('Design lab') && !homeText.includes('Combined selected base'));
 check('production homepage is indexable', await page.locator('meta[name="robots"][content*="noindex"]').count() === 0);
-check('production homepage activates the selected Batch 4 base', await page.locator('[data-proof-deck][data-proof-effect="selected-control"][data-combined-base="true"][data-batch-four="true"][data-has-magnet="true"][data-has-dock="true"][data-has-ticker="true"][data-has-sparks="true"]').count() === 1);
+check('production homepage activates the selected Batch 5 base', await page.locator('[data-proof-deck][data-proof-effect="selected-control-5"][data-combined-base="true"][data-batch-four="true"][data-batch-five="true"][data-has-magnet="true"][data-has-dock="true"][data-has-ticker="true"][data-has-sparks="true"][data-has-spotlight="true"][data-has-tilt="true"]').count() === 1);
+check('production homepage removes the redundant deck instruction', !homeText.includes('Choose a system above to inspect its product screenshot'));
 
 const homeRecords = page.locator('[data-project-record]');
 check('production homepage exposes exactly thirteen canonical project records', await homeRecords.count() === ordered.length, `found ${await homeRecords.count()}`);
@@ -73,6 +76,18 @@ for (const project of ordered) {
   check(`production/${project.slug} preserves case and live actions`, await target.locator(`a[href$="/work/${project.slug}/"]`).count() === 1 && await target.locator(`a[href="${project.live}"]`).count() === 1);
 }
 
+for (const variant of caseVariants) {
+  for (const project of ordered) {
+    const response = await page.goto(`${origin}/design-lab/case/${variant}/${project.slug}/`, { waitUntil: 'domcontentloaded' });
+    check(`${variant}/${project.slug} case experiment returns 200`, response?.status() === 200, `HTTP ${response?.status() ?? 'none'}`);
+    check(`${variant}/${project.slug} uses the shared case template`, await page.locator(`[data-case-study][data-case-variant="${variant}"]`).count() === 1);
+    const text = normalize(await page.locator('[data-case-study]').textContent());
+    check(`${variant}/${project.slug} preserves project and evidence copy`, text.includes(normalize(project.title)) && text.includes(normalize(project.blurb)) && text.includes(normalize(project.scope)) && text.includes(normalize(evidenceBySlug[project.slug].claim)) && text.includes(normalize(evidenceBySlug[project.slug].boundary)));
+    check(`${variant}/${project.slug} remains private review`, await page.locator('meta[name="robots"][content*="noindex"]').count() === 1);
+  }
+}
+
+await page.goto(`${origin}/`, { waitUntil: 'networkidle' });
 check('production homepage preserves all three client routes', await page.locator('[data-client-route]').count() === routes.length);
 check('production homepage preserves the site-level contact path', await page.locator(`a[href="mailto:${contact.email}"]`).count() >= 1);
 
@@ -87,12 +102,17 @@ for (const project of ordered) {
 }
 
 await page.goto(`${origin}/design-lab/`, { waitUntil: 'networkidle' });
-check('33 is the explicitly selected initial experiment', await page.locator('[data-review-variant="33"]').getAttribute('aria-pressed') === 'true');
-check('dashboard initially loads experiment 33', await page.locator('[data-review-frame="current"]').getAttribute('src') === '/design-lab/33/');
-for (const id of variants.slice(1)) {
+check('44 is the explicitly selected initial experiment', await page.locator('[data-review-variant="44"]').getAttribute('aria-pressed') === 'true');
+check('dashboard initially loads experiment 44', await page.locator('[data-review-frame="current"]').getAttribute('src') === '/design-lab/44/');
+for (const id of ['44', '45', '46', '47', '48']) {
   await page.locator(`[data-review-variant="${id}"]`).click();
-  check(`${id} compares directly against selected base 32`, await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/32/');
-  check(`${id} labels the equal-scope comparison`, await page.locator('[data-baseline-label]').textContent() === 'Control · selected Batch 4 base 32');
+  check(`${id} compares directly against selected base 43`, await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/design-lab/43/');
+  check(`${id} labels the equal-scope comparison`, await page.locator('[data-baseline-label]').textContent() === 'Control · selected Batch 5 base 43');
+}
+for (const id of caseVariants) {
+  await page.locator(`[data-review-variant="${id}"]`).click();
+  check(`${id} compares directly against the current Atlas case`, await page.locator('[data-review-frame="baseline"]').getAttribute('src') === '/work/atlas/');
+  check(`${id} labels the shared-case comparison`, await page.locator('[data-baseline-label]').textContent() === 'Control · current shared Atlas case');
 }
 
 await context.close();

@@ -4,7 +4,7 @@ Date: 2026-08-17
 Selected control: `/design-lab/32/`
 Review routes: `/design-lab/33/` through `/design-lab/42/`
 Production route: `/`
-Status: **PASS_READY_FOR_OWNER_SELECTION**
+Status: **PASS_DECISIONS_INTEGRATED_IN_BASE_43**
 
 ## Owner-selected base composition
 
@@ -104,13 +104,13 @@ native browser APIs implement the lab.
 
 | # | Decision | Revision request or reason |
 | ---: | --- | --- |
-| 33 |  |  |
-| 34 |  |  |
-| 35 |  |  |
-| 36 |  |  |
-| 37 |  |  |
-| 38 |  |  |
-| 39 |  |  |
-| 40 |  |  |
-| 41 |  |  |
-| 42 |  |  |
+| 33 | KEEP | Integrated: asymmetric proof bento |
+| 34 | KEEP | Integrated: selected-card spotlight |
+| 35 | KEEP | Integrated: bounded selected-card tilt |
+| 36 | KEEP | Integrated: active-project directory wash |
+| 37 | REJECT | “too much stuff there already to add anything else” |
+| 38 | REJECT | “too cluttered” |
+| 39 | REJECT | “the progress is super short looks stupid” |
+| 40 | REJECT | “something needs to be done with those, but this interferes a bit with actual user experience” |
+| 41 | REJECT | “lame aggect just a highlight” |
+| 42 | KEEP | Integrated: short action border trail |

@@ -72,18 +72,30 @@ const experimentNotes = {
   '40': ['Batch 4 · stacked client routes', 'Scroll through “Three ways into the work.” The three complete client-route rows pin into a restrained overlapping stack, then release normally.', 'LARGE'],
   '41': ['Batch 4 · positioning highlight', 'Watch the opening positioning paragraph as it enters view. A clause-level ink highlight travels behind the unchanged sentence while every word stays readable.', 'MEDIUM'],
   '42': ['Batch 4 · action border trail', 'Hover or keyboard-focus “View case” and “Open live.” A short project-colour trail travels once around the action border while the label stays still.', 'MEDIUM'],
+  '43': ['Batch 5 · selected control', 'Baseline: the approved Batch 4 mechanisms are combined and screenshot loading now warms before selection instead of leaving a blank proof surface.', 'BASE'],
+  '44': ['Batch 5 · pressure headline', 'Move across the opening headline. Its letters widen and gain weight nearest the pointer while the wording, line breaks, and reading order stay unchanged.', 'LARGE'],
+  '45': ['Batch 5 · split opening', 'Look only at the first section. The headline and proof bento become one tighter two-column opening that reaches the work sooner without deleting evidence.', 'LARGE'],
+  '46': ['Batch 5 · signal-field opening', 'Move across the first section. A restrained dot field brightens around the pointer behind the headline without adding copy or blocking the proof figures.', 'MEDIUM'],
+  '47': ['Batch 5 · expanding contact routes', 'Reach the final contact section and hover or keyboard-focus Email or GitHub. The selected route expands into the dominant closing action.', 'LARGE'],
+  '48': ['Batch 5 · flowing contact close', 'Reach the final contact section. One oversized “Tell me what’s breaking” rail moves across the boundary and pauses on hover or keyboard focus.', 'LARGE'],
 };
 const [surface, hypothesis, impact] = experimentNotes[variant];
 const numericVariant = Number(variant);
-const isMotionDeck = numericVariant >= 10 && numericVariant <= 42;
-const isCombinedBase = numericVariant >= 21 && numericVariant <= 42;
-const isBatchFourBase = numericVariant >= 32 && numericVariant <= 42;
+const isMotionDeck = numericVariant >= 10 && numericVariant <= 48;
+const isCombinedBase = numericVariant >= 21 && numericVariant <= 48;
+const isBatchFourBase = numericVariant >= 32 && numericVariant <= 48;
+const isBatchFiveBase = numericVariant >= 43 && numericVariant <= 48;
 const hasMagnetActions = variant === '22' || isBatchFourBase;
 const hasGlare = variant === '23' || isBatchFourBase;
 const hasDockIndex = variant === '25' || isBatchFourBase;
 const hasNumberTicker = variant === '27' || isBatchFourBase;
 const hasClickSpark = variant === '28' || isBatchFourBase;
 const hasFlowingMenu = variant === '31' || isBatchFourBase;
+const hasProofBento = variant === '33' || isBatchFiveBase;
+const hasStageSpotlight = variant === '34' || isBatchFiveBase;
+const hasStageTilt = variant === '35' || isBatchFiveBase;
+const hasChromaDirectory = variant === '36' || isBatchFiveBase;
+const hasActionTrail = variant === '42' || isBatchFiveBase;
 const effectName = {
   '10': 'base', '11': 'border-beam', '12': 'magic-light', '13': 'lens',
   '14': 'interactive-grid', '15': 'noise', '16': 'shimmer',
@@ -97,10 +109,12 @@ const effectName = {
   '35': 'stage-tilt', '36': 'chroma-directory', '37': 'active-backplate',
   '38': 'measured-grid', '39': 'progress-spine', '40': 'route-stack',
   '41': 'positioning-highlight', '42': 'action-border-trail',
+  '43': 'selected-control-5', '44': 'pressure-headline', '45': 'split-opening',
+  '46': 'signal-field-opening', '47': 'expanding-contact', '48': 'flowing-contact',
 }[variant];
 ---
 
-<article class:list={['experiment', `variant-${variant}`, isCombinedBase && 'combined-base', isBatchFourBase && 'batch-four-base']} data-variant={variant}>
+<article class:list={['experiment', `variant-${variant}`, isCombinedBase && 'combined-base', isBatchFourBase && 'batch-four-base', isBatchFiveBase && 'batch-five-base', hasProofBento && 'has-proof-bento', hasStageSpotlight && 'has-stage-spotlight', hasStageTilt && 'has-stage-tilt', hasChromaDirectory && 'has-chroma-directory', hasActionTrail && 'has-action-trail']} data-variant={variant}>
   {!production && (
     <header class="experiment-head">
       <div><span class="experiment-no">{variant}</span><span>{surface}</span>{impact && <b class="experiment-impact">{impact} CHANGE</b>}</div>
@@ -340,7 +354,7 @@ const effectName = {
   )}
 
   {isMotionDeck && (
-    <section class="v10-canvas" aria-label={production ? 'Project directory and selected system' : 'User-triggered proof deck'} data-proof-deck data-proof-effect={effectName} data-combined-base={isCombinedBase ? 'true' : undefined} data-batch-four={isBatchFourBase ? 'true' : undefined} data-has-magnet={hasMagnetActions ? 'true' : undefined} data-has-dock={hasDockIndex ? 'true' : undefined} data-has-ticker={hasNumberTicker ? 'true' : undefined} data-has-sparks={hasClickSpark ? 'true' : undefined}>
+    <section class="v10-canvas" aria-label={production ? 'Project directory and selected system' : 'User-triggered proof deck'} data-proof-deck data-proof-effect={effectName} data-combined-base={isCombinedBase ? 'true' : undefined} data-batch-four={isBatchFourBase ? 'true' : undefined} data-batch-five={isBatchFiveBase ? 'true' : undefined} data-has-magnet={hasMagnetActions ? 'true' : undefined} data-has-dock={hasDockIndex ? 'true' : undefined} data-has-ticker={hasNumberTicker ? 'true' : undefined} data-has-sparks={hasClickSpark ? 'true' : undefined} data-has-spotlight={hasStageSpotlight ? 'true' : undefined} data-has-tilt={hasStageTilt ? 'true' : undefined}>
       {variant === '14' && (
         <svg class="v10-interactive-grid" viewBox="0 0 1200 800" preserveAspectRatio="none" aria-hidden="true">
           {Array.from({ length: 96 }, (_, index) => <rect data-grid-cell x={(index % 12) * 100} y={Math.floor(index / 12) * 100} width="100" height="100" />)}
@@ -353,7 +367,7 @@ const effectName = {
         </svg>
       )}
       {variant === '39' && <aside class="v10-progress-spine" aria-hidden="true"><span>00</span><i><b data-scroll-progress></b></i><span>100</span></aside>}
-      <header><p>{production ? 'Complete project directory / live systems' : `${variant === '10' ? 'Selected base' : variant === '21' ? 'Combined selected base' : variant === '32' ? 'Selected Batch 4 base' : isBatchFourBase ? `${variant} / base 32 derivative` : isCombinedBase ? `${variant} / base 21 derivative` : `${variant} / base 10 derivative`} / motion-led directory`}</p><h2>{production ? <>All thirteen.<br />One system at a time.</> : <>All thirteen.<br />One responsive proof deck.</>}</h2></header>
+      <header><p>{production ? 'Complete project directory / live systems' : `${variant === '10' ? 'Selected base' : variant === '21' ? 'Combined selected base' : variant === '32' ? 'Selected Batch 4 base' : variant === '43' ? 'Selected Batch 5 base' : isBatchFiveBase ? `${variant} / base 43 derivative` : isBatchFourBase ? `${variant} / base 32 derivative` : isCombinedBase ? `${variant} / base 21 derivative` : `${variant} / base 10 derivative`} / motion-led directory`}</p><h2>{production ? <>All thirteen.<br />One system at a time.</> : <>All thirteen.<br />One responsive proof deck.</>}</h2></header>
       <div class="v10-layout">
         <div class="v10-index" aria-label="Choose a project">
           {variant === '37' && <i class="v10-active-backplate" data-active-backplate aria-hidden="true" />}
@@ -378,9 +392,10 @@ const effectName = {
         <div class="v10-stage" aria-live="polite">
           {ordered.map((project) => (
             <article data-proof-card={project.slug} data-project-record data-project-slug={project.slug} data-project-route={project.route} hidden={project.slug !== atlas.slug} style={`--project:${accents[project.slug]}`}>
-              <div class="v10-image" tabindex={hasGlare || variant === '30' ? '0' : undefined} data-lens-surface={variant === '13' || isCombinedBase ? 'true' : undefined}>
-                <Image src={shotFor(project.shot)} alt={project.alt} widths={[650, 1000]} sizes="(max-width: 760px) 92vw, 48vw" />
+              <div class="v10-image" tabindex={hasGlare || variant === '30' ? '0' : undefined} data-lens-surface={variant === '13' || isCombinedBase ? 'true' : undefined} data-image-loading="true" aria-busy="true">
+                <Image data-project-image src={shotFor(project.shot)} alt={project.alt} widths={[650, 1000]} sizes="(max-width: 760px) 92vw, 48vw" loading="lazy" />
                 {(variant === '13' || isCombinedBase) && <div class="v10-lens" aria-hidden="true"><Image src={shotFor(project.shot)} alt="" widths={[650, 1000]} sizes="(max-width: 760px) 92vw, 48vw" /></div>}
+                <span class="v10-image-status" data-image-status aria-live="polite">Loading screenshot…</span>
                 {variant === '24' && <div class="v10-pixels" aria-hidden="true">{Array.from({ length: 64 }, (_, index) => <i style={`--pixel:${index}`} />)}</div>}
                 {variant === '30' && <span class="v10-expand-label" aria-hidden="true">PROOF</span>}
               </div>
@@ -396,7 +411,7 @@ const effectName = {
         </div>
       </div>
       {hasClickSpark && <div class="v10-sparks" data-spark-field aria-hidden="true" />}
-      <p class="v10-motion-note">{production ? 'Choose a system above to inspect its product screenshot, complete description, evidence note and working links.' : <>{isCombinedBase ? 'Selected ambient signals run on load.' : 'Nothing moves on load.'} Hover, focus or choose a project; reduced motion swaps state instantly. {variant !== '10' && `Variant ${variant} changes only the ${surface.toLowerCase().replace(/^batch [234] · /, '')}.`}</>}</p>
+      {!production && <p class="v10-motion-note">{isCombinedBase ? 'Selected ambient signals run on load.' : 'Nothing moves on load.'} Hover, focus or choose a project; reduced motion swaps state instantly. {variant !== '10' && `Variant ${variant} changes only the ${surface.toLowerCase().replace(/^batch [2345] · /, '')}.`}</p>}
     </section>
   )}
   </CompletePortfolio>
@@ -480,14 +495,48 @@ const effectName = {
     const effect = deck.dataset.proofEffect;
     const combinedBase = deck.dataset.combinedBase === 'true';
     const batchFour = deck.dataset.batchFour === 'true';
+    const batchFive = deck.dataset.batchFive === 'true';
     const hasMagnet = deck.dataset.hasMagnet === 'true';
     const hasDock = deck.dataset.hasDock === 'true';
     const hasTicker = deck.dataset.hasTicker === 'true';
     const hasSparks = deck.dataset.hasSparks === 'true';
+    const hasSpotlight = deck.dataset.hasSpotlight === 'true';
+    const hasTilt = deck.dataset.hasTilt === 'true';
     const buttons = Array.from(deck.querySelectorAll('[data-proof-button]'));
     const cards = Array.from(deck.querySelectorAll('[data-proof-card]'));
     const systemReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
     const shouldReduce = () => systemReduce.matches || document.documentElement.dataset.reviewReduce === 'true';
+    const warmPromises = new WeakMap();
+    const warmCard = (card) => {
+      if (!(card instanceof HTMLElement)) return Promise.resolve();
+      if (warmPromises.has(card)) return warmPromises.get(card);
+      const request = new Promise((resolve) => {
+      const surface = card?.querySelector('.v10-image');
+      const image = surface?.querySelector('[data-project-image]');
+      const status = surface?.querySelector('[data-image-status]');
+      if (!(surface instanceof HTMLElement) || !(image instanceof HTMLImageElement)) { resolve(); return; }
+      const finish = (failed = false) => {
+        surface.dataset.imageLoading = 'false';
+        surface.setAttribute('aria-busy', 'false');
+        if (status) status.textContent = failed ? 'Screenshot unavailable' : '';
+        resolve();
+      };
+      if (image.complete) { finish(image.naturalWidth === 0); return; }
+      image.loading = 'eager';
+      image.addEventListener('load', () => finish(false), { once: true });
+      image.addEventListener('error', () => finish(true), { once: true });
+      });
+      warmPromises.set(card, request);
+      return request;
+    };
+    for (const card of cards) {
+      const image = card.querySelector('[data-project-image]');
+      const surface = card.querySelector('.v10-image');
+      if (image?.complete && image.naturalWidth > 0 && surface instanceof HTMLElement) {
+        surface.dataset.imageLoading = 'false';
+        surface.setAttribute('aria-busy', 'false');
+      }
+    }
     let selectedSlug;
     const select = (slug, animateChange = true) => {
       if (animateChange && slug === selectedSlug) return;
@@ -512,6 +561,7 @@ const effectName = {
         card.dataset.active = String(active);
         card.hidden = !active;
         if (!active) continue;
+        void warmCard(card);
         if (!animateChange || shouldReduce()) {
           Object.assign(card.style, { transform: 'none', opacity: '1', filter: 'none', clipPath: 'none' });
         } else if (batchFour) {
@@ -573,6 +623,7 @@ const effectName = {
     };
     for (const button of buttons) {
       button.addEventListener('click', (event) => {
+        void warmCard(cards.find((card) => card.dataset.proofCard === button.dataset.proofButton));
         select(button.dataset.proofButton);
         if (hasSparks && !shouldReduce()) {
           const field = deck.querySelector('[data-spark-field]');
@@ -589,10 +640,27 @@ const effectName = {
           }
         }
       });
-      button.addEventListener('mouseenter', () => select(button.dataset.proofButton));
-      button.addEventListener('focus', () => select(button.dataset.proofButton));
+      button.addEventListener('mouseenter', () => {
+        void warmCard(cards.find((card) => card.dataset.proofCard === button.dataset.proofButton));
+        select(button.dataset.proofButton);
+      });
+      button.addEventListener('focus', () => {
+        void warmCard(cards.find((card) => card.dataset.proofCard === button.dataset.proofButton));
+        select(button.dataset.proofButton);
+      });
     }
     select('atlas', false);
+
+    const warmRemaining = async () => {
+      for (const card of cards) await warmCard(card);
+    };
+    const deckObserver = new IntersectionObserver(([entry], observer) => {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      if ('requestIdleCallback' in window) requestIdleCallback(() => { void warmRemaining(); }, { timeout: 1800 });
+      else setTimeout(() => { void warmRemaining(); }, 350);
+    }, { rootMargin: '800px 0px' });
+    deckObserver.observe(deck);
 
     if (effect === 'magic-light') {
       const stage = deck.querySelector('.v10-stage');
@@ -683,7 +751,7 @@ const effectName = {
       }
     }
 
-    if (effect === 'stage-spotlight') {
+    if (hasSpotlight) {
       const stage = deck.querySelector('.v10-stage');
       stage?.addEventListener('pointermove', (event) => {
         const bounds = stage.getBoundingClientRect();
@@ -694,7 +762,7 @@ const effectName = {
       stage?.addEventListener('pointerleave', () => { stage.dataset.spotlight = 'false'; });
     }
 
-    if (effect === 'stage-tilt') {
+    if (hasTilt) {
       const stage = deck.querySelector('.v10-stage');
       stage?.addEventListener('pointermove', (event) => {
         if (shouldReduce()) return;
@@ -735,5 +803,39 @@ const effectName = {
         observer.observe(positioning);
       }
     }
+
+    if (batchFive && effect === 'selected-control-5') deck.dataset.imageStrategy = 'warm-on-approach';
   }
+
+  const pressureHeadline = document.querySelector('[data-pressure-headline="true"]');
+  if (pressureHeadline) {
+    const characters = Array.from(pressureHeadline.querySelectorAll('b'));
+    const resetPressure = () => {
+      for (const character of characters) {
+        character.style.setProperty('--pressure-width', '1');
+        character.style.fontWeight = '500';
+      }
+    };
+    pressureHeadline.addEventListener('pointermove', (event) => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.dataset.reviewReduce === 'true') return;
+      const bounds = pressureHeadline.getBoundingClientRect();
+      const range = Math.max(120, bounds.width * .24);
+      for (const character of characters) {
+        const box = character.getBoundingClientRect();
+        const distance = Math.abs(event.clientX - (box.left + box.width / 2));
+        const influence = Math.max(0, 1 - distance / range);
+        character.style.setProperty('--pressure-width', String(1 + influence * .34));
+        character.style.fontWeight = String(Math.round(500 + influence * 350));
+      }
+    });
+    pressureHeadline.addEventListener('pointerleave', resetPressure);
+    resetPressure();
+  }
+
+  const signalHero = document.querySelector('.variant-46 .continuity-hero');
+  signalHero?.addEventListener('pointermove', (event) => {
+    const bounds = signalHero.getBoundingClientRect();
+    signalHero.style.setProperty('--hero-x', `${event.clientX - bounds.left}px`);
+    signalHero.style.setProperty('--hero-y', `${event.clientY - bounds.top}px`);
+  });
 </script>

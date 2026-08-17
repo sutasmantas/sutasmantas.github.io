@@ -5,9 +5,10 @@ import sansLatin from '../assets/fonts/plex-sans-var-latin.woff2';
 import sansLatinExt from '../assets/fonts/plex-sans-var-latin-ext.woff2';
 
 const { title, variant } = Astro.props;
-const batchStart = !variant || Number(variant) >= 32 ? 32 : 21;
-const batch = batchStart === 32 ? '04' : '03';
+const batchStart = !variant || Number(variant) >= 43 ? 43 : Number(variant) >= 32 ? 32 : 21;
+const batch = batchStart === 43 ? '05' : batchStart === 32 ? '04' : '03';
 const variants = Array.from({ length: 11 }, (_, index) => String(index + batchStart).padStart(2, '0'));
+const variantRoute = (item) => Number(item) >= 49 ? href(`/design-lab/case/${item}/atlas/`) : href(`/design-lab/${item}/`);
 ---
 <!doctype html>
 <html lang="en">
@@ -29,7 +30,7 @@ const variants = Array.from({ length: 11 }, (_, index) => String(index + batchSt
         {variants.map((item) => (
           <a
             class:list={['labnum', item === variant && 'active']}
-            href={href(`/design-lab/${item}/`)}
+            href={variantRoute(item)}
             aria-current={item === variant ? 'page' : undefined}
           >{item}</a>
         ))}

@@ -1,0 +1,271 @@
+---
+import ProjectStage from './ProjectStage.astro';
+import { ordered, routeLabel } from '../data/portfolio.js';
+import { evidenceBySlug } from '../data/evidence.js';
+import { href, homeAnchor, homeFiltered } from '../lib/paths.js';
+
+const { project: p, labVariant } = Astro.props;
+const evidence = evidenceBySlug[p.slug];
+if (!evidence) throw new Error(`Missing evidence for ${p.slug}`);
+const siblings = ordered.filter((s) => s.route === p.route && s.slug !== p.slug);
+const num = String(p.order).padStart(2, '0');
+const isLab = Boolean(labVariant);
+---
+
+<article class:list={['case-study', labVariant && `case-variant-${labVariant}`]} data-case-study data-case-variant={labVariant}>
+  {isLab && (
+    <nav class="case-lab-switcher" aria-label={`Preview case template ${labVariant} with another project`}>
+      <span>Case template {labVariant}</span>
+      <div>{ordered.map((project) => <a class:list={[project.slug === p.slug && 'active']} aria-current={project.slug === p.slug ? 'page' : undefined} href={href(`/design-lab/case/${labVariant}/${project.slug}/`)}>{String(project.order).padStart(2, '0')} {project.name}</a>)}</div>
+    </nav>
+  )}
+
+  {labVariant === '49' && (
+    <nav class="case-spine" aria-label="Case study sections" data-case-spine>
+      <a href="#case-overview" data-spine-link="case-overview">Overview</a>
+      <a href="#case-product" data-spine-link="case-product">Product</a>
+      <a href="#case-evidence" data-spine-link="case-evidence">Evidence</a>
+      {siblings.length > 0 && <a href="#case-related" data-spine-link="case-related">Related</a>}
+    </nav>
+  )}
+
+  <header class="head" id="case-overview" data-case-section>
+    <div class="wrap">
+      <nav class="crumbs mono label" aria-label="Breadcrumb">
+        <a href={homeAnchor('work')}>The work</a>
+        <span aria-hidden="true">/</span>
+        <span>{p.name}</span>
+      </nav>
+
+      <div class="title">
+        <span class="num mono">{num}</span>
+        <h1>{p.title}</h1>
+      </div>
+
+      <div class="under">
+        <p class="sub">{p.blurb}</p>
+        <div class="acts">
+          <a class="btn" href={p.live}>Open it</a>
+          <a class="btn ghost" href={p.source}>Read the source</a>
+        </div>
+      </div>
+
+      {labVariant === '53' && (
+        <aside class="evidence-first" aria-label="Verification links promoted into the case opening">
+          <p>{evidence.claim}</p>
+          <div>
+            <a href={evidence.artifact.url}><span>Artifact</span>{evidence.artifact.label} ↗</a>
+            <a href={evidence.test.url}><span>Test</span>{evidence.test.label} ↗</a>
+            <a href={evidence.hosted.url}><span>Hosted gate</span>{evidence.hosted.label} ↗</a>
+          </div>
+        </aside>
+      )}
+    </div>
+  </header>
+
+  <div class="wrap shotwrap" id="case-product" data-case-section>
+    <ProjectStage project={p} />
+  </div>
+
+  <section class="wrap facts" aria-label="What this is">
+    <dl>
+      <div><dt class="mono label">What you get</dt><dd>{p.asks}</dd></div>
+      <div><dt class="mono label">The hard part</dt><dd>{p.note}</dd></div>
+      <div><dt class="mono label">Area</dt><dd>{p.family}</dd></div>
+      <div><dt class="mono label">Route</dt><dd><a href={homeFiltered(p.route)}>{routeLabel[p.route]}</a></dd></div>
+    </dl>
+  </section>
+
+  <section class="wrap block" id="case-evidence" data-case-section>
+    <h2>What you can check today</h2>
+    <p class="scope">{p.scope}</p>
+    {labVariant === '52' && <button class="evidence-toggle" type="button" aria-expanded="false" aria-controls={`evidence-${p.slug}`} data-evidence-toggle><span>Verification record</span><b>Open evidence + rerun</b></button>}
+    <div class="evidence" id={`evidence-${p.slug}`} data-evidence-panel hidden={labVariant === '52'}>
+      <p class="claim">{evidence.claim}</p>
+      <dl>
+        <div><dt class="mono label">Artifact</dt><dd><a href={evidence.artifact.url}>{evidence.artifact.label} ↗</a></dd></div>
+        <div><dt class="mono label">Test</dt><dd><a href={evidence.test.url}>{evidence.test.label} ↗</a></dd></div>
+        <div><dt class="mono label">Hosted gate</dt><dd><a href={evidence.hosted.url}>{evidence.hosted.label} ↗</a></dd></div>
+      </dl>
+      <div class="rerun">
+        <span class="mono label">Rerun it</span>
+        <code data-rerun-command>{evidence.rerun}</code>
+        {labVariant === '51' && <button type="button" data-copy-command>Copy command</button>}
+      </div>
+      <p class="boundary"><span class="mono label">Limit</span> {evidence.boundary}</p>
+    </div>
+    <p class="lede">If you want this pointed at your own systems and data, tell me what you are trying to fix.</p>
+    <div class="acts">
+      <a class="btn ghost" href={href(`/evidence/#${p.slug}`)}>Evidence and rerun</a>
+      <a class="btn ghost" href={p.source}>Source and tests</a>
+    </div>
+  </section>
+
+  {siblings.length > 0 && (
+    <section class="wrap block related" id="case-related" data-case-section>
+      <h2>Others that do this</h2>
+      <ol class="rows">
+        {siblings.map((s) => (
+          <li><a href={href(`/work/${s.slug}/`)}><span class="rnum mono">{String(s.order).padStart(2, '0')}</span><span class="rttl">{s.title}</span><span class="rmark mono">{s.name}</span></a></li>
+        ))}
+      </ol>
+    </section>
+  )}
+</article>
+
+<style>
+  .case-study { position: relative; min-width: 0; }
+  .head { padding-block: var(--s-12) var(--s-8); }
+  .crumbs { color: var(--muted); margin-bottom: var(--s-8); }
+  .crumbs a { color: var(--text-2); text-decoration: none; }
+  .crumbs a:hover { color: var(--accent); }
+  .crumbs span[aria-hidden] { margin: 0 var(--s-2); color: var(--line-ctl); }
+  .title { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s-5); align-items: start; }
+  .num { font-size: var(--t-700); color: var(--muted); font-weight: 500; line-height: 1.1; }
+  .title h1 { font-size: clamp(1.9rem, 4.4vw, 3.25rem); line-height: 1.04; letter-spacing: -0.034em; max-width: 20ch; }
+  .under { display: grid; grid-template-columns: minmax(0, 46ch) minmax(0, 1fr); gap: var(--s-8); align-items: end; margin-top: var(--s-8); padding-top: var(--s-6); border-top: 1px solid var(--line); }
+  .sub { color: var(--text-2); font-size: var(--t-500); }
+  .acts { display: flex; gap: var(--s-3); flex-wrap: wrap; }
+  .btn { background: var(--accent); color: var(--accent-ink); padding: var(--s-3) var(--s-5); border-radius: var(--r-md); font-weight: 650; font-size: var(--t-400); text-decoration: none; white-space: nowrap; box-shadow: var(--sh-1); }
+  .btn:hover { background: color-mix(in srgb, var(--accent) 88%, #fff); box-shadow: var(--sh-2); }
+  .btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--line-ctl); font-weight: 600; box-shadow: none; }
+  .btn.ghost:hover { background: color-mix(in srgb, var(--text) 7%, transparent); border-color: var(--text-2); }
+  .shotwrap { padding-top: var(--s-4); }
+  .facts { padding-top: var(--s-12); }
+  .facts dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); margin: 0; border-top: 1px solid var(--line-bright); }
+  .facts dl > div { padding: var(--s-4) var(--s-5) var(--s-4) 0; display: grid; gap: var(--s-2); border-bottom: 1px solid var(--line); }
+  .facts dt { color: var(--muted); }
+  .facts dd { margin: 0; font-size: var(--t-400); line-height: 1.4; }
+  .facts dd a { color: var(--accent); text-decoration: none; }
+  .block { padding-block: var(--s-12) 0; }
+  h2 { font-size: var(--t-700); margin-bottom: var(--s-4); letter-spacing: -0.024em; }
+  .scope { margin-bottom: var(--s-5); font-size: var(--t-500); color: var(--text); border-left: 2px solid var(--accent-dim); padding-left: var(--s-4); max-width: 58ch; }
+  .evidence { border-top: 1px solid var(--line-bright); margin-bottom: var(--s-6); }
+  .claim { max-width: 62ch; padding-block: var(--s-5); font-size: var(--t-500); }
+  .evidence dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; border-top: 1px solid var(--line); }
+  .evidence dl > div { padding: var(--s-4) var(--s-5) var(--s-4) 0; }
+  .evidence dt, .rerun > span, .boundary > span { color: var(--muted); }
+  .evidence dd { margin: var(--s-2) 0 0; }
+  .evidence a { color: var(--accent); text-decoration: none; }
+  .evidence a:hover { text-decoration: underline; }
+  .rerun { position: relative; display: grid; gap: var(--s-2); padding-block: var(--s-4); border-top: 1px solid var(--line); }
+  .rerun code { display: block; overflow-x: auto; padding: var(--s-3) var(--s-4); background: var(--panel-2); border: 1px solid var(--line); border-radius: var(--r-sm); color: var(--text-2); font-size: var(--t-300); white-space: nowrap; }
+  .boundary { max-width: 68ch; padding-top: var(--s-4); border-top: 1px solid var(--line); color: var(--text-2); }
+  .boundary > span { margin-right: var(--s-2); }
+  .lede { color: var(--text-2); max-width: var(--measure); margin-bottom: var(--s-6); }
+  .related { padding-bottom: var(--s-20); }
+  .rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-bright); }
+  .rows li { border-bottom: 1px solid var(--line); }
+  .rows a { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: var(--s-4); align-items: baseline; padding: var(--s-4) var(--s-2); text-decoration: none; color: inherit; }
+  .rnum { color: var(--muted); font-size: var(--t-400); }
+  .rttl { font-size: var(--t-500); font-weight: 600; letter-spacing: -0.012em; }
+  .rmark { color: var(--accent); font-size: var(--t-200); }
+  .rows a:hover { background: var(--panel); }
+
+  .case-lab-switcher { position: sticky; z-index: 18; top: 60px; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 12px; padding: 8px var(--gut); background: color-mix(in srgb, var(--bg) 94%, transparent); border-block: 1px solid var(--line); backdrop-filter: blur(14px); }
+  .case-lab-switcher > span { color: var(--accent); font: 650 var(--t-200)/1 var(--mono); text-transform: uppercase; }
+  .case-lab-switcher > div { display: flex; gap: 5px; overflow-x: auto; }
+  .case-lab-switcher a { flex: 0 0 auto; padding: 7px 9px; border: 1px solid var(--line); color: var(--muted); font: var(--t-200)/1 var(--mono); text-decoration: none; }
+  .case-lab-switcher a.active { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+
+  .case-spine { position: fixed; z-index: 16; right: 18px; top: 34%; display: grid; width: 112px; background: var(--bg-lift); border: 1px solid var(--line-ctl); box-shadow: var(--sh-2); }
+  .case-spine a { padding: 10px 12px; border-bottom: 1px solid var(--line); color: var(--muted); font: var(--t-200)/1.2 var(--mono); text-decoration: none; }
+  .case-spine a:last-child { border-bottom: 0; }
+  .case-spine a.active { background: var(--accent); color: var(--accent-ink); }
+
+  .case-variant-50 .facts dl { grid-template-columns: 1.35fr .8fr .8fr; grid-template-rows: repeat(2, minmax(120px, auto)); gap: 10px; padding: 10px; border: 1px solid var(--line-bright); }
+  .case-variant-50 .facts dl > div { padding: var(--s-5); border: 1px solid var(--line); background: var(--panel); }
+  .case-variant-50 .facts dl > div:first-child { grid-row: 1 / 3; align-content: space-between; }
+  .case-variant-50 .facts dl > div:first-child dd { font-size: var(--t-700); letter-spacing: -.03em; }
+  .case-variant-50 .evidence { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr); gap: 0 var(--s-6); padding: var(--s-5); border: 1px solid var(--line-bright); background: var(--panel); }
+  .case-variant-50 .evidence .claim { grid-column: 1 / -1; font-size: var(--t-600); }
+  .case-variant-50 .evidence dl { grid-template-columns: 1fr; }
+  .case-variant-50 .rerun { border-top: 0; }
+  .case-variant-50 .boundary { grid-column: 1 / -1; }
+
+  .case-variant-51 .evidence { padding: 0; overflow: hidden; border: 1px solid #41546f; border-radius: var(--r-md); background: #0b111a; box-shadow: var(--sh-3); }
+  .case-variant-51 .evidence::before { content: '●  ●  ●   verification / terminal'; display: block; padding: 12px 16px; border-bottom: 1px solid #41546f; color: #6d86a8; font: var(--t-200)/1 var(--mono); letter-spacing: .05em; }
+  .case-variant-51 .claim, .case-variant-51 .evidence dl, .case-variant-51 .rerun, .case-variant-51 .boundary { margin: 0; padding: 18px; }
+  .case-variant-51 .evidence dl { border-color: #27374c; }
+  .case-variant-51 .evidence a { color: #82e3ff; }
+  .case-variant-51 .rerun code { padding: 18px 120px 18px 18px; background: #05080d; border-color: #27374c; color: #baf5c8; }
+  .case-variant-51 [data-copy-command] { position: absolute; right: 18px; bottom: 18px; min-height: 36px; padding: 7px 10px; border: 1px solid #82e3ff; background: transparent; color: #82e3ff; cursor: pointer; font: 650 var(--t-200)/1 var(--mono); }
+
+  .evidence-toggle { display: grid; grid-template-columns: 1fr auto; gap: var(--s-4); width: 100%; padding: var(--s-5) 0; border: 0; border-block: 1px solid var(--line-bright); background: transparent; color: var(--text); text-align: left; cursor: pointer; }
+  .evidence-toggle span { color: var(--muted); font: var(--t-200)/1 var(--mono); text-transform: uppercase; }
+  .evidence-toggle b { color: var(--accent); }
+  .case-variant-52 .evidence { padding: var(--s-5); border: 1px solid var(--line-bright); border-top: 0; background: var(--panel); }
+
+  .evidence-first { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: var(--s-6); margin-top: var(--s-8); padding: var(--s-5); border: 1px solid var(--line-bright); background: var(--panel); }
+  .evidence-first > p { font-size: var(--t-500); }
+  .evidence-first > div { display: grid; }
+  .evidence-first a { display: grid; grid-template-columns: 92px 1fr; gap: var(--s-3); padding: var(--s-3); border-bottom: 1px solid var(--line); color: var(--text); text-decoration: none; }
+  .evidence-first a:last-child { border-bottom: 0; }
+  .evidence-first a span { color: var(--accent); font: var(--t-200)/1.3 var(--mono); text-transform: uppercase; }
+  .case-variant-53 .block .claim, .case-variant-53 .block .evidence > dl { display: none; }
+
+  @media (max-width: 900px) {
+    .under { grid-template-columns: 1fr; gap: var(--s-6); align-items: start; }
+    .case-spine { position: sticky; top: 108px; right: auto; width: auto; grid-template-columns: repeat(4, 1fr); margin: 0 var(--gut); }
+    .case-spine a { text-align: center; border-right: 1px solid var(--line); border-bottom: 0; }
+    .case-variant-50 .evidence, .evidence-first { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 620px) {
+    .head { padding-block: var(--s-10) var(--s-6); }
+    .title { grid-template-columns: 1fr; gap: var(--s-3); }
+    .num { font-size: var(--t-500); }
+    .acts .btn { flex: 1 1 100%; text-align: center; }
+    .rows a { grid-template-columns: auto minmax(0, 1fr); }
+    .rmark { display: none; }
+    .evidence dl, .case-variant-50 .facts dl { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .evidence dl > div { border-top: 1px solid var(--line); }
+    .case-variant-50 .facts dl > div:first-child { grid-row: auto; }
+    .case-lab-switcher { top: 60px; grid-template-columns: 1fr; padding-inline: 18px; }
+    .case-spine { top: 150px; margin-inline: 18px; overflow-x: auto; }
+    .case-spine a { min-width: 84px; }
+    .case-variant-51 .rerun code { padding-right: 18px; padding-bottom: 64px; }
+    .evidence-first a { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .btn, .rows a, .case-spine a { transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+  }
+</style>
+
+<script>
+  for (const root of document.querySelectorAll('[data-case-study]')) {
+    const toggle = root.querySelector('[data-evidence-toggle]');
+    const panel = root.querySelector('[data-evidence-panel]');
+    toggle?.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      panel.hidden = expanded;
+      toggle.querySelector('b').textContent = expanded ? 'Open evidence + rerun' : 'Close evidence';
+    });
+
+    const copy = root.querySelector('[data-copy-command]');
+    copy?.addEventListener('click', async () => {
+      const command = root.querySelector('[data-rerun-command]')?.textContent || '';
+      try {
+        await navigator.clipboard.writeText(command);
+        copy.textContent = 'Copied';
+      } catch {
+        copy.textContent = 'Select command';
+        root.querySelector('[data-rerun-command]')?.focus?.();
+      }
+    });
+    if (copy) copy.dataset.copyReady = 'true';
+
+    const spine = root.querySelector('[data-case-spine]');
+    if (spine) {
+      const links = Array.from(spine.querySelectorAll('[data-spine-link]'));
+      const sections = Array.from(root.querySelectorAll('[data-case-section]'));
+      const mark = (id) => links.forEach((link) => link.classList.toggle('active', link.dataset.spineLink === id));
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) mark(visible.target.id);
+      }, { rootMargin: '-20% 0px -55%', threshold: [0, .25, .6] });
+      sections.forEach((section) => observer.observe(section));
+      mark('case-overview');
+    }
+  }
+</script>

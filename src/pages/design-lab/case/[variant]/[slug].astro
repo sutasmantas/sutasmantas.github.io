@@ -1,0 +1,27 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import CaseStudy from '../../../../components/CaseStudy.astro';
+import { projects } from '../../../../data/portfolio.js';
+
+const titles = {
+  '49': 'Sticky case spine',
+  '50': 'Bento case evidence',
+  '51': 'Verification terminal',
+  '52': 'Collapsible evidence record',
+  '53': 'Evidence-first case opening',
+};
+
+export function getStaticPaths() {
+  const variants = ['49', '50', '51', '52', '53'];
+  return variants.flatMap((variant) => projects.map((project) => ({
+    params: { variant, slug: project.slug },
+    props: { variant, project },
+  })));
+}
+
+const { variant, project } = Astro.props;
+---
+
+<Base noindex title={`${titles[variant]} — ${project.name} — Portfolio design lab`} description={`Shared case-study template ${variant}, previewed with ${project.name}.`}>
+  <CaseStudy project={project} labVariant={variant} />
+</Base>

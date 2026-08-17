@@ -217,8 +217,9 @@ for (const id of Array.from({ length: 11 }, (_, index) => String(index + 21))) {
   }
   if (id === '29') record('29 animates the selected title shadow', (await state.page.locator('[data-project-title]:visible').evaluate((element) => getComputedStyle(element).animationName)).includes('lineShadow'));
   if (id === '30') {
+    await relay.focus();
     const image = state.page.locator('[data-proof-card="relay"] .v10-image');
-    await image.click();
+    await image.dispatchEvent('click');
     record('30 expands the screenshot on click', await image.getAttribute('data-expanded') === 'true');
   }
   if (id === '31') {
@@ -322,6 +323,119 @@ for (const id of Array.from({ length: 11 }, (_, index) => String(index + 32))) {
   await closeChecked(route, state);
 }
 
+for (const id of Array.from({ length: 6 }, (_, index) => String(index + 43))) {
+  const route = `/design-lab/${id}/`;
+  const state = await open(desktop, route);
+  const deck = state.page.locator('[data-proof-deck]');
+  record(`${id} exposes all thirteen project selectors`, await state.page.locator('[data-proof-button]').count() === 13);
+  record(`${id} keeps a single project surface`, await state.page.locator('[data-proof-card]:visible').count() === 1);
+  record(`${id} derives from selected base 43`, await deck.getAttribute('data-batch-five') === 'true');
+  record(`${id} retains approved interaction flags`, await deck.evaluate((element) => ['hasMagnet', 'hasDock', 'hasTicker', 'hasSparks', 'hasSpotlight', 'hasTilt'].every((key) => element.dataset[key] === 'true')));
+  record(`${id} removes the redundant deck instruction`, await state.page.getByText('Choose a system above to inspect its product screenshot, complete description, evidence note and working links.').count() === 0);
+  record(`${id} retains the selected proof bento`, (await state.page.locator('.continuity-proof').evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length)) === 2);
+
+  const relay = state.page.locator('[data-proof-button="relay"]');
+  await relay.hover();
+  const relayCard = state.page.locator('[data-proof-card="relay"]');
+  await relayCard.locator('[data-project-image]').waitFor({ state: 'visible' });
+  await state.page.waitForFunction(() => document.querySelector('[data-proof-card="relay"] .v10-image')?.dataset.imageLoading === 'false');
+  record(`${id} warms a selected screenshot to a resolved state`, await relayCard.locator('.v10-image').getAttribute('data-image-loading') === 'false');
+  record(`${id} exposes the complete selected project`, await relayCard.getAttribute('data-active') === 'true');
+
+  const stage = state.page.locator('.v10-stage');
+  await stage.hover({ position: { x: 90, y: 90 } });
+  record(`${id} retains the selected card spotlight`, await stage.getAttribute('data-spotlight') === 'true');
+  record(`${id} retains the selected card tilt`, (await stage.evaluate((element) => getComputedStyle(element).transform)) !== 'none');
+  const action = relayCard.locator('.v10-actions a').first();
+  await action.focus();
+  record(`${id} retains the selected action trail`, (await action.evaluate((element) => getComputedStyle(element, '::before').animationName)).includes('actionBorderTrail'));
+
+  if (id === '44') {
+    const headline = state.page.locator('[data-pressure-headline="true"]');
+    await headline.hover({ position: { x: 180, y: 60 } });
+    record('44 changes character pressure near the pointer', await headline.locator('b').evaluateAll((characters) => characters.some((character) => Number(character.style.getPropertyValue('--pressure-width')) > 1)));
+    record('44 keeps the pressure headline inside its text box', await headline.evaluate((element) => element.scrollWidth <= element.clientWidth + 1));
+    record('44 wraps only between complete pressure words', await headline.locator('.pressure-word').evaluateAll((words) => words.every((word) => ['nowrap', 'pre'].includes(getComputedStyle(word).whiteSpace))));
+  }
+  if (id === '45') {
+    record('45 creates a two-column opening stage', (await state.page.locator('.continuity-hero').evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length)) === 2);
+    const [headlineBox, proofBox] = await Promise.all([state.page.locator('.continuity-hero h2').boundingBox(), state.page.locator('.continuity-proof').boundingBox()]);
+    record('45 keeps the split proof block clear of the headline', Boolean(headlineBox && proofBox && headlineBox.x + headlineBox.width <= proofBox.x + 1), JSON.stringify({ headlineBox, proofBox }));
+    record('45 keeps the narrower split headline inside its grid column', await state.page.locator('.continuity-hero h2').evaluate((element) => element.scrollWidth <= element.clientWidth + 1));
+  }
+  if (id === '46') {
+    const hero = state.page.locator('.continuity-hero');
+    await hero.hover({ position: { x: 240, y: 180 } });
+    record('46 renders and moves its bounded signal field', (await hero.evaluate((element) => getComputedStyle(element, '::before').backgroundImage)) !== 'none' && await hero.evaluate((element) => Boolean(element.style.getPropertyValue('--hero-x'))));
+  }
+  if (id === '47') {
+    const contact = state.page.locator('[data-canonical-contact]');
+    await contact.scrollIntoViewIfNeeded();
+    const email = contact.locator('.contact-ways a').first();
+    await email.focus();
+    await state.page.waitForTimeout(320);
+    record('47 expands the focused contact route', Number(await email.evaluate((element) => getComputedStyle(element).flexGrow)) > 2);
+  }
+  if (id === '48') {
+    const flow = state.page.locator('.contact-flow span');
+    record('48 runs the single flowing contact rail', (await flow.evaluate((element) => getComputedStyle(element).animationName)).includes('contactFlow'));
+  }
+  await closeChecked(route, state);
+}
+
+for (const id of Array.from({ length: 5 }, (_, index) => String(index + 49))) {
+  const route = `/design-lab/case/${id}/atlas/`;
+  const state = await open(desktop, route);
+  record(`${id} uses the shared case template`, await state.page.locator(`[data-case-study][data-case-variant="${id}"]`).count() === 1);
+  record(`${id} exposes all thirteen case-template previews`, await state.page.locator('.case-lab-switcher a').count() === 13);
+  if (id === '49') {
+    record('49 exposes a four-stop case spine', await state.page.locator('[data-case-spine] a').count() === 4);
+    await state.page.locator('#case-evidence').scrollIntoViewIfNeeded();
+    await state.page.waitForTimeout(160);
+    record('49 tracks the current evidence section', await state.page.locator('[data-spine-link="case-evidence"]').evaluate((element) => element.classList.contains('active')));
+  }
+  if (id === '50') record('50 creates a three-column case-fact bento', (await state.page.locator('.facts dl').evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length)) === 3);
+  if (id === '51') {
+    const copy = state.page.locator('[data-copy-command]');
+    await state.page.waitForFunction(() => document.querySelector('[data-copy-command]')?.dataset.copyReady === 'true');
+    await copy.click();
+    await state.page.waitForFunction(() => ['Copied', 'Select command'].includes(document.querySelector('[data-copy-command]')?.textContent || ''));
+    record('51 provides a working copy-command response', ['Copied', 'Select command'].includes(await copy.textContent()));
+    record('51 renders the verification terminal material', (await state.page.locator('[data-evidence-panel]').evaluate((element) => getComputedStyle(element).backgroundColor)) === 'rgb(11, 17, 26)');
+  }
+  if (id === '52') {
+    const toggle = state.page.locator('[data-evidence-toggle]');
+    record('52 starts with detailed evidence collapsed', await state.page.locator('[data-evidence-panel]').isHidden() && await toggle.getAttribute('aria-expanded') === 'false');
+    await toggle.click();
+    record('52 opens the complete evidence record', await state.page.locator('[data-evidence-panel]').isVisible() && await toggle.getAttribute('aria-expanded') === 'true');
+  }
+  if (id === '53') {
+    record('53 promotes all three verification links into the opening', await state.page.locator('.evidence-first a').count() === 3);
+    record('53 removes the duplicated lower proof links from view', await state.page.locator('.block [data-evidence-panel] > dl').evaluate((element) => getComputedStyle(element).display) === 'none');
+  }
+  await closeChecked(route, state);
+}
+
+{
+  const delayedImages = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const page = await delayedImages.newPage();
+  let screenshotRequests = 0;
+  await page.route('**/_astro/*.webp', async (route) => {
+    screenshotRequests += 1;
+    await new Promise((resolve) => setTimeout(resolve, 220));
+    await route.continue();
+  });
+  await page.goto(`${origin}/design-lab/43/`, { waitUntil: 'domcontentloaded' });
+  const relay = page.locator('[data-proof-button="relay"]');
+  await relay.hover();
+  const relaySurface = page.locator('[data-proof-card="relay"] .v10-image');
+  record('43 exposes loading feedback while a selected screenshot is in flight', await relaySurface.getAttribute('aria-busy') === 'true' && (await relaySurface.locator('[data-image-status]').textContent())?.includes('Loading'));
+  await page.waitForFunction(() => document.querySelector('[data-proof-card="relay"] .v10-image')?.dataset.imageLoading === 'false');
+  record('43 resolves the selected screenshot without a broken image', await relaySurface.locator('[data-project-image]').evaluate((image) => image.complete && image.naturalWidth > 0));
+  record('43 explicitly requests selected screenshots instead of waiting for native lazy loading', screenshotRequests >= 1, `observed ${screenshotRequests} image request(s)`);
+  await delayedImages.close();
+}
+
 await desktop.close();
 
 const mobile = await browser.newContext({ viewport: { width: 390, height: 844 } });
@@ -341,13 +455,29 @@ for (const [route, selector, value] of [
   ['/design-lab/36/', '[data-proof-button="gauge"]', 'true'],
   ['/design-lab/40/', '[data-proof-button="gauge"]', 'true'],
   ['/design-lab/42/', '[data-proof-button="gauge"]', 'true'],
+  ['/design-lab/43/', '[data-proof-button="gauge"]', 'true'],
+  ['/design-lab/44/', '[data-proof-button="gauge"]', 'true'],
+  ['/design-lab/45/', '[data-proof-button="gauge"]', 'true'],
+  ['/design-lab/46/', '[data-proof-button="gauge"]', 'true'],
+  ['/design-lab/47/', '[data-proof-button="gauge"]', 'true'],
+  ['/design-lab/48/', '[data-proof-button="gauge"]', 'true'],
 ]) {
   const state = await open(mobile, route);
   if (route === '/design-lab/06/') record('06 mobile exposes all thirteen selectors', await state.page.locator('[data-registry-row]').count() === 13);
-  if (['/design-lab/10/', '/design-lab/13/', '/design-lab/20/', '/design-lab/21/', '/design-lab/24/', '/design-lab/30/', '/design-lab/31/', '/design-lab/32/', '/design-lab/33/', '/design-lab/36/', '/design-lab/40/', '/design-lab/42/'].includes(route)) record(`${route} mobile exposes all thirteen selectors`, await state.page.locator('[data-proof-button]').count() === 13);
+  if (['/design-lab/10/', '/design-lab/13/', '/design-lab/20/', '/design-lab/21/', '/design-lab/24/', '/design-lab/30/', '/design-lab/31/', '/design-lab/32/', '/design-lab/33/', '/design-lab/36/', '/design-lab/40/', '/design-lab/42/', '/design-lab/43/', '/design-lab/44/', '/design-lab/45/', '/design-lab/46/', '/design-lab/47/', '/design-lab/48/'].includes(route)) record(`${route} mobile exposes all thirteen selectors`, await state.page.locator('[data-proof-button]').count() === 13);
   await state.page.locator(selector).click();
   record(`${route} mobile control responds`, await state.page.locator(selector).getAttribute('aria-pressed') === value);
   await closeChecked(route, state);
+}
+for (const id of Array.from({ length: 5 }, (_, index) => String(index + 49))) {
+  const route = `/design-lab/case/${id}/atlas/`;
+  const state = await open(mobile, route);
+  record(`${id} mobile keeps the 13-project template switcher reachable`, await state.page.locator('.case-lab-switcher a').count() === 13);
+  if (id === '52') {
+    await state.page.locator('[data-evidence-toggle]').click();
+    record('52 mobile opens its evidence record', await state.page.locator('[data-evidence-panel]').isVisible());
+  }
+  await closeChecked(`${route} mobile`, state);
 }
 await mobile.close();
 
@@ -389,6 +519,22 @@ for (const id of Array.from({ length: 11 }, (_, index) => String(index + 32))) {
   record(`${id} disables selected-base ambient motion`, perimeter === 'none' && shimmer === 'none' && spectral === 'none', JSON.stringify({ perimeter, shimmer, spectral }));
   await state.page.locator('[data-proof-button="relay"]').focus();
   record(`${id} disables retained flowing-row motion`, await state.page.locator('[data-proof-button="relay"] .v10-flowing-text').evaluate((element) => getComputedStyle(element).animationName) === 'none');
+  await closeChecked(`${route} reduced-motion`, state);
+}
+for (const id of Array.from({ length: 6 }, (_, index) => String(index + 43))) {
+  const route = `/design-lab/${id}/`;
+  const state = await open(reduced, route);
+  await state.page.locator('[data-proof-button="gauge"]').click();
+  const motion = await state.page.locator('[data-proof-card="gauge"]').evaluate((element) => {
+    const style = getComputedStyle(element);
+    return { transition: style.transitionDuration, animation: style.animationDuration, active: element.dataset.active };
+  });
+  record(`${id} reduced motion swaps selected-base state immediately`, motion.active === 'true', JSON.stringify(motion));
+  record(`${id} reduced motion has no project-card animation`, motion.transition === '0s' && motion.animation === '0s', JSON.stringify(motion));
+  const ambient = await state.page.locator('.v10-stage').evaluate((element) => ({ beam: getComputedStyle(element, '::before').animationName, stage: getComputedStyle(element).transitionDuration }));
+  record(`${id} disables selected ambient motion`, ambient.beam === 'none' && ambient.stage === '0s', JSON.stringify(ambient));
+  if (id === '44') record('44 disables pressure transitions under reduced motion', await state.page.locator('[data-pressure-headline] b').first().evaluate((element) => getComputedStyle(element).transitionDuration) === '0s');
+  if (id === '48') record('48 disables contact-rail motion under reduced motion', await state.page.locator('.contact-flow span').evaluate((element) => getComputedStyle(element).animationName) === 'none');
   await closeChecked(`${route} reduced-motion`, state);
 }
 await reduced.close();

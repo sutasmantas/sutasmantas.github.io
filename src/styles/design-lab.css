@@ -308,8 +308,11 @@
 .v10-index button:hover small, .v10-index button:focus-visible small, .v10-index button[aria-pressed='true'] small { color: #57536f; }
 .v10-stage { position: sticky; top: 1.5rem; min-width: 0; box-shadow: 14px 14px 0 #302e59, 28px 28px 0 #242242; }
 .v10-stage article { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(270px, .85fr); border-top: 9px solid var(--project); background: #f2eee5; color: #171634; box-shadow: 0 35px 90px #070716aa; transform-origin: 50% 20%; }
-.v10-image { display: grid; place-items: center; padding: 1.2rem; background: color-mix(in srgb, var(--project), #e8e2d8 79%); }
-.v10-image img { display: block; width: 100%; height: auto; box-shadow: 0 20px 50px #2c25434a; }
+.v10-image { position: relative; display: grid; place-items: center; min-height: 260px; padding: 1.2rem; background: color-mix(in srgb, var(--project), #e8e2d8 79%); }
+.v10-image img { display: block; width: 100%; height: auto; opacity: 1; box-shadow: 0 20px 50px #2c25434a; transition: opacity .16s ease; }
+.v10-image[data-image-loading='true'] > img[data-project-image] { opacity: .12; }
+.v10-image-status { position: absolute; z-index: 7; left: 50%; top: 50%; padding: .55rem .7rem; background: #171634; color: #fff; font-size: .62rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; transform: translate(-50%, -50%); }
+.v10-image[data-image-loading='false'] .v10-image-status { display: none; }
 .v10-copy { display: flex; flex-direction: column; justify-content: center; padding: 2rem; border-left: 1px solid #9d998f; }
 .v10-copy span { color: color-mix(in srgb, var(--project), #171634 58%); font-size: .68rem; font-weight: 800; text-transform: uppercase; }
 .v10-copy h3 { margin: .8rem 0; font-size: clamp(1.8rem, 3vw, 3.25rem); line-height: .95; overflow-wrap: anywhere; }
@@ -464,6 +467,7 @@
 .batch-four-base [data-proof-fact]:hover, .batch-four-base [data-proof-fact]:focus-visible { background: #82e3ff18; transform: translateY(-5px); outline: 2px solid #82e3ff; outline-offset: -2px; }
 
 .variant-28 .v10-canvas, .batch-four-base .v10-canvas { position: relative; }
+.batch-four-base .v10-canvas { overflow-x: clip; }
 .variant-28 .v10-sparks, .batch-four-base .v10-sparks { position: absolute; z-index: 9; inset: 0; overflow: hidden; pointer-events: none; }
 .variant-28 .v10-sparks i, .batch-four-base .v10-sparks i {
   position: absolute; left: var(--spark-x); top: var(--spark-y); width: 3px; height: 22px; background: var(--spark-color, #82e3ff);
@@ -488,26 +492,26 @@
 .batch-four-base .v10-index button:focus-visible .v10-flowing-text { display: block; animation: flowingRow 6s linear infinite; }
 
 /* Batch 04 — one new source-derived mechanism per owner-selected base-32 derivative. */
-.variant-33 .continuity-proof { grid-template-columns: 1.35fr .8fr; grid-template-rows: repeat(2, minmax(108px, auto)); gap: 12px; padding: 12px; border: 1px solid var(--line); }
-.variant-33 .continuity-proof div { border: 1px solid var(--line); background: #ffffff08; }
-.variant-33 .continuity-proof div:first-child { grid-row: 1 / 3; grid-template-columns: 1fr; align-content: space-between; }
-.variant-33 .continuity-proof div:first-child dt { font-size: clamp(5rem, 11vw, 11rem); letter-spacing: -.09em; }
-.variant-33 .continuity-proof div:first-child dd { font-size: 14px; }
-.variant-33 .continuity-proof div:last-child { border-right: 1px solid var(--line); }
+.variant-33 .continuity-proof, .has-proof-bento .continuity-proof { grid-template-columns: 1.35fr .8fr; grid-template-rows: repeat(2, minmax(108px, auto)); gap: 12px; padding: 12px; border: 1px solid var(--line); }
+.variant-33 .continuity-proof div, .has-proof-bento .continuity-proof div { border: 1px solid var(--line); background: #ffffff08; }
+.variant-33 .continuity-proof div:first-child, .has-proof-bento .continuity-proof div:first-child { grid-row: 1 / 3; grid-template-columns: 1fr; align-content: space-between; }
+.variant-33 .continuity-proof div:first-child dt, .has-proof-bento .continuity-proof div:first-child dt { font-size: clamp(5rem, 11vw, 11rem); letter-spacing: -.09em; }
+.variant-33 .continuity-proof div:first-child dd, .has-proof-bento .continuity-proof div:first-child dd { font-size: 14px; }
+.variant-33 .continuity-proof div:last-child, .has-proof-bento .continuity-proof div:last-child { border-right: 1px solid var(--line); }
 
-.variant-34 .v10-stage::after {
+.variant-34 .v10-stage::after, .has-stage-spotlight .v10-stage::after {
   content: ''; position: absolute; z-index: 6; inset: -5px; padding: 5px; pointer-events: none; opacity: 0;
   background: radial-gradient(260px circle at var(--stage-x, 50%) var(--stage-y, 50%), var(--active-project, #82e3ff), #b57cff66 42%, transparent 72%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude;
   transition: opacity .22s ease;
 }
-.variant-34 .v10-stage[data-spotlight='true']::after { opacity: 1; }
+.variant-34 .v10-stage[data-spotlight='true']::after, .has-stage-spotlight .v10-stage[data-spotlight='true']::after { opacity: 1; }
 
-.variant-35 .v10-stage { transform: perspective(1100px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); transform-origin: 50% 50%; transition: transform .2s ease-out; }
+.variant-35 .v10-stage, .has-stage-tilt .v10-stage { transform: perspective(1100px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); transform-origin: 50% 50%; transition: transform .2s ease-out; }
 
-.variant-36 .v10-canvas { background: radial-gradient(circle at 16% 48%, color-mix(in srgb, var(--active-project, #6457d9) 34%, transparent), transparent 43%), #171634; transition: background-color .24s ease; }
-.variant-36 .v10-index { margin: -1rem; padding: 1rem 3rem 1rem 1rem; background: linear-gradient(135deg, color-mix(in srgb, var(--active-project, #6457d9) 22%, #171634), #171634 64%); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--active-project, #6457d9) 64%, transparent); }
+.variant-36 .v10-canvas, .has-chroma-directory .v10-canvas { background: radial-gradient(circle at 16% 48%, color-mix(in srgb, var(--active-project, #6457d9) 34%, transparent), transparent 43%), #171634; transition: background-color .24s ease; }
+.variant-36 .v10-index, .has-chroma-directory .v10-index { margin: -1rem; padding: 1rem 3rem 1rem 1rem; background: linear-gradient(135deg, color-mix(in srgb, var(--active-project, #6457d9) 22%, #171634), #171634 64%); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--active-project, #6457d9) 64%, transparent); }
 
 .variant-37 .v10-index { position: relative; isolation: isolate; }
 .variant-37 .v10-index section { position: relative; z-index: 1; }
@@ -535,14 +539,42 @@
 .variant-41 .continuity-sub { display: inline; padding: .08em .06em; color: #e5e5e4; background: linear-gradient(100deg, #6457d966, #82e3ff55 52%, #f4f1e81f) no-repeat; background-position: 0 88%; background-size: 0 42%; transition: background-size .8s cubic-bezier(.2,.8,.2,1); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 .variant-41 .continuity-sub[data-highlighted] { background-size: 100% 42%; }
 
-.variant-42 .v10-actions a { position: relative; isolation: isolate; }
-.variant-42 .v10-actions a::before {
+.variant-42 .v10-actions a, .has-action-trail .v10-actions a { position: relative; isolation: isolate; }
+.variant-42 .v10-actions a::before, .has-action-trail .v10-actions a::before {
   content: ''; position: absolute; z-index: 2; inset: 0; padding: 2px; pointer-events: none; opacity: 0;
   background: radial-gradient(circle at 0 50%, var(--project), #82e3ff 24%, transparent 25%) 0 0 / 300% 300%;
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude;
 }
-.variant-42 .v10-actions a:hover::before, .variant-42 .v10-actions a:focus-visible::before { opacity: 1; animation: actionBorderTrail .9s linear 1; }
+.variant-42 .v10-actions a:hover::before, .variant-42 .v10-actions a:focus-visible::before,
+.has-action-trail .v10-actions a:hover::before, .has-action-trail .v10-actions a:focus-visible::before { opacity: 1; animation: actionBorderTrail .9s linear 1; }
+
+/* Batch 05 — the project directory is frozen; these routes change only the opening or close. */
+.variant-44 .continuity-hero h2 span, .variant-44 .continuity-hero h2 em { width: auto; color: #f1f1ed; background: none; -webkit-text-fill-color: currentColor; animation: none !important; }
+.variant-44 .continuity-hero h2 em { color: #82e3ff; }
+.variant-44 .continuity-hero h2 .pressure-word { display: inline-block; white-space: pre; font: inherit; }
+.variant-44 .continuity-hero h2 b { display: inline-block; font: inherit; transform: scaleX(var(--pressure-width, 1)); transform-origin: 50% 70%; transition: transform .12s linear, font-weight .12s linear; }
+
+.variant-45 .continuity-hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr); gap: 18px clamp(32px, 6vw, 92px); align-items: end; min-height: 88vh; }
+.variant-45 .continuity-who { grid-column: 1 / -1; align-self: start; margin-bottom: clamp(20px, 4vw, 48px); }
+.variant-45 .continuity-kicker, .variant-45 .continuity-hero h2, .variant-45 .continuity-sub { grid-column: 1; }
+.variant-45 .continuity-hero h2 { font-size: clamp(2.8rem, 4.8vw, 5.6rem) !important; }
+.variant-45 .continuity-sub { margin-top: 12px; }
+.variant-45 .continuity-proof { grid-column: 2; grid-row: 2 / 5; grid-template-columns: 1.35fr .8fr; align-self: stretch; min-width: 0; margin: 0; }
+.variant-45 .continuity-proof div:first-child dt { font-size: clamp(4.5rem, 6vw, 6rem); }
+
+.variant-46 .continuity-hero { position: relative; isolation: isolate; overflow: hidden; }
+.variant-46 .continuity-hero::before { content: ''; position: absolute; z-index: -1; inset: 0; pointer-events: none; opacity: .85; background-image: radial-gradient(circle, #82e3ff66 1.2px, transparent 1.4px); background-size: 24px 24px; mask-image: radial-gradient(360px circle at var(--hero-x, 68%) var(--hero-y, 30%), #000, transparent 76%); }
+
+.variant-47 .canonical-contact { grid-template-columns: minmax(260px, .68fr) minmax(0, 1.32fr); }
+.variant-47 .canonical-contact .contact-ways { display: flex !important; width: 100%; align-content: stretch; align-items: stretch; justify-items: stretch; gap: 10px; }
+.variant-47 .canonical-contact .contact-ways a { flex: 1 1 0 !important; display: flex; align-items: end; min-width: 0; min-height: 220px; padding: 24px; border: 1px solid #f1eee655; overflow-wrap: anywhere; transition: flex-grow .26s cubic-bezier(.2,.8,.2,1), background-color .18s ease, color .18s ease; }
+.variant-47 .canonical-contact .contact-ways a:hover, .variant-47 .canonical-contact .contact-ways a:focus, .variant-47 .canonical-contact .contact-ways a:focus-visible { flex-grow: 2.4 !important; background: var(--signal); color: #171715; outline: 2px solid #fff; outline-offset: -5px; }
+
+.variant-48 .canonical-contact { position: relative; overflow: hidden; padding-top: 0; }
+.variant-48 .contact-flow { grid-column: 1 / -1; width: calc(100% + 128px); margin-inline: -64px; overflow: hidden; border-block: 1px solid #f1eee655; color: var(--signal); }
+.variant-48 .contact-flow span { display: block; width: max-content; padding-block: .18em; font-size: clamp(3rem, 8vw, 9rem); font-weight: 860; letter-spacing: -.07em; line-height: .9; white-space: nowrap; }
+.variant-48 .contact-flow:hover span, .variant-48 .contact-flow:focus-visible span { animation-play-state: paused; }
 
 @property --beam-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
 @keyframes batchBeam { to { --beam-angle: 360deg; } }
@@ -552,6 +584,7 @@
 @keyframes lineShadow { 50% { text-shadow: -4px 4px 0 #82e3ff, -8px 8px 0 #b57cff; } }
 @keyframes flowingRow { to { transform: translate(-50%, -50%); } }
 @keyframes actionBorderTrail { to { background-position: 100% 100%; } }
+@keyframes contactFlow { to { transform: translateX(-33.333%); } }
 
 [hidden] { display: none !important; }
 
@@ -570,6 +603,7 @@
   .combined-base .v10-index button[aria-pressed='true']::before { animation: batchShimmer 2.6s linear infinite; }
   .combined-base .continuity-hero h2 span, .combined-base .continuity-hero h2 em { animation: batchGradient 4.6s ease-in-out infinite alternate; }
   .variant-29 .v10-copy h3 { animation: lineShadow 2.2s steps(2, jump-none) infinite; }
+  .variant-48 .contact-flow span { animation: contactFlow 13s linear infinite; }
   @keyframes receiptStep { from { opacity: .2; transform: translateX(-12px); } to { opacity: 1; transform: none; } }
 }
 
@@ -585,13 +619,19 @@ html[data-review-reduce='true'] .combined-base .continuity-hero h2 em,
 html[data-review-reduce='true'] .variant-29 .v10-copy h3,
 html[data-review-reduce='true'] .variant-31 .v10-flowing-text,
 html[data-review-reduce='true'] .batch-four-base .v10-flowing-text,
-html[data-review-reduce='true'] .variant-42 .v10-actions a::before { animation: none !important; }
+html[data-review-reduce='true'] .variant-42 .v10-actions a::before,
+html[data-review-reduce='true'] .has-action-trail .v10-actions a::before,
+html[data-review-reduce='true'] .variant-48 .contact-flow span { animation: none !important; }
 html[data-review-reduce='true'] .variant-13 .v10-lens,
 html[data-review-reduce='true'] .combined-base .v10-lens { transition: none !important; }
 html[data-review-reduce='true'] .variant-34 .v10-stage::after,
+html[data-review-reduce='true'] .has-stage-spotlight .v10-stage::after,
 html[data-review-reduce='true'] .variant-35 .v10-stage,
+html[data-review-reduce='true'] .has-stage-tilt .v10-stage,
 html[data-review-reduce='true'] .variant-37 .v10-active-backplate,
-html[data-review-reduce='true'] .variant-41 .continuity-sub { transition: none !important; }
+html[data-review-reduce='true'] .variant-41 .continuity-sub,
+html[data-review-reduce='true'] .variant-44 .continuity-hero h2 b,
+html[data-review-reduce='true'] .variant-47 .canonical-contact .contact-ways a { transition: none !important; }
 
 @media (max-width: 900px) {
   .experiment-head { grid-template-columns: 1fr auto; }
@@ -616,9 +656,20 @@ html[data-review-reduce='true'] .variant-41 .continuity-sub { transition: none !
   .variant-25 .v10-index { padding-right: 0; }
   .batch-four-base .v10-index { padding-right: 0; }
   .variant-33 .continuity-proof { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .has-proof-bento .continuity-proof { grid-template-columns: 1fr; grid-template-rows: auto; }
   .variant-33 .continuity-proof div:first-child { grid-row: auto; }
+  .has-proof-bento .continuity-proof div:first-child { grid-row: auto; }
   .variant-33 .continuity-proof div:first-child dt { font-size: clamp(4rem, 22vw, 7rem); }
+  .has-proof-bento .continuity-proof div:first-child dt { font-size: clamp(4rem, 22vw, 7rem); }
   .variant-36 .v10-index { margin: 0; padding: 1rem; }
+  .has-chroma-directory .v10-index { margin: 0; padding: 1rem; }
+  .variant-45 .continuity-hero { grid-template-columns: 1fr; min-height: 0; }
+  .variant-45 .continuity-who, .variant-45 .continuity-kicker, .variant-45 .continuity-hero h2, .variant-45 .continuity-sub, .variant-45 .continuity-proof { grid-column: 1; grid-row: auto; }
+  .variant-45 .continuity-proof { grid-template-columns: 1fr; }
+  .variant-47 .canonical-contact { grid-template-columns: 1fr; }
+  .variant-47 .canonical-contact .contact-ways { flex-direction: column; }
+  .variant-47 .canonical-contact .contact-ways a { min-height: 112px; }
+  .variant-48 .contact-flow { width: calc(100% + 36px); margin-inline: -18px; }
   .variant-37 .v10-active-backplate { right: 0; }
   .variant-38 .v10-layout { padding: 12px; box-shadow: 7px 7px 0 #82e3ff24; }
   .variant-38 .v10-layout::before { left: 12px; }
@@ -747,5 +798,6 @@ html[data-review-reduce='true'] .variant-41 .continuity-sub { transition: none !
   .variant-34 .v10-stage::after, .variant-35 .v10-stage,
   .variant-37 .v10-active-backplate, .variant-41 .continuity-sub { transition: none; }
   .variant-27 [data-proof-fact], .batch-four-base [data-proof-fact], .variant-25 .v10-index button, .batch-four-base .v10-index button { transform: none !important; }
-  .variant-31 .v10-flowing-text, .batch-four-base .v10-flowing-text, .variant-42 .v10-actions a::before { animation: none !important; }
+  .variant-31 .v10-flowing-text, .batch-four-base .v10-flowing-text, .variant-42 .v10-actions a::before, .has-action-trail .v10-actions a::before, .variant-48 .contact-flow span { animation: none !important; }
+  .variant-44 .continuity-hero h2 b, .variant-47 .canonical-contact .contact-ways a { transition: none !important; }
 }

@@ -1,10 +1,10 @@
 {
-  "verifiedAt": "2026-08-17T06:22:18.134Z",
+  "verifiedAt": "2026-08-17T07:48:09.104Z",
   "origin": "http://127.0.0.1:8913",
   "result": "PASS",
   "summary": {
-    "checks": 756,
-    "passed": 756,
+    "checks": 1003,
+    "passed": 1003,
     "failed": 0
   },
   "checks": [
@@ -86,7 +86,7 @@
     {
       "name": "05 preview remains within viewport horizontally",
       "pass": true,
-      "detail": "{\"x\":852.484375,\"y\":484.859375,\"width\":529.921875,\"height\":628.5625}"
+      "detail": "{\"x\":852.484375,\"y\":777.859375,\"width\":529.921875,\"height\":628.5625}"
     },
     {
       "name": "/design-lab/05/ has no horizontal overflow",
@@ -1331,7 +1331,7 @@
     {
       "name": "27 animates proof number 100% on focus",
       "pass": true,
-      "detail": "25 vs 100"
+      "detail": "29 vs 100"
     },
     {
       "name": "27 resolves to exact proof value 100%",
@@ -2514,6 +2514,711 @@
       "detail": ""
     },
     {
+      "name": "/design-lab/43/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "43 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "43 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "43 derives from selected base 43",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "43 retains approved interaction flags",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "43 removes the redundant deck instruction",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "43 retains the selected proof bento",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "43 warms a selected screenshot to a resolved state",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "43 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "43 retains the selected card spotlight",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "43 retains the selected card tilt",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "43 retains the selected action trail",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/43/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/43/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/43/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/44/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "44 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "44 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "44 derives from selected base 43",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "44 retains approved interaction flags",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "44 removes the redundant deck instruction",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "44 retains the selected proof bento",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "44 warms a selected screenshot to a resolved state",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "44 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "44 retains the selected card spotlight",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "44 retains the selected card tilt",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "44 retains the selected action trail",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "44 changes character pressure near the pointer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "44 keeps the pressure headline inside its text box",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "44 wraps only between complete pressure words",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/44/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/44/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/44/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/45/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "45 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "45 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "45 derives from selected base 43",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "45 retains approved interaction flags",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "45 removes the redundant deck instruction",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "45 retains the selected proof bento",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "45 warms a selected screenshot to a resolved state",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "45 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "45 retains the selected card spotlight",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "45 retains the selected card tilt",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "45 retains the selected action trail",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "45 creates a two-column opening stage",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "45 keeps the split proof block clear of the headline",
+      "pass": true,
+      "detail": "{\"headlineBox\":{\"x\":57.59375,\"y\":-379.65625,\"width\":712.078125,\"height\":110.59375},\"proofBox\":{\"x\":856.0625,\"y\":-515.75,\"width\":526.34375,\"height\":450.375}}"
+    },
+    {
+      "name": "45 keeps the narrower split headline inside its grid column",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/45/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/45/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/45/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/46/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "46 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "46 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "46 derives from selected base 43",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "46 retains approved interaction flags",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "46 removes the redundant deck instruction",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "46 retains the selected proof bento",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "46 warms a selected screenshot to a resolved state",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "46 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "46 retains the selected card spotlight",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "46 retains the selected card tilt",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "46 retains the selected action trail",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "46 renders and moves its bounded signal field",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/46/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/46/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/46/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/47/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "47 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "47 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "47 derives from selected base 43",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "47 retains approved interaction flags",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "47 removes the redundant deck instruction",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "47 retains the selected proof bento",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "47 warms a selected screenshot to a resolved state",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "47 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "47 retains the selected card spotlight",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "47 retains the selected card tilt",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "47 retains the selected action trail",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "47 expands the focused contact route",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/47/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/47/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/47/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/48/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "48 exposes all thirteen project selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "48 keeps a single project surface",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "48 derives from selected base 43",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "48 retains approved interaction flags",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "48 removes the redundant deck instruction",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "48 retains the selected proof bento",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "48 warms a selected screenshot to a resolved state",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "48 exposes the complete selected project",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "48 retains the selected card spotlight",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "48 retains the selected card tilt",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "48 retains the selected action trail",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "48 runs the single flowing contact rail",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/48/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/48/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/48/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/49/atlas/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "49 uses the shared case template",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "49 exposes all thirteen case-template previews",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "49 exposes a four-stop case spine",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "49 tracks the current evidence section",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/49/atlas/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/case/49/atlas/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/49/atlas/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/50/atlas/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "50 uses the shared case template",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "50 exposes all thirteen case-template previews",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "50 creates a three-column case-fact bento",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/50/atlas/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/case/50/atlas/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/50/atlas/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/51/atlas/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "51 uses the shared case template",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "51 exposes all thirteen case-template previews",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "51 provides a working copy-command response",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "51 renders the verification terminal material",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/51/atlas/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/case/51/atlas/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/51/atlas/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/52/atlas/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "52 uses the shared case template",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "52 exposes all thirteen case-template previews",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "52 starts with detailed evidence collapsed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "52 opens the complete evidence record",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/52/atlas/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/case/52/atlas/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/52/atlas/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/53/atlas/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "53 uses the shared case template",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "53 exposes all thirteen case-template previews",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "53 promotes all three verification links into the opening",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "53 removes the duplicated lower proof links from view",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/53/atlas/ has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/case/53/atlas/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/53/atlas/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "43 exposes loading feedback while a selected screenshot is in flight",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "43 resolves the selected screenshot without a broken image",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "43 explicitly requests selected screenshots instead of waiting for native lazy loading",
+      "pass": true,
+      "detail": "observed 3 image request(s)"
+    },
+    {
       "name": "/design-lab/04/ returns 200",
       "pass": true,
       "detail": "HTTP 200"
@@ -2950,6 +3655,316 @@
     },
     {
       "name": "/design-lab/42/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/43/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "/design-lab/43/ mobile exposes all thirteen selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/43/ mobile control responds",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/43/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/43/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/43/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/44/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "/design-lab/44/ mobile exposes all thirteen selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/44/ mobile control responds",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/44/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/44/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/44/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/45/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "/design-lab/45/ mobile exposes all thirteen selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/45/ mobile control responds",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/45/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/45/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/45/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/46/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "/design-lab/46/ mobile exposes all thirteen selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/46/ mobile control responds",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/46/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/46/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/46/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/47/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "/design-lab/47/ mobile exposes all thirteen selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/47/ mobile control responds",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/47/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/47/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/47/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/48/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "/design-lab/48/ mobile exposes all thirteen selectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/48/ mobile control responds",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/48/ has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/48/ has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/48/ has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/49/atlas/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "49 mobile keeps the 13-project template switcher reachable",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/49/atlas/ mobile has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/case/49/atlas/ mobile has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/49/atlas/ mobile has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/50/atlas/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "50 mobile keeps the 13-project template switcher reachable",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/50/atlas/ mobile has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/case/50/atlas/ mobile has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/50/atlas/ mobile has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/51/atlas/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "51 mobile keeps the 13-project template switcher reachable",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/51/atlas/ mobile has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/case/51/atlas/ mobile has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/51/atlas/ mobile has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/52/atlas/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "52 mobile keeps the 13-project template switcher reachable",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "52 mobile opens its evidence record",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/52/atlas/ mobile has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/case/52/atlas/ mobile has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/52/atlas/ mobile has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/53/atlas/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "53 mobile keeps the 13-project template switcher reachable",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/53/atlas/ mobile has no horizontal overflow",
+      "pass": true,
+      "detail": "390px vs 390px"
+    },
+    {
+      "name": "/design-lab/case/53/atlas/ mobile has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/case/53/atlas/ mobile has no page errors",
       "pass": true,
       "detail": ""
     },
@@ -3785,6 +4800,226 @@
     },
     {
       "name": "/design-lab/42/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/43/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "43 reduced motion swaps selected-base state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "43 reduced motion has no project-card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "43 disables selected ambient motion",
+      "pass": true,
+      "detail": "{\"beam\":\"none\",\"stage\":\"0s\"}"
+    },
+    {
+      "name": "/design-lab/43/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/43/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/43/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/44/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "44 reduced motion swaps selected-base state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "44 reduced motion has no project-card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "44 disables selected ambient motion",
+      "pass": true,
+      "detail": "{\"beam\":\"none\",\"stage\":\"0s\"}"
+    },
+    {
+      "name": "44 disables pressure transitions under reduced motion",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/44/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/44/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/44/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/45/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "45 reduced motion swaps selected-base state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "45 reduced motion has no project-card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "45 disables selected ambient motion",
+      "pass": true,
+      "detail": "{\"beam\":\"none\",\"stage\":\"0s\"}"
+    },
+    {
+      "name": "/design-lab/45/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/45/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/45/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/46/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "46 reduced motion swaps selected-base state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "46 reduced motion has no project-card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "46 disables selected ambient motion",
+      "pass": true,
+      "detail": "{\"beam\":\"none\",\"stage\":\"0s\"}"
+    },
+    {
+      "name": "/design-lab/46/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/46/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/46/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/47/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "47 reduced motion swaps selected-base state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "47 reduced motion has no project-card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "47 disables selected ambient motion",
+      "pass": true,
+      "detail": "{\"beam\":\"none\",\"stage\":\"0s\"}"
+    },
+    {
+      "name": "/design-lab/47/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/47/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/47/ reduced-motion has no page errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/48/ returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "48 reduced motion swaps selected-base state immediately",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "48 reduced motion has no project-card animation",
+      "pass": true,
+      "detail": "{\"transition\":\"0s\",\"animation\":\"0s\",\"active\":\"true\"}"
+    },
+    {
+      "name": "48 disables selected ambient motion",
+      "pass": true,
+      "detail": "{\"beam\":\"none\",\"stage\":\"0s\"}"
+    },
+    {
+      "name": "48 disables contact-rail motion under reduced motion",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/48/ reduced-motion has no horizontal overflow",
+      "pass": true,
+      "detail": "1440px vs 1440px"
+    },
+    {
+      "name": "/design-lab/48/ reduced-motion has no console errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "/design-lab/48/ reduced-motion has no page errors",
       "pass": true,
       "detail": ""
     }

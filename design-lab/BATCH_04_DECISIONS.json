@@ -1,0 +1,17 @@
+{
+  "batch": "04",
+  "exportedAt": "2026-08-17T06:56:32.425Z",
+  "baseline": "design-lab/32",
+  "decisions": {
+    "33": { "decision": "KEEP", "notes": "" },
+    "34": { "decision": "KEEP", "notes": "" },
+    "35": { "decision": "KEEP", "notes": "" },
+    "36": { "decision": "KEEP", "notes": "" },
+    "37": { "decision": "REJECT", "notes": "too much stuff there already to add anything else" },
+    "38": { "decision": "REJECT", "notes": "too cluttered" },
+    "39": { "decision": "REJECT", "notes": "the progress is super short looks stupid" },
+    "40": { "decision": "REJECT", "notes": "something needs to be done with those, but this interferes a bit with  actual user experience" },
+    "41": { "decision": "REJECT", "notes": "lame aggect just a highlight" },
+    "42": { "decision": "KEEP", "notes": "" }
+  }
+}

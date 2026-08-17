@@ -1,9 +1,9 @@
 {
-  "verifiedAt": "2026-08-17T06:21:17.661Z",
+  "verifiedAt": "2026-08-17T07:49:20.777Z",
   "result": "PASS",
   "summary": {
-    "checks": 30,
-    "passed": 30,
+    "checks": 32,
+    "passed": 32,
     "failed": 0
   },
   "checks": [
@@ -13,22 +13,22 @@
       "detail": "HTTP 200"
     },
     {
-      "name": "base 32 plus ten live derivatives are listed",
+      "name": "base 43 plus ten live derivatives are listed",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "first derivative 33 starts selected",
+      "name": "first derivative 44 starts selected",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "first derivative 33 is the initial live route",
+      "name": "first derivative 44 is the initial live route",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "derivative opens against selected base 32",
+      "name": "derivative opens against selected base 43",
       "pass": true,
       "detail": ""
     },
@@ -38,12 +38,12 @@
       "detail": ""
     },
     {
-      "name": "33 is candidly labeled as a large change",
+      "name": "44 is candidly labeled as a large change",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "33 explains its exact location, preserved values and result",
+      "name": "44 explains its exact trigger and visible result",
       "pass": true,
       "detail": ""
     },
@@ -68,7 +68,17 @@
       "detail": ""
     },
     {
-      "name": "embedded new mechanism remains interactive",
+      "name": "embedded new mechanism remains visibly applied",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case-template switch loads the real shared route",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "embedded case-template mechanism remains interactive",
       "pass": true,
       "detail": ""
     },
