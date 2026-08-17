@@ -5,7 +5,7 @@ Status: **PASS_BASE_21_PROMOTED_TO_PRODUCTION**
 Implementation checkpoint: `6972343eba0c9814202e83e800c4cd4d71756482`
 Merge checkpoint: `5fa6b225c2724ab4d4418db3468dc3d7b7daf873`
 Owner-review clarity checkpoint: `2d9145e7cc2f782879c03976da477407d7e94835`
-Production promotion checkpoint: **PENDING COMMIT**
+Production promotion checkpoint: `e7fe6ca11f32010f8c1bdcf7b30502d1803b6319`
 Combined control: `/design-lab/21/`
 Production route: `/`
 Branch: `main`
