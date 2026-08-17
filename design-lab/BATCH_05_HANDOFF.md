@@ -1,9 +1,10 @@
 # Central portfolio visual lab — Batch 5 handoff
 
 Date: 2026-08-17
-Status: **PASS_LOCAL_READY_TO_PUBLISH**
-Implementation checkpoint: **pending**
-GitHub Pages run: **pending**
+Status: **PASS_DEPLOYED_READY_FOR_OWNER_REVIEW**
+Implementation checkpoint: **a08656eddf053b1289e219facb33d20becaa8234**
+Production deployment checkpoint: **a08656eddf053b1289e219facb33d20becaa8234**
+GitHub Pages run: **32007568292 — PASS**
 Selected control: `/design-lab/43/`
 Production route: `/`
 Homepage review routes: `/design-lab/44/` through `/design-lab/48/`
@@ -49,6 +50,13 @@ case options with the current Atlas case, saves decisions locally, and exports
 | `npm run test:evidence` | **PASS** — 4/4 evidence mutants killed |
 | `npm run gate:links` | **PASS** — 129 pages and 5,123 anchors |
 | `git diff --check` | **PASS** |
+
+The live smoke check returned HTTP 200 for `/`, `/design-lab/`,
+`/design-lab/case/51/atlas/`, and `/work/atlas/`. Production exposes the base
+43 marker, all 13 project records, no redundant instruction, an indexable home
+page, and a resolved Relay screenshot. The dashboard starts at 44 and the case
+experiment exposes all 13 shared-template project previews; review routes
+remain `noindex`.
 
 ## Exact restart point
 
