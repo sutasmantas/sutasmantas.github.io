@@ -1,8 +1,10 @@
 # Central portfolio visual lab — Batch 4 handoff
 
 Date: 2026-08-17
-Status: **PASS_COMMITTED_READY_FOR_OWNER_REVIEW**
+Status: **PASS_DEPLOYED_READY_FOR_OWNER_REVIEW**
 Implementation checkpoint: **10da51bcd11fecb13dbf5328e0a60fac6efefcc8**
+Production deployment checkpoint: **c44f7ba7cab5c6b90c326598fe55b31aaf8579e7**
+GitHub Pages run: **32001514455 — PASS**
 Selected control: `/design-lab/32/`
 Production route: `/`
 Review routes: `/design-lab/33/` through `/design-lab/42/`
@@ -61,3 +63,8 @@ table are in `BATCH_04_MANIFEST.md`.
 5. Do not promote any derivative until the owner explicitly selects it.
 
 Base 32 is production. Routes 33–42 are private-review derivatives.
+
+The public smoke test returned HTTP 200 for `/`, `/design-lab/`,
+`/design-lab/32/`, and `/design-lab/33/`. Production exposes the selected Base
+32 marker and all 13 project records without review chrome or `noindex`; review
+routes remain `noindex`.
