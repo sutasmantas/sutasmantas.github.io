@@ -8,7 +8,7 @@ import { evidenceBySlug } from '../../data/evidence.js';
 import { shotFor } from '../../data/shots.js';
 import { href } from '../../lib/paths.js';
 
-const { variant, title } = Astro.props;
+const { variant, title, production = false } = Astro.props;
 const bySlug = Object.fromEntries(projects.map((project) => [project.slug, project]));
 const atlas = bySlug.atlas;
 const relay = bySlug.relay;
@@ -79,11 +79,13 @@ const effectName = {
 ---
 
 <article class:list={['experiment', `variant-${variant}`, isCombinedBase && 'combined-base']} data-variant={variant}>
-  <header class="experiment-head">
-    <div><span class="experiment-no">{variant}</span><span>{surface}</span>{impact && <b class="experiment-impact">{impact} CHANGE</b>}</div>
-    <p>{hypothesis}</p>
-    <h1>{title}</h1>
-  </header>
+  {!production && (
+    <header class="experiment-head">
+      <div><span class="experiment-no">{variant}</span><span>{surface}</span>{impact && <b class="experiment-impact">{impact} CHANGE</b>}</div>
+      <p>{hypothesis}</p>
+      <h1>{title}</h1>
+    </header>
+  )}
 
   <CompletePortfolio variant={isMotionDeck ? '10' : variant} labVariant={variant} customDirectory={variant === '05' || variant === '06' || isMotionDeck}>
 
@@ -316,7 +318,7 @@ const effectName = {
   )}
 
   {isMotionDeck && (
-    <section class="v10-canvas" aria-label="User-triggered proof deck" data-proof-deck data-proof-effect={effectName} data-combined-base={isCombinedBase ? 'true' : undefined}>
+    <section class="v10-canvas" aria-label={production ? 'Project directory and selected system' : 'User-triggered proof deck'} data-proof-deck data-proof-effect={effectName} data-combined-base={isCombinedBase ? 'true' : undefined}>
       {variant === '14' && (
         <svg class="v10-interactive-grid" viewBox="0 0 1200 800" preserveAspectRatio="none" aria-hidden="true">
           {Array.from({ length: 96 }, (_, index) => <rect data-grid-cell x={(index % 12) * 100} y={Math.floor(index / 12) * 100} width="100" height="100" />)}
@@ -328,7 +330,7 @@ const effectName = {
           <rect width="100%" height="100%" filter="url(#batch-two-noise)" opacity=".7" />
         </svg>
       )}
-      <header><p>{variant === '10' ? 'Selected base' : variant === '21' ? 'Combined selected base' : isCombinedBase ? `${variant} / base 21 derivative` : `${variant} / base 10 derivative`} / motion-led directory</p><h2>All thirteen.<br />One responsive proof deck.</h2></header>
+      <header><p>{production ? 'Complete project directory / live systems' : `${variant === '10' ? 'Selected base' : variant === '21' ? 'Combined selected base' : isCombinedBase ? `${variant} / base 21 derivative` : `${variant} / base 10 derivative`} / motion-led directory`}</p><h2>{production ? <>All thirteen.<br />One system at a time.</> : <>All thirteen.<br />One responsive proof deck.</>}</h2></header>
       <div class="v10-layout">
         <div class="v10-index" aria-label="Choose a project">
           {routes.map((route, routeIndex) => (
@@ -370,7 +372,7 @@ const effectName = {
         </div>
       </div>
       {variant === '28' && <div class="v10-sparks" data-spark-field aria-hidden="true" />}
-      <p class="v10-motion-note">{isCombinedBase ? 'Selected ambient signals run on load.' : 'Nothing moves on load.'} Hover, focus or choose a project; reduced motion swaps state instantly. {variant !== '10' && `Variant ${variant} changes only the ${surface.toLowerCase().replace(/^batch [23] · /, '')}.`}</p>
+      <p class="v10-motion-note">{production ? 'Choose a system above to inspect its product screenshot, complete description, evidence note and working links.' : <>{isCombinedBase ? 'Selected ambient signals run on load.' : 'Nothing moves on load.'} Hover, focus or choose a project; reduced motion swaps state instantly. {variant !== '10' && `Variant ${variant} changes only the ${surface.toLowerCase().replace(/^batch [23] · /, '')}.`}</>}</p>
     </section>
   )}
   </CompletePortfolio>

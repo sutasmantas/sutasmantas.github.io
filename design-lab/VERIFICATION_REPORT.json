@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-08-16T20:04:35.616Z",
+  "verifiedAt": "2026-08-17T05:31:36.036Z",
   "origin": "http://127.0.0.1:8913",
   "result": "PASS",
   "summary": {
@@ -86,7 +86,7 @@
     {
       "name": "05 preview remains within viewport horizontally",
       "pass": true,
-      "detail": "{\"x\":852.484375,\"y\":935.859375,\"width\":529.921875,\"height\":628.5625}"
+      "detail": "{\"x\":852.484375,\"y\":69.859375,\"width\":529.921875,\"height\":628.5625}"
     },
     {
       "name": "/design-lab/05/ has no horizontal overflow",
@@ -1331,7 +1331,7 @@
     {
       "name": "27 animates proof number 100% on focus",
       "pass": true,
-      "detail": "28 vs 100"
+      "detail": "30 vs 100"
     },
     {
       "name": "27 resolves to exact proof value 100%",

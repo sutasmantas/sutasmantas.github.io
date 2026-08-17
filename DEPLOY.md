@@ -42,12 +42,12 @@ subpath build.
 
 ## What the gates cover
 
-`scripts/check-links.mjs` — every anchor in the built HTML. Fails on a
+`scripts/check-links.mjs` — every anchor in the 47-page built site. Fails on a
 placeholder action (`href="#"`, an empty `mailto:`), a fragment with no matching
 `id` on that page, an internal route missing from `dist`, or an external URL that
-does not answer. Currently 15 pages, 393 anchors, 27 external URLs.
+does not answer.
 
-`scripts/gate.mjs` — four routes at 375px and 1440px. Gutter (no text within 8px
+`scripts/gate.mjs` — five representative routes at 375px and 1440px. Gutter (no text within 8px
 of a viewport edge), horizontal overflow, keyboard reachability with a visible
 focus ring on every stop, WCAG 2.5.8 target size, alt text, 4.5:1 contrast
 measured against each element's resolved background, and a

@@ -1,0 +1,30 @@
+---
+import '../styles/tokens.css';
+import archivoLatin from '../assets/fonts/archivo-var-latin.woff2';
+import archivoLatinExt from '../assets/fonts/archivo-var-latin-ext.woff2';
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="dark" />
+    <link rel="preload" href={archivoLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={archivoLatinExt} as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <main id="main"><slot /></main>
+  </body>
+</html>
+
+<style>
+  :global(html) { background: #171a22; }
+  :global(body) { min-width: 0; overflow-x: clip; }
+</style>

@@ -3,7 +3,7 @@
 Date: 2026-08-16
 Combined control: `/design-lab/21/`
 Review routes: `/design-lab/22/` through `/design-lab/31/`
-Status: **PASS_READY_FOR_OWNER_SELECTION**
+Status: **PASS_BASE_21_PROMOTED_TO_PRODUCTION**
 
 ## Owner-selected base composition
 
@@ -18,6 +18,11 @@ The owner exported `BATCH_02_DECISIONS.json` and selected five mechanisms:
 Route 21 combines those mechanisms without changing canonical content,
 information architecture, links, or project count. Rejected mechanisms 12,
 14, 15, 18, and 20 do not enter the new base.
+
+The owner authorized production promotion on 2026-08-17. `/` now reuses the
+base-21 implementation with production metadata and public wording while
+omitting all lab chrome and review copy. `/design-lab/21/` remains the exact
+comparison control for derivatives 22–31.
 
 ## Frozen acceptance contract
 
@@ -93,7 +98,7 @@ impression.
 ## Verification closure
 
 - `npm run build`: **PASS** — 47 static pages.
-- `node scripts/verify-content-parity.mjs`: **PASS** — 512 canonical-content
+- `node scripts/verify-content-parity.mjs`: **PASS** — 549 canonical-content
   and equal-scope checks across combined base 21 and derivatives 22–31.
 - `node scripts/verify-design-lab.mjs`: **PASS** — 468 route, mechanism,
   interaction, console, clipping, responsive and reduced-motion checks.
@@ -114,6 +119,6 @@ made every description an exact test instruction, added candid impact labels,
 and caught a parsing defect that prevented the `100%` figure in route 27 from
 animating. All three route-27 proof values now animate and resolve exactly.
 
-The verified lab was merged into `main` at `5fa6b22`. No derivative has replaced
-the production homepage; the next action is owner selection in the live Batch
-03 dashboard.
+The verified lab was merged into `main` at `5fa6b22`. Base 21 is now the
+production homepage; derivatives 22–31 remain unpromoted pending owner
+selection in the live Batch 03 dashboard.

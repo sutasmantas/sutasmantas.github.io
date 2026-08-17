@@ -1,9 +1,9 @@
 {
-  "verifiedAt": "2026-08-16T20:07:21.622Z",
+  "verifiedAt": "2026-08-17T05:31:05.849Z",
   "result": "PASS",
   "summary": {
-    "checks": 512,
-    "passed": 512,
+    "checks": 549,
+    "passed": 549,
     "failed": 0
   },
   "checks": [
@@ -2259,6 +2259,191 @@
     },
     {
       "name": "31 preserves the contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production homepage returns 200",
+      "pass": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "production homepage uses the combined-base headline",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production homepage preserves the canonical positioning copy",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production homepage removes design-lab chrome and review copy",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production homepage is indexable",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production homepage activates all five selected base mechanisms",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production homepage exposes exactly thirteen canonical project records",
+      "pass": true,
+      "detail": "found 13"
+    },
+    {
+      "name": "production homepage exposes every project once",
+      "pass": true,
+      "detail": "atlas,relay,leaddock,firstring,ledger-lens,proofgrid,switchback,pipelineforge,deliveryguard,adapterproof,printline,gauge,signalroom"
+    },
+    {
+      "name": "production/atlas preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/atlas preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/relay preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/relay preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/leaddock preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/leaddock preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/firstring preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/firstring preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/ledger-lens preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/ledger-lens preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/proofgrid preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/proofgrid preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/switchback preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/switchback preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/pipelineforge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/pipelineforge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/deliveryguard preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/deliveryguard preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/adapterproof preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/adapterproof preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/printline preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/printline preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/gauge preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/gauge preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/signalroom preserves title, description and evidence note",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production/signalroom preserves case and live actions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production homepage preserves all three client routes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production homepage preserves the site-level contact path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production homepage project selection activates Relay",
       "pass": true,
       "detail": ""
     },

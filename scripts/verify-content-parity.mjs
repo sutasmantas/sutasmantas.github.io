@@ -52,6 +52,33 @@ for (const variant of variants) {
   check(`${variant} preserves the contact path`, await page.locator(`a[href="mailto:${contact.email}"]`).count() >= 1);
 }
 
+const homeResponse = await page.goto(`${origin}/`, { waitUntil: 'networkidle' });
+check('production homepage returns 200', homeResponse?.status() === 200, `HTTP ${homeResponse?.status() ?? 'none'}`);
+const homeText = normalize(await page.locator('body').innerText());
+check('production homepage uses the combined-base headline', homeText.includes(`${identity.headline[0]} ${identity.headline[1]}.`));
+check('production homepage preserves the canonical positioning copy', homeText.includes(normalize(identity.sub)));
+check('production homepage removes design-lab chrome and review copy', await page.locator('.labbar, .experiment-head').count() === 0 && !homeText.includes('Design lab') && !homeText.includes('Combined selected base'));
+check('production homepage is indexable', await page.locator('meta[name="robots"][content*="noindex"]').count() === 0);
+check('production homepage activates all five selected base mechanisms', await page.locator('[data-proof-deck][data-proof-effect="combined-base"][data-combined-base="true"]').count() === 1);
+
+const homeRecords = page.locator('[data-project-record]');
+check('production homepage exposes exactly thirteen canonical project records', await homeRecords.count() === ordered.length, `found ${await homeRecords.count()}`);
+const homeSlugs = await homeRecords.evaluateAll((elements) => elements.map((element) => element.dataset.projectSlug));
+check('production homepage exposes every project once', new Set(homeSlugs).size === ordered.length && ordered.every((project) => homeSlugs.filter((slug) => slug === project.slug).length === 1), homeSlugs.join(','));
+
+for (const project of ordered) {
+  const target = page.locator(`[data-project-record][data-project-slug="${project.slug}"]`);
+  const text = normalize(await target.innerText());
+  check(`production/${project.slug} preserves title, description and evidence note`, text.includes(normalize(project.title)) && text.includes(normalize(project.blurb)) && text.includes(normalize(project.note)));
+  check(`production/${project.slug} preserves case and live actions`, await target.locator(`a[href$="/work/${project.slug}/"]`).count() === 1 && await target.locator(`a[href="${project.live}"]`).count() === 1);
+}
+
+check('production homepage preserves all three client routes', await page.locator('[data-client-route]').count() === routes.length);
+check('production homepage preserves the site-level contact path', await page.locator(`a[href="mailto:${contact.email}"]`).count() >= 1);
+
+await page.locator('[data-proof-button="relay"]').click();
+check('production homepage project selection activates Relay', await page.locator('[data-proof-button="relay"]').getAttribute('aria-pressed') === 'true' && await page.locator('[data-proof-card="relay"]').isVisible());
+
 for (const project of ordered) {
   await page.goto(`${origin}/work/${project.slug}/`, { waitUntil: 'networkidle' });
   check(`${project.slug} removes project-specific email actions`, await page.locator('a[href^="mailto:"][href*="subject="]').count() === 0);

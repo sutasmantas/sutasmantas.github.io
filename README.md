@@ -11,10 +11,11 @@ gutter does not reach the live site.
 
 | Route | What it is |
 | --- | --- |
-| `/` | Everything: a running interface in the fold, three owned proof figures, the three problems clients arrive with, and all thirteen systems with a filter. Deep-linkable via `?route=`. |
+| `/` | Production base 21: the three owned proof figures, a grouped 13-project directory, one selected full-evidence stage, the three problems clients arrive with, and direct case/live links. |
 | `/work/<slug>/` | One system running in place on desktop, plus its immutable artifact, test, hosted gate, rerun command and explicit limit. |
 | `/evidence/` | Public claim-to-artifact ledger: immutable evidence and test links, rerun commands, hosted gates and explicit limits for all thirteen systems. |
 | `/evidence/receipt.json` | Machine-readable form of the same thirteen-project receipt. |
+| `/design-lab/` | Private-review dashboard for the retained production base and the current single-aspect experiments. |
 
 There is deliberately no separate index page. It existed, listed the same
 thirteen cards in the same order as the home page, and split one job across two
@@ -57,7 +58,7 @@ placeholder action (`href="#"`, an empty `mailto:`), a fragment with no matching
 `id` on that page, an internal route missing from `dist`, or an external URL that
 does not answer.
 
-`scripts/gate.mjs` — four routes at 375px and 1440px: the route answers 200, no text within 8px of a
+`scripts/gate.mjs` — five routes at 375px and 1440px: the route answers 200, no text within 8px of a
 viewport edge, no horizontal overflow, every control reachable by Tab with a
 visible focus ring, WCAG 2.5.8 target size, alt text on every image, 4.5:1
 contrast measured against each element's resolved background, and nothing

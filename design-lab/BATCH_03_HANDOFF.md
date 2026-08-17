@@ -1,11 +1,13 @@
 # Central portfolio visual lab — Batch 3 handoff
 
-Date: 2026-08-16
-Status: **PASS_MERGED_TO_MAIN_READY_FOR_OWNER_SELECTION**
+Date: 2026-08-17
+Status: **PASS_BASE_21_PROMOTED_TO_PRODUCTION**
 Implementation checkpoint: `6972343eba0c9814202e83e800c4cd4d71756482`
 Merge checkpoint: `5fa6b225c2724ab4d4418db3468dc3d7b7daf873`
 Owner-review clarity checkpoint: `2d9145e7cc2f782879c03976da477407d7e94835`
+Production promotion checkpoint: **PENDING COMMIT**
 Combined control: `/design-lab/21/`
+Production route: `/`
 Branch: `main`
 Worktree: `C:\Users\masuta\Desktop\Coding\cv\portfolio_demos\central_portfolio_site`
 
@@ -17,6 +19,12 @@ five `KEEP` mechanisms: signal perimeter (11), screenshot inspection lens
 (13), selected-row shimmer (16), spectral canonical headline (17), and
 route-direction project reveal (19). Rejected mechanisms were not carried
 forward.
+
+On 2026-08-17 the owner explicitly authorized replacing the production
+homepage. `/` now renders the same combined base-21 composition without lab
+navigation, experiment labels, review instructions, or `noindex` metadata.
+The public wording describes the project directory and inspection behavior;
+routes 21–31 remain available for controlled comparison.
 
 Routes 22–31 each add one mechanism to route 21. Every route retains all 13
 canonical projects, complete descriptions and evidence notes, case/live links,
@@ -63,7 +71,7 @@ and the empty Batch 3 decision table are in `BATCH_03_MANIFEST.md`.
 | Gate | Result |
 | --- | --- |
 | `npm run build` | **PASS** — 47 static pages |
-| `node scripts/verify-content-parity.mjs` | **PASS** — 512 checks |
+| `node scripts/verify-content-parity.mjs` | **PASS** — 549 checks |
 | `node scripts/verify-design-lab.mjs` | **PASS** — 468 checks |
 | `node scripts/verify-review-dashboard.mjs` | **PASS** — 30 checks |
 | `node scripts/capture-design-lab.mjs` | **PASS** — 22 full-page renders plus two contact sheets |
@@ -88,16 +96,30 @@ vague mechanism summaries with exact test instructions and exposed impact size
 in both the dashboard and route header. It also fixed route 27 so its `100%`
 proof value—along with `13` and `10`—animates and resolves exactly.
 
+### Production promotion verification
+
+- `/` renders base 21 without `.labbar`, `.experiment-head`, review copy, or
+  `noindex` metadata.
+- All 13 canonical projects occur exactly once with their complete title,
+  description, evidence note, case link, and live link.
+- Project selection, the five accepted mechanisms, three client routes, and
+  site-level contact remain active.
+- The production release gate passes at 375px and 1440px, including contrast,
+  keyboard focus, target size, overflow, and reduced motion.
+- The lab interaction suite and dashboard suite still pass unchanged.
+
 ## Exact restart point
 
-1. Open the dashboard with `OPEN_DESIGN_LAB.cmd`.
-2. Test routes 22–31 against base 21 at both widths and with reduced motion.
+1. Treat `/` and `/design-lab/21/` as the same design base; only the lab route
+   carries review chrome.
+2. Open the dashboard with `OPEN_DESIGN_LAB.cmd` and test routes 22–31 against
+   base 21 at both widths and with reduced motion.
 3. Record decisions and explanations where a choice is `REVISE`, then export
    the Batch 3 JSON.
 4. Do not change canonical copy or remove a project to accommodate a visual
    choice.
-5. Do not promote one of routes 22–31 into the production homepage until the
-   owner selects the next mechanisms and explicitly authorizes that change.
+5. Do not promote one of routes 22–31 until the owner selects it and explicitly
+   authorizes that additional production change.
 
-Batch 03 is integrated into `main` as a private-review design lab. No derivative
-has replaced the production homepage.
+Base 21 is the production homepage. Batch 03 derivatives remain private-review
+routes and have not changed production.
